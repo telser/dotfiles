@@ -1,0 +1,7 @@
+! urxvt settings
+URxvt.termName:          rxvt
+URxvt.background:        #000000
+URxvt.foreground:        #CCCCCC
+URxvt.transparent:       true
+URxvt.cursorBlink:       false
+URxvt.scrollBar_right:   true
