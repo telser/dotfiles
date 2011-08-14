@@ -34,5 +34,7 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true \
 
 wicd-client &
 
+~/./wallpaper.sh &
+
 xsetroot -cursor_name left_ptr
 exec ck-launch-session xmonad
