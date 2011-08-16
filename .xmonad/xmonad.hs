@@ -38,7 +38,7 @@ main = do
                         , ppTitle = xmobarColor "green" "" . shorten 50
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
-        , terminal = "urxvt"
+        , terminal = "urxvtc"
         , workspaces = myWorkSpaces
         }
 -- Setup workspaces using short names to save display room        
