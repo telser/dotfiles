@@ -32,7 +32,7 @@ xrdb -merge ~/.Xresources
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
  --expand true --width 10 --transparent true --tint 0x000000 --height 19 & 
 
-wicd-client &
+nm-applet &
 
 thunar --daemon &
 
@@ -41,4 +41,4 @@ urxvtd -q -o -f &
 ~/./wallpaper.sh &
 
 xsetroot -cursor_name left_ptr
-exec ck-launch-session xmonad
+exec xmonad
