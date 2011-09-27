@@ -38,14 +38,15 @@ main = do
                         , ppTitle = xmobarColor "green" "" . shorten 50
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
-        , terminal = "urxvtc"
+        , terminal = "urxvtc"    -- Use urxvt clients
         , workspaces = myWorkSpaces
+        , keys=myKeys
         }
 -- Setup workspaces using short names to save display room        
-myWorkSpaces=["1:term","2:web","3:code","4:ppl","5:","6:","7:","8:","9:music"]
+myWorkSpaces=["1:term","2:web","3:code","4:ppl","5:fm","6:","7:","8:","9:music"]
 
 -- Layout
-myLayoutHook = avoidStruts (tall ||| Mirror tall ||| Full)
+myLayoutHook = avoidStruts (tall ||| Full)
   where
      tall   = Tall nmaster delta ratio
      nmaster = 1
@@ -58,6 +59,19 @@ myManageHook = composeAll
      , className =? "Pidgin"         --> doF (W.shift "4:people")
      , className =? "Firefox"        --> doF (W.shift "2:web")
      , className =? "Opera"          --> doF (W.shift "2:web")
-     , className =? "Xchat"          --> doF (W.shift "4:people")
+     , className =? "xchat"          --> doF (W.shift "4:people")
+     , className =? "Banshee"        --> doF (W.shift "9:music")
+     , className =? "Skype"          --> doF (W.shift "4:people")
+     , className =? "Thunar"         --> doF (W.shift "5:fm")
+     , className =? "Pidgin"         --> doFloat
+     , className =? "Skype"          --> doFloat
    ] <+> manageDocks <+> manageHook defaultConfig
 
+
+-- Union default and new key bindings
+myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
+ 
+-- Add new and/or redefine key bindings
+newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
+  (( modMask .|. shiftMask, xK_e), spawn "eject -T")
+  ]
