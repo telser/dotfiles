@@ -38,6 +38,8 @@ thunar --daemon &
 
 urxvtd -q -o -f &
 
+blueman-applet &
+
 ~/./wallpaper.sh &
 
 xsetroot -cursor_name left_ptr
