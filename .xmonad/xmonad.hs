@@ -44,7 +44,7 @@ main = do
         , keys=myKeys
         }
 -- Setup workspaces using short names to save display room        
-myWorkSpaces=["1:term","2:web","3:code","4:ppl","5:fm","6:","7:","8:","9:music"]
+myWorkSpaces=["term","web","code","ppl","fm","6:","7:","8:","music"]
 
 -- Layout
 myLayoutHook = avoidStruts (tall ||| Full)
@@ -56,16 +56,17 @@ myLayoutHook = avoidStruts (tall ||| Full)
          
 -- Move some programs to certain workspaces         
 myManageHook = composeAll
-   [   className =? "Gimp"           --> doFloat
-     , className =? "Firefox"        --> doF (W.shift "2:web")
-     , className =? "Opera"          --> doF (W.shift "2:web")
-     , className =? "Xchat"          --> doF (W.shift "4:people")
-     , className =? "Skype"          --> doF (W.shift "4:people")
-     , className =? "Pidgin"         --> doF (W.shift "4:people")
-     , className =? "Thunar"         --> doF (W.shift "5:fm")
-     , className =? "Banshee"        --> doF (W.shift "9:music")
+    [
+       className =? "Firefox"        --> doF (W.shift "web")
+     , className =? "Opera"          --> doF (W.shift "web")
+     , className =? "Pidgin"         --> doF (W.shift "ppl")
+     , className =? "xchat"          --> doF (W.shift "ppl")
+     , className =? "Skype"          --> doF (W.shift "ppl")
+     , className =? "Thunar"         --> doF (W.shift "fm")
+     , className =? "Banshee"        --> doF (W.shift "music")
      , className =? "Pidgin"         --> doFloat
      , className =? "Skype"          --> doFloat
+     , className =? "Gimp"           --> doFloat
    ] <+> manageDocks <+> manageHook defaultConfig
 
 
