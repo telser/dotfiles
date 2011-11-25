@@ -19,6 +19,7 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.IndependentScreens
 
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
@@ -39,7 +40,7 @@ main = do
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         , terminal = "urxvtc"    -- Use urxvt clients
-        , workspaces = myWorkSpaces
+        , workspaces = withScreens 2  myWorkSpaces
         , keys=myKeys
         }
 -- Setup workspaces using short names to save display room        
@@ -56,13 +57,13 @@ myLayoutHook = avoidStruts (tall ||| Full)
 -- Move some programs to certain workspaces         
 myManageHook = composeAll
    [   className =? "Gimp"           --> doFloat
-     , className =? "Pidgin"         --> doF (W.shift "4:people")
      , className =? "Firefox"        --> doF (W.shift "2:web")
      , className =? "Opera"          --> doF (W.shift "2:web")
-     , className =? "xchat"          --> doF (W.shift "4:people")
-     , className =? "Banshee"        --> doF (W.shift "9:music")
+     , className =? "Xchat"          --> doF (W.shift "4:people")
      , className =? "Skype"          --> doF (W.shift "4:people")
+     , className =? "Pidgin"         --> doF (W.shift "4:people")
      , className =? "Thunar"         --> doF (W.shift "5:fm")
+     , className =? "Banshee"        --> doF (W.shift "9:music")
      , className =? "Pidgin"         --> doFloat
      , className =? "Skype"          --> doFloat
    ] <+> manageDocks <+> manageHook defaultConfig
