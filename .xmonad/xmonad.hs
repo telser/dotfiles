@@ -19,6 +19,9 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Tabbed
+import XMonad.Layout.GridVariants
+import XMonad.Layout.PerWorkspace
 
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
@@ -47,12 +50,14 @@ main = do
 myWorkSpaces=["term","web","code","ppl","fm","6:","7:","8:","media"]
 
 -- Layout
-myLayoutHook = avoidStruts (tall ||| Full)
+myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ (tall ||| Full ||| simpleTabbed ||| myGrid)
   where
      tall   = Tall nmaster delta ratio
      nmaster = 1
      ratio   = 1/2
      delta   = 2/100
+     defaultRatio = 1/2
+     myGrid = TallGrid 2 2 (1/2)  (1/2) (2/100)
          
 -- Move some programs to certain workspaces and float some too         
 myManageHook = composeAll
@@ -65,6 +70,8 @@ myManageHook = composeAll
      , className =? "Thunar"         --> doF (W.shift "fm")
      , className =? "Banshee"        --> doF (W.shift "media")
      , className =? "Vlc"            --> doF (W.shift "media")
+     , className =? "Conky"          --> doF (W.shift "8:")
+     , className =? "Conky"          --> doFloat
      , className =? "Pidgin"         --> doFloat
      , className =? "Skype"          --> doFloat
      , className =? "Gimp"           --> doFloat
