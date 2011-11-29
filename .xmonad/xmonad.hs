@@ -41,7 +41,7 @@ main = do
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 50
                         }
-        , modMask = mod4Mask     -- Rebind Mod to the Windows key
+        , modMask = mod4Mask     -- Rebind Mod to the Super key
         , terminal = "urxvtc"    -- Use urxvt clients
         , workspaces =  myWorkSpaces
         , keys=myKeys
