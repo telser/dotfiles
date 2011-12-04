@@ -1,0 +1,138 @@
+# ~/.conkyrc
+ #
+ #
+ #
+
+ # # Use double buffering (eliminates flickering)
+double_buffer yes
+
+# Boolean value, if true, Conky will be forked to background when started. 
+background yes
+
+# Subtract (file system) buffers from used memory
+no_buffers yes
+
+# Use Xft (anti-aliased font and stuff) 
+use_xft no
+xftfont Bitstream Vera Sans Mono:size=10
+xftalpha 0.8
+
+# Update interval in seconds
+update_interval 4.0
+ 
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+ total_run_times 0
+
+# Should Conky use it's own window?
+own_window no
+
+# Needed for transparency
+own_window_argb_visual yes
+
+# Makes conky's window transparent
+own_window_transparent yes
+
+# If own window set type
+own_window_type desktop
+
+# If own window set hints
+own_window_hints below,skip_taskbar,skip_pager, undecorated
+
+# If own window set classname
+own_window_class conky
+
+# Minimum size of the window
+minimum_size 200 5
+
+# Maximum width of the window
+maximum_width 600
+
+#text_buffer_size 2000
+
+# Where to place the conky "window"
+alignment bottom_left
+
+# On dual screen setup conky draws the window on the second screen when using align right
+# the following values adjust the conky window to be drawn on first screen (depending on 
+# resolution of the 2nd screen ofcourse)
+gap_x 20
+gap_y 60
+
+draw_shades no
+draw_outline no
+draw_borders no
+
+# Case for all the characters in conky
+uppercase no
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+# While using a mono font prevents text from moving around
+use_spacer left
+
+color1 444444
+color2 cccccc
+color3 777777
+
+
+TEXT
+
+
+${color}host :${color white} ${nodename} 
+${color}os   :${color white} ${sysname} ${kernel}
+
+${color}uptime:${color white} $uptime 
+
+${color}cpu: $cpu%  Hz: ${freq}Mhz temp:${acpitemp}
+${color 888888}${cpugraph 30,200 0000ff ff0000}
+${color}core1: ${cpu cpu1}%  ${execi 60 sensors | grep 'Core 0' | cut -c 15-23} ${offset 125}${color}core2: ${cpu cpu2}%  ${execi 60 sensors | grep 'Core 1' | cut -c 15-23}
+${color 888888}${cpugraph cpu1 20,200 0000ff ff0000} ${color 888888}${cpugraph cpu2 20,200 0000ff ff0000}
+${color}core3: ${cpu cpu3}%  ${execi 60 sensors | grep 'Core 2' | cut -c 15-23} ${offset 125}${color}core4: ${cpu cpu4}%  ${execi 60 sensors | grep 'Core 3' | cut -c 15-23}
+${color 888888}${cpugraph cpu3 20,200 0000ff ff0000} ${color 888888}${cpugraph cpu4 20,200 0000ff ff0000}
+
+${color}Process           CPU
+${color}${top name 1}${offset -50}      ${top cpu 1}
+${color}${top name 2}${offset -50}      ${top cpu 2}
+${color}${top name 3}${offset -50}      ${top cpu 3}
+${color}${top name 4}${offset -50}      ${top cpu 4}
+
+
+${color}Ram: ${memmax} free: ${memfree} used: ${mem}
+${color white} $memperc% $membar
+
+${color}Mem Usage         Mem
+${color}${top_mem name 1}${offset -50}      ${top_mem mem 1}
+${color}${top_mem name 2}${offset -50}      ${top_mem mem 2}
+${color}${top_mem name 3}${offset -50}      ${top_mem mem 3}
+${color}${top_mem name 4}${offset -50}      ${top_mem mem 4}
+
+Disk:
+
+/ Read: ${diskio_read /dev/disk/by-uuid/9adf217a-fe0d-4db7-9a5f-3e2bb556d30d}
+${diskiograph_read /dev/disk/by-uuid/9adf217a-fe0d-4db7-9a5f-3e2bb556d30d 20,200 0000ff ff0000 -t}
+/ Write: ${diskio_write /dev/disk/by-uuid/9adf217a-fe0d-4db7-9a5f-3e2bb556d30d}
+${diskiograph_write /dev/disk/by-uuid/9adf217a-fe0d-4db7-9a5f-3e2bb556d30d 20,200,0000ff ff0000 -t}
+
+${color}home: ${color white}${fs_free /home} ${fs_bar /home}
+${color}boot: ${color white}${fs_free /boot} ${fs_bar /boot} 
+${color}swap: ${color white}${swapperc}% ${swapbar} 
+#${color}tmp: ${color white}${fs_free /tmp} ${fs_bar /tmp}
+
+Network:
+${color}Down:${downspeed wlan0}  Up:${upspeed eth0}
+${color }${downspeedgraph wlan0 30,95 ff0000 0000ff} ${color #888888}${upspeedgraph eth0 30,95 0000ff ff0000}
+                             
+Battery:                             
+Temp:${smapi_bat_temp 0}
+Power:${smapi_bat_power 0}
+Left:
+${smapi_bat_bar 0}
+
+${exec cal -3}
+
+updates:
+${hr}
+${exec ~/./paknotify.py /tmp/paconky}
+${hr}

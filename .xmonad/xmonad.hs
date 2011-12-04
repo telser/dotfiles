@@ -47,10 +47,10 @@ main = do
         , keys=myKeys
         }
 -- Setup workspaces using short names to save display room        
-myWorkSpaces=["term","web","code","ppl","fm","6:","7:","8:","media"]
+myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch"]
 
 -- Layout
-myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ (tall ||| Full ||| simpleTabbed ||| myGrid)
+myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
   where
      tall   = Tall nmaster delta ratio
      nmaster = 1
@@ -70,8 +70,7 @@ myManageHook = composeAll
      , className =? "Thunar"         --> doF (W.shift "fm")
      , className =? "Banshee"        --> doF (W.shift "media")
      , className =? "Vlc"            --> doF (W.shift "media")
-     , className =? "Conky"          --> doF (W.shift "8:")
-     , className =? "Conky"          --> doFloat
+     , className =? "conky"          --> doF (W.shift "mon")
      , className =? "Pidgin"         --> doFloat
      , className =? "Skype"          --> doFloat
      , className =? "Gimp"           --> doFloat
