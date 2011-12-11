@@ -3,18 +3,17 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , fgColor = "grey"
        , position = TopSize L 90 20
        , lowerOnStart = True
-       , commands = [ Run Weather "KMGE" ["-t","<station>: <tempF>F","-L","35","-H","85","--normal","green","--high","red","--low","lightblue"] 36000
+       , commands = [ Run Weather "KMGE" ["-t","<station>: <tempF>F","-L","35","-H","85","--normal","green","--high","red","--low","blue"] 36000
                     , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run Network "wlan0" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run Battery ["-t", "Batt: <left>%"] 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% |%battery% | %eth0%  %wlan0% |%StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KMGE% | %uname%"
+       , template = "%cpu% | %memory% | %battery% | %eth0%  %wlan0% |%StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KMGE%"
        }

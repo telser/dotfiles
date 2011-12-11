@@ -22,6 +22,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.GridVariants
 import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Named
 
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
@@ -57,7 +58,7 @@ myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Fu
      ratio   = 1/2
      delta   = 2/100
      defaultRatio = 1/2
-     myGrid = TallGrid 2 2 (1/2)  (1/2) (2/100)
+     myGrid = named "g" (TallGrid 2 2 (1/2)  (1/2) (2/100))
          
 -- Move some programs to certain workspaces and float some too         
 myManageHook = composeAll
@@ -68,9 +69,10 @@ myManageHook = composeAll
      , className =? "xchat"          --> doF (W.shift "ppl")
      , className =? "Skype"          --> doF (W.shift "ppl")
      , className =? "Thunar"         --> doF (W.shift "fm")
+     , className =? "libreoffice-writer"    --> doF (W.shift "doc")
+     , className =? "xpdf"           --> doF (W.shift "xpdf")
      , className =? "Banshee"        --> doF (W.shift "media")
      , className =? "Vlc"            --> doF (W.shift "media")
-     , className =? "conky"          --> doF (W.shift "mon")
      , className =? "Pidgin"         --> doFloat
      , className =? "Skype"          --> doFloat
      , className =? "Gimp"           --> doFloat
@@ -90,6 +92,14 @@ newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. controlMask, xK_Left),  prevScreen)
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
+ , ((modMask .|. shiftMask, xK_b), spawn "banshee")
+ , ((modMask .|. shiftMask, xK_f), spawn "firefox")
+ , ((modMask .|. shiftMask, xK_m), spawn "midori")
+ , ((modMask .|. shiftMask, xK_o), spawn "opera")                                
+ , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
+ , ((modMask .|. shiftMask, xK_s), spawn "skype")
+ , ((modMask .|. shiftMask, xK_t), spawn "thunar")
+ , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")    
  ]
 
  ++

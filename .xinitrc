@@ -1,8 +1,5 @@
 #!/bin/sh
 #
-# ~/.xinitrc
-#
-# Executed by startx (run your window manager from here)
 
 NAME=$( uname "-n")
 
@@ -22,12 +19,6 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
     echo "D-Bus per-session daemon address is: 
 $DBUS_SESSION_BUS_ADDRESS"
 fi
-
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
-#exec ck-launch-session dbus-launch --exit-with-session startxfce4
 
 xrdb -merge ~/.Xresources
 

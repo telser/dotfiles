@@ -110,10 +110,10 @@ ${color}${top_mem name 4}${offset -50}      ${top_mem mem 4}
 
 Disk:
 
-/ Read: ${diskio_read /dev/disk/by-uuid/9adf217a-fe0d-4db7-9a5f-3e2bb556d30d}
-${diskiograph_read /dev/disk/by-uuid/9adf217a-fe0d-4db7-9a5f-3e2bb556d30d 20,200 0000ff ff0000 -t}
-/ Write: ${diskio_write /dev/disk/by-uuid/9adf217a-fe0d-4db7-9a5f-3e2bb556d30d}
-${diskiograph_write /dev/disk/by-uuid/9adf217a-fe0d-4db7-9a5f-3e2bb556d30d 20,200,0000ff ff0000 -t}
+/ Read: ${diskio_read /dev/sda3}
+${diskiograph_read /dev/sda3 20,200,0000ff ff0000 }
+/ Write: ${diskio_write /dev/sda3}
+${diskiograph_write /dev/sda3 20,200,0000ff ff0000 }
 
 ${color}home: ${color white}${fs_free /home} ${fs_bar /home}
 ${color}boot: ${color white}${fs_free /boot} ${fs_bar /boot} 
@@ -121,18 +121,20 @@ ${color}swap: ${color white}${swapperc}% ${swapbar}
 #${color}tmp: ${color white}${fs_free /tmp} ${fs_bar /tmp}
 
 Network:
-${color}Down:${downspeed wlan0}  Up:${upspeed eth0}
-${color }${downspeedgraph wlan0 30,95 ff0000 0000ff} ${color #888888}${upspeedgraph eth0 30,95 0000ff ff0000}
-                             
+${color}Down:${downspeed wlan0}  Up:${upspeed wlan0}
+${color}${downspeedgraph wlan0 30,95 ff0000 0000ff} ${color}${upspeedgraph wlan0 30,95 0000ff ff0000}
+
+${if_smapi_bat_installed 0}
 Battery:                             
 Temp:${smapi_bat_temp 0}
 Power:${smapi_bat_power 0}
 Left:
 ${smapi_bat_bar 0}
+$endif
 
 ${exec cal -3}
 
 updates:
 ${hr}
-${exec ~/./paknotify.py /tmp/paconky}
+${execi 3600  ~/./paknotify.py /tmp/paconky}
 ${hr}
