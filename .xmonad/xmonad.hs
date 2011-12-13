@@ -36,7 +36,7 @@ import qualified Data.Map as M
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/trevis/.xmobarrc"
     xmonad $ defaultConfig
-        { manageHook = myManageHook 
+        { manageHook = myManageHook <+> manageDocks <+> manageHook defaultConfig
         , layoutHook = myLayoutHook  -- $  layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
@@ -61,23 +61,25 @@ myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Fu
      myGrid = named "g" (TallGrid 2 2 (1/2)  (1/2) (2/100))
          
 -- Move some programs to certain workspaces and float some too         
-myManageHook = composeAll
+myManageHook = (composeAll . concat $
     [
-       className =? "Firefox"        --> doF (W.shift "web")
-     , className =? "Opera"          --> doF (W.shift "web")
-     , className =? "Pidgin"         --> doF (W.shift "ppl")
-     , className =? "xchat"          --> doF (W.shift "ppl")
-     , className =? "Skype"          --> doF (W.shift "ppl")
-     , className =? "Thunar"         --> doF (W.shift "fm")
-     , className =? "libreoffice-writer"    --> doF (W.shift "doc")
-     , className =? "xpdf"           --> doF (W.shift "xpdf")
-     , className =? "Banshee"        --> doF (W.shift "media")
-     , className =? "Vlc"            --> doF (W.shift "media")
-     , className =? "Pidgin"         --> doFloat
-     , className =? "Skype"          --> doFloat
-     , className =? "Gimp"           --> doFloat
-     , (className =? "Firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialogs
-   ] <+> manageDocks <+> manageHook defaultConfig
+       [className =? x --> doF (W.shift "web") | x <- myWebShift]
+     , [className =? x --> doF (W.shift "ppl") | x <- myImShift]
+     , [className =? "Thunar"         --> doF (W.shift "fm")]
+     , [className =? x --> doF (W.shift "media") | x <- myMediaShift]
+     , [className =? "virtalbox"      --> doF (W.shift "vm")]
+     , [className =? "Pidgin"         --> doFloat]
+     , [className =? "Skype"          --> doFloat]
+     , [className =? "Gimp"           --> doFloat]
+     , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]  -- Float Firefox Dialogs
+   ])
+   where
+   myWebShift = ["Firefox","Midori","Opera"]
+   myImShift = ["Pidgin","xchat","Skype"]
+   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf"]
+   myMediaShift = ["Banshee","Vlc"]
+
+
 
 
 -- Union default and new key bindings

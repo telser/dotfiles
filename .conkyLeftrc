@@ -18,26 +18,26 @@ xftfont Bitstream Vera Sans Mono:size=10
 xftalpha 0.8
 
 # Update interval in seconds
-update_interval 4.0
+update_interval 1.0
  
 # This is the number of times Conky will update before quitting.
 # Set to zero to run forever.
  total_run_times 0
 
 # Should Conky use it's own window?
-own_window no
+own_window yes
 
 # Needed for transparency
-own_window_argb_visual yes
+own_window_argb_visual no
 
 # Makes conky's window transparent
 own_window_transparent yes
 
 # If own window set type
-own_window_type desktop
+own_window_type dock
 
 # If own window set hints
-own_window_hints below,skip_taskbar,skip_pager, undecorated
+own_window_hints below,skip_taskbar,skip_pager
 
 # If own window set classname
 own_window_class conky
@@ -72,69 +72,62 @@ net_avg_samples 2
 # While using a mono font prevents text from moving around
 use_spacer left
 
-color1 444444
+color1 73FF00
 color2 cccccc
 color3 777777
 
 
 TEXT
-
-
 ${color}host :${color white} ${nodename} 
 ${color}os   :${color white} ${sysname} ${kernel}
-
 ${color}uptime:${color white} $uptime 
-
-${color}cpu: $cpu%  Hz: ${freq}Mhz temp:${acpitemp}
+${stippled_hr}
+${color1}CPU:${color}${hr}
+${color}overall: $cpu%  Freq: ${freq}Mhz Temp:${acpitemp}C
 ${color 888888}${cpugraph 30,200 0000ff ff0000}
 ${color}core1: ${cpu cpu1}%  ${execi 60 sensors | grep 'Core 0' | cut -c 15-23} ${offset 125}${color}core2: ${cpu cpu2}%  ${execi 60 sensors | grep 'Core 1' | cut -c 15-23}
 ${color 888888}${cpugraph cpu1 20,200 0000ff ff0000} ${color 888888}${cpugraph cpu2 20,200 0000ff ff0000}
 ${color}core3: ${cpu cpu3}%  ${execi 60 sensors | grep 'Core 2' | cut -c 15-23} ${offset 125}${color}core4: ${cpu cpu4}%  ${execi 60 sensors | grep 'Core 3' | cut -c 15-23}
 ${color 888888}${cpugraph cpu3 20,200 0000ff ff0000} ${color 888888}${cpugraph cpu4 20,200 0000ff ff0000}
 
-${color}Process           CPU
-${color}${top name 1}${offset -50}      ${top cpu 1}
-${color}${top name 2}${offset -50}      ${top cpu 2}
-${color}${top name 3}${offset -50}      ${top cpu 3}
-${color}${top name 4}${offset -50}      ${top cpu 4}
+${voffset 3}${color1}Processes:${color} ${processes}  ${color1}Running:${color red1} ${running_processes} ${color2}${hr 1}
+${alignc}${color0}(top 5 sorted by CPU usage)
+${color0}NAME${alignr 110}PID${alignr 60}CPU%${alignr 20}MEM%
+${top name 1}${alignr 80}${top pid 1}${alignr 45}${top cpu 1}${alignr 20}${top mem 1}
+${top name 2}${alignr 80}${top pid 2}${alignr 45}${top cpu 2}${alignr 20}${top mem 2}
+${top name 3}${alignr 80}${top pid 3}${alignr 45}${top cpu 3}${alignr 20}${top mem 3}
+${top name 4}${alignr 80}${top pid 4}${alignr 45}${top cpu 4}${alignr 20}${top mem 4}
+${top name 5}${alignr 80}${top pid 5}${alignr 45}${top cpu 5}${alignr 20}${top mem 5}
 
-
-${color}Ram: ${memmax} free: ${memfree} used: ${mem}
+${color1}Memory${color}${hr}
+${color}Ram:${memmax} free:${memfree} used:${mem}
 ${color white} $memperc% $membar
 
-${color}Mem Usage         Mem
-${color}${top_mem name 1}${offset -50}      ${top_mem mem 1}
-${color}${top_mem name 2}${offset -50}      ${top_mem mem 2}
-${color}${top_mem name 3}${offset -50}      ${top_mem mem 3}
-${color}${top_mem name 4}${offset -50}      ${top_mem mem 4}
+${alignc}${color0}(top 5 sorted by MEM usage)
+${color0}NAME${alignr 110}PID${alignr 60}CPU%${alignr 20}MEM%
+${top_mem name 1}${alignr 80}${top_mem pid 1}${alignr 45}${top_mem cpu 1}${alignr 20}${top_mem mem 1}
+${top_mem name 2}${alignr 80}${top_mem pid 2}${alignr 45}${top_mem cpu 2}${alignr 20}${top_mem mem 2}
+${top_mem name 3}${alignr 80}${top_mem pid 3}${alignr 45}${top_mem cpu 3}${alignr 20}${top_mem mem 3}
+${top_mem name 4}${alignr 80}${top_mem pid 4}${alignr 45}${top_mem cpu 4}${alignr 20}${top_mem mem 4}
+${top_mem name 5}${alignr 80}${top_mem pid 5}${alignr 45}${top_mem cpu 5}${alignr 20}${top_mem mem 5}
 
-Disk:
-
+${color1}Disk${color}${hr}
 / Read: ${diskio_read /dev/sda3}
 ${diskiograph_read /dev/sda3 20,200,0000ff ff0000 }
 / Write: ${diskio_write /dev/sda3}
 ${diskiograph_write /dev/sda3 20,200,0000ff ff0000 }
 
-${color}home: ${color white}${fs_free /home} ${fs_bar /home}
-${color}boot: ${color white}${fs_free /boot} ${fs_bar /boot} 
+${color}home: ${color white}${fs_type}${fs_free /home}/${fs_size /home} ${fs_bar /home}
+${color}boot: ${color white}${fs_type}${fs_free /boot}/${fs_size /boot} ${fs_bar /boot} 
 ${color}swap: ${color white}${swapperc}% ${swapbar} 
 #${color}tmp: ${color white}${fs_free /tmp} ${fs_bar /tmp}
 
-Network:
-${color}Down:${downspeed wlan0}  Up:${upspeed wlan0}
-${color}${downspeedgraph wlan0 30,95 ff0000 0000ff} ${color}${upspeedgraph wlan0 30,95 0000ff ff0000}
-
 ${if_smapi_bat_installed 0}
-Battery:                             
-Temp:${smapi_bat_temp 0}
-Power:${smapi_bat_power 0}
+${color1}Battery${color}${hr}                             
+Temp:${smapi_bat_temp 0}C
+Power draw:${smapi_bat_power 0}W
 Left:
 ${smapi_bat_bar 0}
 $endif
 
-${exec cal -3}
 
-updates:
-${hr}
-${execi 3600  ~/./paknotify.py /tmp/paconky}
-${hr}
