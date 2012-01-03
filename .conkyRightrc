@@ -72,37 +72,12 @@ net_avg_samples 2
 # While using a mono font prevents text from moving around
 use_spacer left
 
-color1 444444
+color1 73FF00
 color2 cccccc
 color3 777777
 
 
 TEXT
-
-#Disk:
-
-#/ Read: ${diskio_read /dev/sda3}
-#${diskiograph_read /dev/sda3 20,200,0000ff ff0000 }
-#/ Write: ${diskio_write /dev/sda3}
-#${diskiograph_write /dev/sda3 20,200,0000ff ff0000 }
-
-#${color}home: ${color white}${fs_free /home} ${fs_bar /home}
-#${color}boot: ${color white}${fs_free /boot} ${fs_bar /boot} 
-#${color}swap: ${color white}${swapperc}% ${swapbar} 
-#${color}tmp: ${color white}${fs_free /tmp} ${fs_bar /tmp}
-
-#Network:
-#${color}Down:${downspeed wlan0}  Up:${upspeed wlan0}
-#${color}${downspeedgraph wlan0 30,95 ff0000 0000ff} ${color}${upspeedgraph wlan0 30,95 0000ff ff0000}
-
-#${if_smapi_bat_installed 0}
-#Battery:                             
-#Temp:${smapi_bat_temp 0}
-#Power:${smapi_bat_power 0}
-#Left:
-#${smapi_bat_bar 0}
-#$endif
-
 ${exec cal -3}
 
 ${if_up eth0}${voffset 3}${color1}Network ${color}($nodename) ${color2}${hr}
@@ -118,7 +93,8 @@ ${color0}Address: ${color}${addr wlan0}${alignr}${color0}TCP Connections: ${colo
 ${if_gw}${color0}gateway: ${color}${gw_ip}$endif${alignr}${color0}dns: ${color}${nameserver}${endif}
 
 ${color1}Updates:${color}${hr}
-${execi 3600 ~/./paknotify.py /tmp/paconky}
+${execi 3593 rm -f /tmp/paconky/db.lck} # Use a prime just in case they overlap...
+${execi 3600 ~/./paknotify.py /tmp/paconky/}
 ${hr} 
 
 ${color1}Audio:${color}${hr}

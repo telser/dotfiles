@@ -17,8 +17,10 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 
 import XMonad.Layout
+import XMonad.Layout.IM
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Reflect
 import XMonad.Layout.Tabbed
 import XMonad.Layout.GridVariants
 import XMonad.Layout.PerWorkspace
@@ -29,6 +31,8 @@ import XMonad.Util.EZConfig
 import System.IO
 import System.IO.Unsafe
 import System.Posix.Unistd
+
+import Data.Ratio ((%))
 
 import Graphics.X11.Xlib
 import qualified Data.Map as M
@@ -51,7 +55,7 @@ main = do
 myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch"]
 
 -- Layout
-myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
+myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%8) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ (tall ||| myGrid ||| Full ||| simpleTabbed )
   where
      tall   = Tall nmaster delta ratio
      nmaster = 1
@@ -65,12 +69,11 @@ myManageHook = (composeAll . concat $
     [
        [className =? x --> doF (W.shift "web") | x <- myWebShift]
      , [className =? x --> doF (W.shift "ppl") | x <- myImShift]
-     , [className =? "Thunar"         --> doF (W.shift "fm")]
      , [className =? x --> doF (W.shift "media") | x <- myMediaShift]
+     , [className =? x --> doF (W.shift "doc") | x <- myDocShift]
      , [className =? "virtalbox"      --> doF (W.shift "vm")]
-     , [className =? "Pidgin"         --> doFloat]
-     , [className =? "Skype"          --> doFloat]
-     , [className =? "Gimp"           --> doFloat]
+     , [className =? "Thunar"         --> doF (W.shift "fm")]
+     , [className =? x --> doFloat | x <- myFloats]
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]  -- Float Firefox Dialogs
    ])
    where
@@ -78,6 +81,7 @@ myManageHook = (composeAll . concat $
    myImShift = ["Pidgin","xchat","Skype"]
    myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf"]
    myMediaShift = ["Banshee","Vlc"]
+   myFloats =["Pidgin","Skype","Gimp"]
 
 
 
