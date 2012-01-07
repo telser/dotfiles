@@ -55,7 +55,7 @@ main = do
 myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch"]
 
 -- Layout
-myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%8) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ (tall ||| myGrid ||| Full ||| simpleTabbed )
+myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%8) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
   where
      tall   = Tall nmaster delta ratio
      nmaster = 1
@@ -71,7 +71,7 @@ myManageHook = (composeAll . concat $
      , [className =? x --> doF (W.shift "ppl") | x <- myImShift]
      , [className =? x --> doF (W.shift "media") | x <- myMediaShift]
      , [className =? x --> doF (W.shift "doc") | x <- myDocShift]
-     , [className =? "virtalbox"      --> doF (W.shift "vm")]
+     , [className =? "VirtualBox"      --> doF (W.shift "vm")]
      , [className =? "Thunar"         --> doF (W.shift "fm")]
      , [className =? x --> doFloat | x <- myFloats]
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]  -- Float Firefox Dialogs
@@ -79,8 +79,8 @@ myManageHook = (composeAll . concat $
    where
    myWebShift = ["Firefox","Midori","Opera"]
    myImShift = ["Pidgin","xchat","Skype"]
-   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf"]
-   myMediaShift = ["Banshee","Vlc"]
+   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince"]
+   myMediaShift = ["Banshee","Vlc","Rhythmbox"]
    myFloats =["Pidgin","Skype","Gimp"]
 
 
@@ -93,18 +93,21 @@ myHost= fmap  nodeName getSystemID   --Get the hostname of the machine
 
 -- Add new and/or redefine key bindings
 newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
-  (( modMask .|. shiftMask, xK_e), spawn "eject -T")               --Keyboard shortcut for eject, usefull on slot load
+  (( modMask .|. controlMask, xK_e), spawn "eject -T")               --Keyboard shortcut for eject, usefull on slot load
  , ((modMask .|. controlMask, xK_Right), nextScreen)               --Move around screens
  , ((modMask .|. controlMask, xK_Left),  prevScreen)
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
+ , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
  , ((modMask .|. shiftMask, xK_m), spawn "midori")
  , ((modMask .|. shiftMask, xK_o), spawn "opera")                                
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
+ , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "skype")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
+ , ((modMask .|. shiftMask, xK_v), spawn "virtualbox")
  , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")    
  ]
 
