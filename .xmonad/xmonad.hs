@@ -34,6 +34,8 @@ import System.Posix.Unistd
 
 import Data.Ratio ((%))
 
+import Network.BSD
+
 import Graphics.X11.Xlib
 import qualified Data.Map as M
 
@@ -77,9 +79,9 @@ myManageHook = (composeAll . concat $
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]  -- Float Firefox Dialogs
    ])
    where
-   myWebShift = ["Firefox","Midori","Opera"]
+   myWebShift = ["Firefox","luakit","Opera"]
    myImShift = ["Pidgin","xchat","Skype"]
-   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince"]
+   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox"]
    myFloats =["Pidgin","Skype","Gimp"]
 
@@ -89,7 +91,8 @@ myManageHook = (composeAll . concat $
 -- Union default and new key bindings
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 
-myHost= fmap  nodeName getSystemID   --Get the hostname of the machine
+
+myHost = fmap  nodeName getSystemID   --Get the hostname of the machine
 
 -- Add new and/or redefine key bindings
 newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
@@ -101,7 +104,8 @@ newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
- , ((modMask .|. shiftMask, xK_m), spawn "midori")
+ , ((modMask .|. shiftMask, xK_l), spawn "luakit")
+ , ((modMask .|. shiftMask, xK_m), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_o), spawn "opera")                                
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
