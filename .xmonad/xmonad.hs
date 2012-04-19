@@ -1,43 +1,44 @@
 import XMonad
-import XMonad.Core
 
-import XMonad hiding ((|||))
-import XMonad.ManageHook
 import qualified XMonad.StackSet as W
 
 import XMonad.Actions.CycleWS
-import XMonad.Actions.Promote
-
-import XMonad.Prompt
-import XMonad.Prompt.Shell
-import XMonad.Prompt.Man
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.UrgencyHook
 
 import XMonad.Layout
 import XMonad.Layout.IM
-import XMonad.Layout.NoBorders
-import XMonad.Layout.ResizableTile
 import XMonad.Layout.Reflect
-import XMonad.Layout.Tabbed
-import XMonad.Layout.GridVariants
+import XMonad.Layout.Tabbed       -- for simpleTabbed
+import XMonad.Layout.GridVariants         --for Grids
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Named
 
 import XMonad.Util.Run
-import XMonad.Util.EZConfig
-import System.IO
 import System.IO.Unsafe
 import System.Posix.Unistd
 
 import Data.Ratio ((%))
 
-import Network.BSD
-
-import Graphics.X11.Xlib
 import qualified Data.Map as M
+-- ******* Old Imports line by line. Remove or add back in as necessary. *****
+
+--import XMonad.Core
+--import XMonad.ManageHook
+
+--import XMonad.Actions.Promote
+
+--import XMonad.Prompt
+--import XMonad.Prompt.Man
+--import XMonad.Prompt.Shell
+--import XMonad.Hooks.UrgencyHook
+--import XMonad.Layout.NoBorders
+--import XMonad.Layout.ResizableTile
+--import XMonad.Util.EZConfig
+--import System.IO
+--import Network.BSD
+--import Graphics.X11.Xlib
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/trevis/.xmobarrc"
@@ -81,16 +82,12 @@ myManageHook = (composeAll . concat $
    where
    myWebShift = ["Firefox","luakit","Opera"]
    myImShift = ["Pidgin","xchat","Skype"]
-   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker"]
+   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox"]
    myFloats =["Pidgin","Skype","Gimp"]
 
-
-
-
 -- Union default and new key bindings
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
-
 
 myHost = fmap  nodeName getSystemID   --Get the hostname of the machine
 
