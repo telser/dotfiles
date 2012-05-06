@@ -83,7 +83,7 @@ myManageHook = (composeAll . concat $
    myWebShift = ["Firefox","luakit","Opera"]
    myImShift = ["Pidgin","xchat","Skype"]
    myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
-   myMediaShift = ["Banshee","Vlc","Rhythmbox"]
+   myMediaShift = ["Banshee","Vlc","Rhythmbox","xine"]
    myFloats =["Pidgin","Skype","Gimp"]
 
 -- Union default and new key bindings
@@ -99,16 +99,18 @@ newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
+ , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
- , ((modMask .|. shiftMask, xK_m), spawn "texmaker")
+ , ((modMask .|. shiftMask, xK_m), spawn "mirage")                                
  , ((modMask .|. shiftMask, xK_o), spawn "opera")                                
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "skype")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
  , ((modMask .|. shiftMask, xK_v), spawn "virtualbox")
+ , ((modMask .|. shiftMask, xK_9), spawn "xine")
  , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")    
  ]
 
