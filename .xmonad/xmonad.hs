@@ -34,8 +34,6 @@ import System.Posix.Unistd
 
 import Data.Ratio ((%))
 
-import Network.BSD
-
 import Graphics.X11.Xlib
 import qualified Data.Map as M
 
