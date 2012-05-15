@@ -1,41 +1,44 @@
 import XMonad
-import XMonad.Core
 
-import XMonad hiding ((|||))
-import XMonad.ManageHook
 import qualified XMonad.StackSet as W
 
 import XMonad.Actions.CycleWS
-import XMonad.Actions.Promote
-
-import XMonad.Prompt
-import XMonad.Prompt.Shell
-import XMonad.Prompt.Man
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.UrgencyHook
 
 import XMonad.Layout
 import XMonad.Layout.IM
-import XMonad.Layout.NoBorders
-import XMonad.Layout.ResizableTile
 import XMonad.Layout.Reflect
-import XMonad.Layout.Tabbed
-import XMonad.Layout.GridVariants
+import XMonad.Layout.Tabbed       -- for simpleTabbed
+import XMonad.Layout.GridVariants         --for Grids
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Named
 
 import XMonad.Util.Run
-import XMonad.Util.EZConfig
-import System.IO
 import System.IO.Unsafe
 import System.Posix.Unistd
 
 import Data.Ratio ((%))
 
-import Graphics.X11.Xlib
 import qualified Data.Map as M
+-- ******* Old Imports line by line. Remove or add back in as necessary. *****
+
+--import XMonad.Core
+--import XMonad.ManageHook
+
+--import XMonad.Actions.Promote
+
+--import XMonad.Prompt
+--import XMonad.Prompt.Man
+--import XMonad.Prompt.Shell
+--import XMonad.Hooks.UrgencyHook
+--import XMonad.Layout.NoBorders
+--import XMonad.Layout.ResizableTile
+--import XMonad.Util.EZConfig
+--import System.IO
+--import Network.BSD
+--import Graphics.X11.Xlib
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/trevis/.xmobarrc"
@@ -79,16 +82,12 @@ myManageHook = (composeAll . concat $
    where
    myWebShift = ["Firefox","luakit","Opera"]
    myImShift = ["Pidgin","xchat","Skype"]
-   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker"]
-   myMediaShift = ["Banshee","Vlc","Rhythmbox"]
+   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
+   myMediaShift = ["Banshee","Vlc","Rhythmbox","xine"]
    myFloats =["Pidgin","Skype","Gimp"]
-
-
-
 
 -- Union default and new key bindings
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
-
 
 myHost = fmap  nodeName getSystemID   --Get the hostname of the machine
 
@@ -100,16 +99,18 @@ newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
+ , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
- , ((modMask .|. shiftMask, xK_m), spawn "texmaker")
+ , ((modMask .|. shiftMask, xK_m), spawn "mirage")                                
  , ((modMask .|. shiftMask, xK_o), spawn "opera")                                
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "skype")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
  , ((modMask .|. shiftMask, xK_v), spawn "virtualbox")
+ , ((modMask .|. shiftMask, xK_9), spawn "xine")
  , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")    
  ]
 
