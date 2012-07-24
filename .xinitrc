@@ -41,8 +41,12 @@ fi
 
 ~/./wallpaper.sh &
 
+mkdir /tmp/paconky
+
 conky -c .conkyLeftrc &
 conky -c .conkyRightrc &
 
+udiskie &
+
 xsetroot -cursor_name left_ptr
-exec xmonad
+exec ck-launch-session xmonad
