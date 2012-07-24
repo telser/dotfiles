@@ -80,8 +80,8 @@ myManageHook = (composeAll . concat $
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]  -- Float Firefox Dialogs
    ])
    where
-   myWebShift = ["Firefox","luakit","Opera"]
-   myImShift = ["Pidgin","xchat","Skype"]
+   myWebShift = ["Firefox","luakit","Opera","Dwb"]
+   myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine"]
    myFloats =["Pidgin","Skype","Gimp"]
@@ -100,6 +100,7 @@ newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
  , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
+ , ((modMask .|. shiftMask, xK_d), spawn "dwb")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
