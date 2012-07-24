@@ -1,7 +1,10 @@
 set nocompatible  " Force incompatible m
 
+set title
+
 " Formatting
 set autoindent " Auto indention
+set copyindent " Copy indention
 set smartindent
 set softtabstop=2	
 set expandtab
@@ -37,4 +40,5 @@ endif
 set foldenable
 
 set spell spelllang=en_us
+set spell!
 :map <F8> :set spell!

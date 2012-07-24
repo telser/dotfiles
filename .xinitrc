@@ -35,6 +35,7 @@ if [ "$NAME" == "charmy" ];               # If on laptop start wireless services
 then
   blueman-applet &
   wicd-gtk &
+  rfkill block 0
 else
   echo "Not on laptop, don't start wireless"
 fi
