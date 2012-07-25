@@ -46,4 +46,4 @@ conky -c .conkyLeftrc &
 conky -c .conkyRightrc &
 
 xsetroot -cursor_name left_ptr
-exec xmonad
+exec  xmonad
