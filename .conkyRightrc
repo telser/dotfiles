@@ -93,8 +93,8 @@ ${color0}Address: ${color}${addr wlan0}${alignr}${color0}TCP Connections: ${colo
 ${if_gw}${color0}gateway: ${color}${gw_ip}$endif${alignr}${color0}dns: ${color}${nameserver}${endif}
 
 ${color1}Updates:${color}${hr}
-${execi 3593 rm -f /tmp/paconky/db.lck} # Use a prime just in case they overlap...
-${execi 3600 ~/./paknotify.py /tmp/paconky/}
+${exec rm -f /tmp/paconky/db.lck} # Use a prime just in case they overlap...
+${execpi 3600  ./paknotify.py /tmp/paconky/}
 ${hr} 
 
 ${color1}Audio:${color}${hr}
