@@ -58,7 +58,7 @@ main = do
 myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch","scratch"]
 
 -- Layout
-myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%8) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
+myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%15) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
   where
      tall   = Tall nmaster delta ratio
      nmaster = 1
@@ -94,9 +94,11 @@ myHost = fmap  nodeName getSystemID   --Get the hostname of the machine
 -- Add new and/or redefine key bindings
 newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
   (( modMask .|. controlMask, xK_e), spawn "eject -T")               --Keyboard shortcut for eject, usefull on slot load
- , ((modMask .|. controlMask, xK_Right), nextWS)               --Move around screens
- , ((modMask .|. controlMask, xK_Left),  prevWS)
- , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)
+ , ((modMask .|. controlMask, xK_Right), nextScreen)               --Move around screens
+ , ((modMask .|. controlMask, xK_Left),  prevScreen)
+ , ((modMask, xK_equal), nextWS)                                   --Cycle through WorkSpaces
+ , ((modMask, xK_minus), prevWS)
+ , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)            --Move things around screens
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
  , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
@@ -109,7 +111,8 @@ newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "skype")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
- , ((modMask .|. shiftMask, xK_v), spawn "virtualbox")
+ , ((modMask .|. shiftMask, xK_v), spawn "virtualbox") 
+ , ((modMask .|. shiftMask, xK_z), spawn "zsnes") 
  , ((modMask .|. shiftMask, xK_9), spawn "xine")
  , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")    
  ]

@@ -15,5 +15,4 @@ PATH=$PATH:/.cabal/bin
 export PATH
 
 
-
 PS1='[\u@\h \W]\$ '
