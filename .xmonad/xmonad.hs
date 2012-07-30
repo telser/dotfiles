@@ -55,7 +55,7 @@ main = do
         , keys=myKeys
         }
 -- Setup workspaces using short names to save display room        
-myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch"]
+myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch","scratch"]
 
 -- Layout
 myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%8) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
@@ -80,7 +80,7 @@ myManageHook = (composeAll . concat $
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]  -- Float Firefox Dialogs
    ])
    where
-   myWebShift = ["Firefox","luakit","Opera","Dwb"]
+   myWebShift = ["Firefox","luakit","Opera"]
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine"]
@@ -94,13 +94,12 @@ myHost = fmap  nodeName getSystemID   --Get the hostname of the machine
 -- Add new and/or redefine key bindings
 newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
   (( modMask .|. controlMask, xK_e), spawn "eject -T")               --Keyboard shortcut for eject, usefull on slot load
- , ((modMask .|. controlMask, xK_Right), nextScreen)               --Move around screens
- , ((modMask .|. controlMask, xK_Left),  prevScreen)
+ , ((modMask .|. controlMask, xK_Right), nextWS)               --Move around screens
+ , ((modMask .|. controlMask, xK_Left),  prevWS)
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
  , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
- , ((modMask .|. shiftMask, xK_d), spawn "dwb")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
