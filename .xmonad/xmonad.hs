@@ -3,6 +3,7 @@ import XMonad
 import qualified XMonad.StackSet as W
 
 import XMonad.Actions.CycleWS
+import XMonad.Actions.CycleRecentWS
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -84,7 +85,7 @@ myManageHook = (composeAll . concat $
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine"]
-   myFloats =["Pidgin","Skype","Gimp"]
+   myFloats =["Gimp","Skype"]
 
 -- Union default and new key bindings
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
@@ -96,6 +97,7 @@ newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
   (( modMask .|. controlMask, xK_e), spawn "eject -T")               --Keyboard shortcut for eject, usefull on slot load
  , ((modMask .|. controlMask, xK_Right), nextScreen)               --Move around screens
  , ((modMask .|. controlMask, xK_Left),  prevScreen)
+ , ((modMask, xK_Tab), cycleRecentWS [xK_Control_R] xK_Left xK_Right )
  , ((modMask, xK_equal), nextWS)                                   --Cycle through WorkSpaces
  , ((modMask, xK_minus), prevWS)
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)            --Move things around screens
