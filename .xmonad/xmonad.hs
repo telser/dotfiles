@@ -56,7 +56,7 @@ main = do
         , keys=myKeys
         }
 -- Setup workspaces using short names to save display room        
-myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch"]
+myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch","scratch"]
 
 -- Layout
 myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%15) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
@@ -81,7 +81,7 @@ myManageHook = (composeAll . concat $
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]  -- Float Firefox Dialogs
    ])
    where
-   myWebShift = ["Firefox","luakit","Opera","Dwb"]
+   myWebShift = ["Firefox","luakit","Opera"]
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine"]
@@ -104,7 +104,6 @@ newKeys conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
  , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
- , ((modMask .|. shiftMask, xK_d), spawn "dwb")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
