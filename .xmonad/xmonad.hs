@@ -59,7 +59,7 @@ main = do
 myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch","scratch"]
 
 -- Layout
-myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%15) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
+myLayoutHook = avoidStruts  $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%4) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) $ (tall ||| myGrid ||| Full ||| simpleTabbed )
   where
      tall   = Tall nmaster delta ratio
      nmaster = 1
