@@ -97,5 +97,7 @@ ${exec rm -f /tmp/paconky/db.lck} # Use a prime just in case they overlap...
 ${execpi 3600  ./paknotify.py /tmp/paconky/}
 ${hr} 
 
+
+
 ${color1}Audio:${color}${hr}
 Vol: ${mixer }% ${mixerbar }

@@ -11,7 +11,7 @@ alias ls='ls --color=auto'
 #Make sure the ENV is setup
 export EDITOR='vim'
 
-PATH=$PATH:/.cabal/bin
+PATH=$PATH:/home/trevis/.cabal/bin
 export PATH
 
 
