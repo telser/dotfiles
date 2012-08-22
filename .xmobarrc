@@ -1,5 +1,7 @@
 Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , bgColor = "black"
+       , border = NoBorder
+       , borderColor = "black"
        , fgColor = "grey"
        , position = TopSize L 90 20
        , lowerOnStart = True
