@@ -20,25 +20,26 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
 $DBUS_SESSION_BUS_ADDRESS"
 fi
 
-xrdb -merge ~/.Xresources
-
-xmodmap ~/.Xmodmap
-
-trayer --edge top --align right --SetDockType true --SetPartialStrut true \
- --expand true --width 10 --transparent true --tint 0x000000 --height 19 & 
-
-thunar --daemon &
-
-urxvtd -q -o -f &
-
 if [ "$NAME" == "charmy" ];               # If on laptop start wireless services
 then
   blueman-applet &
   wicd-gtk &
   rfkill block 0
 else
-  echo "Not on laptop, don't start wireless"
+  echo "Not on laptop so don't start wireless, but setup monitors"
+  xrandr --output DVI-0 --preferred --primary --output VGA-0 --auto --pos 1600x300
 fi
+
+xrdb -merge ~/.Xresources
+
+xmodmap ~/.Xmodmap
+
+trayer --edge bottom --align right --SetDockType true --SetPartialStrut true \
+ --expand true --width 5 --tint 0x000000 --height 19 & 
+
+thunar --daemon &
+
+urxvtd -q -o -f &
 
 ~/./wallpaper.sh &
 
@@ -50,4 +51,4 @@ conky -c .conkyRightrc &
 udiskie &
 
 xsetroot -cursor_name left_ptr
-exec ck-launch-session xmonad
+xmonad
