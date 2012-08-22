@@ -34,8 +34,8 @@ xrdb -merge ~/.Xresources
 
 xmodmap ~/.Xmodmap
 
-trayer --edge bottom --align right --SetDockType true --SetPartialStrut true \
- --expand true --width 5 --tint 0x000000 --height 19 & 
+trayer --edge top --align right --SetDockType true --SetPartialStrut true \
+ --expand true --width 10 --tint 0x000000 --height 19 & 
 
 thunar --daemon &
 
