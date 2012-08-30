@@ -20,8 +20,8 @@ import XMonad.Layout.Named
 
 import XMonad.Util.Run
 import XMonad.Util.Replace
-import System.IO.Unsafe
 import System.Posix.Unistd
+import System.Posix.User
 
 import Data.Ratio ((%))
 import Data.List
@@ -45,35 +45,38 @@ import qualified Data.Map as M
 --import Graphics.X11.Xlib
 
 main = do
-    myHost <- fmap nodeName getSystemID   --Get the hostname of the machine
---    cnky <- spawnPipe "/usr/bin/conky -c /home/trev/.conkyLeftrc"
-    xmproc <- spawnPipe "/usr/bin/xmobar "
-    workspaceBar <- spawnPipe myWorkspaceBar
+    myHost <- fmap nodeName getSystemID                                     --Get the hostname of the machine
+--    cnky <- spawnPipe "/usr/bin/conky -c ~/.conkyLeftrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar "                                  --Spawn xmobar
+    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
     replace
+    uid <- getRealUserID
+    name <- getUserEntryForID uid
+    return $  usrName name
     xmonad $ defaultConfig
         { manageHook = myManageHook <+> manageDocks 
-        , layoutHook = myLayoutHook  -- $  layoutHook defaultConfig
+        , layoutHook = myLayoutHook  
         , logHook = xmobarLog xmproc --myLogHook workspaceBar
-        , modMask = mod4Mask     -- Rebind Mod to the Super key
-        , terminal = "urxvtc"    -- Use urxvt clients
-        , workspaces =  myWorkSpaces
-        , keys=myKeys myHost
+        , modMask = mod4Mask                                                --Rebind Mod to the Super key
+        , terminal = "urxvtc"                                               --Use urxvt clients
+        , workspaces =  myWorkSpaces                                        --Custom workspaces
+        , keys=myKeys myHost                                                --Keybindings
         }
 -- Setup workspaces using short names to save display room        
 myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch","scratch"]
 
+{- xmobar pretty printing log 
+ - Match xmobarColor from .xmobarrc
+-}
+
 xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
                       { ppOutput = hPutStrLn xmproc
-                      , ppTitle = xmobarColor "green" "" . shorten 50
+                      , ppTitle = xmobarColor "#1F66FF" "" . shorten 50
                       }
 
-myWorkspaceBar = "/usr/bin/dzen2 -x '0' -y '0' -h 16 -w '870' -ta '1' -fg "++ colorWhiteAlt  ++ " -bg " ++ colorBlack ++ " -fn "++dzenFont ++ "' -p -e ''"        
-                         
-dzenFont = "-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*"
-colorBlack = "#020202"
-colorWhiteAlt = "#9d9d9d"
-colorGray = "#444444"
-colorGreen = "#99cc66"
+usrName :: UserEntry -> String
+usrName (UserEntry x _ _ _ _ _ _) = x
+
 
 -- Layout
 myLayoutHook = avoidStruts  
@@ -100,7 +103,7 @@ myManageHook = (composeAll . concat $
      , [className =? "VirtualBox"      --> doF (W.shift "vm")]
      , [className =? "Thunar"         --> doF (W.shift "fm")]
      , [className =? x --> doFloat | x <- myFloats]
-     , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]  -- Float Firefox Dialogs
+     , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]     --Float Firefox Dialogs
    ])
    where
    myWebShift = ["Firefox","luakit","Opera"]
@@ -109,20 +112,27 @@ myManageHook = (composeAll . concat $
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine"]
    myFloats =["Gimp","Skype"]
 
+{- Keybinding section
+ - Union defaults
+ - list new keybindings
+ - Special keybindings by hostname
+-}
+
 -- Union default and new key bindings
 myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys defaultConfig x)
 
 
 -- Add new and/or redefine key bindings
 newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
-  (( modMask .|. controlMask, xK_e), spawn "eject -T")               --Keyboard shortcut for eject, usefull on slot load
- , ((modMask .|. controlMask, xK_Right), nextScreen)               --Move around screens
+  (( modMask .|. controlMask, xK_e), spawn "eject -T")                      --Keyboard shortcut for ejecting cd
+ , ((modMask .|. controlMask, xK_Right), nextScreen)                        --Move around screens
  , ((modMask .|. controlMask, xK_Left),  prevScreen)
  , ((modMask, xK_Tab), cycleRecentWS [xK_Control_R] xK_Left xK_Right )
- , ((modMask, xK_equal), nextWS)                                   --Cycle through WorkSpaces
+ , ((modMask, xK_equal), nextWS)                                            --Cycle through WorkSpaces
  , ((modMask, xK_minus), prevWS)
- , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)            --Move things around screens
+ , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)                     --Move things around screens
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
+-- Add shortcuts for programs
  , ((modMask .|. shiftMask, xK_b), spawn "banshee")
  , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
@@ -141,12 +151,20 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  ]
 
  ++
- if( hostname =="charmy")    --Unsafe IO, but if laptop hostname then set specific keybindings
+ if( hostname =="charmy")                                                   --if laptop hostname set specific keybindings
    then [ 
    ((0, 0x1008ff13), spawn "amixer set Master 2dB+") 
  , ((0,0x1008ff11), spawn "amixer set Master 2dB-")  
  ]
-   else [ ]                                 -- If not laptop then no additional keybindings
+   else [ ]                                                                 --Otherwise nothing
+
+
+{- Dzen section
+ -
+ - Different loghook
+ - Custom workspace bar
+ - Additional colors
+-}
 
 myLogHook h = dynamicLogWithPP $ defaultPP
         { ppOutput          = hPutStrLn h
@@ -164,3 +182,11 @@ myLogHook h = dynamicLogWithPP $ defaultPP
                   wsIdxToString (Just n) = show (n+1)
                   xdo key = "xdotool key super+" ++ key
                 
+myWorkspaceBar = "/usr/bin/dzen2 -x '0' -y '0' -h 16 -w '870' -ta '1' -fg "++ colorWhiteAlt  ++ " -bg " ++ colorBlack ++ " -fn "++dzenFont ++ "' -p -e ''"        
+                         
+dzenFont = "-*-montecarlo-medium-r-normal-*-9-*-*-*-*-*-*-*"
+colorBlack = "#020202"
+colorWhiteAlt = "#9d9d9d"
+colorGray = "#444444"
+colorGreen = "#99cc66"
+

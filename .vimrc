@@ -2,6 +2,8 @@ set nocompatible  " Force incompatible m
 
 set title
 
+:colorscheme koehler
+
 " Formatting
 set autoindent " Auto indention
 set copyindent " Copy indention
@@ -42,3 +44,4 @@ set foldenable
 set spell spelllang=en_us
 set spell!
 :map <F8> :set spell!
+
