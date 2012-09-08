@@ -65,6 +65,8 @@ main = do
 -- Setup workspaces using short names to save display room        
 myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch","scratch"]
 
+altMask = mod1Mask
+
 {- xmobar pretty printing log 
  - Match xmobarColor from .xmobarrc
 -}
