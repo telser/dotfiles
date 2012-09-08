@@ -7,7 +7,6 @@
 
 # Some aliases to make things nicer
 alias ls='ls --color=auto'
-alias spotify="wine .wine/drive_c/users/trev/Application\ Data/Spotify/spotify.exe"
 
 
 #Make sure the ENV is setup
