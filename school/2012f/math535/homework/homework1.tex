@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tocloft}					% for creating custom lists
+
+\usepackage[pdftex,                		% hyper-references for pdflatex
+unicode=true,			   				% use unicode
+bookmarks=true,                      	% generate bookmarks ...
+bookmarksnumbered=true,    			    % ... with numbers
+hypertexnames=false,             		% needed for correct links to figures !!!
+pdftitle={Math 535 Combinatorics Homework},    	% title
+pdfauthor={Trevis Elser},     			% author
+pdfsubject={Combinatorics},   			% subject of the document
+pdfcreator={Trevis Elser},   			% creator of the document
+pdfproducer={Trevis Elser}, 			% producer of the document
+colorlinks=true,			  			% coloring links instead of boxes	
+linkcolor=black,		  				% set the color to black
+breaklinks=true,                  		% break links if exceeding a single line
+]{hyperref} 
+
+
+\setlength{\textwidth}{6.1in}
+\setlength{\textheight}{9.5in}
+\setlength{\topmargin}{-20pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\oddsidemargin}{0.5in}
+
+\author{Trevis Elser \\
+\small \texttt{telser@emory.edu} \\ \\
+}
+
+\begin{document}
+
+\hfill Trevis Elser
+
+\hfill Math 535
+ 
+\hfill Fall 2012
+
+\hfill Homework 1
+
+\hfill Problems: Chapter 1: 1,2,3 Chapter 2: 3,7,13
+
+\section{Chapter 1}
+
+\begin{enumerate}
+
+\item[1] For $n = 3,4,5$ calculate the number of ways of putting $n$ letters into their envelopes so that every letter is incorrectly addressed. Calculate the ratio of this number to $n!$ in each case.
+
+\item[2] Fifteen schoolgirls walk each day in 5 groups of 3. Arrange the girls' walks for a week so that, in that time, each pair of girls walks together in a group just once. 
+
+Solve this problem for $9$ schoolgirls walking for 4 days. 
+
+\item[3]Thirty-six officers are given, belonging to six regiments and holding six ranks (so that each combination of rank and regiment corresponds to just one officer. Can the officers be paraded in a $6 \times 6$ array so that, in any line (row or column) of the array each regiment and eahc rank occurs precisely once.
+
+Solve the problem for 9, 6, and 25 officers. Show that there is no solution for 4 officers. 
+
+\end{enumerate}
+
+\section{Chapter 2}
+\begin{enumerate}
+\item[3] Prove by induction that $n! >\left(\frac{n}{e}\right)^n$ for $n \geq 1$. You may use without proof the fact that $\left(1 + \frac{1}{n}\right)< e $ for all $n$. 
+\item Use the arithmetic geometric mean inequality to show that $n! < \left(\frac{n+1}{2}\right)^n$ for $n > 1$. Deduce:
+\[ n! < e \left(\frac{n}{2}\right)^n\]
+for $n \geq 1$.
+
+\item[7] Suppose that an urn contains four balls each with a different color. How many ways can three balls be chosen? As in the text, we may allow repeats, and the order may  be important. Verify the table below:
+\[
+\begin{tabular}{c|c|c}
+ & \text{ Order Important} & \text{ Order Not Important}\\
+ \text{ Repetition Allowed} & 64 & 20\\
+\text{Repetition Not Allowed} & 24 & 4
+\end{tabular}
+\]
+
+\item[13] According to the Buddha:
+\textit{ Scholars speak in sixteen ways of the state of the soul after death. They said that it has form or is formless;  has and has not form. or neither has nor has not form; it is finite or infinite; or both or neither; it has one mode of consciousness or several; has limited consciousness or infinite; is happy or miserable; or both or neither.}
+
+How many different possible descriptions of the state of the sould after death do you recognize here?
+\end{enumerate}
+
+\end{document}
