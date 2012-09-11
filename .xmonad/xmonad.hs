@@ -109,7 +109,7 @@ myManageHook = (composeAll . concat $
    myWebShift = ["Firefox","luakit","Opera"]
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
-   myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","spotify"]
+   myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify"]
    myFloats =["Gimp","Skype"]
 
 {- Keybinding section
