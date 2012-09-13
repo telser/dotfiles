@@ -25,6 +25,7 @@ then
   blueman-applet &
   wicd-gtk &
   rfkill block 0
+  xbacklight -set 60
 else
   echo "Not on laptop so don't start wireless, but setup monitors"
   xrandr --output DVI-0 --preferred --primary --output VGA-0 --auto --pos 1600x300
