@@ -3,22 +3,22 @@
 
 NAME=$( uname "-n")
 
-. /etc/X11/xinit/xinitrc.d/*
+#. /etc/X11/xinit/xinitrc.d/*
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
-fi
+#if [ -d /etc/X11/xinit/xinitrc.d ]; then
+#  for f in /etc/X11/xinit/xinitrc.d/*; do
+#    [ -x "$f" ] && . "$f"
+#  done
+#  unset f
+#fi
 
 ## test for an existing bus daemon, just to be safe
-if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+#if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
     ## if not found, launch a new one
-    eval `dbus-launch --sh-syntax --exit-with-session`
-    echo "D-Bus per-session daemon address is: 
-$DBUS_SESSION_BUS_ADDRESS"
-fi
+ #   eval `dbus-launch --sh-syntax --exit-with-session`
+  #  echo "D-Bus per-session daemon address is: 
+#$DBUS_SESSION_BUS_ADDRESS"
+#fi
 
 if [ "$NAME" == "charmy" ];               # If on laptop start wireless services
 then
@@ -44,12 +44,12 @@ urxvtd -q -o -f &
 
 ~/./wallpaper.sh &
 
-mkdir /tmp/paconky
+#mkdir /tmp/paconky
 
 conky -c .conkyLeftrc &
 conky -c .conkyRightrc &
 
-udiskie &
+#udiskie &
 
 xsetroot -cursor_name left_ptr
 xmonad
