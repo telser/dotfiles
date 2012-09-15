@@ -22,10 +22,12 @@ NAME=$( uname "-n")
 
 if [ "$NAME" == "charmy" ];               # If on laptop start wireless services
 then
+  mkdir /tmp/paconky
   blueman-applet &
   wicd-gtk &
   rfkill block 0
   xbacklight -set 60
+  udiskie &
 else
   echo "Not on laptop so don't start wireless, but setup monitors"
   xrandr --output DVI-0 --preferred --primary --output VGA-0 --auto --pos 1600x300
@@ -44,12 +46,8 @@ urxvtd -q -o -f &
 
 ~/./wallpaper.sh &
 
-#mkdir /tmp/paconky
-
 conky -c .conkyLeftrc &
 conky -c .conkyRightrc &
-
-#udiskie &
 
 xsetroot -cursor_name left_ptr
 xmonad
