@@ -33,6 +33,8 @@ else
   xrandr --output DVI-0 --preferred --primary --output VGA-0 --auto --pos 1600x300
 fi
 
+xset b off
+
 xrdb -merge ~/.Xresources
 
 xmodmap ~/.Xmodmap

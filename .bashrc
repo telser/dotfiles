@@ -5,9 +5,13 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+set bell-style none
+
 # Some aliases to make things nicer
 alias ls='ls --color=auto'
 
+
+alias fl='wine .wine/drive_c/Program\ Files\ \(x86\)/Image-Line/FL\ Studio\ 10/FL.exe'
 
 #Make sure the ENV is setup
 export EDITOR='vim'
