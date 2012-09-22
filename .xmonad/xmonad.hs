@@ -110,7 +110,8 @@ myManageHook = (composeAll . concat $
    where
    myWebShift = ["Firefox","luakit","Opera"]
    myImShift = ["Pidgin","Skype"]
-   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage"]
+   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker",
+      "Mirage","LibreOffice Calc"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify"]
    myFloats =["Gimp","Skype"]
 
