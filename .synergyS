@@ -1,0 +1,14 @@
+
+
+section: screens
+      charmy:
+      shadow:
+end
+
+section: links
+      charmy:
+            right = shadow
+
+      shadow:
+            left = charmy
+end
