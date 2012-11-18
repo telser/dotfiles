@@ -148,7 +148,7 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
  , ((modMask .|. shiftMask, xK_v), spawn "virtualbox") 
- , ((modMask .|. shiftMask, xK_z), spawn "zsnes") 
+-- , ((modMask .|. shiftMask, xK_z), spawn "zsnes") 
  , ((modMask .|. shiftMask, xK_9), spawn "xine")
  , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")    
  ]

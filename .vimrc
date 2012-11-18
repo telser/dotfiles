@@ -44,4 +44,4 @@ set foldenable
 set spell spelllang=en_us
 set spell!
 :map <F8> :set spell!
-
+:map <F12> :set hls!

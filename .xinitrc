@@ -25,11 +25,11 @@ then
   mkdir /tmp/paconky
   blueman-applet &                        # Setup wireless services
   wicd-gtk &
-  rfkill block 0
   xbacklight -set 60                      # Dim laptop screen --saves battery life
   udiskie &
   conky -c .conkyLeftrc &
   conky -c .conkyRightrc &
+  sudo rfkill block 0
 else                                      
   synergys -c ~/.synergyS # Start Synergy Server
 fi
@@ -48,9 +48,6 @@ thunar --daemon &
 urxvtd -q -o -f &
 
 ~/./wallpaper.sh &
-
-conky -c .conkyLeftrc &
-conky -c .conkyRightrc &
 
 xsetroot -cursor_name left_ptr
 xmonad
