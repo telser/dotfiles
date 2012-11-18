@@ -7,10 +7,11 @@ URxvt.cursorBlink:       false
 URxvt.scrollBar_right:   true
 URxvt.font: xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
 
-!*background:    #101010
-!*foreground:    #66ff66
-*cursorColor:   #66ff66
+*cursorColor:   #1F66FF
 
+!blue
+URxvt.color4:  #1F66FF
+URxvt.color12: #1F66FF
 !black
 !URxvt.color0:  #000000
 !URxvt.color8:  #2B2B2B
@@ -23,9 +24,6 @@ URxvt.font: xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
 !yellow
 !URxvt.color3:  #7C5618
 !URxvt.color11: #B38849
-!blue
-URxvt.color4:  #1F66FF
-URxvt.color12: #1F66FF
 !magenta
 !URxvt.color5:  #8E4948
 !URxvt.color13: #C67C78
