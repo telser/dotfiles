@@ -111,23 +111,23 @@ ${top_mem name 3}${alignr 80}${top_mem pid 3}${alignr 45}${top_mem cpu 3}${align
 ${top_mem name 4}${alignr 80}${top_mem pid 4}${alignr 45}${top_mem cpu 4}${alignr 20}${top_mem mem 4}
 ${top_mem name 5}${alignr 80}${top_mem pid 5}${alignr 45}${top_mem cpu 5}${alignr 20}${top_mem mem 5}
 
-${color1}Disk${color}${hr}
-/ Read: ${diskio_read /dev/sda3}
-${diskiograph_read /dev/sda3 20,200,0000ff ff0000 }
-/ Write: ${diskio_write /dev/sda3}
-${diskiograph_write /dev/sda3 20,200,0000ff ff0000 }
+#${color1}Disk${color}${hr}
+#/ Read: ${diskio_read /dev/sda3}
+#${diskiograph_read /dev/sda3 20,200,0000ff ff0000 }
+#/ Write: ${diskio_write /dev/sda3}
+#${diskiograph_write /dev/sda3 20,200,0000ff ff0000 }
 
 ${color}home: ${color white}${fs_type}${fs_free /home}/${fs_size /home} ${fs_bar /home}
 ${color}boot: ${color white}${fs_type}${fs_free /boot}/${fs_size /boot} ${fs_bar /boot} 
 ${color}swap: ${color white}${swapperc}% ${swapbar} 
-#${color}tmp: ${color white}${fs_free /tmp} ${fs_bar /tmp}
+${color}tmp: ${color white}${fs_free /tmp} ${fs_bar /tmp}
 
-${if_smapi_bat_installed 0}
-${color1}Battery${color}${hr}                             
-Temp:${smapi_bat_temp 0}C
-Power draw:${smapi_bat_power 0}W
-Left:
-${smapi_bat_bar 0}
-$endif
+#${if_smapi_bat_installed 0}
+#${color1}Battery${color}${hr}                             
+#Temp:${smapi_bat_temp 0}C
+#Power draw:${smapi_bat_power 0}W
+#Left:
+#${smapi_bat_bar 0}
+#$endif
 
 
