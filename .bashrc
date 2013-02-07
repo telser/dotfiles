@@ -12,7 +12,7 @@ alias ls='ls --color=auto'
 
 alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
 
-alias fl='wine .wine/drive_c/Program\ Files\ \(x86\)/Image-Line/FL\ Studio\ 10/FL.exe'
+alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 10/FL.exe'
 
 #Make sure the ENV is setup
 export EDITOR='vim'

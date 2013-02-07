@@ -5,14 +5,14 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , fgColor = "grey"
        , position = TopSize R 90 20
        , lowerOnStart = True
-       , commands = [ Run Weather "KPDK" ["-t","<station>: <tempF>F","-L","35","-H","85","--normal","green","--high","red","--low","#1F66FF"] 36000
+       , commands = [ Run Weather "KPDK" ["-t","<station>: <tempF>F","-L","35","-H","85","--normal","green","--high","red","--low","#1F66FF"] 18000
                     , Run Network "eth0" ["-L","0","-H","32","--normal","#1F66FF","--high","red"] 10
                     , Run Network "wlan0" ["-L","0","-H","32","--normal","#1F66FF","--high","red"] 10
                     , Run Cpu ["-L","3","-H","50","--normal","#1F66FF","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
-                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
-                    , Run Battery ["-t", "Batt: <left>%"] 10
+                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10    
+                    , Run BatteryP ["BAT0"] ["--", "-c", "energy_full"] 10
                     , Run StdinReader 
                     ]
        , sepChar = "%"
