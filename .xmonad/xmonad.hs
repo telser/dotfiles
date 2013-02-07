@@ -86,7 +86,7 @@ myLayoutHook = avoidStruts
           $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) 
           $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  
           $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) 
-          $ (tall ||| myGrid ||| Full ||| simpleTabbed )
+          $ (myGrid ||| simpleTabbed )
           where
             tall   = Tall nmaster delta ratio
             nmaster = 1
@@ -110,8 +110,7 @@ myManageHook = (composeAll . concat $
    where
    myWebShift = ["Firefox","Chromium","Iceweasel","luakit","Opera"]
    myImShift = ["Pidgin","Skype"]
-   myDocShift = ["libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker",
-      "Mirage","LibreOffice Calc"]
+   myDocShift = ["libreoffice-impress","libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage","LibreOffice Calc"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify"]
    myFloats =["Gimp","Skype"]
 
@@ -128,9 +127,11 @@ myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys defaultConf
 -- Add new and/or redefine key bindings
 newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
   (( modMask .|. controlMask, xK_e), spawn "eject -T")                      --Keyboard shortcut for ejecting cd
+ , ((modMask .|. controlMask, xK_Down), shiftToNext)                        --Move around screens
+ , ((modMask .|. controlMask, xK_Up), shiftToPrev)                        --Move around screens
  , ((modMask .|. controlMask, xK_Right), nextScreen)                        --Move around screens
  , ((modMask .|. controlMask, xK_Left),  prevScreen)
- , ((modMask, xK_Tab), cycleRecentWS [xK_Control_R] xK_Left xK_Right )
+ --, ((modMask, xK_Tab), cycleRecentWS [xK_Control_R] xK_Left xK_Right )
  , ((modMask, xK_equal), nextWS)                                            --Cycle through WorkSpaces
  , ((modMask, xK_minus), prevWS)
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)                     --Move things around screens
@@ -143,6 +144,7 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_h), spawn "chromium")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
  , ((modMask .|. shiftMask, xK_m), spawn "mirage")                                
+ , ((modMask .|. shiftMask, xK_n), spawn "xine")
  , ((modMask .|. shiftMask, xK_o), spawn "opera")                                
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
@@ -150,8 +152,8 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
  , ((modMask .|. shiftMask, xK_v), spawn "virtualbox") 
 -- , ((modMask .|. shiftMask, xK_z), spawn "zsnes") 
- , ((modMask .|. shiftMask, xK_9), spawn "xine")
  , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")    
+ , ((modMask .|. controlMask, xK_t), spawn "urxvt")    
  ]
 
  ++
