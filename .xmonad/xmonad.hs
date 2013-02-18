@@ -111,7 +111,7 @@ myManageHook = (composeAll . concat $
    myWebShift = ["Firefox","Chromium","Iceweasel","luakit","Opera"]
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-impress","libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage","LibreOffice Calc"]
-   myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify"]
+   myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
    myFloats =["Gimp","Skype"]
 
 {- Keybinding section
@@ -149,6 +149,7 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
+ , ((modMask .|. shiftMask, xK_u), spawn "steam")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
  , ((modMask .|. shiftMask, xK_v), spawn "virtualbox") 
 -- , ((modMask .|. shiftMask, xK_z), spawn "zsnes") 
