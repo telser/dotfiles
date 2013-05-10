@@ -37,6 +37,7 @@ conky
 dzen2
 gparted
 thunar
+synergy
 iceweasel
 chromium
 luakit
@@ -55,3 +56,4 @@ flac
 vorbis-tools
 xine
 flashplugin-nonfree
+spotify-client
