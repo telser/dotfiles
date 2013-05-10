@@ -26,7 +26,6 @@ valgrind
 automake
 strace
 sloccount
-xserver-xorg-video-intel
 lxrandr
 xmonad
 xmobar
