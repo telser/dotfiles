@@ -19,18 +19,18 @@ sudo apt-get install `cat deb_pkgs.txt`;
 case $NAME in
   "charmy")
     # Intel graphics drivers
-    sudo apt-get install xserver-xorg-video-intel
+    sudo apt-get install xserver-xorg-video-intel;
     # Charmy gets the other default softs/dotfiles
     ;;
   "shadow")
     # Nvidia graphics drivers
-    sudo apt-get install xserver-xorg-video-nvidia
+    sudo apt-get install xserver-xorg-video-nvidia;
     # Shadow gets the other default softs/dotfiles
     ;;
   *)
     # Who is this??
     echo "unkown system installing video-all"
-    sudo apt-get install xserver-xorg-video-all
+    sudo apt-get install xserver-xorg-video-all;
     # skipping default softs
     echo "Skipping non-packaged software. Proceeding to dotfiles"
     # Still want dotfiles for applications
@@ -40,3 +40,7 @@ esac
 # Install "non-free" softs
 
 # Dotfiles!
+
+function dotfiles {
+ cp .[^.]* ~/; cp -R dotfiles/.[^.]* ~/;
+}
