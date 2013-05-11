@@ -55,10 +55,14 @@ function dotfiles {
 }
 # Install "non-free" softs from outside repos
 
+
 function softs {
+  sudo apt-get install spotify-client
+  
   # Steam
   wget http://media.steampowered.com/client/installer/steam.deb;
 
   # FL Studio
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
+  wine flstudio_11.exe
 }

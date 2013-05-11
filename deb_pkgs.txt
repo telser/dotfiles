@@ -58,4 +58,3 @@ flac
 vorbis-tools
 xine
 flashplugin-nonfree
-spotify-client
