@@ -108,7 +108,7 @@ myManageHook = (composeAll . concat $
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]     --Float Firefox Dialogs
    ])
    where
-   myWebShift = ["Firefox","Chromium","Iceweasel","luakit","Opera"]
+   myWebShift = ["Firefox","Chromium","Iceweasel","luakit"]
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-impress","libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage","LibreOffice Calc"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
@@ -128,10 +128,9 @@ myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys defaultConf
 newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
   (( modMask .|. controlMask, xK_e), spawn "eject -T")                      --Keyboard shortcut for ejecting cd
  , ((modMask .|. controlMask, xK_Down), shiftToNext)                        --Move around screens
- , ((modMask .|. controlMask, xK_Up), shiftToPrev)                        --Move around screens
+ , ((modMask .|. controlMask, xK_Up), shiftToPrev)                          --Move around screens
  , ((modMask .|. controlMask, xK_Right), nextScreen)                        --Move around screens
  , ((modMask .|. controlMask, xK_Left),  prevScreen)
- --, ((modMask, xK_Tab), cycleRecentWS [xK_Control_R] xK_Left xK_Right )
  , ((modMask, xK_equal), nextWS)                                            --Cycle through WorkSpaces
  , ((modMask, xK_minus), prevWS)
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)                     --Move things around screens
@@ -149,7 +148,6 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
- , ((modMask .|. shiftMask, xK_u), spawn "steam")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
  , ((modMask .|. shiftMask, xK_v), spawn "virtualbox") 
 -- , ((modMask .|. shiftMask, xK_z), spawn "zsnes") 

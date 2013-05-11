@@ -27,11 +27,15 @@ case $NAME in
     # Intel graphics drivers
     sudo apt-get install xserver-xorg-video-intel;
     # Charmy gets the other default softs/dotfiles
+    dotfiles
+    softs
     ;;
   "shadow")
     # Nvidia graphics drivers
     sudo apt-get install xserver-xorg-video-nvidia;
     # Shadow gets the other default softs/dotfiles
+    dotfiles
+    softs
     ;;
   *)
     # Who is this??
@@ -40,6 +44,7 @@ case $NAME in
     # skipping default softs
     echo "Skipping non-packaged software. Proceeding to dotfiles"
     # Still want dotfiles for applications
+    dotfiles
     ;;
 esac
 
@@ -50,12 +55,14 @@ function dotfiles {
 }
 # Install "non-free" softs from outside repos
 
-sudo apt-get install spotify-client
 
-# Steam
+function softs {
+  sudo apt-get install spotify-client
+  
+  # Steam
+  wget http://media.steampowered.com/client/installer/steam.deb;
 
-wget http://media.steampowered.com/client/installer/steam.deb
-
-# FL Studio
-wget demodownload.image-line.com/flstudio/flstudio_11.exe
-wine flstudio_11.exe
+  # FL Studio
+  wget demodownload.image-line.com/flstudio/flstudio_11.exe;
+  wine flstudio_11.exe
+}
