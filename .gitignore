@@ -1,1 +1,6 @@
-~*
+*.html
+*.pdf
+
+#Actually just ignore everything that isn't explicitly tracked
+# Remind: -f can override this to add
+*
