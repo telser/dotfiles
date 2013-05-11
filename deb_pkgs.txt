@@ -27,6 +27,8 @@ automake
 strace
 sloccount
 lxrandr
+cabal-install
+leiningen
 xmonad
 xmobar
 trayer
