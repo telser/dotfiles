@@ -54,6 +54,7 @@ virtualbox
 wine
 winetricks
 pidgin
+pidgin-skype
 flac
 vorbis-tools
 xine
