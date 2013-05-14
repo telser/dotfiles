@@ -22,6 +22,8 @@ sudo update-command-not-found
 
 # Install correct software
 
+echo "Installing system specific software"
+
 case $NAME in
   "charmy")
     # Intel graphics drivers
