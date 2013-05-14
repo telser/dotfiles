@@ -1,7 +1,6 @@
 #!/bin/sh
 # install script for debian
 
-
 set -e
 
 NAME=$(uname "-n")
@@ -20,6 +19,7 @@ sudo apt-get install `cat deb_pkgs.txt`
 
 sudo update-command-not-found
 
+
 # Install correct software
 
 case $NAME in
@@ -30,6 +30,7 @@ case $NAME in
     # Charmy gets the other default softs/dotfiles
     dotfiles;
     softs;
+    dldir;
     ;;
   "shadow")
     # Nvidia graphics drivers
@@ -38,6 +39,17 @@ case $NAME in
     # Shadow gets the other default softs/dotfiles
     dotfiles;
     softs;
+    dldir;
+    ;;
+  "espio")
+    #TODO: espio will need a different pkg list
+    #Use rasbian instead of debian?
+    dotfiles;
+    ;;
+  "vector")
+    #TODO: vector will need a different pkg list
+    #Use stable instead?
+    dotfiles;
     ;;
   *)
     # Who is this??
@@ -51,13 +63,15 @@ case $NAME in
 esac
 
 # Dotfiles!
-
 function dotfiles {
- cp .[^.]* ~/; cp -R dotfiles/.[^.]* ~/;
+  # Get the dotfiles
+  git clone http://github.com/trev311/dotfiles.git
+
+  # actually install the dotfiles
+  cp .[^.]* ~/; cp -R dotfiles/.[^.]* ~/;
 }
-# Install "non-free" softs from outside repos
 
-
+# Install "non-free" softs from outside of main repos
 function softs {
 
   #Spotify
@@ -66,12 +80,17 @@ function softs {
   sudo apt-get install spotify-client;
   
   # Steam
-  #TODO: Check if installation is easier as of jessie
+  #TODO: Check if installation is easier 
+  # Need eglibc >=15
   wget http://media.steampowered.com/client/installer/steam.deb;
   
-  #TODO: Add i386 arch
-  #TODO: sudo apt-get update
-  #TODO: Add Skype :/
+  #Skype :/
+  #Add i386 arch
+  sudo dpkg --add-architecture i386
+  sudo apt-get update
+  wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
+  sudo dpkg -i skype-install.deb
+  sudo apt-get -f install
 
   # FL Studio
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
@@ -90,5 +109,15 @@ function hs {
 # Clojure
 
 function cj {
+
+}
+
+
+# Setup directories for desktop/laptop
+function dldir {
+
+  mkdir projects;
+  mkdir school;
+
 
 }
