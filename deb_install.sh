@@ -73,6 +73,13 @@ function dotfiles {
 
   cd ~/;
   rm -r dotfiles/;
+  
+  # Get oh-my-zsh
+  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+  # Make zsh default shell
+  chsh -s /bin/zsh;
+
 }
 
 # Install "non-free" softs from outside of main repos
