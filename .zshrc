@@ -45,3 +45,27 @@ plugins=(rails ruby lein rake git battery github colorize colored-man)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+#
+
+#[[ $TERM != screen* ]] && exec tmux
+set bell-style none
+
+# Some aliases to make things nicer
+#alias ls='ls --color=auto'
+
+alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
+
+alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 10/FL.exe'
+
+#Make sure the ENV is setup
+export EDITOR='vim'
+
+PATH=$PATH:$HOME/.cabal/bin
+export PATH
+
+
+
+#export _JAVA_AWT_WM_NONREPARENTING=1
+
+#PS1='[\u@\h \W]\$ '
+#[[ -f "/home/trevis/.local/share/Steam/setup_debian_environment.sh" ]] && source "/home/trevis/.local/share/Steam/setup_debian_environment.sh"
