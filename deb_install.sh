@@ -19,7 +19,6 @@ sudo apt-get install `cat deb_pkgs.txt`
 
 sudo update-command-not-found
 
-
 # Install correct software
 
 echo "Installing system specific software"
@@ -67,10 +66,13 @@ esac
 # Dotfiles!
 function dotfiles {
   # Get the dotfiles
-  git clone http://github.com/trev311/dotfiles.git
-
+  git clone http://github.com/trev311/dotfiles.git;
+  cd dotfiles;
   # actually install the dotfiles
   cp .[^.]* ~/; cp -R dotfiles/.[^.]* ~/;
+
+  cd ~/;
+  rm -r dotfiles/;
 }
 
 # Install "non-free" softs from outside of main repos
@@ -120,6 +122,5 @@ function dldir {
 
   mkdir projects;
   mkdir school;
-
 
 }
