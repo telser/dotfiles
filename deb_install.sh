@@ -28,15 +28,21 @@ case $NAME in
     # Intel graphics drivers
     sudo apt-get install xserver-xorg-video-intel;
 
+    # Generic OpenCl stuff
+    sudo apt-get install ocl-icd-opencl-dev;
+
     # Charmy gets the other default softs/dotfiles
     dotfiles;
     softs;
     dldir;
     ;;
   "shadow")
-    # Nvidia graphics drivers
-    sudo apt-get install xserver-xorg-video-nvidia;
+    # Nvidia stuff
+    # TODO: Make an Nvidia/Cuda pkgs file and install from there
+    sudo apt-get install xserver-xorg-video-nvidia nvidia-kernel-dkms;
     
+    #TODO: edit xorg.conf
+
     # Shadow gets the other default softs/dotfiles
     dotfiles;
     softs;
