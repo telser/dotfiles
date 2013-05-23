@@ -1,6 +1,77 @@
 #!/bin/sh
 # install script for debian
 
+# Dotfiles!
+dotfiles()
+{
+  # Get the dotfiles
+  git clone http://github.com/trev311/dotfiles.git;
+  cd dotfiles;
+  # actually install the dotfiles
+  cp .[^.]* ~/; cp -R dotfiles/.[^.]* ~/;
+
+  cd ~/;
+  rm -r dotfiles/;
+  
+  # Get oh-my-zsh
+  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+  # Make zsh default shell
+  chsh -s /bin/zsh;
+
+}
+
+# Install "non-free" softs from outside of main repos
+softs() {
+
+  #Spotify
+  sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
+  sudo apt-get update;
+  sudo apt-get install spotify-client;
+  
+  # Steam
+  #TODO: Check if installation is easier 
+  # This might be installable as of Jessie, without Ubuntu trickery
+  wget http://media.steampowered.com/client/installer/steam.deb;
+  
+  #Skype :/
+  #Add i386 arch
+  sudo dpkg --add-architecture i386
+  sudo apt-get update
+  wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
+  sudo dpkg -i skype-install.deb
+  sudo apt-get -f install
+
+  # FL Studio
+  wget demodownload.image-line.com/flstudio/flstudio_11.exe;
+  wine flstudio_11.exe
+}
+
+#TODO: Setup cabal/leiningen env/packages
+            
+# Haskell
+hs() {
+                       
+  cabal update
+
+}
+
+# Clojure
+
+cj() {
+
+}
+
+
+# Setup directories for desktop/laptop
+dldir() {
+
+  mkdir projects;
+  mkdir school;
+
+}
+
+
 set -e
 
 NAME=$(uname "-n")
@@ -37,11 +108,15 @@ case $NAME in
     dldir;
     ;;
   "shadow")
-    # Nvidia stuff
-    # TODO: Make an Nvidia/Cuda pkgs file and install from there
-    sudo apt-get install xserver-xorg-video-nvidia nvidia-kernel-dkms;
+    # Nvidia Metapackage + ensure use of DKMS
+    sudo apt-get install nvidia-kernel-dkms nvidia-glx;
     
+    # Nvidia cuda/opencl packages
+    sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-gdb
+      nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
+
     #TODO: edit xorg.conf
+    nvidia-xconfig;
 
     # Shadow gets the other default softs/dotfiles
     dotfiles;
@@ -69,71 +144,3 @@ case $NAME in
     ;;
 esac
 
-# Dotfiles!
-function dotfiles {
-  # Get the dotfiles
-  git clone http://github.com/trev311/dotfiles.git;
-  cd dotfiles;
-  # actually install the dotfiles
-  cp .[^.]* ~/; cp -R dotfiles/.[^.]* ~/;
-
-  cd ~/;
-  rm -r dotfiles/;
-  
-  # Get oh-my-zsh
-  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-
-  # Make zsh default shell
-  chsh -s /bin/zsh;
-
-}
-
-# Install "non-free" softs from outside of main repos
-function softs {
-
-  #Spotify
-  sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
-  sudo apt-get update;
-  sudo apt-get install spotify-client;
-  
-  # Steam
-  #TODO: Check if installation is easier 
-  # Need eglibc >=15
-  wget http://media.steampowered.com/client/installer/steam.deb;
-  
-  #Skype :/
-  #Add i386 arch
-  sudo dpkg --add-architecture i386
-  sudo apt-get update
-  wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
-  sudo dpkg -i skype-install.deb
-  sudo apt-get -f install
-
-  # FL Studio
-  wget demodownload.image-line.com/flstudio/flstudio_11.exe;
-  wine flstudio_11.exe
-}
-
-#TODO: Setup cabal/leiningen env/packages
-            
-# Haskell
-function hs {
-                       
-  cabal update
-
-}
-
-# Clojure
-
-function cj {
-
-}
-
-
-# Setup directories for desktop/laptop
-function dldir {
-
-  mkdir projects;
-  mkdir school;
-
-}
