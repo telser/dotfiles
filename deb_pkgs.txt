@@ -13,7 +13,7 @@ tmux
 emacs
 vim
 rxvt-unicode
-bash-completion
+zsh
 llvm
 clang
 erlang
