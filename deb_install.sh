@@ -6,13 +6,13 @@ dotfiles()
 {
   # Get the dotfiles
   git clone http://github.com/trev311/dotfiles.git;
-  cd dotfiles;
+  #cd dotfiles;
   # actually install the dotfiles
   #cp .[^.]* ~/;
-  cp -R dotfiles/.[^.]* ~/;
+  cp -r dotfiles/* ~/;
 
   cd ~/;
-  rm -r dotfiles/;
+  rm -rf dotfiles/;
   
   # Get oh-my-zsh
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh;
