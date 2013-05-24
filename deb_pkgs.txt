@@ -21,6 +21,7 @@ ghc
 python
 ocaml
 ruby
+clojure
 gdb
 valgrind
 automake
@@ -31,6 +32,7 @@ cabal-install
 leiningen
 git
 darcs
+command-not-found
 xmonad
 xmobar
 trayer
@@ -61,4 +63,3 @@ flac
 vorbis-tools
 xine-ui
 flashplugin-nonfree
-command-not-found
