@@ -11,7 +11,7 @@ dotfiles()
   #cp .[^.]* ~/;
   cp -r dotfiles/* ~/;
 
-  cd ~/;
+  #cd ~/;
   rm -rf dotfiles/;
   
   # Get oh-my-zsh
