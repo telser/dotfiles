@@ -8,13 +8,14 @@ dotfiles()
   git clone http://github.com/trev311/dotfiles.git;
   cd dotfiles;
   # actually install the dotfiles
-  cp .[^.]* ~/; cp -R dotfiles/.[^.]* ~/;
+  #cp .[^.]* ~/;
+  cp -R dotfiles/.[^.]* ~/;
 
   cd ~/;
   rm -r dotfiles/;
   
   # Get oh-my-zsh
-  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh;
 
   # Make zsh default shell
   chsh -s /bin/zsh;
@@ -36,15 +37,15 @@ softs() {
   
   #Skype :/
   #Add i386 arch
-  sudo dpkg --add-architecture i386
-  sudo apt-get update
-  wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
-  sudo dpkg -i skype-install.deb
-  sudo apt-get -f install
+  sudo dpkg --add-architecture i386;
+  sudo apt-get update;
+  wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb;
+  sudo dpkg -i skype-install.deb;
+  sudo apt-get -f install;
 
   # FL Studio
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
-  wine flstudio_11.exe
+  wine flstudio_11.exe;
 }
 
 #TODO: Setup cabal/leiningen env/packages
@@ -52,14 +53,14 @@ softs() {
 # Haskell
 hs() {
                        
-  cabal update
+  cabal update;
 
 }
 
 # Clojure
 
 cj() {
-
+ lein version;
 }
 
 
