@@ -6,12 +6,8 @@ dotfiles()
 {
   # Get the dotfiles
   git clone http://github.com/trev311/dotfiles.git;
-  #cd dotfiles;
   # actually install the dotfiles
-  #cp .[^.]* ~/;
-  cp -r dotfiles/* ~/;
-
-  #cd ~/;
+  cp -r dotfiles/\.* ~/;
   rm -rf dotfiles/;
   
   # Get oh-my-zsh
@@ -25,11 +21,6 @@ dotfiles()
 # Install "non-free" softs from outside of main repos
 softs() {
 
-  #Spotify
-  sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
-  sudo apt-get update;
-  sudo apt-get install spotify-client;
-  
   # Steam
   #TODO: Check if installation is easier 
   # This might be installable as of Jessie, without Ubuntu trickery
@@ -46,6 +37,12 @@ softs() {
   # FL Studio
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
   wine flstudio_11.exe;
+  
+  #Spotify
+  sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
+  sudo apt-get update;
+  sudo apt-get install spotify-client;
+
 }
 
 #TODO: Setup cabal/leiningen env/packages
