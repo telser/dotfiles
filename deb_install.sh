@@ -28,7 +28,7 @@ softs() {
   #Spotify
   sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
   sudo apt-get update;
-  sudo apt-get install spotify-client;
+  sudo apt-get install --install-suggests spotify-client;
   
   # Steam
   #TODO: Check if installation is easier 
@@ -72,6 +72,19 @@ dldir() {
 
 }
 
+base(){
+
+
+# Perform base installation
+
+echo "Installing main packages"
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install --install-suggests `cat deb_pkgs.txt`
+
+sudo update-command-not-found
+}
+
 
 set -e
 
@@ -82,15 +95,6 @@ NAME=$(uname "-n")
 sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list
 sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list
 
-# Perform base installation
-
-echo "Installing main packages"
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install `cat deb_pkgs.txt`
-
-sudo update-command-not-found
-
 # Install correct software
 
 echo "Installing system specific software"
@@ -98,28 +102,31 @@ echo "Installing system specific software"
 case $NAME in
   "charmy")
     # Intel graphics drivers
-    sudo apt-get install xserver-xorg-video-intel;
+    sudo apt-get install --install-suggests xserver-xorg-video-intel;
 
     # Generic OpenCl stuff
-    sudo apt-get install ocl-icd-opencl-dev;
+    sudo apt-get install --install-suggests ocl-icd-opencl-dev;
 
     # Charmy gets the other default softs/dotfiles
+    base;
     dotfiles;
     softs;
     dldir;
     ;;
   "shadow")
+    # Shadow needs non-free firmware :/
+    sudo apt-get install --install-suggests firmware-realtek
     # Nvidia Metapackage + ensure use of DKMS
-    sudo apt-get install nvidia-kernel-dkms nvidia-glx;
+    sudo apt-get install --install-suggests nvidia-kernel-dkms nvidia-glx;
     
     # Nvidia cuda/opencl packages
-    sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-gdb
-      nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
+    sudo apt-get install --install-suggests nvidia-cuda-toolkit nvidia-cuda-gdb nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
 
     #TODO: edit xorg.conf
     nvidia-xconfig;
 
     # Shadow gets the other default softs/dotfiles
+    base;
     dotfiles;
     softs;
     dldir;
@@ -127,20 +134,23 @@ case $NAME in
   "espio")
     #TODO: espio will need a different pkg list
     #Use rasbian instead of debian?
+    base;
     dotfiles;
     ;;
   "vector")
     #TODO: vector will need a different pkg list
     #Use stable instead?
+    base;
     dotfiles;
     ;;
   *)
     # Who is this??
     echo "unkown system installing video-all"
-    sudo apt-get install xserver-xorg-video-all;
+    sudo apt-get install --install-suggests xserver-xorg-video-all;
     # skipping default softs
     echo "Skipping non-packaged software. Proceeding to dotfiles"
     # Still want dotfiles for applications
+    base;
     dotfiles;
     ;;
 esac
