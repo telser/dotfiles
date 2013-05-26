@@ -19,7 +19,6 @@ clang
 erlang
 ghc
 python
-ocaml
 ruby
 clojure
 gdb
@@ -55,7 +54,7 @@ evince
 mirage
 libreoffice
 virtualbox
-wine
+wine:i386
 winetricks
 pidgin
 pidgin-skype
