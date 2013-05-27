@@ -8,7 +8,7 @@ dotfiles()
   git clone http://github.com/trev311/dotfiles.git;
   # actually install the dotfiles
   cp -r dotfiles/.* ~/;
-  rm -rf dotfiles/;
+#  rm -rf dotfiles/;
   
   # Get oh-my-zsh
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh;
@@ -37,10 +37,11 @@ softs() {
   wine flstudio_11.exe;
   
   #Spotify
-  # *sigh*
+  # *sigh* modify permissions to echo
   sudo chmod 777 /etc/apt/sources.list
   sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
-  chmod 644 /etc/apt/sources.list
+  # change perms back
+  sudo chmod 644 /etc/apt/sources.list
   sudo apt-get update;
   sudo apt-get install spotify-client;
 
@@ -76,7 +77,7 @@ base(){
 # Perform base installation
 
 echo "Installing main packages"
-sudo apt-get install --install-suggests `cat deb_pkgs.txt`
+sudo apt-get install `cat deb_pkgs.txt`
 
 sudo update-command-not-found
 }
@@ -100,10 +101,10 @@ case $NAME in
     sudo dpkg --add-architecture i386;
     sudo apt-get update;
     # Intel graphics drivers
-    sudo apt-get install --install-suggests xserver-xorg-video-intel;
+    sudo apt-get install xserver-xorg-video-intel;
 
     # Generic OpenCl stuff
-    sudo apt-get install --install-suggests ocl-icd-opencl-dev;
+    sudo apt-get install ocl-icd-opencl-dev;
 
     # Charmy gets the other default softs/dotfiles
     base;
@@ -118,7 +119,7 @@ case $NAME in
     sudo dpkg --add-architecture i386;
     sudo apt-get update;
     # Shadow needs non-free firmware :/
-    sudo apt-get install --install-suggests firmware-realtek
+    sudo apt-get install firmware-realtek
     # Nvidia Metapackage + ensure use of DKMS
     sudo apt-get install --install-suggests nvidia-kernel-dkms nvidia-glx nvidia-xconfig;
     
@@ -131,9 +132,9 @@ case $NAME in
     # Shadow gets the other default softs/dotfiles
     base;
     dotfiles;
-    softs;
     dldir;
     sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
+    softs;
     sudo apt-get update && sudo apt-get upgrade;
     ;;
   "espio")
@@ -153,7 +154,7 @@ case $NAME in
   *)
     # Who is this??
     echo "unkown system installing video-all"
-    sudo apt-get install --install-suggests xserver-xorg-video-all;
+    sudo apt-get install xserver-xorg-video-all;
     # skipping default softs
     echo "Skipping non-packaged software. Proceeding to dotfiles"
     # Still want dotfiles for applications
