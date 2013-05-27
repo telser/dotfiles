@@ -89,7 +89,6 @@ NAME=$(uname "-n")
 
 # Manipulate repos
 
-sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list
 sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list
 
 # Install correct software
@@ -109,6 +108,8 @@ case $NAME in
     dotfiles;
     softs;
     dldir;
+    sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
+    sudo apt-get update && sudo apt-get upgrade;
     ;;
   "shadow")
     # Shadow needs non-free firmware :/
@@ -127,12 +128,16 @@ case $NAME in
     dotfiles;
     softs;
     dldir;
+    sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
+    sudo apt-get update && sudo apt-get upgrade;
     ;;
   "espio")
     #TODO: espio will need a different pkg list
     #Use rasbian instead of debian?
     base;
     dotfiles;
+    sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
+    sudo apt-get update && sudo apt-get upgrade;
     ;;
   "vector")
     #TODO: vector will need a different pkg list
