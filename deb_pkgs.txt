@@ -21,6 +21,7 @@ ghc
 python
 ruby
 clojure1.4
+ocaml
 gdb
 valgrind
 automake
@@ -45,13 +46,12 @@ thunar
 synergy
 iceweasel
 chromium
-texlive
+texlive-latex-base
 texlive-latex-extra
 texmaker
 pandoc
 evince
 mirage
-libreoffice
 virtualbox
 wine-bin:i386
 winetricks
