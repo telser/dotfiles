@@ -121,7 +121,8 @@ case $NAME in
     # Shadow needs non-free firmware :/
     sudo apt-get install firmware-realtek
     # Nvidia Metapackage + ensure use of DKMS
-    sudo apt-get install nvidia-kernel-dkms nvidia-glx nvidia-xconfig;
+#Forget Nvidia, use noveau for now
+#sudo apt-get install nvidia-kernel-dkms nvidia-glx nvidia-xconfig;
     
     # Nvidia cuda/opencl packages
     sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-gdb nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
