@@ -7,7 +7,7 @@ dotfiles()
   # Get the dotfiles
   git clone http://github.com/trev311/dotfiles.git;
   # actually install the dotfiles
-  cp -r dotfiles/\.* ~/;
+  cp -r dotfiles/.* ~/;
   rm -rf dotfiles/;
   
   # Get oh-my-zsh
@@ -27,19 +27,20 @@ softs() {
   wget http://media.steampowered.com/client/installer/steam.deb;
   
   #Skype :/
-  #Add i386 arch
-  sudo dpkg --add-architecture i386;
   sudo apt-get update;
   wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb;
-  sudo dpkg -i skype-install.deb;
   sudo apt-get -f install;
+  sudo dpkg -i skype-install.deb;
 
   # FL Studio
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
   wine flstudio_11.exe;
   
   #Spotify
+  # *sigh*
+  sudo chmod 777 /etc/apt/sources.list
   sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
+  chmod 644 /etc/apt/sources.list
   sudo apt-get update;
   sudo apt-get install spotify-client;
 
@@ -75,8 +76,6 @@ base(){
 # Perform base installation
 
 echo "Installing main packages"
-sudo apt-get update
-sudo apt-get upgrade
 sudo apt-get install --install-suggests `cat deb_pkgs.txt`
 
 sudo update-command-not-found
@@ -97,6 +96,9 @@ echo "Installing system specific software"
 
 case $NAME in
   "charmy")
+    #Add i386 arch
+    sudo dpkg --add-architecture i386;
+    sudo apt-get update;
     # Intel graphics drivers
     sudo apt-get install --install-suggests xserver-xorg-video-intel;
 
@@ -112,6 +114,9 @@ case $NAME in
     sudo apt-get update && sudo apt-get upgrade;
     ;;
   "shadow")
+    #Add i386 arch
+    sudo dpkg --add-architecture i386;
+    sudo apt-get update;
     # Shadow needs non-free firmware :/
     sudo apt-get install --install-suggests firmware-realtek
     # Nvidia Metapackage + ensure use of DKMS
@@ -121,7 +126,7 @@ case $NAME in
     sudo apt-get install --install-suggests nvidia-cuda-toolkit nvidia-cuda-gdb nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
 
     #TODO: edit xorg.conf
-    nvidia-xconfig;
+    sudo nvidia-xconfig;
 
     # Shadow gets the other default softs/dotfiles
     base;

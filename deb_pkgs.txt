@@ -20,7 +20,7 @@ erlang
 ghc
 python
 ruby
-clojure
+clojure1.4
 gdb
 valgrind
 automake
@@ -45,7 +45,6 @@ thunar
 synergy
 iceweasel
 chromium
-luakit
 texlive
 texlive-latex-extra
 texmaker
@@ -54,7 +53,7 @@ evince
 mirage
 libreoffice
 virtualbox
-wine:i386
+wine-bin:i386
 winetricks
 pidgin
 pidgin-skype
