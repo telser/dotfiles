@@ -15,7 +15,6 @@ dotfiles()
 
   # Make zsh default shell
   chsh -s /bin/zsh;
-
 }
 
 # Install "non-free" softs from outside of main repos
@@ -72,7 +71,6 @@ dldir() {
 }
 
 base(){
-
 
 # Perform base installation
 
@@ -161,4 +159,3 @@ case $NAME in
     dotfiles;
     ;;
 esac
-
