@@ -21,9 +21,8 @@ dotfiles()
 softs() {
 
   # Steam
-  #TODO: Check if installation is easier 
-  # This might be installable as of Jessie, without Ubuntu trickery
-  wget http://media.steampowered.com/client/installer/steam.deb;
+  #TODO: This is now in experiemental! Hopefully filtering down soon
+  #wget http://media.steampowered.com/client/installer/steam.deb;
   
   #Skype :/
   sudo apt-get update;
@@ -32,8 +31,8 @@ softs() {
   sudo dpkg -i skype-install.deb;
 
   # FL Studio
+  # Installation actually requires xorg to be running
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
-  wine flstudio_11.exe;
   
   #Spotify
   # *sigh* modify permissions to echo
@@ -74,7 +73,7 @@ base(){
 
 # Perform base installation
 
-echo "Installing main packages"
+#TODO: Edit pkgs to come from correct repo
 sudo apt-get install `cat deb_pkgs.txt`
 
 sudo update-command-not-found
@@ -88,6 +87,9 @@ NAME=$(uname "-n")
 # Manipulate repos
 
 sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list
+
+#TODO: Add unstable and setup pinning
+# Pull emacs from unstable
 
 # Install correct software
 
@@ -119,14 +121,12 @@ case $NAME in
     # Shadow needs non-free firmware :/
     sudo apt-get install firmware-realtek
     # Nvidia Metapackage + ensure use of DKMS
-#Forget Nvidia, use noveau for now
-#sudo apt-get install nvidia-kernel-dkms nvidia-glx nvidia-xconfig;
+    sudo apt-get install nvidia-kernel-dkms nvidia-glx nvidia-xconfig;
     
     # Nvidia cuda/opencl packages
     sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-gdb nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
 
     #TODO: edit xorg.conf
-    sudo nvidia-xconfig;
 
     # Shadow gets the other default softs/dotfiles
     base;
