@@ -136,7 +136,6 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)                     --Move things around screens
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
 -- Add shortcuts for programs
- , ((modMask .|. shiftMask, xK_b), spawn "banshee")
  , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
@@ -144,7 +143,6 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
  , ((modMask .|. shiftMask, xK_m), spawn "mirage")                                
  , ((modMask .|. shiftMask, xK_n), spawn "xine")
- , ((modMask .|. shiftMask, xK_o), spawn "opera")                                
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
