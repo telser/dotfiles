@@ -76,7 +76,6 @@ base(){
 #TODO: Edit pkgs to come from correct repo
 sudo apt-get install `cat deb_pkgs.txt`
 
-sudo update-command-not-found
 }
 
 
@@ -121,7 +120,7 @@ case $NAME in
     # Shadow needs non-free firmware :/
     sudo apt-get install firmware-realtek
     # Nvidia Metapackage + ensure use of DKMS
-    sudo apt-get install nvidia-kernel-dkms nvidia-glx nvidia-xconfig;
+    sudo apt-get install nvidia-kernel-dkms nvidia-glx;
     
     # Nvidia cuda/opencl packages
     sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-gdb nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
