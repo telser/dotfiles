@@ -22,7 +22,6 @@ softs() {
 
   # Steam
   #TODO: This is now in experiemental! Hopefully filtering down soon
-  #wget http://media.steampowered.com/client/installer/steam.deb;
   
   #Skype :/
   sudo apt-get update;
