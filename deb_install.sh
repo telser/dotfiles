@@ -5,9 +5,9 @@
 dotfiles()
 {
   # Get the dotfiles
-  git clone http://github.com/trev311/dotfiles.git;
+ # git clone http://github.com/trev311/dotfiles.git;
   # actually install the dotfiles
-  cp -r dotfiles/.* ~/;
+#  cp -r dotfiles/.* ~/;
 #  rm -rf dotfiles/;
   
   # Get oh-my-zsh
