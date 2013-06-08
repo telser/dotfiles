@@ -7,6 +7,7 @@ dotfiles()
   # Get the dotfiles
   git clone http://github.com/telser/dotfiles.git;
   # actually install the dotfiles
+  #TODO Clean this up
   cp -r dotfiles/.* ~/;
   rm -rf dotfiles/;
   
@@ -17,8 +18,15 @@ dotfiles()
   chsh -s /bin/zsh;
 }
 
-# Install "non-free" softs from outside of main repos
+# Desktop/laptop software that isn't needed elsewhere
 softs() {
+
+  #Make sure the pulse module for switching soundcards is loaded
+  sudo chmod 777 /etc/pulse/default.pa;
+  sudo echo "load-module module-connect-on-switch" >> /etc/pulse/default.pa;
+  sudo chmod 644 /etc/pulse/default.pa;
+
+# Install "non-free" softs from outside of main repos
 
   # Steam
   sudo apt-get install steam;
@@ -89,9 +97,7 @@ sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list
 #TODO: Add unstable and setup pinning
 # Pull emacs from unstable
 
-# Install correct software
-
-echo "Installing system specific software"
+# Install correct software by machine
 
 case $NAME in
   "charmy")
