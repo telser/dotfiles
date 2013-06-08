@@ -21,7 +21,7 @@ dotfiles()
 softs() {
 
   # Steam
-  #TODO: This is now in experiemental! Hopefully filtering down soon
+  sudo apt-get install steam;
   
   #Skype :/
   sudo apt-get update;
