@@ -5,7 +5,7 @@
 dotfiles()
 {
   # Get the dotfiles
-  git clone http://github.com/telser/dotfiles.git;
+  git clone https://github.com/telser/dotfiles.git;
   # actually install the dotfiles
   cp -r dotfiles/.* ~/;
   rm -rf dotfiles/;
