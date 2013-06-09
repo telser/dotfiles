@@ -7,7 +7,8 @@ dotfiles()
   # Get the dotfiles
   git clone https://github.com/telser/dotfiles.git;
   # actually install the dotfiles
-  cp -r dotfiles/.* ~/;
+  #TODO Clean this up
+  sudo cp -r dotfiles/.* ~/;
   rm -rf dotfiles/;
   
   # Get oh-my-zsh
@@ -17,8 +18,15 @@ dotfiles()
   chsh -s /bin/zsh;
 }
 
-# Install "non-free" softs from outside of main repos
+# Desktop/laptop software that isn't needed elsewhere
 softs() {
+
+  #Make sure the pulse module for switching soundcards is loaded
+  sudo chmod 777 /etc/pulse/default.pa;
+  sudo echo "load-module module-connect-on-switch" >> /etc/pulse/default.pa;
+  sudo chmod 644 /etc/pulse/default.pa;
+
+# Install "non-free" softs from outside of main repos
 
   # Steam
   sudo apt-get install steam;
@@ -75,6 +83,10 @@ base(){
 #TODO: Edit pkgs to come from correct repo
 sudo apt-get install `cat deb_pkgs.txt`
 
+# Pull emacs from unstable
+# How unstable could an operating system, err text editor really be? :)
+sudo apt-get install -t unstable emacs
+
 }
 
 
@@ -84,14 +96,17 @@ NAME=$(uname "-n")
 
 # Manipulate repos
 
+#Don't worry we use pinning to not pull from unstable/experimental unless needed
+sudo chmod 777 /etc/apt/sources.list
+sudo echo "deb http://ftp.us.debian.org/debian/ unstable main" >> /etc/apt/sources.list
+sudo echo "deb http://ftp.us.debian.org/debian/ experimental main" >> /etc/apt/sources.list
+sudo chmod 644 /etc/apt/sources.list
 sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list
 
-#TODO: Add unstable and setup pinning
-# Pull emacs from unstable
+sudo cp apt_preferences /etc/apt/preferences
 
-# Install correct software
 
-echo "Installing system specific software"
+# Install correct software by machine
 
 case $NAME in
   "charmy")
