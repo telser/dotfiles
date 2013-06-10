@@ -5,12 +5,12 @@ iotop
 htop
 rsync
 alsa-utils
+pluseaudio
 unzip
 bzip2
 p7zip
 ttf-dejavu
 tmux
-emacs
 vim
 rxvt-unicode
 zsh
