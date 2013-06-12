@@ -21,6 +21,10 @@ dotfiles()
 # Desktop/laptop software that isn't needed elsewhere
 softs() {
 
+  # Pull emacs from unstable
+  # How unstable could an operating system, err text editor really be? :)
+  sudo apt-get install -t unstable emacs
+
   #Make sure the pulse module for switching soundcards is loaded
   sudo chmod 777 /etc/pulse/default.pa;
   sudo echo "load-module module-connect-on-switch" >> /etc/pulse/default.pa;
@@ -76,16 +80,15 @@ dldir() {
 
 }
 
-base(){
+extra(){
 
-# Perform base installation
+#Don't worry we use pinning to not pull from unstable/experimental unless needed
+sudo chmod 777 /etc/apt/sources.list
+sudo echo "deb http://ftp.us.debian.org/debian/ unstable main" >> /etc/apt/sources.list
+sudo echo "deb http://ftp.us.debian.org/debian/ experimental main" >> /etc/apt/sources.list
+sudo chmod 644 /etc/apt/sources.list
 
-#TODO: Edit pkgs to come from correct repo
-sudo apt-get install `cat deb_pkgs.txt`
-
-# Pull emacs from unstable
-# How unstable could an operating system, err text editor really be? :)
-sudo apt-get install -t unstable emacs
+sudo cp apt_preferences /etc/apt/preferences
 
 }
 
@@ -94,22 +97,14 @@ set -e
 
 NAME=$(uname "-n")
 
-# Manipulate repos
-
-#Don't worry we use pinning to not pull from unstable/experimental unless needed
-sudo chmod 777 /etc/apt/sources.list
-sudo echo "deb http://ftp.us.debian.org/debian/ unstable main" >> /etc/apt/sources.list
-sudo echo "deb http://ftp.us.debian.org/debian/ experimental main" >> /etc/apt/sources.list
-sudo chmod 644 /etc/apt/sources.list
-sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list
-
-sudo cp apt_preferences /etc/apt/preferences
-
-
 # Install correct software by machine
 
 case $NAME in
   "charmy")
+    # Manipulate repos
+    extra;
+    sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list;
+
     #Add i386 arch
     sudo dpkg --add-architecture i386;
     sudo apt-get update;
@@ -120,7 +115,7 @@ case $NAME in
     sudo apt-get install ocl-icd-opencl-dev;
 
     # Charmy gets the other default softs/dotfiles
-    base;
+    sudo apt-get install `cat deb_pkgs.txt`;
     dotfiles;
     softs;
     dldir;
@@ -128,6 +123,10 @@ case $NAME in
     sudo apt-get update && sudo apt-get upgrade;
     ;;
   "shadow")
+    # Manipulate repos
+    extra;
+    sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list;
+
     #Add i386 arch
     sudo dpkg --add-architecture i386;
     sudo apt-get update;
@@ -142,7 +141,7 @@ case $NAME in
     #TODO: edit xorg.conf
 
     # Shadow gets the other default softs/dotfiles
-    base;
+    sudo apt-get install `cat deb_pkgs.txt`;
     dotfiles;
     dldir;
     sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
@@ -150,17 +149,22 @@ case $NAME in
     sudo apt-get update && sudo apt-get upgrade;
     ;;
   "espio")
+    # Manipulate repos
+    sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list;
+
     #TODO: espio will need a different pkg list
     #Use rasbian instead of debian?
-    base;
+    sudo apt-get install `cat deb_pkgs.txt`;
     dotfiles;
     sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
     sudo apt-get update && sudo apt-get upgrade;
     ;;
   "vector")
+    # Manipulate repos
+    sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list;
     #TODO: vector will need a different pkg list
     #Use stable instead?
-    base;
+    sudo apt-get install `cat deb_pkgs.txt`;
     dotfiles;
     ;;
   *)
