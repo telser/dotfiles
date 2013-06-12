@@ -79,6 +79,7 @@ dldir() {
   mkdir projects;
   cd projects;
   git clone git@bitbucket.org:telser/retrograde-music-player.git;
+  git clone git@bitbucket.org:telser/hlibvlc.git;
   cd ~;
   mkdir school;
 
