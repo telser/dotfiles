@@ -6,4 +6,10 @@ Package: *
 Pin: release a=unstable
 Pin-Priority: 300
 
+Package: *
+Pin: release a=stable
+Pin-Priority: 400
 
+Package: *
+Pin: release a=experimental
+Pin-Priority: 100
