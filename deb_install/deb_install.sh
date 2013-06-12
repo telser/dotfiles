@@ -46,13 +46,14 @@ softs() {
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
   
   #Spotify
+  #TODO Spotify is hard linked against an old libssl, uninstallable unless using old stable ie NOT AN OPTION.
   # *sigh* modify permissions to echo
   sudo chmod 777 /etc/apt/sources.list
   sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
   # change perms back
   sudo chmod 644 /etc/apt/sources.list
-  sudo apt-get update;
-  sudo apt-get install spotify-client;
+ # sudo apt-get update;
+ # sudo apt-get install spotify-client;
 
 }
 
@@ -76,6 +77,9 @@ cj() {
 dldir() {
 
   mkdir projects;
+  cd projects;
+  git clone git@bitbucket.org:telser/retrograde-music-player.git;
+  cd ~;
   mkdir school;
 
 }
@@ -91,7 +95,6 @@ sudo chmod 644 /etc/apt/sources.list
 sudo cp apt_preferences /etc/apt/preferences
 
 }
-
 
 set -e
 
