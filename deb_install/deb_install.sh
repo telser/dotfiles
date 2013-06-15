@@ -24,6 +24,9 @@ softs() {
   # Pull emacs from unstable
   # How unstable could an operating system, err text editor really be? :)
   sudo apt-get install -t unstable emacs
+  
+  #Get Mozilla Release, not ESR
+  sudo apt-get install -t experimental iceweasel
 
   #Make sure the pulse module for switching soundcards is loaded
   sudo chmod 777 /etc/pulse/default.pa;
@@ -91,6 +94,7 @@ extra(){
 sudo chmod 777 /etc/apt/sources.list
 sudo echo "deb http://ftp.us.debian.org/debian/ unstable main" >> /etc/apt/sources.list
 sudo echo "deb http://ftp.us.debian.org/debian/ experimental main" >> /etc/apt/sources.list
+sudo echo "deb http://cdn.debian.net/debian/ experimental main" >> /etc/apt/sources.list
 sudo chmod 644 /etc/apt/sources.list
 
 sudo cp apt_preferences /etc/apt/preferences

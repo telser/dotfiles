@@ -44,7 +44,6 @@ dzen2
 gparted
 thunar
 synergy
-iceweasel
 chromium
 texlive-latex-base
 texlive-latex-extra
