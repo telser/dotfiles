@@ -29,8 +29,14 @@ then
   conky -c .conkyLeftrc &
   conky -c .conkyRightrc &
   sudo rfkill block 0
-else                                      
-  synergys -c ~/.synergyS # Start Synergy Server
+fi
+if ["$NAME" == "shadow"];
+then
+  wicd-gtk &
+  conky -c .conkyLeftrc &
+  conky -c .conkyRightrc &
+#else                                      
+ # synergys -c ~/.synergyS # Start Synergy Server
 fi
 
 xset b off
