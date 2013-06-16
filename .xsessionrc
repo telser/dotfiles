@@ -12,9 +12,16 @@ NAME=$( uname "-n")
 #  unset f
 #fi
 
+## test for an existing bus daemon, just to be safe
+#if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+    ## if not found, launch a new one
+ #   eval `dbus-launch --sh-syntax --exit-with-session`
+  #  echo "D-Bus per-session daemon address is: 
+#$DBUS_SESSION_BUS_ADDRESS"
+#fi
+
 if [ "$NAME" == "charmy" ];               
 then
-  mkdir /tmp/paconky
   blueman-applet &                        # Setup wireless services
   wicd-gtk &
   xbacklight -set 60                      # Dim laptop screen --saves battery life
@@ -22,14 +29,8 @@ then
   conky -c .conkyLeftrc &
   conky -c .conkyRightrc &
   sudo rfkill block 0
-fi
-if ["$NAME" == "shadow"];  
-then
-  wicd-gtk &
-  conky -c .conkyLeftrc &
-  conky -c .conkyRightrc &
-#  else
- #   synergys -c ~/.synergyS # Start Synergy Server
+else                                      
+  synergys -c ~/.synergyS # Start Synergy Server
 fi
 
 xset b off

@@ -6,6 +6,7 @@ htop
 rsync
 alsa-utils
 pluseaudio
+xbacklight
 unzip
 bzip2
 p7zip
