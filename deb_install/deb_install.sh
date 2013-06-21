@@ -94,7 +94,6 @@ extra(){
 sudo chmod 777 /etc/apt/sources.list
 sudo echo "deb http://ftp.us.debian.org/debian/ unstable main" >> /etc/apt/sources.list
 sudo echo "deb http://ftp.us.debian.org/debian/ experimental main" >> /etc/apt/sources.list
-sudo echo "deb http://cdn.debian.net/debian/ experimental main" >> /etc/apt/sources.list
 sudo chmod 644 /etc/apt/sources.list
 
 sudo cp apt_preferences /etc/apt/preferences

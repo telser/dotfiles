@@ -68,4 +68,4 @@ export PATH
 #export _JAVA_AWT_WM_NONREPARENTING=1
 
 #PS1='[\u@\h \W]\$ '
-[[ -f "/home/trevis/.local/share/Steam/setup_debian_environment.sh" ]] && source "/home/trevis/.local/share/Steam/setup_debian_environment.sh"
+#[[ -f "/home/trevis/.local/share/Steam/setup_debian_environment.sh" ]] && source "/home/trevis/.local/share/Steam/setup_debian_environment.sh"
