@@ -121,6 +121,9 @@ case $NAME in
     # Generic OpenCl stuff
     sudo apt-get install ocl-icd-opencl-dev;
 
+    # Of course the wifi firmware is non-free :/
+    sudo apt-get install firmware-iwlwifi
+
     # Charmy gets the other default softs/dotfiles
     sudo apt-get install `cat deb_pkgs.txt`;
     dotfiles;
