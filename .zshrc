@@ -57,6 +57,8 @@ alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
 
 alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
 
+alias emacs='emacs -nw'
+
 #Make sure the ENV is setup
 export EDITOR='vim'
 
