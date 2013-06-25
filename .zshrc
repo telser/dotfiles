@@ -61,6 +61,7 @@ alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
 export EDITOR='vim'
 
 PATH=$PATH:$HOME/.cabal/bin
+PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
 export PATH
 
 
