@@ -54,20 +54,20 @@ main = do
     name <- getUserEntryForID uid
     return $  usrName name
     xmonad $ defaultConfig
-        { manageHook = myManageHook <+> manageDocks 
-        , layoutHook = myLayoutHook  
+        { manageHook = myManageHook <+> manageDocks
+        , layoutHook = myLayoutHook
         , logHook = xmobarLog xmproc --myLogHook workspaceBar
         , modMask = mod4Mask                                                --Rebind Mod to the Super key
         , terminal = "urxvtc"                                               --Use urxvt clients
         , workspaces =  myWorkSpaces                                        --Custom workspaces
         , keys=myKeys myHost                                                --Keybindings
         }
--- Setup workspaces using short names to save display room        
+-- Setup workspaces using short names to save display room
 myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch","scratch"]
 
 altMask = mod1Mask
 
-{- xmobar pretty printing log 
+{- xmobar pretty printing log
  - Match xmobarColor from .xmobarrc
 -}
 
@@ -81,11 +81,11 @@ usrName (UserEntry x _ _ _ _ _ _) = x
 
 
 -- Layout
-myLayoutHook = avoidStruts  
-          $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full) 
-          $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full) 
-          $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))  
-          $ onWorkspace "web" (simpleTabbed ||| Full ||| tall) 
+myLayoutHook = avoidStruts
+          $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full)
+          $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full)
+          $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))
+          $ onWorkspace "web" (simpleTabbed ||| Full ||| tall)
           $ (myGrid ||| simpleTabbed )
           where
             tall   = Tall nmaster delta ratio
@@ -94,8 +94,8 @@ myLayoutHook = avoidStruts
             delta   = 2/100
             defaultRatio = 1/2
             myGrid = named "g" (TallGrid 2 2 (1/2)  (1/2) (2/100))
-         
--- Move some programs to certain workspaces and float some too         
+
+-- Move some programs to certain workspaces and float some too
 myManageHook = (composeAll . concat $
     [
        [className =? x --> doF (W.shift "web") | x <- myWebShift]
@@ -136,28 +136,30 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)                     --Move things around screens
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
 -- Add shortcuts for programs
+ , ((modMask .|. shiftMask, xK_a), spawn "emacs")
  , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
+ , ((modMask .|. shiftMask, xK_g), spawn "steam")
  , ((modMask .|. shiftMask, xK_h), spawn "chromium")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
- , ((modMask .|. shiftMask, xK_m), spawn "mirage")                                
+ , ((modMask .|. shiftMask, xK_m), spawn "mirage")
  , ((modMask .|. shiftMask, xK_n), spawn "xine")
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
- , ((modMask .|. shiftMask, xK_v), spawn "virtualbox") 
--- , ((modMask .|. shiftMask, xK_z), spawn "zsnes") 
- , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")    
- , ((modMask .|. controlMask, xK_t), spawn "urxvt")    
+ , ((modMask .|. shiftMask, xK_v), spawn "virtualbox")
+-- , ((modMask .|. shiftMask, xK_z), spawn "zsnes")
+ , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")
+ , ((modMask .|. controlMask, xK_t), spawn "urxvt")
  ]
 
  ++
  if( hostname =="charmy")                                                   --if laptop hostname set specific keybindings
-   then [ 
-   ((0, 0x1008ff13), spawn "amixer set Master 2dB+") 
- , ((0,0x1008ff11), spawn "amixer set Master 2dB-")  
+   then [
+   ((0, 0x1008ff13), spawn "amixer set Master 2dB+")
+ , ((0,0x1008ff11), spawn "amixer set Master 2dB-")
  ]
    else [ ]                                                                 --Otherwise nothing
 
@@ -184,12 +186,11 @@ myLogHook h = dynamicLogWithPP $ defaultPP
                   wsIdxToString Nothing = "1"
                   wsIdxToString (Just n) = show (n+1)
                   xdo key = "xdotool key super+" ++ key
-                
-myWorkspaceBar = "/usr/bin/dzen2 -x '0' -y '0' -h 16 -w '870' -ta '1' -fg "++ colorWhiteAlt  ++ " -bg " ++ colorBlack ++ " -fn "++dzenFont ++ "' -p -e ''"        
-                         
+
+myWorkspaceBar = "/usr/bin/dzen2 -x '0' -y '0' -h 16 -w '870' -ta '1' -fg "++ colorWhiteAlt  ++ " -bg " ++ colorBlack ++ " -fn "++dzenFont ++ "' -p -e ''"
+
 dzenFont = "-*-montecarlo-medium-r-normal-*-9-*-*-*-*-*-*-*"
 colorBlack = "#020202"
 colorWhiteAlt = "#9d9d9d"
 colorGray = "#444444"
 colorGreen = "#99cc66"
-

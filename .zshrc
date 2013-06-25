@@ -57,6 +57,8 @@ alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
 
 alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
 
+alias emacs='emacs -nw'
+
 #Make sure the ENV is setup
 export EDITOR='vim'
 
@@ -69,4 +71,4 @@ export PATH
 #export _JAVA_AWT_WM_NONREPARENTING=1
 
 #PS1='[\u@\h \W]\$ '
-[[ -f "/home/trevis/.local/share/Steam/setup_debian_environment.sh" ]] && source "/home/trevis/.local/share/Steam/setup_debian_environment.sh"
+#[[ -f "/home/trevis/.local/share/Steam/setup_debian_environment.sh" ]] && source "/home/trevis/.local/share/Steam/setup_debian_environment.sh"

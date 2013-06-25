@@ -6,6 +6,7 @@ htop
 rsync
 alsa-utils
 pluseaudio
+xbacklight
 unzip
 bzip2
 p7zip
@@ -44,7 +45,6 @@ dzen2
 gparted
 thunar
 synergy
-iceweasel
 chromium
 texlive-latex-base
 texlive-latex-extra

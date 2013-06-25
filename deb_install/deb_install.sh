@@ -24,6 +24,9 @@ softs() {
   # Pull emacs from unstable
   # How unstable could an operating system, err text editor really be? :)
   sudo apt-get install -t unstable emacs
+  
+  #Get Mozilla Release, not ESR
+  sudo apt-get install -t experimental iceweasel
 
   #Make sure the pulse module for switching soundcards is loaded
   sudo chmod 777 /etc/pulse/default.pa;
@@ -117,6 +120,9 @@ case $NAME in
 
     # Generic OpenCl stuff
     sudo apt-get install ocl-icd-opencl-dev;
+
+    # Of course the wifi firmware is non-free :/
+    sudo apt-get install firmware-iwlwifi
 
     # Charmy gets the other default softs/dotfiles
     sudo apt-get install `cat deb_pkgs.txt`;
