@@ -46,9 +46,8 @@ import qualified Data.Map as M
 
 main = do
     myHost <- fmap nodeName getSystemID                                     --Get the hostname of the machine
---    cnky <- spawnPipe "/usr/bin/conky -c ~/.conkyLeftrc"
     xmproc <- spawnPipe "/usr/bin/xmobar "                                  --Spawn xmobar
-    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
+--    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
@@ -163,6 +162,10 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  ]
    else [ ]                                                                 --Otherwise nothing
 
+
+{- FIXME:
+ - Add per host configuration of xmobar
+-}
 
 {- Dzen section
  -
