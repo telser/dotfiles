@@ -201,14 +201,35 @@ colorGreen = "#99cc66"
 -- xmobar configuration on per host basis
 --
 
-colorPosition = "font = \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\"
+colorPosition = "Config { font = \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\"
   , bgColor = \"#303030\"\n , border = NoBorder\n
   , borderColor = \"black\"\n , fgColor = \"grey\"\n , position = TopSize R 90 20
   , lowerOnStart = True\n,"
 
-xmobarCommands = "commands = [ Run Weather \"KPDK\" [\"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\",\"--normal\",\"green\",\"--high\",\"red\",\"--low\",\"#1F66FF\"]18000 , Run Network \"eth0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\",\"#1F66FF\",\"--high\",\"red\"]10"
+xmobarCommands = "commands = [ Run Weather \"KPDK\"
+  [\"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\"
+  ,\"--normal\",\"green\",\"--high\",\"red\",\"--low\"
+  ,\"#1F66FF\"] 18000 
+  , Run Network \"eth0\"
+  [\"-L\",\"0\",\"-H\",\"32\",\"--normal\"
+  ,\"#1F66FF\",\"--high\",\"red\"] 10
+  , Run Cpu [\"-L\",\"3\",\"-H\",\"50\",\"--normal\",\"#1F66FF\"
+  ,\"--high\",\"red\"] 10
+  , Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10
+  , Run Swap [] 10
+  , Run Date \"%a %b %_d %Y %H:%M:%S\" \"date\" 10
+  , Run StdinReader"
 
-xmobarTemplate host =
+xmobarPick host =
   if (host == "charmy")
     then
-      template = " template = \" %cpu% | %memory% | %battery% | %eth0% %wlan0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\""
+      endCommand = ", Run Network \"wlan0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\",\"#1FF66FF\",\"--high\",\"red\"] 10
+      , Run BatteryP[\"BAT0\"][\"--\", \"-c\", \"energy_full\"] 10
+      ]"
+      template = " template = \" %cpu% | %memory% | %battery% | %eth0% %wlan0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\"}"
+      colorPosition++xmonadCommand++endCommand++
+        ", sepChar =\"%\"\n , alignSep = \"}{\"\n ,"++template
+      else
+        template = " template = \" %cpu% | %memory% | %eth0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\"}"
+        colorPosition++xmonadCommand++"]"++
+          ", sepChar =\"%\"\n , alignSep = \"}{\""++template
