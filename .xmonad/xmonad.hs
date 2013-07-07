@@ -197,3 +197,18 @@ colorBlack = "#020202"
 colorWhiteAlt = "#9d9d9d"
 colorGray = "#444444"
 colorGreen = "#99cc66"
+
+-- xmobar configuration on per host basis
+--
+
+colorPosition = "font = \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\"
+  , bgColor = \"#303030\"\n , border = NoBorder\n
+  , borderColor = \"black\"\n , fgColor = \"grey\"\n , position = TopSize R 90 20
+  , lowerOnStart = True\n,"
+
+xmobarCommands = "commands = [ Run Weather \"KPDK\" [\"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\",\"--normal\",\"green\",\"--high\",\"red\",\"--low\",\"#1F66FF\"]18000 , Run Network \"eth0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\",\"#1F66FF\",\"--high\",\"red\"]10"
+
+xmobarTemplate host =
+  if (host == "charmy")
+    then
+      template = " template = \" %cpu% | %memory% | %battery% | %eth0% %wlan0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\""
