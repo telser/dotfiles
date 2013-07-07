@@ -201,12 +201,10 @@ colorGreen = "#99cc66"
 -- xmobar configuration on per host basis
 --
 
-colorPosition = "Config { font = \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\"
-  , bgColor = \"#303030\"\n , border = NoBorder\n
-  , borderColor = \"black\"\n , fgColor = \"grey\"\n , position = TopSize R 90 20
-  , lowerOnStart = True\n,"
+colorPosition = " -f \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\"
+  -B #303030 -F grey"
 
-xmobarCommands = "commands = [ Run Weather \"KPDK\"
+xmobarCommands = " -c '[ Run Weather \"KPDK\"
   [\"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\"
   ,\"--normal\",\"green\",\"--high\",\"red\",\"--low\"
   ,\"#1F66FF\"] 18000 
@@ -225,11 +223,11 @@ xmobarPick host =
     then
       endCommand = ", Run Network \"wlan0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\",\"#1FF66FF\",\"--high\",\"red\"] 10
       , Run BatteryP[\"BAT0\"][\"--\", \"-c\", \"energy_full\"] 10
-      ]"
-      template = " template = \" %cpu% | %memory% | %battery% | %eth0% %wlan0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\"}"
+      ]'"
+      template = "-t \" %cpu% | %memory% | %battery% | %eth0% %wlan0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\" position = TopSize R 90 20"
       colorPosition++xmonadCommand++endCommand++
-        ", sepChar =\"%\"\n , alignSep = \"}{\"\n ,"++template
+        " -s\"%\" -a \"}{\" "++template
       else
-        template = " template = \" %cpu% | %memory% | %eth0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\"}"
-        colorPosition++xmonadCommand++"]"++
-          ", sepChar =\"%\"\n , alignSep = \"}{\""++template
+        template = " -t \" %cpu% | %memory% | %eth0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\" position= TopSize R 90 20"
+        colorPosition++xmonadCommand++"]'"++
+          " -s \"%\" -a \"}{\" "++template
