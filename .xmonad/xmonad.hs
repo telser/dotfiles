@@ -46,9 +46,8 @@ import qualified Data.Map as M
 
 main = do
     myHost <- fmap nodeName getSystemID                                     --Get the hostname of the machine
---    cnky <- spawnPipe "/usr/bin/conky -c ~/.conkyLeftrc"
     xmproc <- spawnPipe "/usr/bin/xmobar "                                  --Spawn xmobar
-    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
+--    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
@@ -165,6 +164,10 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
    else [ ]                                                                 --Otherwise nothing
 
 
+{- FIXME:
+ - Add per host configuration of xmobar
+-}
+
 {- Dzen section
  -
  - Different loghook
@@ -195,3 +198,37 @@ colorBlack = "#020202"
 colorWhiteAlt = "#9d9d9d"
 colorGray = "#444444"
 colorGreen = "#99cc66"
+
+-- xmobar configuration on per host basis
+--
+
+colorPosition = " -f \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\"
+  -B #303030 -F grey"
+
+xmobarCommands = " -c '[ Run Weather \"KPDK\"
+  [\"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\"
+  ,\"--normal\",\"green\",\"--high\",\"red\",\"--low\"
+  ,\"#1F66FF\"] 18000 
+  , Run Network \"eth0\"
+  [\"-L\",\"0\",\"-H\",\"32\",\"--normal\"
+  ,\"#1F66FF\",\"--high\",\"red\"] 10
+  , Run Cpu [\"-L\",\"3\",\"-H\",\"50\",\"--normal\",\"#1F66FF\"
+  ,\"--high\",\"red\"] 10
+  , Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10
+  , Run Swap [] 10
+  , Run Date \"%a %b %_d %Y %H:%M:%S\" \"date\" 10
+  , Run StdinReader"
+
+xmobarPick host =
+  if (host == "charmy")
+    then
+      endCommand = ", Run Network \"wlan0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\",\"#1FF66FF\",\"--high\",\"red\"] 10
+      , Run BatteryP[\"BAT0\"][\"--\", \"-c\", \"energy_full\"] 10
+      ]'"
+      template = "-t \" %cpu% | %memory% | %battery% | %eth0% %wlan0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\" position = TopSize R 90 20"
+      colorPosition++xmonadCommand++endCommand++
+        " -s\"%\" -a \"}{\" "++template
+      else
+        template = " -t \" %cpu% | %memory% | %eth0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\" position= TopSize R 90 20"
+        colorPosition++xmonadCommand++"]'"++
+          " -s \"%\" -a \"}{\" "++template
