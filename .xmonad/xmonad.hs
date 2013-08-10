@@ -107,7 +107,7 @@ myManageHook = (composeAll . concat $
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]     --Float Firefox Dialogs
    ])
    where
-   myWebShift = ["Firefox","Chromium","Iceweasel","luakit"]
+   myWebShift = ["Firefox","Chromium","Iceweasel","luakit", "Conkeror"]
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-impress","libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage","LibreOffice Calc"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
@@ -136,11 +136,12 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
 -- Add shortcuts for programs
  , ((modMask .|. shiftMask, xK_a), spawn "emacs")
- , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
+ , ((modMask .|. shiftMask, xK_c), spawn "conkeror")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
- , ((modMask .|. shiftMask, xK_f), spawn "firefox")
+ , ((modMask .|. shiftMask, xK_f), spawn "Firefox")
  , ((modMask .|. shiftMask, xK_g), spawn "steam")
  , ((modMask .|. shiftMask, xK_h), spawn "chromium")
+ , ((modMask .|. shiftMask, xK_k), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
  , ((modMask .|. shiftMask, xK_m), spawn "mirage")
  , ((modMask .|. shiftMask, xK_n), spawn "xine")
