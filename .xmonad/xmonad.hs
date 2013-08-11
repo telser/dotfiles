@@ -202,13 +202,12 @@ colorGreen = "#99cc66"
 -- xmobar configuration on per host basis
 --
 
-colorPosition = " -f \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\"
-  -B #303030 -F grey"
+colorPosition = " -f \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\" -B #303030 -F grey"
 
 xmobarCommands = " -c '[ Run Weather \"KPDK\"
   [\"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\"
   ,\"--normal\",\"green\",\"--high\",\"red\",\"--low\"
-  ,\"#1F66FF\"] 18000 
+  ,\"#1F66FF\"] 18000
   , Run Network \"eth0\"
   [\"-L\",\"0\",\"-H\",\"32\",\"--normal\"
   ,\"#1F66FF\",\"--high\",\"red\"] 10
