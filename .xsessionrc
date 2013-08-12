@@ -12,7 +12,7 @@ NAME=$( uname "-n")
 #  unset f
 #fi
 
-if [ "$NAME" == "charmy" ];               
+if [ "$NAME" == "charmy" ];
 then
   blueman-applet &                        # Setup wireless services
   wicd-gtk &
@@ -20,7 +20,7 @@ then
   udiskie &
   conky -c .conkyLeftrc &
   conky -c .conkyRightrc &
-  sudo rfkill block 0
+  sudo rfkill block 1
 fi
 if ["$NAME" == "shadow"];
 then
@@ -28,7 +28,7 @@ then
   wicd-gtk &
   conky -c .conkyLeftrc &
   conky -c .conkyRightrc &
-#else                                      
+#else
  # synergys -c ~/.synergyS # Start Synergy Server
 fi
 
@@ -40,7 +40,7 @@ xrdb -merge ~/.Xresources
 xmodmap ~/.Xmodmap
 
 trayer --edge top --align left --SetDockType true --SetPartialStrut true \
- --expand true --width 10 --transparent true --alpha 0 --tint 0x303030 --height 19 --padding 15& 
+ --expand true --width 10 --transparent true --alpha 0 --tint 0x303030 --height 19 --padding 15&
 
 thunar --daemon &
 
