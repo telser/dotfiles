@@ -107,7 +107,7 @@ myManageHook = (composeAll . concat $
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]     --Float Firefox Dialogs
    ])
    where
-   myWebShift = ["Firefox","Chromium","Iceweasel","luakit"]
+   myWebShift = ["Firefox","Chromium","Iceweasel","luakit", "Conkeror"]
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-impress","libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage","LibreOffice Calc"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
@@ -136,11 +136,12 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
 -- Add shortcuts for programs
  , ((modMask .|. shiftMask, xK_a), spawn "emacs")
- , ((modMask .|. shiftMask, xK_c), spawn "texmaker")
+ , ((modMask .|. shiftMask, xK_c), spawn "conkeror")
  , ((modMask .|. shiftMask, xK_e), spawn "evince")
- , ((modMask .|. shiftMask, xK_f), spawn "firefox")
+ , ((modMask .|. shiftMask, xK_f), spawn "Firefox")
  , ((modMask .|. shiftMask, xK_g), spawn "steam")
  , ((modMask .|. shiftMask, xK_h), spawn "chromium")
+ , ((modMask .|. shiftMask, xK_k), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_l), spawn "luakit")
  , ((modMask .|. shiftMask, xK_m), spawn "mirage")
  , ((modMask .|. shiftMask, xK_n), spawn "xine")
@@ -201,29 +202,15 @@ colorGreen = "#99cc66"
 -- xmobar configuration on per host basis
 --
 
-colorPosition = " -f \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\"
-  -B #303030 -F grey"
+colorPosition = " -f \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\" -B #303030 -F grey"
 
-xmobarCommands = " -c '[ Run Weather \"KPDK\"
-  [\"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\"
-  ,\"--normal\",\"green\",\"--high\",\"red\",\"--low\"
-  ,\"#1F66FF\"] 18000 
-  , Run Network \"eth0\"
-  [\"-L\",\"0\",\"-H\",\"32\",\"--normal\"
-  ,\"#1F66FF\",\"--high\",\"red\"] 10
-  , Run Cpu [\"-L\",\"3\",\"-H\",\"50\",\"--normal\",\"#1F66FF\"
-  ,\"--high\",\"red\"] 10
-  , Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10
-  , Run Swap [] 10
-  , Run Date \"%a %b %_d %Y %H:%M:%S\" \"date\" 10
-  , Run StdinReader"
+xmobarCommands = " -c '[ Run Weather \"KPDK\" \"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\" ,\"--normal\",\"green\",\"--high\",\"red\",\"-- ,\"#1F66FF\"] 18000 , Run Network \"eth0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\" ,\"#1F66FF\",\"--high\",\"red\"] 10 , Run Cpu [\"-L\",\"3\",\"-H\",\"50\",\"--normal\",\"#1F66FF\" ,\"--high\",\"red\"] 10 , Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10 , Run Swap [] 10 , Run Date \"%a %b %_d %Y %H:%M:%S\" \"date\" 10 , Run StdinReader"
 
-xmobarPick host =
+{-xmobarPick host =
+>>>>>>> 389286d4a2f96e2a6aedfbef8705bf4826f25d5c
   if (host == "charmy")
     then
-      endCommand = ", Run Network \"wlan0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\",\"#1FF66FF\",\"--high\",\"red\"] 10
-      , Run BatteryP[\"BAT0\"][\"--\", \"-c\", \"energy_full\"] 10
-      ]'"
+      endCommand = ", Run Network \"wlan0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\",\"#1FF66FF\",\"--high\",\"red\"] 10 , Run BatteryP[\"BAT0\"][\"--\", \"-c\", \"energy_full\"] 10 ]'"
       template = "-t \" %cpu% | %memory% | %battery% | %eth0% %wlan0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\" position = TopSize R 90 20"
       colorPosition++xmonadCommand++endCommand++
         " -s\"%\" -a \"}{\" "++template
@@ -231,3 +218,4 @@ xmobarPick host =
         template = " -t \" %cpu% | %memory% | %eth0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\" position= TopSize R 90 20"
         colorPosition++xmonadCommand++"]'"++
           " -s \"%\" -a \"}{\" "++template
+-}
