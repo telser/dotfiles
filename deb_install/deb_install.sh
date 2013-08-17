@@ -10,7 +10,7 @@ dotfiles()
   #TODO Clean this up
   sudo cp -r dotfiles/.* ~/;
   rm -rf dotfiles/;
-  
+
   # Get oh-my-zsh
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh;
 
@@ -24,7 +24,7 @@ softs() {
   # Pull emacs from unstable
   # How unstable could an operating system, err text editor really be? :)
   sudo apt-get install -t unstable emacs
-  
+
   #Get Mozilla Release, not ESR
   sudo apt-get install -t experimental iceweasel
 
@@ -37,7 +37,7 @@ softs() {
 
   # Steam
   sudo apt-get install steam;
-  
+
   #Skype :/
   sudo apt-get update;
   wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb;
@@ -47,7 +47,7 @@ softs() {
   # FL Studio
   # Installation actually requires xorg to be running
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
-  
+
   #Spotify
   #TODO Spotify is hard linked against an old libssl, uninstallable unless using old stable ie NOT AN OPTION.
   # *sigh* modify permissions to echo
@@ -61,10 +61,10 @@ softs() {
 }
 
 #TODO: Setup cabal/leiningen env/packages
-            
+
 # Haskell
 hs() {
-                       
+
   cabal update;
 
 }
@@ -144,7 +144,7 @@ case $NAME in
     sudo apt-get install firmware-realtek
     # Nvidia Metapackage + ensure use of DKMS
     sudo apt-get install nvidia-kernel-dkms nvidia-glx;
-    
+
     # Nvidia cuda/opencl packages
     sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-gdb nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
 
@@ -156,17 +156,6 @@ case $NAME in
     dldir;
     sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
     softs;
-    sudo apt-get update && sudo apt-get upgrade;
-    ;;
-  "espio")
-    # Manipulate repos
-    sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list;
-
-    #TODO: espio will need a different pkg list
-    #Use rasbian instead of debian?
-    sudo apt-get install `cat deb_pkgs.txt`;
-    dotfiles;
-    sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
     sudo apt-get update && sudo apt-get upgrade;
     ;;
   "vector")
