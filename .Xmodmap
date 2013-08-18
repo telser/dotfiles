@@ -1,4 +1,4 @@
-! Get rid of Caps Lock and make it the ctr_l key instead
+! Get rid of Caps Lock and make it the ctr_r key instead
 remove Lock = Caps_Lock
 keysym Caps_Lock = Control_R
 add Control = Control_R
