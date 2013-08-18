@@ -44,7 +44,7 @@ conky
 dzen2
 gparted
 thunar
-synergy
+conkeror
 chromium
 texlive-latex-base
 texlive-latex-extra
@@ -53,6 +53,7 @@ pandoc
 evince
 mirage
 virtualbox
+vagrant
 wine-bin:i386
 winetricks
 pidgin
