@@ -46,7 +46,7 @@ import qualified Data.Map as M
 
 main = do
     myHost <- fmap nodeName getSystemID                                     --Get the hostname of the machine
-    xmproc <- spawnPipe "/usr/bin/xmobar "                                  --Spawn xmobar
+    xmproc <- spawnPipe $ ("/usr/bin/xmobar " ++ (xmobarPick myHost) ++ " /home/trevis/.xmobarrc")
 --    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
     replace
     uid <- getRealUserID
@@ -197,14 +197,23 @@ colorGreen = "#99cc66"
 
 -- xmobar configuration on per host basis
 --
+colorPosition = " -f -misc-fixed-*-*-*-*-10-*-*-*-*-*-*-* -F gray"
 
-colorPosition = " -f \"-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*\" -B #303030 -F grey"
+xmbrWeath = " -C '[ Run Weather \"KPDK\" [\"-template\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\",\"--normal\",\"green\",\"--high\",\"red\",\"--low\",\"lightblue\"] 18000 ]' "
 
-xmobarCommands = " -c '[ Run Weather \"KPDK\" \"-t\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\" ,\"--normal\",\"green\",\"--high\",\"red\",\"-- ,\"#1F66FF\"] 18000 , Run Network \"eth0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\" ,\"#1F66FF\",\"--high\",\"red\"] 10 , Run Cpu [\"-L\",\"3\",\"-H\",\"50\",\"--normal\",\"#1F66FF\" ,\"--high\",\"red\"] 10 , Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10 , Run Swap [] 10 , Run Date \"%a %b %_d %Y %H:%M:%S\" \"date\" 10 , Run StdinReader"
+xmbrNet = "-C '[Run DynNetwork [\"-L\",\"0\",\"-H\",\"32\",\"--normal\" ,\"lightblue\",\"--high\",\"red\"] 10]' "
+xmbrCpu = "-C '[Run MultiCpu [\"-L\",\"3\",\"-H\",\"50\",\"--normal\",\"lightblue\" ,\"--high\",\"red\"] 10]' "
+xmbrMem = "-C '[Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10]' "
+xmbrSwp = "-C '[Run Swap [] 10]' "
+xmbrDte = "-C '[Run Date \"%a %b %_d %Y %H:%M:%S\" \"date\" 10]' "
+xmbrStdin = "-C '[Run StdinReader]' "
+xmbrBat = "-C '[Run BatteryP[\"BAT0\"][ \"energy_full\"] 10 ]' "
+
+xmobarSt = xmbrWeath ++ xmbrNet ++ xmbrCpu ++ xmbrMem ++ xmbrSwp ++ xmbrDte ++ xmbrStdin
 
 xmobarPick host =
   if (host == "charmy")
     then
-      colorPosition ++ xmobarCommands ++ ", Run Network \"wlan0\" [\"-L\",\"0\",\"-H\",\"32\",\"--normal\",\"#1FF66FF\",\"--high\",\"red\"] 10 , Run BatteryP[\"BAT0\"][\"--\", \"-c\", \"energy_full\"] 10 ]'" ++ " -s\"%\" -a \"}{\" "++ "-t \" %cpu% | %memory% | %battery% | %eth0% %wlan0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\" position = TopSize R 90 20"
+      colorPosition ++ " -t \" %multicpu% | %memory% | %dynnetwork% | %battery% | %StdinReader%}{ %date%| %KPDK%\" " ++ xmobarSt ++ xmbrBat
       else
-        colorPosition++xmobarCommands++"]'"++ " -s \"%\" -a \"}{\" "++ " -t \" %cpu% | %memory% | %eth0% | %StdinReader%}{ <fc=#ee9a00>%date%</fc>| %KPDK%\" position= TopSize R 90 20"
+        colorPosition ++ " -t \" %multicpu% | %memory% | %dynnetwork% | %StdinReader%}{ %date%| %KPDK%\" " ++ xmobarSt
