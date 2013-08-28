@@ -10,5 +10,6 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+(setq system-uses-terminfo nil)
 (provide 'personal)
 ;;; personal.el ends here
