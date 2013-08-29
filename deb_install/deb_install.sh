@@ -71,7 +71,11 @@ hs() {
 
 # Clojure
 
+#lein and other clojure stuff.
 cj() {
+ mkdir ~/bin;
+ wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -O ~/bin/lein;
+ chmod 755 ~/bin/lein;
  lein version;
 }
 
