@@ -30,7 +30,6 @@ strace
 sloccount
 lxrandr
 cabal-install
-leiningen
 git
 darcs
 command-not-found
