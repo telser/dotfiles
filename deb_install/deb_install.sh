@@ -72,7 +72,7 @@ hs() {
 # Clojure
 
 #lein and other clojure stuff.
-cj() {
+clj() {
  mkdir ~/bin;
  wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -O ~/bin/lein;
  chmod 755 ~/bin/lein;
@@ -135,6 +135,7 @@ case $NAME in
     dldir;
     sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
     sudo apt-get update && sudo apt-get upgrade;
+    clj;
     ;;
   "shadow")
     # Manipulate repos
@@ -161,6 +162,7 @@ case $NAME in
     sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
     softs;
     sudo apt-get update && sudo apt-get upgrade;
+    clj;
     ;;
   "vector")
     # Manipulate repos
