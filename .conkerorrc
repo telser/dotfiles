@@ -1,3 +1,7 @@
 require("new-tabs.js");
+require("session.js");
 
 define_webjump("github", "https://github.com/search?q=%s");
+define_webjump("trello", "https://trello.com");
+define_webjump("hoogle", "http://www.haskell.org/hoogle/?hoogle=%s",
+                         $alternative="http://www.haskell.org/hoogle");
