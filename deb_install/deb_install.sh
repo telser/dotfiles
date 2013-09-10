@@ -25,6 +25,8 @@ softs() {
   # How unstable could an operating system, err text editor really be? :)
   sudo apt-get install -t unstable emacs
 
+  #TODO: Get prelude
+
   #Get Mozilla Release, not ESR
   sudo apt-get install -t experimental iceweasel
 

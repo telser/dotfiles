@@ -5,3 +5,6 @@ define_webjump("github", "https://github.com/search?q=%s");
 define_webjump("trello", "https://trello.com");
 define_webjump("hoogle", "http://www.haskell.org/hoogle/?hoogle=%s",
                          $alternative="http://www.haskell.org/hoogle");
+define_webjump("wunderground",
+         "http://www.wunderground.com/cgi-bin/findweather/hdfForecast?query=%s",
+         $alternative="http://www.wunderground.com");
