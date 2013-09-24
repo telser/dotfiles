@@ -8,7 +8,7 @@ dotfiles()
   git clone https://github.com/telser/dotfiles.git;
   # actually install the dotfiles
   #TODO Clean this up
-  sudo cp -r dotfiles/.* ~/;
+  sudo cp -r --preserve=all dotfiles/. ~/;
   rm -rf dotfiles/;
 
   # Get oh-my-zsh
@@ -23,9 +23,11 @@ softs() {
 
   # Pull emacs from unstable
   # How unstable could an operating system, err text editor really be? :)
-  sudo apt-get install -t unstable emacs
+  sudo apt-get install -t emacs24
 
   #TODO: Get prelude
+
+  curl -L http://git.io/epre | sh
 
   #Get Mozilla Release, not ESR
   sudo apt-get install -t experimental iceweasel
@@ -132,11 +134,11 @@ case $NAME in
         # Charmy gets the other default softs/dotfiles
         sudo apt-get install `cat crunch_pkgs.txt`;
         dotfiles;
-        softs;
         dldir;
         sudo sed -in 's/wheezy/testing/g' /etc/apt/sources.list;
-        sudo apt-get update && sudo apt-get dist-upgrade;
         clj;
+        softs;
+        sudo apt-get update && sudo apt-get dist-upgrade;
     ;;
     "espio")
         # Manipulate repos
@@ -145,6 +147,7 @@ case $NAME in
 
         #Add i386 arch
         sudo dpkg --add-architecture i386;
+        sudo sed -in 's/wheezy/testing/g' /etc/apt/sources.list;
         sudo apt-get update;
         # Intel graphics drivers
         #   sudo apt-get install xserver-xorg-video-intel;
@@ -160,7 +163,6 @@ case $NAME in
         dotfiles;
         softs;
         dldir;
-        sudo sed -in 's/wheezy/testing/g' /etc/apt/sources.list;
         sudo apt-get update && sudo apt-get dist-upgrade;
         clj;
         ;;

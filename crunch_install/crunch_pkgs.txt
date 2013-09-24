@@ -46,4 +46,3 @@ pidgin-skype
 flac
 vorbis-tools
 xine-ui
-flashplugin-nonfree
