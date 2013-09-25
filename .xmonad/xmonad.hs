@@ -44,6 +44,9 @@ import qualified Data.Map as M
 --import Network.BSD
 --import Graphics.X11.Xlib
 
+
+import XMonad.Hooks.EwmhDesktops
+
 main = do
     myHost <- fmap nodeName getSystemID                                     --Get the hostname of the machine
     xmproc <- spawnPipe $ ("/usr/bin/xmobar " ++ (xmobarPick myHost) ++ " /home/trevis/.xmobarrc")
@@ -52,10 +55,10 @@ main = do
     uid <- getRealUserID
     name <- getUserEntryForID uid
     return $  usrName name
-    xmonad $ defaultConfig
+    xmonad $ ewmh defaultConfig
         { manageHook = myManageHook <+> manageDocks
         , layoutHook = myLayoutHook
-        , logHook = xmobarLog xmproc --myLogHook workspaceBar
+        --, logHook = xmobarLog xmproc --myLogHook workspaceBar
         , modMask = mod4Mask                                                --Rebind Mod to the Super key
         , terminal = "urxvtc"                                               --Use urxvt clients
         , workspaces =  myWorkSpaces                                        --Custom workspaces

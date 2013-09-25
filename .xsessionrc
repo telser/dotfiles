@@ -14,12 +14,15 @@ NAME=$( uname "-n")
 
 if [ "$NAME" == "charmy" ];
 then
-  blueman-applet &                        # Setup wireless services
-  wicd-gtk &
-  xbacklight -set 60                      # Dim laptop screen --saves battery life
-  #udiskie &
+  tint2 &
   conky -c .conkyLeftrc &
   conky -c .conkyRightrc &
+  blueman-applet &                        # Setup wireless services
+  nm-applet &
+  pnmixer &
+  clipit &
+  xfce4-power-manager &
+
 fi
 if ["$NAME" == "shadow"];
 then
@@ -28,16 +31,11 @@ then
   conky -c .conkyRightrc &
 fi
 
-xset b off
+xset b off &
 
 xrdb -merge ~/.Xresources
 
 xmodmap ~/.Xmodmap
-
-trayer --edge top --align left --SetDockType true --SetPartialStrut true \
- --expand true --width 10 --transparent true --alpha 0 --tint 0x303030 --height 19 --padding 15&
-
-thunar --daemon &
 
 urxvtd -q -o -f &
 
