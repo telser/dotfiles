@@ -6,20 +6,20 @@
  # # Use double buffering (eliminates flickering)
 double_buffer yes
 
-# Boolean value, if true, Conky will be forked to background when started. 
+# Boolean value, if true, Conky will be forked to background when started.
 background yes
 
 # Subtract (file system) buffers from used memory
 no_buffers yes
 
-# Use Xft (anti-aliased font and stuff) 
+# Use Xft (anti-aliased font and stuff)
 use_xft no
 xftfont Bitstream Vera Sans Mono:size=10
 xftalpha 0.8
 
 # Update interval in seconds
 update_interval 1.0
- 
+
 # This is the number of times Conky will update before quitting.
 # Set to zero to run forever.
  total_run_times 0
@@ -54,7 +54,7 @@ maximum_width 600
 alignment bottom_right
 
 # On dual screen setup conky draws the window on the second screen when using align right
-# the following values adjust the conky window to be drawn on first screen (depending on 
+# the following values adjust the conky window to be drawn on first screen (depending on
 # resolution of the 2nd screen ofcourse)
 gap_x 20
 gap_y 60
@@ -91,13 +91,3 @@ ${color}wlan0: ${color0}Down:${color yellow1} ${downspeed wlan0}/s ${color0}Up:$
 ${color9}${downspeedgraph wlan0 24,150 000000 91ec31} ${color9}${upspeedgraph wlan0 24,150 000000 ec3131}
 ${color0}Address: ${color}${addr wlan0}${alignr}${color0}TCP Connections: ${color}${tcp_portmon 1 65535 count}
 ${if_gw}${color0}gateway: ${color}${gw_ip}$endif${alignr}${color0}dns: ${color}${nameserver}${endif}
-
-${color1}Updates:${color}${hr}
-${exec rm -f /tmp/paconky/db.lck} # Use a prime just in case they overlap...
-${execpi 3600  ./paknotify.py /tmp/paconky/}
-${hr} 
-
-
-
-${color1}Audio:${color}${hr}
-Vol: ${mixer }% ${mixerbar }

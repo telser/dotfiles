@@ -57,13 +57,13 @@ alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
 
 alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
 
-alias emacs='emacs -nw'
+alias emacs='emacs24 -nw'
 
 #Make sure the ENV is setup
-export EDITOR='vim'
+export EDITOR='emacs'
 
 PATH=$PATH:$HOME/.cabal/bin
-PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
+# PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
 export PATH
 
 
