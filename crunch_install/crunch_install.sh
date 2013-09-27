@@ -7,7 +7,6 @@ dotfiles()
   # Get the dotfiles
   git clone https://github.com/telser/dotfiles.git;
   # actually install the dotfiles
-  #TODO Clean this up
   sudo cp -r --preserve=all dotfiles/. ~/;
   rm -rf dotfiles/;
 
@@ -21,21 +20,16 @@ dotfiles()
 # Desktop/laptop software that isn't needed elsewhere
 softs() {
 
-  # Pull emacs from unstable
-  # How unstable could an operating system, err text editor really be? :)
-  sudo apt-get install -t emacs24
+  # Make sure emacs is emacs24 not 23
+  sudo apt-get install emacs24
 
-  #TODO: Get prelude
-
+  #Emacs Prelude
   curl -L http://git.io/epre | sh
+
+  #TODO: auto-setup a few more emacs things
 
   #Get Mozilla Release, not ESR
   sudo apt-get install -t experimental iceweasel
-
-  #Make sure the pulse module for switching soundcards is loaded
-  # sudo chmod 777 /etc/pulse/default.pa;
-  # sudo echo "load-module module-connect-on-switch" >> /etc/pulse/default.pa;
-  # sudo chmod 644 /etc/pulse/default.pa;
 
 # Install "non-free" softs from outside of main repos
 
@@ -45,7 +39,7 @@ softs() {
   #Skype :/
   sudo apt-get update;
   wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb;
-  sudo apt-get -f install;
+  sudo apt-get install -f;
   sudo dpkg -i skype-install.deb;
 
   # FL Studio
@@ -59,8 +53,6 @@ softs() {
   sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
   # change perms back
   sudo chmod 644 /etc/apt/sources.list
- # sudo apt-get update;
- # sudo apt-get install spotify-client;
 
 }
 
@@ -122,14 +114,9 @@ case $NAME in
         #Add i386 arch
         sudo dpkg --add-architecture i386;
         sudo apt-get update;
-        # Intel graphics drivers
-        #   sudo apt-get install xserver-xorg-video-intel;
 
         # Generic OpenCl stuff
         sudo apt-get install ocl-icd-opencl-dev;
-
-        # Of course the wifi firmware is non-free :/
-        #    sudo apt-get install firmware-iwlwifi
 
         # Charmy gets the other default softs/dotfiles
         sudo apt-get install `cat crunch_pkgs.txt`;
@@ -140,32 +127,7 @@ case $NAME in
         softs;
         sudo apt-get update && sudo apt-get dist-upgrade;
     ;;
-    "espio")
-        # Manipulate repos
-        extra;
-        #    sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list;
 
-        #Add i386 arch
-        sudo dpkg --add-architecture i386;
-        sudo sed -in 's/wheezy/testing/g' /etc/apt/sources.list;
-        sudo apt-get update;
-        # Intel graphics drivers
-        #   sudo apt-get install xserver-xorg-video-intel;
-
-        # Generic OpenCl stuff
-        sudo apt-get install ocl-icd-opencl-dev;
-
-        # Of course the wifi firmware is non-free :/
-        #    sudo apt-get install firmware-iwlwifi
-
-        # Charmy gets the other default softs/dotfiles
-        sudo apt-get install `cat crunch_pkgs.txt`;
-        dotfiles;
-        softs;
-        dldir;
-        sudo apt-get update && sudo apt-get dist-upgrade;
-        clj;
-        ;;
   "shadow")
     # Manipulate repos
     extra;
