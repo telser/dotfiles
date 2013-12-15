@@ -31,8 +31,6 @@ softs() {
   #Get Mozilla Release, not ESR
   sudo apt-get install -t experimental iceweasel
 
-# Install "non-free" softs from outside of main repos
-
   # Steam
   sudo apt-get install steam;
 
@@ -47,8 +45,7 @@ softs() {
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
 
   #Spotify
-  #TODO Spotify is hard linked against an old libssl, uninstallable unless using old stable. :(
-  # *sigh* modify permissions to echo
+  #TODO: Spotify is hard linked against an old libssl.
   sudo chmod 777 /etc/apt/sources.list
   sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
   # change perms back
@@ -66,14 +63,11 @@ hs() {
 }
 
 # Clojure
-
-#lein and other clojure stuff.
 clj() {
  wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -O ~/bin/lein;
  chmod 755 ~/bin/lein;
  lein version;
 }
-
 
 # Setup directories for desktop/laptop
 dldir() {
@@ -94,7 +88,6 @@ sudo chmod 777 /etc/apt/sources.list
 sudo echo "deb http://ftp.us.debian.org/debian/ unstable main non-free contrib" >> /etc/apt/sources.list
 sudo echo "deb http://ftp.us.debian.org/debian/ experimental main non-free contrib" >> /etc/apt/sources.list
 sudo chmod 644 /etc/apt/sources.list
-
 sudo cp apt_preferences /etc/apt/preferences
 
 }
@@ -109,7 +102,6 @@ case $NAME in
     "charmy")
         # Manipulate repos
         extra;
-        #    sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list;
 
         #Add i386 arch
         sudo dpkg --add-architecture i386;
@@ -131,7 +123,6 @@ case $NAME in
   "shadow")
     # Manipulate repos
     extra;
-    sudo sed -in 's/main/main non-free contrib/g' /etc/apt/sources.list;
 
     #Add i386 arch
     sudo dpkg --add-architecture i386;
@@ -140,20 +131,18 @@ case $NAME in
     sudo apt-get install firmware-realtek
     # Nvidia Metapackage + ensure use of DKMS
     sudo apt-get install nvidia-kernel-dkms nvidia-glx;
-
     # Nvidia cuda/opencl packages
     sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-gdb nvidia-cuda-doc libcupti-dev python-pycuda nvidia-opencl-dev;
 
     #TODO: edit xorg.conf
 
-    # Shadow gets the other default softs/dotfiles
     sudo apt-get install `cat deb_pkgs.txt`;
     dotfiles;
     dldir;
-    sudo sed -in 's/jessie/testing/g' /etc/apt/sources.list;
+    sudo sed -in 's/wheezy/testing/g' /etc/apt/sources.list;
+    clj;
     softs;
     sudo apt-get update && sudo apt-get upgrade;
-    clj;
     ;;
   "vector")
     # Manipulate repos
@@ -165,10 +154,6 @@ case $NAME in
     ;;
   *)
     # Who is this??
-    echo "unkown system installing video-all"
-    sudo apt-get install xserver-xorg-video-all;
-    # skipping default softs
-    echo "Skipping non-packaged software. Proceeding to dotfiles"
     # Still want dotfiles for applications
     dotfiles;
     ;;
