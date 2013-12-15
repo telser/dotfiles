@@ -1,6 +1,8 @@
 require("new-tabs.js");
 require("session.js");
 
+define_lastfm_webjumps("trev311");
+
 define_webjump("github", "https://github.com/search?q=%s");
 define_webjump("trello", "https://trello.com");
 define_webjump("hoogle", "http://www.haskell.org/hoogle/?hoogle=%s",

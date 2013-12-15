@@ -11,7 +11,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (add-to-list 'custom-theme-load-path "~/emacs")
-(color-theme-ir-black-chap)
+;;(color-theme-ir-black-chap)
 (setq system-uses-terminfo nil)
 (provide 'personal)
 ;;; personal.el ends here

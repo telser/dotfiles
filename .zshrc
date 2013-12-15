@@ -59,6 +59,8 @@ alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
 
 alias emacs='emacs24 -nw'
 
+alias update-all='sudo apt-get update && sudo apt-get dist-upgrade'
+
 #Make sure the ENV is setup
 export EDITOR='emacs'
 
