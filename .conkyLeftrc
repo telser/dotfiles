@@ -13,8 +13,8 @@ background yes
 no_buffers yes
 
 # Use Xft (anti-aliased font and stuff) 
-use_xft no
-xftfont Bitstream Vera Sans Mono:size=10
+use_xft yes
+xftfont DejaVu Sans Mono:size=10
 xftalpha 0.8
 
 # Update interval in seconds
