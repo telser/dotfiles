@@ -49,7 +49,7 @@ import XMonad.Hooks.EwmhDesktops
 
 main = do
     myHost <- fmap nodeName getSystemID                                     --Get the hostname of the machine
-    xmproc <- spawnPipe $ ("/usr/bin/xmobar " ++ (xmobarPick myHost) ++ " /home/trevis/.xmobarrc")
+--    xmproc <- spawnPipe $ ("/usr/bin/xmobar " ++ (xmobarPick myHost) ++ " /home/trevis/.xmobarrc") -- Not using xmobar currently
 --    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
     replace
     uid <- getRealUserID
@@ -65,7 +65,7 @@ main = do
         , keys=myKeys myHost                                                --Keybindings
         }
 -- Setup workspaces using short names to save display room
-myWorkSpaces=["term","web","code","ppl","fm","doc","vm","media","stch","scratch"]
+myWorkSpaces=["c1","web","c2","ppl","t1","t2","vm","media","s1","s2"]
 
 altMask = mod1Mask
 
@@ -78,6 +78,7 @@ xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
                       , ppTitle = xmobarColor "#1F66FF" "" . shorten 50
                       }
 
+-- Get username
 usrName :: UserEntry -> String
 usrName (UserEntry x _ _ _ _ _ _) = x
 
@@ -137,17 +138,13 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask, xK_minus), prevWS)
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)                     --Move things around screens
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
--- Add shortcuts for programs
- , ((modMask .|. shiftMask, xK_a), spawn "emacs24")
+                                                                            -- Add shortcuts for programs
  , ((modMask .|. shiftMask, xK_c), spawn "conkeror")
- , ((modMask .|. shiftMask, xK_e), spawn "evince")
- , ((modMask .|. shiftMask, xK_f), spawn "Firefox")
- , ((modMask .|. shiftMask, xK_g), spawn "steam")
- , ((modMask .|. shiftMask, xK_h), spawn "chromium")
+ , ((modMask .|. shiftMask, xK_e), spawn "emacs24")
+ , ((modMask .|. shiftMask, xK_f), spawn "firefox")
+ , ((modMask .|. shiftMask, xK_g), spawn "chromium")
  , ((modMask .|. shiftMask, xK_k), spawn "texmaker")
- , ((modMask .|. shiftMask, xK_l), spawn "luakit")
- , ((modMask .|. shiftMask, xK_m), spawn "mirage")
- , ((modMask .|. shiftMask, xK_n), spawn "xine")
+ , ((modMask .|. shiftMask, xK_m), spawn "steam")
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
