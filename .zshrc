@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 if [ -n "$INSIDE_EMACS" ]; then
-   ZSH_THEME="candy"
+   ZSH_THEME="sorin"
    unsetopt zle
 else
    ZSH_THEME="muse"
@@ -69,13 +69,14 @@ alias update-all='sudo apt-get update && sudo apt-get dist-upgrade'
 #Make sure the ENV is setup
 export EDITOR='emacs'
 
-PATH=$PATH:$HOME/.cabal/bin
+PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/Library/Haskell/bin
 # PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
 export PATH
 
+SERVO_CONF=$HOME/work/tom-servo/dev.conf
 
+export SERVO_CONF
 
 #export _JAVA_AWT_WM_NONREPARENTING=1
 
 #PS1='[\u@\h \W]\$ '
-#[[ -f "/home/trevis/.local/share/Steam/setup_debian_environment.sh" ]] && source "/home/trevis/.local/share/Steam/setup_debian_environment.sh"
