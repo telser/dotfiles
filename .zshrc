@@ -56,15 +56,27 @@ source $ZSH/oh-my-zsh.sh
 set bell-style none
 
 # Some aliases to make things nicer
-#alias ls='ls --color=auto'
+
+# Work laptop options
+if [ $HOST=='Treviss-MacBook-Pro.local' ]; then
+    alias ls='ls -hG'
+    SERVO_CONF=$HOME/work/tom-servo/dev.conf
+    export SERVO_CONF
+
+else
+    alias ls='ls --color=auto -h'
+    alias update-all='sudo apt-get update && sudo apt-get dist-upgrade'
+
+    if [ $HOST=='charmy']; then
+        alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
+    fi
+
+fi
 
 alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
 
-alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
 
 alias emacs='emacs24 -nw'
-
-alias update-all='sudo apt-get update && sudo apt-get dist-upgrade'
 
 #Make sure the ENV is setup
 export EDITOR='emacs'
@@ -73,9 +85,6 @@ PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/Library/Haskell/bin
 # PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
 export PATH
 
-SERVO_CONF=$HOME/work/tom-servo/dev.conf
-
-export SERVO_CONF
 
 #export _JAVA_AWT_WM_NONREPARENTING=1
 
