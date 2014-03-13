@@ -81,7 +81,7 @@ alias emacs='emacs24 -nw'
 #Make sure the ENV is setup
 export EDITOR='emacs'
 
-PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/Library/Haskell/bin
+PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/Library/Haskell/bin:$HOME/bin
 # PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
 export PATH
 
