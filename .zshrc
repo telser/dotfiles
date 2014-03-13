@@ -57,20 +57,21 @@ set bell-style none
 
 # Some aliases to make things nicer
 
-# Work laptop options
-if [ $HOST=='Treviss-MacBook-Pro.local' ]; then
-    alias ls='ls -hG'
-    SERVO_CONF=$HOME/work/tom-servo/dev.conf
-    export SERVO_CONF
+if [ "$HOST"=="charmy" ]; then
+    alias woo="echo 'woo1'"
+fi
 
-else
+# Work laptop options
+if [ "$HOST"=="charmy" ]; then
     alias ls='ls --color=auto -h'
     alias update-all='sudo apt-get update && sudo apt-get dist-upgrade'
-
-    if [ $HOST=='charmy']; then
-        alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
+    alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
+else
+    if ["$HOST"=="Treviss-MacBook-Pro.local"]; then
+        alias ls='ls -hG'
+        SERVO_CONF=$HOME/work/tom-servo/dev.conf
+        export SERVO_CONF;
     fi
-
 fi
 
 alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
