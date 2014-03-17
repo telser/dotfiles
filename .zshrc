@@ -57,35 +57,30 @@ set bell-style none
 
 # Some aliases to make things nicer
 
-if [ "$HOST"=="charmy" ]; then
-    alias woo="echo 'woo1'"
-fi
-
 # Work laptop options
-if [ "$HOST"=="charmy" ]; then
+if [[ "$HOST" == 'charmy' ]]; then
     alias ls='ls --color=auto -h'
     alias update-all='sudo apt-get update && sudo apt-get dist-upgrade'
     alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
+    PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/bin
+    export PATH
 else
-    if ["$HOST"=="Treviss-MacBook-Pro.local"]; then
+    if [[ "$HOST" == 'treviss-mbp' ]]; then
         alias ls='ls -hG'
         SERVO_CONF=$HOME/work/tom-servo/dev.conf
         export SERVO_CONF;
+        PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/Library/Haskell/bin:$HOME/bin
+        # PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
+        export PATH
     fi
 fi
 
 alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
 
-
 alias emacs='emacs24 -nw'
 
 #Make sure the ENV is setup
 export EDITOR='emacs'
-
-PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/Library/Haskell/bin:$HOME/bin
-# PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
-export PATH
-
 
 #export _JAVA_AWT_WM_NONREPARENTING=1
 
