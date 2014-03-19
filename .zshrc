@@ -59,13 +59,14 @@ set bell-style none
 
 # Work laptop options
 if [[ "$HOST" == 'charmy' ]]; then
+    echo "charmy"
     alias ls='ls --color=auto -h'
     alias update-all='sudo apt-get update && sudo apt-get dist-upgrade'
     alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
     PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/bin
     export PATH
 else
-    if [[ "$HOST" == 'treviss-mbp' ]]; then
+    if [[ "$OSTYPE" == darwin* ]]; then
         alias ls='ls -hG'
         SERVO_CONF=$HOME/work/tom-servo/dev.conf
         export SERVO_CONF;
