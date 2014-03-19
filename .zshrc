@@ -73,6 +73,8 @@ else
         PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/Library/Haskell/bin:$HOME/bin
         # PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
         export PATH
+        source /usr/local/opt/chruby/share/chruby/chruby.sh
+        source /usr/local/opt/chruby/share/chruby/auto.sh
     fi
 fi
 
