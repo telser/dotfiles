@@ -5,6 +5,8 @@
 ;;; Code:
 (setq prelude-guru nil)
 
+(setq ring-bell-function 'ignore)
+
 (custom-set-variables
  '(haskell-mode-hook '(turn-on-haskell-indentation)))
 
