@@ -1,6 +1,6 @@
-{:user {:plugins [[lein-immutant "1.1.0"]
-                  [lein-environ "0.4.0"]
-                  [jonase/eastwood "0.1.1"]
+{:user {:plugins [[lein-environ "0.4.0"]
+                  [lein-ancient "0.5.5"]
+                  [jonase/eastwood "0.1.2"]
                   [lein-kibit "0.0.8"]]
         :eastwood {:add-linters [:unused-fn-args
                                  :unused-namespaces]}
