@@ -5,7 +5,7 @@
 dotfiles()
 {
   # Get the dotfiles
-  git clone https://github.com/telser/dotfiles.git;
+  git clone https://gitlab.com/telser/dotfiles.git;
   # actually install the dotfiles
   sudo cp -r --preserve=all dotfiles/. ~/;
   rm -rf dotfiles/;
