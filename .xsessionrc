@@ -14,32 +14,30 @@ NAME=$( uname "-n")
 
 if [ "$NAME" == "charmy" ];
 then
-  tint2 &
-  conky -c .conkyLeftrc &
+  tint2 &                                 # Topbar and systray
+  conky -c .conkyLeftrc &                 # Status
   conky -c .conkyRightrc &
-  blueman-applet &                        # Setup wireless services
-  nm-applet &
-  pnmixer &
-  clipit &
+  blueman-applet &                        # Bluetooth
+  nm-applet &                             # Wireless
+  pnmixer &                               # Audio mixer
+  clipit &                                # Clipboard manager
   xfce4-power-manager &
-
+  nitrogen --restore &                    # Set wallpaper
 fi
 if ["$NAME" == "shadow"];
 then
-  wicd-gtk &
+  wicd-gtk &                              # Wireless
   conky -c .conkyLeftrc &
   conky -c .conkyRightrc &
 fi
 
-xset b off &
+xset b off &                             # Turn off term bell
 
-xrdb -merge ~/.Xresources
+xrdb -merge ~/.Xresources                # Set term font/color
 
-xmodmap ~/.Xmodmap
+xmodmap ~/.Xmodmap                       # Rebind keys
 
-urxvtd -q -o -f &
-
-~/./wallpaper.sh &
+urxvtd -q -o -f &                        # Start terminal daemon
 
 xsetroot -cursor_name left_ptr
 xmonad

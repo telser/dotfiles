@@ -45,11 +45,11 @@ softs() {
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
 
   #Spotify
-  #TODO: Spotify is hard linked against an old libssl.
-  sudo chmod 777 /etc/apt/sources.list
+  sudo chmod 777 /etc/apt/sources.list;
   sudo echo "deb http://repository.spotify.com/ stable non-free" >> /etc/apt/sources.list;
   # change perms back
-  sudo chmod 644 /etc/apt/sources.list
+  sudo chmod 644 /etc/apt/sources.list;
+  sudo apt-get install spotify-client;
 
 }
 
@@ -76,6 +76,8 @@ dldir() {
   cd projects;
   git clone git@bitbucket.org:telser/retrograde-music-player.git;
   git clone git@bitbucket.org:telser/hlibvlc.git;
+  git clone git@gitlab.org:telser/dep-graph.git;
+  git clone git@gitlab.org:telser/lein-report.git;
   cd ~;
   mkdir school;
 
