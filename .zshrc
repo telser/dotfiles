@@ -69,7 +69,7 @@ else
         alias ls='ls -hG'
         SERVO_CONF=$HOME/work/tom-servo/dev.conf
         export SERVO_CONF;
-        PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$HOME/Library/Haskell/bin:$HOME/bin
+        PATH=$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/Library/Haskell/bin:$HOME/bin
         # PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
         export PATH
         source /usr/local/opt/chruby/share/chruby/chruby.sh
