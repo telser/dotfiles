@@ -23,9 +23,6 @@ softs() {
   # Make sure emacs is emacs24 not 23
   sudo apt-get install emacs24
 
-  #Emacs Prelude
-  curl -L http://git.io/epre | sh
-
   #TODO: auto-setup a few more emacs things
 
   #Get Mozilla Release, not ESR
@@ -42,6 +39,7 @@ softs() {
 
   # FL Studio
   # Installation actually requires xorg to be running
+
   wget demodownload.image-line.com/flstudio/flstudio_11.exe;
 
   #Spotify
