@@ -34,8 +34,6 @@
   (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
-;; (when (fboundp 'scroll-bar-mode)
-;;   (scroll-bar-mode -1))
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
@@ -165,6 +163,8 @@ Position cursor at it's beginning according to the current mode."
 
 ;;;; Package configurations
 ;;; Basic packages
+
+(column-number-mode)
 
 (require-packages '(projectile ag change-inner diminish dash flycheck git-commit-mode
                                lusty-explorer magit paredit paredit-menu rainbow-delimiters
@@ -469,7 +469,7 @@ Position cursor at it's beginning according to the current mode."
 
 ;;;; Clojure mode setup
 
-(require-packages '(clojure-mode cider clojure-test-mode typed-clojure-mode
+(require-packages '(clojure-mode cider typed-clojure-mode
                                  clojure-snippets clojurescript-mode))
 
 (require 'clojure-mode)
@@ -545,6 +545,9 @@ Position cursor at it's beginning according to the current mode."
 
 (js2r-add-keybindings-with-prefix "C-c C-j")
 
+
+;; Get ride of trailing whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;; Start the emacsclient server
 
