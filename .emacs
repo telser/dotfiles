@@ -81,6 +81,8 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(require-package 'projectile)
+
 (defun require-packages (packages)
   "Ensure all PACKAGES are installed."
   (mapc #'require-package packages))
