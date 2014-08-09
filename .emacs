@@ -551,6 +551,12 @@ Position cursor at it's beginning according to the current mode."
 ;; Get ride of trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;;; Org Mode
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
 ;;; Start the emacsclient server
 
 (server-start)
