@@ -547,6 +547,11 @@ Position cursor at it's beginning according to the current mode."
 
 (js2r-add-keybindings-with-prefix "C-c C-j")
 
+;;; PHP
+
+(require-packages '(php-mode phpunit php-eldoc))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+
 
 ;; Get ride of trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
