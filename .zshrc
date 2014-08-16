@@ -69,6 +69,8 @@ else
         alias ls='ls -hG'
         SERVO_CONF=$HOME/work/tom-servo/dev.conf
         export SERVO_CONF;
+        ES_HEAP_SIZE=2g
+        export ES_HEAP_SIZE;
         PATH=$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/Library/Haskell/bin:$HOME/bin
         # PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
         export PATH
