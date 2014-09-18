@@ -84,7 +84,7 @@ alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
 alias emacs='emacs24 -nw'
 
 #Make sure the ENV is setup
-export EDITOR='emacs'
+export EDITOR='emacs24'
 
 #export _JAVA_AWT_WM_NONREPARENTING=1
 

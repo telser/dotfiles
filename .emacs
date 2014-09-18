@@ -387,6 +387,7 @@ Position cursor at it's beginning according to the current mode."
 ;;; Haskell Mode
 ;;;
 
+(add-to-list 'load-path "~/Library/Haskell/ghc-7.6.3/lib/structured-haskell-mode-1.0.3/share/elisp")
 (require-packages '(haskell-mode shm flymake-hlint))
 
 (require 'haskell-mode-autoloads)
@@ -567,8 +568,8 @@ Position cursor at it's beginning according to the current mode."
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (setq org-agenda-files (list "~/org/work.org"
-                             "~/org/home.org"
-                             "~/org/personal.org"))
+                             "~/org/personal.org"
+                             "~/org/home.org"))
 
 (setq org-tag-persistent-alist
       '(("learn" . ?l) ("read" . ?a) ("task" . ?t)))
