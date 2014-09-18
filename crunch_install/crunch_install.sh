@@ -57,6 +57,10 @@ softs() {
 hs() {
 
   cabal update;
+  cabal install cabal-install;
+  cabal install happy alex;
+  cabal install ghc-mod stylish-haskell;
+  cabal install structured-haskell-mode --constraint=haskell-src-exts==1.15.0.1;
 
 }
 
