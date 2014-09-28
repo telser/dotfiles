@@ -56,6 +56,7 @@ source $ZSH/oh-my-zsh.sh
 set bell-style none
 
 # Some aliases to make things nicer
+export EDITOR='emacs'
 
 # Work laptop options
 if [[ "$HOST" == 'charmy' ]]; then
@@ -76,6 +77,11 @@ else
         export PATH
         source /usr/local/opt/chruby/share/chruby/chruby.sh
         source /usr/local/opt/chruby/share/chruby/auto.sh
+        export EDITOR='emacs-24.3 -nw'
+        AGENT_VAGRANT_DIR=/Users/trevis/work/agentsites
+        export AGENT_VAGRANT_DIR;
+        SERVO_VAGRANT_DIR=/Users/trevis/work/tom-servo
+        export SERVO_VAGRANT_DIR;
     fi
 fi
 
@@ -84,7 +90,6 @@ alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
 alias emacs='emacs24 -nw'
 
 #Make sure the ENV is setup
-export EDITOR='emacs24'
 
 #export _JAVA_AWT_WM_NONREPARENTING=1
 
