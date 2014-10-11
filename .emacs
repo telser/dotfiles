@@ -42,6 +42,8 @@
 (require 'saveplace)
 (setq-default save-place t)
 
+;; Set the END key to be hyper instead aka give me more modifiers!
+(define-key key-translation-map (kbd "<end>") 'event-apply-hyper-modifier)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
