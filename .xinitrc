@@ -1,6 +1,3 @@
-#!/bin/sh
-#
-
 NAME=$( uname "-n")
 
 #. /etc/X11/xinit/xinitrc.d/*
@@ -14,14 +11,11 @@ NAME=$( uname "-n")
 
 if [ "$NAME" == "charmy" ];
 then
-  tint2 &                                 # Topbar and systray
+  tint2 -c tint2.conf &                   # Topbar and systray
   conky -c .conkyLeftrc &                 # Status
   conky -c .conkyRightrc &
-  blueman-applet &                        # Bluetooth
-  nm-applet &                             # Wireless
-  pnmixer &                               # Audio mixer
   clipit &                                # Clipboard manager
-  xfce4-power-manager &
+  xfce4-power-manager &                   # Power manager - not as useful on bsd
   nitrogen --restore &                    # Set wallpaper
 fi
 if ["$NAME" == "shadow"];
@@ -31,13 +25,19 @@ then
   conky -c .conkyRightrc &
 fi
 
+# Set the locale before launching urxvt and xmonad to prevent character funkiness
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export MM_CHARSET=UTF-8
+
 xset b off &                             # Turn off term bell
 
 xrdb -merge ~/.Xresources                # Set term font/color
 
 xmodmap ~/.Xmodmap                       # Rebind keys
 
-urxvtd -q -o -f &                        # Start terminal daemon
+urxvtcd -q -o -f &                        # Start terminal daemon
 
 xsetroot -cursor_name left_ptr
 xmonad

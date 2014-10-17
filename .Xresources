@@ -1,11 +1,12 @@
 ! urxvt settings
-URxvt.termName:          rxvt
+URxvt.termName:          xterm
 URxvt.background:        #303030
 URxvt.foreground:        #CCCCCC
 URxvt.transparent:       false
 URxvt.cursorBlink:       false
 URxvt.scrollBar_right:   true
-URxvt.font: xft:DejaVu Sans Mono:size=10:antialias=true:hinting=true
+URxvt.font: xft:DejaVu Sans Mono:size=11:antialias=true
+URxvt*skipBuiltinGlyphs: true
 
 *cursorColor:   #1F66FF
 
@@ -17,9 +18,9 @@ URxvt.color12: #1F66FF
 !URxvt.color8:  #2B2B2B
 !red
 !URxvt.color1:  #A5372E
-!URxvt.color9:  #E06C5C 
+!URxvt.color9:  #E06C5C
 !green
-!URxvt.color2:  #4A663C 
+!URxvt.color2:  #4A663C
 !URxvt.color10: #7B996C
 !yellow
 !URxvt.color3:  #7C5618

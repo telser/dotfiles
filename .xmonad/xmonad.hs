@@ -60,12 +60,14 @@ main = do
         , layoutHook = myLayoutHook
         --, logHook = xmobarLog xmproc --myLogHook workspaceBar
         , modMask = mod4Mask                                                --Rebind Mod to the Super key
-        , terminal = "urxvtc"                                               --Use urxvt clients
+        , terminal = myTerm                                          --Use urxvt clients
         , workspaces =  myWorkSpaces                                        --Custom workspaces
         , keys=myKeys myHost                                                --Keybindings
         }
 -- Setup workspaces using short names to save display room
 myWorkSpaces=["c1","web","c2","ppl","t1","t2","vm","media","s1","s2"]
+
+myTerm="urxvtcd -e /usr/local/bin/zsh"
 
 altMask = mod1Mask
 
