@@ -2,4 +2,10 @@
 remove Lock = Caps_Lock
 keysym Caps_Lock = Control_R
 add Control = Control_R
-keycode 135 = Super_R
+keycode 117 = Super_R
+
+remove Mod4 = Hyper_L
+keycode 103 = Hyper_L
+keycode 150 = Hyper_R
+add Mod3 = Hyper_L
+add Mod3 = Hyper_R
