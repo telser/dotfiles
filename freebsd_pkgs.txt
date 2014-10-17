@@ -8,12 +8,17 @@ ruby21
 valgrind
 sloccount
 git
+xorg
 hs-xmonad
-dzen2
+hs-xmonad-contrib
+dmenu
+tint2
+conky
+wifimgr
+lxrandr
 chromium
 texmakerx
 hs-pandoc
-vagrant
 virtualbox-ose
 pidgin
 flac
@@ -21,3 +26,4 @@ xine
 xbacklight
 htop
 emacs24
+sudo
