@@ -30,7 +30,7 @@ hs() {
 
 # Clojure
 clj() {
- wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -O ~/bin/lein;
+ wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -O ~/bin/lein --no-check-certificate;
  chmod 755 ~/bin/lein;
  lein version;
 }
@@ -40,12 +40,13 @@ dldir() {
 
   mkdir projects;
   cd projects;
-  git clone git@bitbucket.org:telser/retrograde-music-player.git;
-  git clone git@bitbucket.org:telser/hlibvlc.git;
-  git clone git@gitlab.org:telser/dep-graph.git;
-  git clone git@gitlab.org:telser/lein-report.git;
+  # git clone git@bitbucket.org:telser/retrograde-music-player.git;
+  # git clone git@bitbucket.org:telser/hlibvlc.git;
+  git clone https://gitlab.com/telser/dep-graph.git;
+  git clone https://gitlab.com/telser/lein-report.git;
   cd ~;
   mkdir school;
+  mkdir books;
 
 }
 
@@ -57,11 +58,9 @@ NAME=$(uname "-n")
 
 case $NAME in
     "charmy")
-
-        # Charmy gets the other default softs/dotfiles
-        sudo pkg install `cat freebsd_pkgs.txt`;
         dotfiles;
         dldir;
         clj;
+        hs;
     ;;
 esac

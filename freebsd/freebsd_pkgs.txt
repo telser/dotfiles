@@ -5,10 +5,12 @@ rxvt-unicode
 erlang
 clojure
 ruby21
+hs-cabal-install
 valgrind
 sloccount
 git
 xorg
+slim
 hs-xmonad
 hs-xmonad-contrib
 dmenu
@@ -17,6 +19,7 @@ conky
 wifimgr
 lxrandr
 chromium
+firefox
 texmakerx
 hs-pandoc
 virtualbox-ose
@@ -27,3 +30,6 @@ xbacklight
 htop
 emacs24
 sudo
+clipit
+nitrogen
+nathive
