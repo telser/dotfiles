@@ -580,7 +580,7 @@ Position cursor at it's beginning according to the current mode."
 
 ;;; Start the emacsclient server
 
-(server-start)
+;(server-start)
 
 (provide '.emacs)
 ;;; .emacs ends here
