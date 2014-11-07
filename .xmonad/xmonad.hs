@@ -65,7 +65,7 @@ main = do
         , keys=myKeys myHost                                                --Keybindings
         }
 -- Setup workspaces using short names to save display room
-myWorkSpaces=["c1","web","c2","ppl","t1","t2","vm","media","s1","s2"]
+myWorkSpaces=["code","web","c2","ppl","t1","t2","vm","media","s1","s2"]
 
 myTerm="urxvtcd -e /usr/local/bin/zsh"
 
@@ -87,10 +87,10 @@ usrName (UserEntry x _ _ _ _ _ _) = x
 
 -- Layout
 myLayoutHook = avoidStruts
-          $ onWorkspace "term" (myGrid ||| simpleTabbed ||| Full)
+          $ onWorkspace "term" (myGrid ||| simpleTabbed ||| tall)
           $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full)
           $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))
-          $ onWorkspace "web" (simpleTabbed ||| Full ||| tall)
+          $ onWorkspace "web" (simpleTabbed ||| tall)
           $ (myGrid ||| simpleTabbed )
           where
             tall   = Tall nmaster delta ratio
@@ -117,7 +117,7 @@ myManageHook = (composeAll . concat $
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-impress","libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage","LibreOffice Calc"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
-   myFloats =["Gimp","Skype"]
+   myFloats =["Gimp","Inkscape","Skype"]
 
 {- Keybinding section
  - Union defaults
@@ -131,7 +131,7 @@ myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys defaultConf
 
 -- Add new and/or redefine key bindings
 newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
-  (( modMask .|. controlMask, xK_e), spawn "eject -T")                      --Keyboard shortcut for ejecting cd
+  (( modMask .|. controlMask, xK_e), spawn "eject")                      --Keyboard shortcut for ejecting cd
  , ((modMask .|. controlMask, xK_Down), shiftToNext)                        --Move around screens
  , ((modMask .|. controlMask, xK_Up), shiftToPrev)                          --Move around screens
  , ((modMask .|. controlMask, xK_Right), nextScreen)                        --Move around screens
@@ -142,19 +142,18 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
                                                                             -- Add shortcuts for programs
  , ((modMask .|. shiftMask, xK_c), spawn "conkeror")
- , ((modMask .|. shiftMask, xK_e), spawn "emacs24")
+ , ((modMask .|. shiftMask, xK_e), spawn "emacs")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
- , ((modMask .|. shiftMask, xK_g), spawn "chromium")
+ , ((modMask .|. shiftMask, xK_g), spawn "chrome")
  , ((modMask .|. shiftMask, xK_k), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_m), spawn "steam")
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
  , ((modMask .|. shiftMask, xK_t), spawn "thunar")
- , ((modMask .|. shiftMask, xK_v), spawn "virtualbox")
+ , ((modMask .|. shiftMask, xK_v), spawn "VirtualBox")
 -- , ((modMask .|. shiftMask, xK_z), spawn "zsnes")
- , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")
- , ((modMask .|. controlMask, xK_t), spawn "urxvt")
+ -- , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")
  ]
 
  ++

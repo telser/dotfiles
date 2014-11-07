@@ -83,11 +83,9 @@ ${exec cal -3}
 ${if_up eth0}${voffset 3}${color1}Network ${color}($nodename) ${color2}${hr}
 ${color}eth0: ${color0}Down:${color yellow1} ${downspeed eth0}/s ${color0}Up:${color OrangeRed1} ${upspeed eth0}/s
 ${color9}${downspeedgraph eth0 24,150 000000 91ec31} ${color9}${upspeedgraph eth0 24,150 000000 ec3131}
-${color0}Address: ${color}${addr eth0}${alignr}${color0}TCP Connections: ${color}${tcp_portmon 1 65535 count}
-${if_gw}${color0}gateway: ${color}${gw_ip}$endif${alignr}${color0}dns: ${color}${nameserver}${endif}
+${color0}Address: ${color}${addr eth0}${alignr}${endif}
 
 ${if_up wlan0}${voffset 3}${color1}Network ${color}($nodename) ${color2}${hr}
 ${color}wlan0: ${color0}Down:${color yellow1} ${downspeed wlan0}/s ${color0}Up:${color OrangeRed1} ${upspeed wlan0}/s
 ${color9}${downspeedgraph wlan0 24,150 000000 91ec31} ${color9}${upspeedgraph wlan0 24,150 000000 ec3131}
-${color0}Address: ${color}${addr wlan0}${alignr}${color0}TCP Connections: ${color}${tcp_portmon 1 65535 count}
-${if_gw}${color0}gateway: ${color}${gw_ip}$endif${alignr}${color0}dns: ${color}${nameserver}${endif}
+${color0}Address: ${color}${addr wlan0}${alignr}${endif}

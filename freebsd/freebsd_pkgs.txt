@@ -33,3 +33,4 @@ sudo
 clipit
 nitrogen
 nathive
+eject
