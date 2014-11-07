@@ -17,6 +17,7 @@ then
   clipit &                                # Clipboard manager
   xfce4-power-manager &                   # Power manager - not as useful on bsd
   nitrogen --restore &                    # Set wallpaper
+  gtmixer &
 fi
 if ["$NAME" == "shadow"];
 then
