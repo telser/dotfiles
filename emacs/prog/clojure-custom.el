@@ -10,7 +10,6 @@
 (defun clojure-mode-setup ()
   (electric-indent-mode +1)
   (subword-mode +1)
-  (clojure-test-mode +1)
   (rainbow-delimiters-mode +1))
 
 (defun cider-mode-setup ()
