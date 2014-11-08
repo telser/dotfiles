@@ -66,9 +66,9 @@ if [[ "$HOST" == 'charmy' ]]; then
     PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/bin
     export PATH
     if [[ "$OSTYPE" == 'freebsd'* ]]; then
-#        alias ls='ls -hG'
+        alias ls='ls -hG'
+        alias emacs='emacs24 -nw'
     fi
-
 else
     if [[ "$OSTYPE" == darwin* ]]; then
         alias ls='ls -hG'
@@ -81,17 +81,13 @@ else
         export PATH
         source /usr/local/opt/chruby/share/chruby/chruby.sh
         source /usr/local/opt/chruby/share/chruby/auto.sh
-        export EDITOR='emacs-24.3 -nw'
+        export EDITOR='emacs-24.4 -nw'
         AGENT_VAGRANT_DIR=/Users/trevis/work/agentsites
         export AGENT_VAGRANT_DIR;
         SERVO_VAGRANT_DIR=/Users/trevis/work/tom-servo
         export SERVO_VAGRANT_DIR;
     fi
 fi
-
-alias lab='ssh -X telser@lab0z.mathcs.emory.edu'
-
-alias emacs='emacs24 -nw'
 
 #Make sure the ENV is setup
 
