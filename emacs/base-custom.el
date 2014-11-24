@@ -293,8 +293,6 @@ Position cursor at it's beginning according to the current mode."
 
 (add-hook 'lisp-mode-hook 'enable-paredit-mode)
 
-
-
 ;;; Font lock
 
 (global-font-lock-mode 1)

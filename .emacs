@@ -9,6 +9,7 @@
 (add-to-list 'load-path "~/emacs/prog")
 (load-library "org-custom")
 (load-library "base-custom")
+(load-library "ercrc")
 (load-library "clojure-custom")
 (load-library "elisp-custom")
 (load-library "erlang-custom")

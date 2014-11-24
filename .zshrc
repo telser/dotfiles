@@ -76,11 +76,10 @@ else
         export SERVO_CONF;
         ES_HEAP_SIZE=2g
         export ES_HEAP_SIZE;
-        PATH=$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/Library/Haskell/bin:$HOME/bin
-        # PATH=$PATH:/usr/local/Cellar/emacs/24.3/bin
+        PATH=$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/Library/Haskell/bin:$HOME/bin:.cabal-sandbox/bin
         export PATH
-        source /usr/local/opt/chruby/share/chruby/chruby.sh
-        source /usr/local/opt/chruby/share/chruby/auto.sh
+        # source /usr/local/opt/chruby/share/chruby/chruby.sh
+        # source /usr/local/opt/chruby/share/chruby/auto.sh
         export EDITOR='emacs-24.4 -nw'
         AGENT_VAGRANT_DIR=/Users/trevis/work/agentsites
         export AGENT_VAGRANT_DIR;
