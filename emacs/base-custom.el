@@ -37,6 +37,7 @@
 (setq-default save-place t)
 
 ;; Set the END key to be hyper instead aka give me more modifiers!
+;; FIXME: Change this to F20 when new keyboard comes in
 (define-key key-translation-map (kbd "<end>") 'event-apply-hyper-modifier)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -61,6 +62,8 @@
 (require 'midnight) ;; enable periodic cleanup
 
 (global-unset-key (kbd "M-ESC ESC"))
+
+(desktop-save-mode 1)
 
 ;;;; ELPA Config
 
@@ -169,6 +172,13 @@ Position cursor at it's beginning according to the current mode."
                                undo-tree yasnippet buffer-move window-jump
                                ace-jump-mode ace-jump-buffer ace-window
                                persp-mode workgroups2 smex sr-speedbar))
+
+(setq wg-session-file "~/.emacs.d/.emacs_workgroups")
+(setq wg-emacs-exit-save-behavior 'save)
+(workgroups-mode 1)
+
+(global-flycheck-mode 1)
+
 (require 'undo-tree)
 (global-undo-tree-mode)
 (diminish 'undo-tree-mode)
@@ -232,7 +242,6 @@ Position cursor at it's beginning according to the current mode."
                          helm-git-files helm-git-grep helm-helm-commands
                          helm-projectile helm-rails helm-themes helm-swoop))
 
-; (global-set-key (kbd "C-x b") 'helm-buffers-list)
 ; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 ; (global-set-key (kbd "M-x") 'helm-M-x)
 

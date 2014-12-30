@@ -7,9 +7,9 @@
 ;; (setenv "PATH" (shell-command-to-string "echo $PATH"))
 (setq shm-program-name "/home/trevis/.cabal/bin/structured-haskell-mode")
 (require 'shm)
-(require-packages '(haskell-mode flymake-hlint))
+(require-packages '(haskell-mode flymake-hlint ac-haskell-process))
 
-(require 'haskell-mode-autoloads)
+;(require 'haskell-mode-autoloads)
 ;; (speedbar-add-supported-extension ".hs")
 
 

@@ -76,11 +76,11 @@ else
         export SERVO_CONF;
         ES_HEAP_SIZE=2g
         export ES_HEAP_SIZE;
-        PATH=$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/Library/Haskell/bin:$HOME/bin:.cabal-sandbox/bin
+        PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/bin:$HOME/work/invention-exchange/elm/Elm-Platform/0.14/bin:$HOME/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools/
         export PATH
         # source /usr/local/opt/chruby/share/chruby/chruby.sh
         # source /usr/local/opt/chruby/share/chruby/auto.sh
-        export EDITOR='emacs-24.4 -nw'
+        export EDITOR='emacsclient -nw'
         AGENT_VAGRANT_DIR=/Users/trevis/work/agentsites
         export AGENT_VAGRANT_DIR;
         SERVO_VAGRANT_DIR=/Users/trevis/work/tom-servo
