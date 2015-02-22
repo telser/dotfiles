@@ -22,7 +22,6 @@ chromium
 firefox
 hs-pandoc
 virtualbox-ose
-pidgin
 flac
 xine
 xbacklight
