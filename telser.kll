@@ -1,0 +1,14 @@
+Name = telser;
+Version = 0.1;
+Authoer = "Telser 2015";
+KLL = 0.3;
+
+Date = 2015-03-26;
+
+U"Function2" : U"F18";
+U"Function3" : U"RCtrl";
+U"Function4" : U"F19";
+U"LAlt" : U"LGui";
+U"LGui" : U"LAlt";
+U"RAlt" : U"RGui";
+U"RGui" : U"RAlt";
