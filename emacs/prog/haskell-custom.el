@@ -1,11 +1,18 @@
+;;; Package --- Summary:
+
 ;;; Haskell Mode
 ;;;
+
+;;; Commentary:
+
+;;; Code:
 
 ;;; TODO: Make this work cross platform!
 (add-to-list 'load-path "~/Library/Haskell/ghc-7.6.3/lib/structured-haskell-mode-1.0.3/share/elisp")
 (add-to-list 'load-path "/home/trevis/.cabal/share/x86_64-freebsd-ghc-7.8.3/structured-haskell-mode-1.0.4/elisp")
 ;; (setenv "PATH" (shell-command-to-string "echo $PATH"))
-(setq shm-program-name "/home/trevis/.cabal/bin/structured-haskell-mode")
+;(setq shm-program-name "/home/trevis/.cabal/bin/structured-haskell-mode")
+(setq shm-program-name "~/Library/Haskell/bin/structured-haskell-mode")
 (require 'shm)
 (require-packages '(haskell-mode flymake-hlint ac-haskell-process))
 
@@ -83,3 +90,4 @@
   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
   (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
   (define-key haskell-cabal-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch))
+;;; haskell-custom.el ends here

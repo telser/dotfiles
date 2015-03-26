@@ -1,6 +1,6 @@
 ;;; Package --- Summary:
 
-;;; Commentary
+;;; Commentary:
 
 ;;; Code:
 (setq prelude-guru nil)
