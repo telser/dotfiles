@@ -20,10 +20,8 @@ wifimgr
 lxrandr
 chromium
 firefox
-texmakerx
 hs-pandoc
 virtualbox-ose
-pidgin
 flac
 xine
 xbacklight
