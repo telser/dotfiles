@@ -18,6 +18,8 @@ U"7" : U"F7";
 U"8" : U"F8";
 U"9" : U"F9";
 U"0" : U"F10";
+U"Minus" : U"F11";
+U"Equal" : U"F12";
 U"Backslash" : U"Insert";
 U"Backspace" : U"Delete";
 
@@ -25,8 +27,7 @@ U"Backspace" : U"Delete";
 U"I" : U"PrintScreen";
 U"O" : U"ScrollLock";
 U"P" : U"Pause";
-U"{" : U"UP";
-U"1" : U"F1";
+U"{" : U"Up";
 
 # Middle Row
 U"A" : U"VolumeDown";
@@ -38,7 +39,6 @@ U"K" : U"Home";
 U"L" : U"PageUp";
 U";" : U"Left";
 U"Quote" : U"Right";
-
 
 #Bottom Row
 U"N" : U"Keypad Plus";

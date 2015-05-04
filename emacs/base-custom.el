@@ -36,9 +36,12 @@
 (require 'saveplace)
 (setq-default save-place t)
 
-;; Set the END key to be hyper instead aka give me more modifiers!
-;; FIXME: Change this to F20 when new keyboard comes in
-(define-key key-translation-map (kbd "<end>") 'event-apply-hyper-modifier)
+(fset 'del-underscore
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("_" 0 "%d")) arg)))
+
+;; Set the <f18> and <f19> keys to be hyper instead aka give me more modifiers!
+(define-key key-translation-map (kbd "<f18>") 'event-apply-hyper-modifier)
+(define-key key-translation-map (kbd "<f19>") 'event-apply-hyper-modifier)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -46,6 +49,9 @@
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
+
+(global-set-key (kbd "H-_") 'del-underscore)
+(global-set-key (kbd "H--") 'string-inflection-underscore)
 
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)

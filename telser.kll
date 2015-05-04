@@ -5,10 +5,17 @@ KLL = 0.3;
 
 Date = 2015-03-26;
 
-U"Function2" : U"F18";
-U"Function3" : U"RCtrl";
-U"Function4" : U"F19";
+# Swap super and meta to ansi/iso
 U"LAlt" : U"LGui";
 U"LGui" : U"LAlt";
 U"RAlt" : U"RGui";
 U"RGui" : U"RAlt";
+
+# Replace function keys with rctrl and things to map to hyper
+U"Function2" : U"F18";
+U"Function3" : U"RCtrl";
+U"Function4" : U"F19";
+
+# Combination keys
+
+U"Shift" + U"Function1" : U"Function2";
