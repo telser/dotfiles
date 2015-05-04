@@ -76,7 +76,7 @@ else
         export SERVO_CONF;
         ES_HEAP_SIZE=2g
         export ES_HEAP_SIZE;
-        PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/bin:$HOME/work/invention-exchange/elm/Elm-Platform/0.14/bin:$HOME/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools/
+        PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/bin:$HOME/packer:$HOME/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:./.cabal-sandbox/bin/
         export PATH
         # source /usr/local/opt/chruby/share/chruby/chruby.sh
         # source /usr/local/opt/chruby/share/chruby/auto.sh
