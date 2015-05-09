@@ -18,7 +18,16 @@ wine() {
 
 # Change rc files around to start daemons at boot
 rc() {
-  echo 'hald_enable="YES"
+    echo 'hald_enable="YES"
+dbus_enable="YES"
+slim_enable="YES"
+linux_enable="YES"
+wlans_iwn0="wlan0"
+ifconfig_wlan0="WPA DHCP"' >> /etc/rc.conf;
+}
+
+tails_rc() {
+    echo 'hald_enable="YES"
 dbus_enable="YES"
 slim_enable="YES"
 linux_enable="YES"
@@ -32,4 +41,9 @@ case $NAME in
         pkg install `cat freebsd_pkgs.txt`;
         rc
         flash
+        ;;
+    "tails")
+        pkg install `cat tails_pkgs.txt`;
+        tails_rc;
+        ;;
 esac
