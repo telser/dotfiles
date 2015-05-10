@@ -18,6 +18,15 @@ then
   nitrogen --restore &                    # Set wallpaper
   gtmixer &
 fi
+if [ "$NAME" == "tails" ];
+then
+  tint2 -c tint2.conf &                   # Topbar and systray
+  conky -c .conkyLeftrc &                 # Status
+  conky -c .conkyRightrc &
+  clipit &                                # Clipboard manager
+  nitrogen --restore &                    # Set wallpaper
+  gtmixer &
+fi
 if ["$NAME" == "shadow"];
 then
   wicd-gtk &                              # Wireless
