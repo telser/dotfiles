@@ -35,6 +35,8 @@ wlans_iwn0="wlan0"
 ifconfig_wlan0="WPA DHCP"' >> /etc/rc.conf;
 }
 
+NAME=$(uname "-n")
+
 case $NAME in
     "charmy")
         # Charmy gets the other default softs/dotfiles
