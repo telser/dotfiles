@@ -180,7 +180,11 @@ Position cursor at it's beginning according to the current mode."
                                lusty-explorer magit paredit paredit-menu rainbow-delimiters
                                undo-tree yasnippet buffer-move window-jump
                                ace-jump-mode ace-jump-buffer ace-window
-                               persp-mode workgroups2 smex sr-speedbar))
+                               persp-mode workgroups2 smex sr-speedbar
+                               tramp))
+
+(setq tramp-default-method "ssh")
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
 
 ;(setq wg-session-file "~/.emacs.d/.emacs_workgroups")
 ;(setq wg-emacs-exit-save-behavior 'save)
