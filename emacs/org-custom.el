@@ -7,6 +7,27 @@
                              "~/org/personal.org"
                              "~/org/home.org"))
 
+(setq org-highest-priority ?A)
+(setq org-lowest-priority ?Z)
+(setq org-default-priority ?C)
+
+(setq org-priority-faces
+      '((?A . "#ff2600")
+        (?B . "#ff5900")
+        (?C . "#ff9200")
+        (?D . "#ffab00")
+        (?E . "#fefb00")
+        (?L . "#932092")
+        (?M . "#ae30ad")
+        (?N . "#ff40ff")
+        (?O . "#ff27ae")
+        (?P . "#ff1493")
+        (?V . "#0432ff")
+        (?W . "#028eff")
+        (?X . "#00fcff")
+        (?Y . "#00fb80")
+        (?Z . "#00f900")))
+
 (setq org-tag-persistent-alist
       '((:startgroup . nil)
         ("@laptop" . nil)
