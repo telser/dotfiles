@@ -12,10 +12,11 @@
 (add-to-list 'load-path "/home/trevis/.cabal/share/x86_64-freebsd-ghc-7.8.3/structured-haskell-mode-1.0.4/elisp")
 ;; (setenv "PATH" (shell-command-to-string "echo $PATH"))
 ;(setq shm-program-name "/home/trevis/.cabal/bin/structured-haskell-mode")
-(setq shm-program-name "~/Library/Haskell/bin/structured-haskell-mode")
+;(setq shm-program-name "~/Library/Haskell/bin/structured-haskell-mode")
 (require 'shm)
 (require-packages '(haskell-mode flymake-hlint ac-haskell-process))
 
+(require 'haskell-interactive-mode)
 ;(require 'haskell-mode-autoloads)
 ;; (speedbar-add-supported-extension ".hs")
 
@@ -30,10 +31,17 @@
 
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
+  "Custom haskell-mode hook."
   ;; Use simple indentation.
   ;; (turn-on-haskell-indentation)
 
+
+  (interactive-haskell-mode)
+
   (structured-haskell-mode)
+
+  (structured-haskell-repl-mode)
+
   (turn-on-haskell-decl-scan)
 
   ;(define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
@@ -86,6 +94,7 @@
 
 ;; Useful to have these keybindings for .cabal files, too.
 (defun haskell-cabal-hook ()
+  "Cabal hook."
   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
   (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
