@@ -47,6 +47,8 @@
  '(helm-ff-auto-update-initial-value t)
  '(helm-move-to-line-cycle-in-source t)
  '(js2-highlight-level 3)
+ '(mac-command-modifier (quote super))
+ '(mac-option-modifier (quote meta))
  '(magit-emacsclient-executable "/usr/local/bin/emacsclient")
  '(magit-gitk-executable (quote gitk))
  '(org-agenda-files
