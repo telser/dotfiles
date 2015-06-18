@@ -1,4 +1,6 @@
-;;; Org Mode
+;;; package -- Summary
+;;; Commentary:
+;;; Code:
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
@@ -7,9 +9,11 @@
                              "~/org/personal.org"
                              "~/org/home.org"))
 
-(setq org-highest-priority ?A)
-(setq org-lowest-priority ?Z)
-(setq org-default-priority ?C)
+(setq org-completion-use-ido 1)
+
+;; (setq org-highest-priority ?A)
+;; (setq org-lowest-priority ?Z)
+;; (setq org-default-priority ?C)
 
 (setq org-priority-faces
       '((?A . "#ff2600")
@@ -43,6 +47,7 @@
         ("clj" . ?l)
         ("erl" . ?e)
         ("elm" . ?m)
+        ("fay" . ?f)
         ("hs" . ?h)
         ("jl" . ?j)
         ("js" . ?s)
@@ -53,3 +58,4 @@
 ))
 
 (org-agenda-list)
+;;; org-custom ends here
