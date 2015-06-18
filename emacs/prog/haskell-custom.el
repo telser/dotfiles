@@ -11,13 +11,18 @@
 (add-to-list 'load-path "~/Library/Haskell/ghc-7.6.3/lib/structured-haskell-mode-1.0.3/share/elisp")
 (add-to-list 'load-path "/home/trevis/.cabal/share/x86_64-freebsd-ghc-7.8.3/structured-haskell-mode-1.0.4/elisp")
 ;; (setenv "PATH" (shell-command-to-string "echo $PATH"))
+
 (require 'shm)
 (require-packages '(haskell-mode ac-haskell-process))
 
 (require 'haskell-interactive-mode)
+(require 'rainbow-delimiters)
 ;(require 'haskell-mode-autoloads)
 ;; (speedbar-add-supported-extension ".hs")
 
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
 ;; Customization
 
@@ -41,6 +46,8 @@
   (structured-haskell-repl-mode)
 
   (turn-on-haskell-decl-scan)
+
+  (rainbow-delimeters-mode)
 
   ;(define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
   ;(define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
