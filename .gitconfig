@@ -11,5 +11,5 @@
 	smudge = git-media-smudge %f
 [push]
 	default = nothing
-#[pull]
- #       ff = only
+[pull]
+       ff = only
