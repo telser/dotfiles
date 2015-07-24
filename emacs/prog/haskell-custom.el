@@ -8,18 +8,20 @@
 ;;; Code:
 
 ;;; TODO: Make this work cross platform!
-(add-to-list 'load-path "~/Library/Haskell/ghc-7.6.3/lib/structured-haskell-mode-1.0.3/share/elisp")
+(add-to-list 'load-path "~/bin/shm/elisp")
 (add-to-list 'load-path "/home/trevis/.cabal/share/x86_64-freebsd-ghc-7.8.3/structured-haskell-mode-1.0.4/elisp")
 ;; (setenv "PATH" (shell-command-to-string "echo $PATH"))
-
 (require 'shm)
 (require-packages '(haskell-mode ac-haskell-process))
 
 (require 'haskell-interactive-mode)
 (require 'rainbow-delimiters)
+
 ;(require 'haskell-mode-autoloads)
 ;; (speedbar-add-supported-extension ".hs")
 
+(load-file "/Users/trevis/emacs/prog/hs-lint.el")
+(require 'hs-lint)
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
@@ -38,16 +40,17 @@
   ;; Use simple indentation.
   ;; (turn-on-haskell-indentation)
 
+  (haskell-indentation-mode 1)
 
-  (interactive-haskell-mode)
+  (interactive-haskell-mode 1)
 
-  (structured-haskell-mode)
+  (structured-haskell-mode 1)
 
-  (structured-haskell-repl-mode)
+  (structured-haskell-repl-mode 1)
 
-  (turn-on-haskell-decl-scan)
+  (turn-on-haskell-decl-scan 1)
 
-  (rainbow-delimeters-mode)
+  (rainbow-delimeters-mode 1)
 
   ;(define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
   ;(define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)

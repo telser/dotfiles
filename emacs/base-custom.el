@@ -176,7 +176,7 @@ Position cursor at it's beginning according to the current mode."
 
 (column-number-mode)
 
-(require-packages '(projectile ag change-inner diminish dash flycheck git-commit-mode
+(require-packages '(projectile ag change-inner diminish dash flycheck
                                lusty-explorer magit paredit paredit-menu rainbow-delimiters
                                undo-tree yasnippet buffer-move window-jump
                                ace-jump-mode ace-jump-buffer ace-window

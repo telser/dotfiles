@@ -28,7 +28,7 @@ if [[ "$HOST" == 'charmy' ]]; then
     #    alias fl='wine .wine/drive_c/Program\ Files/Image-Line/FL\ Studio\ 11/FL.exe'
 
     # Export path with cabal and home bin
-    PATH=$PATH:$HOME/.cabal/bin:/usr/local/sbin:$HOME/bin
+    PATH=$PATH:/usr/local/sbin:$HOME/bin
     export PATH
 
     # Freebsd options
@@ -56,7 +56,7 @@ else
         export SERVO_VAGRANT_DIR;
 
         # Include more dirs in the path
-        PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/sbin:/usr/local/bin:$PATH:$HOME/bin:$HOME/packer:$HOME/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:./.cabal-sandbox/bin/
+        PATH=/usr/local/sbin:/usr/local/bin:$PATH:$HOME/bin:$HOME/packer:$HOME/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:./.cabal-sandbox/bin/
         export PATH
 
         # Use emacsclient
@@ -70,3 +70,5 @@ else
 
     fi
 fi
+
+source /Users/trevis/.iterm2_shell_integration.zsh
