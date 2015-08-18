@@ -6,6 +6,10 @@
 
 ;;;; Basic Defaults
 
+;; Set the <f18> and <f19> keys to be hyper instead aka give me more modifiers!
+(define-key key-translation-map (kbd "<f18>") 'event-apply-hyper-modifier)
+(define-key key-translation-map (kbd "<f19>") 'event-apply-hyper-modifier)
+
 ;;; Taken from emacs-prelude init.el
 
 ;; reduce the frequency of garbage collection by making it happen on
@@ -42,9 +46,6 @@
 (fset 'del-underscore
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("_" 0 "%d")) arg)))
 
-;; Set the <f18> and <f19> keys to be hyper instead aka give me more modifiers!
-(define-key key-translation-map (kbd "<f18>") 'event-apply-hyper-modifier)
-(define-key key-translation-map (kbd "<f19>") 'event-apply-hyper-modifier)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -177,7 +178,8 @@ Position cursor at it's beginning according to the current mode."
 (column-number-mode)
 
 (require-packages '(projectile ag change-inner diminish dash flycheck
-                               lusty-explorer magit paredit paredit-menu rainbow-delimiters
+                               lusty-explorer magit paredit paredit-menu
+                               rainbow-delimiters
                                undo-tree yasnippet buffer-move window-jump
                                ace-jump-mode ace-jump-buffer ace-window
                                persp-mode workgroups2 smex sr-speedbar
@@ -196,18 +198,23 @@ Position cursor at it's beginning according to the current mode."
 (global-undo-tree-mode)
 (diminish 'undo-tree-mode)
 
+
+;; Move the current buffer around the 'pane'
 (require 'buffer-move)
 (global-set-key (kbd "<C-S-up>")     'buf-move-up)
 (global-set-key (kbd "<C-S-down>")   'buf-move-down)
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
+;; move to another buffer in the current 'pane'
 (require 'window-jump)
 (global-set-key (kbd "<s-up>")     'window-jump-up)
 (global-set-key (kbd "<s-down>")   'window-jump-down)
 (global-set-key (kbd "<s-left>")   'window-jump-left)
 (global-set-key (kbd "<s-right>")  'window-jump-right)
 
+
+;; Make sure paredit doesn't clash with the above
 (require 'paredit)
 (define-key paredit-mode-map (kbd "<C-up>") nil)
 (define-key paredit-mode-map (kbd "<C-down>") nil)
@@ -330,35 +337,5 @@ Position cursor at it's beginning according to the current mode."
 (add-to-list 'which-func-modes 'ruby-mode)
 (which-function-mode 1)
 
-;;;
-;;; Customization Vars
-;;;
-
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(create-lockfiles nil)
-;;  '(custom-enabled-themes (quote (deeper-blue)))
-;;  '(custom-safe-themes (quote ("426947ad8a72b8c65e3d1b7bc7a2a8a69f52730fa683a66046bb56c937509b82" "f4e13810b9c0807ae33ffdbbf89d58d9bc57f68023c38f80596f423c3dace905" "b663810f3526eafecd7ed9c2b198d8ae85a3c36361dcb0755453d05c5e1c8813" "1947bcec0a569caa4ada36a0ddbe90c8ba77899a0f827ffc037371a7397012dd" "fc2782b33667eb932e4ffe9dac475f898bf7c656f8ba60e2276704fabb7fa63b" "bec974465f6d41cddd2ca0a27db10203b0391be960216bbed0623acd7b67cf20" "58cffa855f737ecd1424bdc7667e0aa5996a240d918a30519048fb8beface779" "0e79dac2b2eeb2f4e7c66ebfd6e8a3449ff885cbbf1dfdd79de1d097238721e7" "4d895375d4b7a917789ef26e4ea14c7bc8db5ace925c1340c5515a056d541afe" "49b6d86f398c9bdfebcba8fc5dbbb0b30eb70cfbbd820b8b11e5b06bcb87dad0" "375a7829519deb7d8123ed3936ca067d944e91b19486a89268f7576d65549d25" "6994955bc4275b64f3bbb1f58cb631727c0a43f4361ee9e8afb60f6ded53baa0" "758da0cfc4ecb8447acb866fb3988f4a41cf2b8f9ca28de9b21d9a68ae61b181" default)))
-;;  '(default-frame-alist (quote ((vertical-scroll-bars) (width . 130) (height . 80))))
-;;  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
-;;  '(flymake-xml-program "xmllint")
-;;  '(haskell-notify-p t)
-;;  '(haskell-stylish-on-save t)
-;;  '(haskell-tags-on-save t)
-;;  '(helm-ff-auto-update-initial-value t)
-;;  '(helm-move-to-line-cycle-in-source t)
-;;  '(js2-highlight-level 3)
-;;  '(magit-emacsclient-executable "/usr/local/bin/emacsclient")
-;;  '(magit-gitk-executable (quote gitk))
-;;  '(org-agenda-files (quote ("~/org/work.org" "~/org/home.org" "~/org/personal.org")))
-;;  '(ruby-deep-arglist nil)
-;;  '(winner-mode t))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
+(provide 'base-custom)
+;;;  base-custom.el ends here

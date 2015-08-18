@@ -40,17 +40,17 @@
   ;; Use simple indentation.
   ;; (turn-on-haskell-indentation)
 
-  (haskell-indentation-mode 1)
+  (haskell-indentation-mode +1)
 
-  (interactive-haskell-mode 1)
+  (interactive-haskell-mode +1)
 
-  (structured-haskell-mode 1)
+  (structured-haskell-mode +1)
 
-  (structured-haskell-repl-mode 1)
+  (structured-haskell-repl-mode +1)
 
-  (turn-on-haskell-decl-scan 1)
+  (turn-on-haskell-decl-scan +1)
 
-  (rainbow-delimeters-mode 1)
+  (rainbow-delimiters-mode +1)
 
   ;(define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
   ;(define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
