@@ -7,8 +7,10 @@
 ;;; Code:
 (add-to-list 'load-path "~/emacs")
 (add-to-list 'load-path "~/emacs/prog")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (load-library "org-custom")
 (load-library "base-custom")
+(load-library "priv") ;; stuff not in version control
 (load-library "clojure-custom")
 (load-library "elisp-custom")
 (load-library "erlang-custom")
@@ -19,6 +21,7 @@
 (load-library "web-custom")
 (load-library "ercrc")
 (load-library "elm-custom")
+(load-library "purescript-custom")
 
 
 (server-start)
@@ -41,6 +44,7 @@
       (height . 80))))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(flymake-xml-program "xmllint")
+ '(haskell-align-imports-pad-after-name t)
  '(haskell-notify-p t)
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
@@ -62,4 +66,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(mouse ((t (:background "white smoke")))))
