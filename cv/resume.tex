@@ -42,7 +42,7 @@
 
 678-439-7517  \hfill {Gitlab Code:}
 \href{https://gitlab.com/u/telser}{https://gitlab.com/u/telser}  \\
-\href{mailto:trevis.elser@clickscape.com}{\nolinkurl{trevis.elser@clickscape.com}} \hfill {Github Code:} \href{https://github.com/telser}{https://github.com/telser} \\
+\href{mailto:trevis.elser@gmail.com}{\nolinkurl{trevis.elser@gmail.com}} \hfill {Github Code:} \href{https://github.com/telser}{https://github.com/telser} \\
 Based in Metro Atlanta, GA
 %\hfill {Web:} \url{http://www.silencedpoets.com/} \\
 
@@ -61,7 +61,7 @@ finishing to take a break from academia.
 \employer{Southern Polytechnic State University \\ GPA 3.68}
 \dates{January 2008 -- August 2012}
 \begin{position}
-I focused on functional programming, using Haskell for projects when
+Focus on functional programming, using Haskell for projects when
 permitted. My senior project was on using artificial intelligence to
 improve testing of table top games. Further, I completed a project for
 converting medical codes.
@@ -71,11 +71,11 @@ converting medical codes.
 \employer{Southern Polytechnic State University \\ GPA 3.68 }
 \dates{January 2008 -- August 2012}
 \begin{position}
-I concurrently completed a seperate degree in Mathematics. My senior
+I concurrently completed a separate degree in Mathematics. My senior
 project covered predictive analytics specifically in financial
 mathematics. Specifically comparing sinusoidal volatility in the
 Black-Scholes equation with Generalized Autoregressive Conditional
-Heteroskedacity.
+Heteroskedacity, an expectation-maximization algorithm.
 \end{position}
 
 \section{Work \ \ Experience}
@@ -83,27 +83,93 @@ Heteroskedacity.
 \subsection{Remunerated}
 
 \title{Software Engineer}
-\employer{\llap{Clickscape}}
+\employer{\llap{Clickscape/Village Realty}}
 \dates{December 2013 -- Present}
 \begin{position}
-  Polyglot software development mainly with Clojure, Erlang, Fay,
-  Haskell and Javascript.
-  Operation support using Python.
-  Developer reporting directly to the CTO and CEO with resposiblities for greenfield
-  development, new features, maintence, testing, and deployment. Main development is
-  a distributed system with components written in Erlang and Clojure along with two separate
-  interfaces, both web based, one using Angular and the other Javascript without use of a framework.
-  Personal highlights include leading a switch from Cassandra to PostgreSQL,
-  moving all servers to FreeBSD from a mix of Amazon Linux and Ubuntu, implementing
-  monitoring and deep reporting with the Riemann event system from the Erlang
-  and Clojure codebases, development of Leiningen plugins for codebase analysis and reporting,
-  developing continuous deployment mechanisms for the Erlang code,
-  as well as re-architecting AWS server and service usage resulting in spending reduction.\\ \ \\
- Programming languages employed include Clojure, Erlang, Haskell, Javascript,
- Python, and Ruby. \\ \ \\
- Technology highlights include: Amazon tools (EC2, S3, Cloudformation, etc.),
- Angular, Cabal, Elasticsearch, FreeBSD, Git, Leiningen, PostgreSQL, RabbitMQ,
- Rebar, Relx, Riemann, Selenium, SQLite3.
+  Village Realty is a premium real estate agency with a custom home search site
+  at clickscape.com that uses technology to provide better customer engagement
+  and service during the home buying or home selling process.
+
+  I was a developer reporting directly to the CTO and CEO with responsibilities
+  for greenfield development, new features, maintenance, testing, and deployment.
+
+  % Primary dev
+  Primary development was of three systems that interacted with each other.
+  A public facing website  written in Erlang with traffic on the order of 50k
+  unique visitors per month. A visitor tracking system, for internal use written
+  in Clojure. As well as a listing management tool with an invitation only
+  interface, semi-public, written in Haskell. A variety of technologies were
+  chosen for what best fit the requirements of the component, but much of the
+  Clojure codebase was deprecated with gradual feature replacement by the other
+  systems. The small development team meant that I worked on all three systems.
+
+  %% Overall three
+  %% main components of a distributed system were developed with the entire
+  %% team working on all three. These components were written in Haskell,
+  %% Erlang and Clojure. Each had their own web interface, with the Erlang
+  %% component being public facing and the other two internal only. A variety
+  %% of technologies were chosen for what best the requirements of the component,
+  %% but the Clojure component was deprecated with gradual feature replacement
+  %% by the Haskell component.
+
+  %% Main development is a distributed system with components written in Erlang,
+  %% Haskell, and Clojure along with two separate interfaces, both web based, one
+  %% using Angular and the other based on Django-templates, served via Erlang,
+  %% with JavaScript as necessary (no framework).
+
+% Personal highlights
+  Several projects are personal highlights for me. I had a leadership role
+  in several infrastructure projects, such as developing continuous integration
+  and deployment mechanisms which saved the team time on a weekly or daily basis
+  as prior all of those tasks were manual. Further, I scripted server changes
+  and updates, with reports, to remove more manual interaction. Moving the
+  servers to FreeBSD from a mixture of Amazon Linux and Ubuntu increased
+  consistency and led to a reduction in resource utilization. Those resource
+  drops and a general re-architecting of the AWS infrastructure let me
+  reduce our total infrastructure bill by more than 30 percent. Also, I was
+  given a leadership role in changing the code-base to use PostgreSQL from Cassandra.
+  Even further, I was assigned all interviewing, managing and university paperwork
+  for a student intern.
+
+  %% Personal highlights include:
+  %% Being given a leadership role in a switch from Cassandra to PostgreSQL.
+  %% Moving all servers to FreeBSD from a mix of Amazon Linux and Ubuntu.
+  %% Interviewing, managing, and being the University liaison for a student intern.
+  %% Development of continuous integration and deployment mechanisms.
+  %% Re-architecting AWS server and service usage resulting in spending reduction.
+
+  % Secondary dev
+  I had other general development responsibilities as well. I wrote an
+  internal data analysis tool written in Clojure. Several small data visualization
+  tools or reports in Haskell, interacting with 3rd-party services and internal
+  data only, were also among the projects I worked on outside of the ``core''
+  development product(s).
+
+  %% Other development responsibilities given to me included A tool generating reports based on internal and external data sources
+  %% written in Haskell.
+  %% Automated server auditing scripted via Python.
+  %% An internal data analysis tool written in Clojure.
+
+  % Tech transitions
+  Several technology transitions occurred during my tenure for different components.
+  Some examples of systems and/or technologies changed include:
+  \begin{itemize}
+    \item{Moving from a Ruby on Rails component to a custom one written in Erlang.}
+    \item{Replacing many semi-independent Clojure components with Haskell
+      as part of a general phase out.}
+    \item{Using PostgreSQL in place of both Cassandra and MySQL}
+    \item{Using Elasticsearch in place of Sphinx, and adding it as a data layer
+      in addition to the primary datastore}
+  \end{itemize}
+
+  % languages
+  Programming languages employed include:
+  Clojure, Erlang, Haskell, JavaScript, Python, Ruby, and Shell.
+
+  % other tech highlights
+  Technology highlights include: Amazon tools (EC2, S3, Cloudformation, etc.),
+  Angular, Ansible, Elasticsearch, FreeBSD, Git, PostgreSQL, RabbitMQ, Riemann,
+  Selenium, SQLite3, Yesod.
 \end{position}
 
 \title{Teaching Assistant}
@@ -126,7 +192,7 @@ Heteroskedacity.
  complementary system in  Clojure. Additionally, worked on
  standardizing development and production environments using Chef,
  Opsworks and Vagrant. \\ \ \\
- Programming languages employed included Clojure, Javascript and Ruby. \\ \ \\
+ Programming languages employed included Clojure, JavaScript and Ruby. \\ \ \\
  Technologies used included Chef, Git, MySQL, Opsworks, SQLite,
  Ruby on Rails, and Vagrant.
 \end{position}
@@ -156,7 +222,7 @@ structures, and algorithms.
 \employer{\llap{Miscellaneous}}
 \dates{Various times}
 \begin{position}
-Projects that I maintain, or started can generally be found on my
+Projects that I maintain(ed), or started can generally be found on my
 Gitlab page. These include:
 \begin{itemize}
 \item{clj-twilio, a Clojure wrapper for the Twilio REST api}
@@ -175,11 +241,11 @@ Gitlab page. These include:
 \begin{position}
 I have also made various contributions to the following projects:
 \begin{itemize}
+\item{Keter, a deployment system for web applications originally for Yesod}
 \item{Oh-My-ZSH, a collection of plugins for ZSH- the Z Shell}
 \item{Paktahn, a Common Lisp package management helper for Arch Linux}
 \end{itemize}
 \end{position}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -189,23 +255,27 @@ I have also made various contributions to the following projects:
 I have strong interests in data science, functional programming,
 software engineering, programming languages, and BSD/Linux software development.
 
-Programming Languages (intermediate): Clojure, Haskell
+Programming Languages (most comfortable): Clojure, Haskell
 
-Programming Languages (novice): C, Elm, Erlang, Fay, Javascript, Python, R, Ruby
+Programming Languages (at least some experience with): C, Elm, Erlang, JavaScript, Python, Purescript, R, Ruby
 
-Programming Languages (interested in): Common Lisp, Go, OCaml, Rust
+Programming Languages (interested in): Common Lisp, Factor, Frege, Go, Julia, OCaml, Rust
 
 Markup Languages: LaTeX, Markdown
 
-Operating systems: FreeBSD, various Linux distributions, Mac OS X, and Solaris,
+Operating systems: FreeBSD, Linux (various distributions), Mac OS X, OpenBSD and Solaris,
 with a personal preference for FreeBSD.
 
-Other techonolgy tools I use and/or prefer include: Cabal, Emacs, Git, Leiningen, Mosh, ZSH
+Other technology tools I use and/or prefer include: Emacs, Git, Mosh, ZSH
 
-Outside of computers, I spend time with music in various
+Outside of work, I spend time with music in various
 capacities. My personal music usually can be categorized as electronic
 and experimental. Several projects have been released through
-different channels, both with label support and on my own.
+different channels, both with label support and on my own. Niche and hobby
+operating systems also have a certain appeal to me and I've used several such
+as AmigaOS, BeOS, Haiku, Plan 9, and QNX. Mathematics, specifically network theory
+and more generally applied graph theory, is another personal interest.
+personal interest.
 
 \section{References}
 

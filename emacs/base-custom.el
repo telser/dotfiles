@@ -337,5 +337,8 @@ Position cursor at it's beginning according to the current mode."
 (add-to-list 'which-func-modes 'ruby-mode)
 (which-function-mode 1)
 
+(when (eq system-type 'darwin)
+  (set-face-attribute 'default nil :family "Hack"))
+
 (provide 'base-custom)
 ;;;  base-custom.el ends here

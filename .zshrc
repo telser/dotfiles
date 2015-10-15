@@ -56,7 +56,7 @@ else
         export SERVO_VAGRANT_DIR;
 
         # Include more dirs in the path
-        PATH=/usr/local/sbin:/usr/local/bin:$PATH:$HOME/bin:$HOME/packer:$HOME/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:./.cabal-sandbox/bin/
+        PATH=/usr/local/sbin:/usr/local/bin:$PATH:$HOME/bin:$HOME/packer:$HOME/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:./.cabal-sandbox/bin/:/Library/TeX/texbin
         export PATH
 
         # Use emacsclient
