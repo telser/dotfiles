@@ -55,9 +55,6 @@
  '(mac-option-modifier (quote meta))
  '(magit-emacsclient-executable "/usr/local/bin/emacsclient")
  '(magit-gitk-executable (quote gitk))
- '(org-agenda-files
-   (quote
-    ("~/org/work.org" "~/org/home.org" "~/org/personal.org")))
  '(ruby-deep-arglist nil)
  '(visible-bell nil)
  '(winner-mode t))
