@@ -7,11 +7,16 @@
 
 ;;; Code:
 
-;;; TODO: Make this work cross platform!
-(add-to-list 'load-path "~/bin/shm/elisp")
-(add-to-list 'load-path "/home/trevis/.cabal/share/x86_64-freebsd-ghc-7.8.3/structured-haskell-mode-1.0.4/elisp")
+(if (eq system-type 'darwin)
+    (darwin-shm)
+  (add-to-list 'load-path "~/bin/structured-haskell-mode"))
+
+(defun darwin-shm () "Add shm load paths for darwin."
+       (add-to-list 'load-path "~/bin/shm/elisp")
+       (add-to-list 'load-path "/home/trevis/.cabal/share/x86_64-freebsd-ghc-7.8.3/structured-haskell-mode-1.0.4/elisp"))
+
 ;; (setenv "PATH" (shell-command-to-string "echo $PATH"))
-(require 'shm)
+;(require 'shm)
 (require-packages '(haskell-mode ac-haskell-process))
 
 (require 'haskell-interactive-mode)
@@ -19,12 +24,11 @@
 
 ;(require 'haskell-mode-autoloads)
 ;; (speedbar-add-supported-extension ".hs")
-
-(load-file "/Users/trevis/emacs/prog/hs-lint.el")
+(load-file "~/emacs/prog/hs-lint.el")
 (require 'hs-lint)
 
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+;(eval-after-load 'flycheck
+;  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
 ;; Customization
 

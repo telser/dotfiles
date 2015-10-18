@@ -1,6 +1,5 @@
 # Antigen loading:
 
-if [[ "$OSTYPE" == darwin* ]]; then
     source $HOME/antigen/antigen.zsh
     # Use oh-my-zsh plugins
     antigen use oh-my-zsh
@@ -15,7 +14,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
     # Finish up with antigen
     antigen apply
-fi
 
 # Get rid of bell
 set bell-style none
@@ -68,7 +66,7 @@ else
             export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
         fi
 
+        source /Users/trevis/.iterm2_shell_integration.zsh
+
     fi
 fi
-
-source /Users/trevis/.iterm2_shell_integration.zsh
