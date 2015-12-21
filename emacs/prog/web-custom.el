@@ -1,6 +1,11 @@
+;;; Package --- Summary:
 ;;;
 ;;; Web mode
 ;;;
+
+;;; Commentary:
+
+;;; Code:
 
 (require-package 'web-mode)
 
@@ -23,3 +28,4 @@
   (local-set-key (kbd "RET") 'new-line-and-indent))
 
 (add-hook 'web-mode-hook 'web-mode-setup)
+;;; web-custom.el ends here

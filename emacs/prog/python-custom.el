@@ -7,7 +7,8 @@
 
 ;;; Code:
 
-(require-packages '(python-mode elpy jedi pylint pytest))
+(require-packages '(python-mode elpy jedi pylint pytest
+                                ac-python))
 
 (require 'rainbow-delimiters)
 
