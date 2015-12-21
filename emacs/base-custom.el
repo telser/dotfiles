@@ -8,7 +8,8 @@
 
 ;; Set the <f18> and <f19> keys to be hyper instead aka give me more modifiers!
 (define-key key-translation-map (kbd "<f18>") 'event-apply-hyper-modifier)
-(define-key key-translation-map (kbd "<f19>") 'event-apply-hyper-modifier)
+(define-key key-translation-map (kbd "<next>") 'event-apply-hyper-modifier)
+(define-key key-translation-map (kbd "<end>") 'event-apply-hyper-modifier)
 
 ;;; Taken from emacs-prelude init.el
 
@@ -178,15 +179,15 @@ Position cursor at it's beginning according to the current mode."
 (column-number-mode)
 
 (require-packages '(projectile ag change-inner diminish dash flycheck
-                               lusty-explorer magit paredit paredit-menu
-                               rainbow-delimiters
+                               lusty-explorer paredit paredit-menu
+                               rainbow-delimiters flycheck-haskell
                                undo-tree yasnippet buffer-move window-jump
                                ace-jump-mode ace-jump-buffer ace-window
                                persp-mode workgroups2 smex sr-speedbar
                                tramp))
 
 (setq tramp-default-method "ssh")
-(eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
+;(eval-after-load 'tramp '(setenv "SHELL" "/bin/zsh"))
 
 ;(setq wg-session-file "~/.emacs.d/.emacs_workgroups")
 ;(setq wg-emacs-exit-save-behavior 'save)

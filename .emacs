@@ -4,13 +4,17 @@
 ;;; Commentary:
 ;;; Broken up into smaller files below
 
+(if (not (getenv "TERM_PROGRAM"))
+       (setenv "PATH"
+               (shell-command-to-string "source $HOME/.zshrc && printf $PATH")))
+
 ;;; Code:
 (add-to-list 'load-path "~/emacs")
 (add-to-list 'load-path "~/emacs/prog")
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (load-library "base-custom")
 (load-library "org-custom")
-(load-library "priv") ;; stuff not in version control
+;;(load-library "priv") ;; stuff not in version control
 (load-library "clojure-custom")
 (load-library "elisp-custom")
 (load-library "erlang-custom")
@@ -44,6 +48,9 @@
       (width . 130)
       (height . 80))))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
+ '(exec-path
+   (quote
+    ("/usr/local/sbin" "/usr/local/bin" "/Library/Frameworks/Python.framework/Versions/3.4/bin" "/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Users/trevis/bin" "/Users/trevis/packer" "/Users/trevis/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools" "./.cabal-sandbox/bin/" "/Library/TeX/texbin" "/Users/trevis/.cabal/bin" "/Applications/ghc-7.10.2.app/Contents/bin" "/usr/local/Cellar/emacs/24.5/libexec/emacs/24.5/x86_64-apple-darwin15.0.0")))
  '(flymake-xml-program "xmllint")
  '(haskell-align-imports-pad-after-name t)
  '(haskell-notify-p t)
@@ -52,11 +59,15 @@
  '(helm-ff-auto-update-initial-value t)
  '(helm-move-to-line-cycle-in-source t)
  '(js2-highlight-level 3)
- '(mac-command-modifier (quote super))
- '(mac-option-modifier (quote meta))
  '(magit-emacsclient-executable "/usr/local/bin/emacsclient")
  '(magit-gitk-executable (quote gitk))
+ '(ns-alternate-modifier (quote meta))
+ '(ns-command-modifier (quote super))
  '(ruby-deep-arglist nil)
+ '(safe-local-variable-values
+   (quote
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4))))
  '(visible-bell nil)
  '(winner-mode t))
 (custom-set-faces

@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(require-packages '(purescript-mode))
+(require-packages '(purescript-mode psci psc-ide))
                                         ;(require 'haskell-mode-autoloads)
 (require 'purescript-mode)
 (require 'rainbow-delimiters)
