@@ -8,6 +8,7 @@
 ;;; Code:
 
 
+(setq exec-path (cons "~/.local/bin" exec-path))
 
 (defun darwin-shm () "Add shm load paths for darwin."
        (add-to-list 'load-path "~/bin/shm/elisp")
@@ -15,11 +16,12 @@
 
 (if (eq system-type 'darwin)
     (darwin-shm)
-  (add-to-list 'load-path "~/bin/structured-haskell-mode"))
+  (add-to-list 'exec-path "~/.local/bin"))
 
-(setenv "PATH" (shell-command-to-string "echo $PATH"))
-(setq shm-program-name "/Users/trevis/bin/structured-haskell-mode")
-(require-packages '(haskell-mode ac-haskell-process ebal
+;(setenv "PATH" (shell-command-to-string "echo $PATH"))
+(add-to-list 'exec-path "~/.local/bin")
+(setq shm-program-name "~/.local/bin/structured-haskell-mode")
+(require-packages '(haskell-mode ac-haskell-process
                                  flycheck-haskell ghc shm))
 
 (require 'rainbow-delimiters)
@@ -28,7 +30,7 @@
 (require 'haskell-interactive-mode)
 
 ;(require 'haskell-mode-autoloads)
-;; (speedbar-add-supported-extension ".hs")
+;;(speedbar-add-supported-extension ".hs")
 (load-file "~/emacs/prog/hs-lint.el")
 (require 'hs-lint)
 
@@ -64,7 +66,7 @@
 
   (rainbow-delimiters-mode +1)
 
-;  (hs-lint-mode +1)
+;;  (hs-lint-mode +1)
 
   (define-key haskell-mode-map (kbd "H-l") 'hs-lint))
 
