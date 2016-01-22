@@ -1,3 +1,6 @@
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+autoload -Uz compinit
+compinit
 # Antigen loading:
 
     source $HOME/antigen/antigen.zsh
@@ -14,6 +17,11 @@
 
     # Finish up with antigen
     antigen apply
+
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd extendedglob
 
 # Get rid of bell
 set bell-style none
@@ -68,5 +76,17 @@ else
 
         source /Users/trevis/.iterm2_shell_integration.zsh
 
+    else
+      PATH=$HOME/.local/bin:$PATH
+      export PATH
     fi
 fi
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle :compinstall filename '/home/telser/.zsh_compinit'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall

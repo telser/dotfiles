@@ -200,6 +200,26 @@ Position cursor at it's beginning according to the current mode."
 (diminish 'undo-tree-mode)
 
 
+;; (global-set-key "\e[1;5A" [C-up])
+;; (global-set-key "\e[1;5B" [C-down])
+;; (global-set-key "\e[1;5C" [C-right])
+;; (global-set-key "\e[1;5D" [C-left])
+
+(define-key input-decode-map "\e[55;OA" [s-up])
+(define-key input-decode-map "\e[55;OB" [s-down])
+(define-key input-decode-map "\e[55;OC" [s-right])
+(define-key input-decode-map "\e[55;OD" [s-left])
+
+(global-set-key (kbd "M-[ a") [C-up])
+(global-set-key (kbd "M-[ b") [C-down])
+(global-set-key (kbd "M-[ c") [C-right])
+(global-set-key (kbd "M-[ d") [C-left])
+
+;; (global-set-key (kbd "M-[ OA") (kbd "<s-up>"))
+;; (global-set-key (kbd "M-[ OB") [s-down])
+;; (global-set-key (kbd "M-[ OC") [s-right])
+;; (global-set-key (kbd "M-[ OD") [s-left])
+
 ;; Move the current buffer around the 'pane'
 (require 'buffer-move)
 (global-set-key (kbd "<C-S-up>")     'buf-move-up)
