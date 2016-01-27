@@ -187,7 +187,7 @@ Position cursor at it's beginning according to the current mode."
                                tramp))
 
 (setq tramp-default-method "ssh")
-;(eval-after-load 'tramp '(setenv "SHELL" "/bin/zsh"))
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/zsh"))
 
 ;(setq wg-session-file "~/.emacs.d/.emacs_workgroups")
 ;(setq wg-emacs-exit-save-behavior 'save)
