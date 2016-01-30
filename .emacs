@@ -32,8 +32,8 @@
 (if (eq system-type 'darwin)
     (setq exec-path  (cons
    (quote
-    ("/usr/local/sbin" "/usr/local/bin" "/Library/Frameworks/Python.framework/Versions/3.4/bin" "/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Users/trevis/bin" "/Users/trevis/packer" "/Users/trevis/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools" "./.cabal-sandbox/bin/" "/Library/TeX/texbin" "/Users/trevis/.cabal/bin" "/Applications/ghc-7.10.2.app/Contents/bin" "/usr/local/Cellar/emacs/24.5/libexec/emacs/24.5/x86_64-apple-darwin15.0.0")))
-          exec-path))
+    ("/usr/local/sbin" "/usr/local/bin" "/Library/Frameworks/Python.framework/Versions/3.4/bin" "/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Users/trevis/bin" "/Users/trevis/packer" "/Users/trevis/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools" "./.cabal-sandbox/bin/" "/Library/TeX/texbin" "/Users/trevis/.cabal/bin" "/Applications/ghc-7.10.2.app/Contents/bin" "/usr/local/Cellar/emacs/24.5/libexec/emacs/24.5/x86_64-apple-darwin15.0.0"))
+   exec-path)))
 
 (server-start)
 (provide '.emacs)
