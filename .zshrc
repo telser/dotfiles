@@ -51,29 +51,15 @@ else
         # BSD style ls
         alias ls='ls -hG'
 
-        # Set some env vars for work stuff
-        SERVO_CONF=$HOME/work/tom-servo/dev.conf
-        export SERVO_CONF;
-        ES_HEAP_SIZE=2g
-        export ES_HEAP_SIZE;
-        AGENT_VAGRANT_DIR=/Users/trevis/work/agentsites
-        export AGENT_VAGRANT_DIR;
-        SERVO_VAGRANT_DIR=/Users/trevis/work/tom-servo
-        export SERVO_VAGRANT_DIR;
-
         # Include more dirs in the path
-        PATH=/usr/local/sbin:/usr/local/bin:$PATH:$HOME/bin:$HOME/packer:$HOME/Downloads/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:./.cabal-sandbox/bin/:/Library/TeX/texbin
+        PATH=/usr/local/sbin:/usr/local/bin:$HOME/.local/bin:$PATH:$HOME/bin:/Library/TeX/texbin
         export PATH
 
         # Use emacsclient
         export EDITOR='emacsclient -nw'
 
-        # Add GHC 7.10.2 to the PATH, via https://ghcformacosx.github.io/
-        export GHC_DOT_APP="/Applications/ghc-7.10.2.app"
-        if [ -d "$GHC_DOT_APP" ]; then
-            export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
-        fi
-
+        PATH=$HOME/.stack/programs/x86_64-osx/ghc-7.10.2/bin:$PATH
+        export PATH
         source /Users/trevis/.iterm2_shell_integration.zsh
 
     else
