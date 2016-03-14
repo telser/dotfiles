@@ -14,7 +14,7 @@
 (add-to-list 'load-path "~/emacs/prog")
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (load-library "base-custom")
-;(load-library "org-custom")
+(load-library "org-custom")
 ;;(load-library "priv") ;; stuff not in version control
 ;(load-library "clojure-custom")
 (load-library "elisp-custom")

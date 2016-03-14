@@ -184,7 +184,16 @@ Position cursor at it's beginning according to the current mode."
                                undo-tree yasnippet buffer-move window-jump
                                ace-jump-mode ace-jump-buffer ace-window
                                persp-mode workgroups2 smex sr-speedbar
-                               tramp))
+                               tramp company-ghci))
+
+(require-packages '(hindent hamlet-mode))
+(add-to-list 'auto-mode-alist (cons "\\.hs\\'" 'haskell-mode))
+(add-to-list 'auto-mode-alist (cons "\\.cabal\\'" 'haskell-cabal-mode))
+(setq exec-path (cons "~/.local/bin" exec-path))
+
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(company-quickhelp-mode 1)
 
 (setq tramp-default-method "ssh")
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/zsh"))
