@@ -7,23 +7,16 @@
 
 ;;; Code:
 
-(require-packages '(purescript-mode psci psc-ide))
-                                        ;(require 'haskell-mode-autoloads)
+(require-packages '(purescript-mode psc-ide flycheck-purescript))
+
 (require 'purescript-mode)
 (require 'rainbow-delimiters)
-
+(require 'psc-ide)
 
 ;; Customization
 
-(defun purescript-hook ()
-  "Custom purescript-mode hook."
-
-  ;; (subword-mode +1)
-  (purescript-mode)
-  (turn-on-purescript-indent-mode)
-  ;; (rainbow-delimeters-mode +1)
-)
-
-
-(add-hook 'purescript-mode-hook 'purescript-hook)
+(add-hook 'purescript-mode-hook 'company-mode)
+(add-hook 'purescript-mode-hook 'psc-ide-mode)
+(add-hook 'purescript-mode-hook 'subword-mode)
+(add-hook 'purescript-mode-hook 'rainbow-delimiters-mode)
 ;;; purescript-custom.el ends here

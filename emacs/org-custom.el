@@ -6,9 +6,9 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-;; (setq org-agenda-files (list "~/org/work.org"
-;;                              "~/org/personal.org"
-;;                              "~/org/home.org"))
+(setq org-agenda-files (list "~/Dropbox/org/personal/projects.org"
+                             "~/Dropbox/org/personal/study.org"
+                             "~/Dropbox/org/gtd.org"))
 
 (setq org-completion-use-ido 1)
 
@@ -32,7 +32,6 @@
         (?X . "#00fcff")
         (?Y . "#00fb80")
         (?Z . "#00f900")))
-
 
 ;; (:startgrouptag)
 ;;         ("SYS")
@@ -70,5 +69,4 @@
 ;;         (:endgrouptag)
 
 (org-agenda-list)
-(pop-to-buffer (find-file "~/Dropbox/gtd.org"))
 ;;; org-custom ends here

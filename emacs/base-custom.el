@@ -55,9 +55,6 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
-(global-set-key (kbd "H-_") 'del-underscore)
-(global-set-key (kbd "H--") 'string-inflection-underscore)
-
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
 (setq x-select-enable-clipboard t
@@ -82,8 +79,10 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/"))
+;; (add-to-list 'package-archives
+;;              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+             '("emacs-pe" . "https://emacs-pe.github.io/packages/"))
 (package-initialize)
 
 (defun require-package (package)
@@ -172,7 +171,6 @@ Position cursor at it's beginning according to the current mode."
   (untabify-buffer)
   (whitespace-cleanup))
 
-
 ;;;; Package configurations
 ;;; Basic packages
 
@@ -185,6 +183,10 @@ Position cursor at it's beginning according to the current mode."
                                ace-jump-mode ace-jump-buffer ace-window
                                persp-mode workgroups2 smex sr-speedbar
                                tramp company-ghci))
+
+(require-packages '(find-file-in-project ido-completing-read+ julia-mode))
+
+(add-to-list 'auto-mode-alist (cons "\\.purs\\'" 'purescript-mode))
 
 (require-packages '(hindent hamlet-mode))
 (add-to-list 'auto-mode-alist (cons "\\.hs\\'" 'haskell-mode))
@@ -208,7 +210,6 @@ Position cursor at it's beginning according to the current mode."
 (global-undo-tree-mode)
 (diminish 'undo-tree-mode)
 
-
 ;; (global-set-key "\e[1;5A" [C-up])
 ;; (global-set-key "\e[1;5B" [C-down])
 ;; (global-set-key "\e[1;5C" [C-right])
@@ -224,11 +225,6 @@ Position cursor at it's beginning according to the current mode."
 (global-set-key (kbd "M-[ c") [C-right])
 (global-set-key (kbd "M-[ d") [C-left])
 
-;; (global-set-key (kbd "M-[ OA") (kbd "<s-up>"))
-;; (global-set-key (kbd "M-[ OB") [s-down])
-;; (global-set-key (kbd "M-[ OC") [s-right])
-;; (global-set-key (kbd "M-[ OD") [s-left])
-
 ;; Move the current buffer around the 'pane'
 (require 'buffer-move)
 (global-set-key (kbd "<C-S-up>")     'buf-move-up)
@@ -242,7 +238,6 @@ Position cursor at it's beginning according to the current mode."
 (global-set-key (kbd "<s-down>")   'window-jump-down)
 (global-set-key (kbd "<s-left>")   'window-jump-left)
 (global-set-key (kbd "<s-right>")  'window-jump-right)
-
 
 ;; Make sure paredit doesn't clash with the above
 (require 'paredit)
