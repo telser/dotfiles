@@ -46,8 +46,14 @@ if [[ "$HOST" == 'charmy' ]]; then
         alias emacs='emacs24 -nw'
     fi
 else
-    if [[ "$OSTYPE" == darwin* ]]; then
+    if [[ "$HOST" == 'telser-mbp' ]]; then
+      alias ls='ls -hG'
+      eval "$(rbenv init -)"
 
+    else
+        if [[ "$OSTYPE" == darwin* ]]; then
+
+        
         # BSD style ls
         alias ls='ls -hG'
 
@@ -68,11 +74,15 @@ else
         PATH=$HOME/.stack/programs/x86_64-osx/ghc-7.10.2/bin:$PATH
         export PATH
         source /Users/trevis/.iterm2_shell_integration.zsh
+        export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+        export NVM_DIR="/Users/trevis/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
     else
       PATH=$HOME/.local/bin:$PATH
       export PATH
     fi
+  fi
 fi
 # The following lines were added by compinstall
 
@@ -83,8 +93,3 @@ zstyle :compinstall filename '/home/telser/.zsh_compinit'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
-export NVM_DIR="/Users/trevis/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
