@@ -55,6 +55,13 @@ else
         PATH=/usr/local/sbin:/usr/local/bin:$HOME/.local/bin:$PATH:$HOME/bin:/Library/TeX/texbin
         export PATH
 
+	# Set gopath
+	GOPATH=$HOME/go
+	export GOPATH
+
+	# Add go bins to path
+	PATH=$PATH:$HOME/go/bin
+
         # Use emacsclient
         export EDITOR='emacsclient -nw'
 
