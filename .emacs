@@ -8,26 +8,29 @@
        (setenv "PATH"
                (shell-command-to-string "source $HOME/.zshrc && printf $PATH")))
 
-
 ;;; Code:
 (add-to-list 'load-path "~/emacs")
 (add-to-list 'load-path "~/emacs/prog")
 (add-to-list 'load-path "~/.emacs.d/lisp")
+;; load base libs everywhere
 (load-library "base-custom")
-(load-library "org-custom")
-;;(load-library "priv") ;; stuff not in version control
-;(load-library "clojure-custom")
 (load-library "elisp-custom")
-;(load-library "erlang-custom")
-(load-library "haskell-custom")
 (load-library "js-custom")
-(load-library "python-custom")
 (load-library "ruby-custom")
-;(load-library "rust-custom")
 (load-library "web-custom")
-;(load-library "ercrc")
-(load-library "elm-custom")
-(load-library "purescript-custom")
+;; libs for use on home mbp
+(when (string= system-name "treviss-MBP ")
+  (load-library "org-custom")
+  (load-library "clojure-custom")
+  (load-library "elm-custom")
+  (load-library "haskell-custom")
+  (load-library "purescript-custom")
+  (load-library "python-custom"))
+
+;; libs not in use right now
+;;(load-library "priv") ;; stuff not in version control
+;(load-library "erlang-custom")
+;(load-library "rust-custom")
 
 (if (eq system-type 'darwin)
     (setq exec-path  (cons

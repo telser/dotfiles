@@ -8,7 +8,7 @@
 ;;; Code:
 
 (require-packages '(clojure-mode cider typed-clojure-mode
-                                 clojure-snippets clojurescript-mode))
+                    clojure-snippets clojurescript-mode))
 
 (require 'clojure-mode)
 (require 'cider)
