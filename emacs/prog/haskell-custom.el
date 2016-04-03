@@ -480,8 +480,6 @@ import Data.Vector (Vector)
   (define-key interactive-haskell-mode-map (kbd "C-c C-c") 'haskell-process-stack-build)
   (define-key interactive-haskell-mode-map (kbd "C-c c") 'haskell-process-stack))
 
-
-
 (defun stack-mode-save-flycheck ()
   "Save the buffer and flycheck it."
   (interactive)
