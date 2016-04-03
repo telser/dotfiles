@@ -60,6 +60,8 @@ haskell() {
     # Make sure we're in home to use the 'global' stack settings
     cd ~;
 
+    stack setup;
+
     stack_packages='"alex" "happy" "stylish-haskell" "hindent" "dash-haskell" "hackage" "hasktags"'
     for i in $stack_packages; do
         stack install $i;
@@ -84,15 +86,33 @@ npm() {
 
 purescript() {
     npm;
-    echo "Installing purescript globally, using sudo"
-    sudo npm -g install purescript pulp;
+    if [[ -e "/usr/local/bin/psc" ]];
+    then
+        echo "Found psc skipping."
+    else
+        echo "Installing purescript globally, using sudo"
+        sudo npm -g install purescript pulp;
+    fi
+
+    if [[ -e "/usr/local/bin/pulp" ]];
+    then
+        echo "Found pulp, skipping"
+    else
+        echo "Installing pulp globally, using sudo"
+        sudo npm -g install pulp
+    fi
 }
 
 golang() {
     if [[ "$brew_installed"=true ]];
     then
-        echo "installing go"
-        brew install go;
+        if [[ -e "/usr/local/bin/go" ]];
+        then
+            echo "Go already installed, nothing to do here."
+        else
+            echo "installing go"
+            brew install go;
+        fi
     else
         retry_brew;
         golang;
@@ -106,15 +126,27 @@ tex() {
     if [[ "$brew_installed"=true ]];
     then
         echo "installing tex and graphviz"
-        brew tap caskroom/cask
-        brew cask install mactex
-        brew install graphviz
+        if [[ -e "/Library/TeX/texbin/latex" ]];
+        then
+            echo "Found latex, skipping mactex install";
+        else
+            brew tap caskroom/cask;
+            brew cask install mactex;
+        fi
+
+        if [[ -e "/usr/local/bin/dot" ]];
+        then
+            echo "Found graphviz, nothing to do here";
+        else
+            brew install graphviz;
+        fi
     else
         retry_brew;
         tex;
     fi
 }
 
+#TODO Make this more defensive
 gen_dev() {
     if [[ "$brew_installed"=true ]];
     then
@@ -132,7 +164,7 @@ ruby() {
         echo "Installing ruby and some tools";
         brew install rbenv;
         rbenv install 2.3.0;
-        gem install bundler;
+        sudo gem install bundler;
 
     else
         retry_brew;
@@ -146,8 +178,9 @@ if [[ "$?" -eq 0 ]];
 then
     echo "Successfully found XCode";
 else
-    echo "Did not find Xcode! Requesting install"
-    xcode-select --install
+    echo "Did not find Xcode! Requesting install and sleeping 2 minutes to download/install."
+    xcode-select --install;
+    sleep 120;
 fi
 
 # Always try to install homebrew
