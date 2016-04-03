@@ -25,11 +25,14 @@ values."
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
+     c-c++
      colors
      command-log
+     dash
      emacs-lisp
      git
      go
+     haskell
      html
      javascript
      markdown
@@ -260,6 +263,12 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+
+  (setq-default dotspacemacs-configuration-layers
+                '((haskell :variables haskell-enable-hindent-style "chris-done")
+                  (haskell :variables haskell-stylish-on-save t)))
+  (add-hook 'haskell-mode-hook 'subword-mode)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
