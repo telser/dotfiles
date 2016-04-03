@@ -25,17 +25,6 @@ retry_brew() {
     install_brew;
 }
 
-xcode-select --install
-
-if [ -e /usr/local/bin/brew ]
-then
-    brew_installed=1;
-    echo "Found homebrew"
-else
-    install_brew;
-    brew_installed=1;
-fi
-
 emacs() {
     if [[ "$brew_installed"=true ]];
     then
@@ -150,6 +139,26 @@ ruby() {
         ruby;
     fi
 }
+
+# run xcode-select for the path, if this returns an error no dev tools are installed
+xcode-select -p 1>/dev/null
+if [[ "$?" -eq 0 ]];
+then
+    echo "Successfully found XCode";
+else
+    echo "Did not find Xcode! Requesting install"
+    xcode-select --install
+fi
+
+# Always try to install homebrew
+if [[ -e /usr/local/bin/brew ]];
+then
+    brew_installed=1;
+    echo "Found homebrew"
+else
+    install_brew;
+    brew_installed=1;
+fi
 
 emacs;
 gen_dev;
