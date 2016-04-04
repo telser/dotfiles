@@ -1,6 +1,17 @@
 brew_installed=0;
 brew_retry=0;
 
+## Vars to save if installing a grouping
+install_clojure=0
+install_emacs=0
+install_gcc=0
+install_golang=0
+install_haskell=0
+install_purescript=0
+install_ruby=0
+install_tex=0
+
+
 install_brew() {
     if [[ $brew_retry -ge 5 ]];
     then
