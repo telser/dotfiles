@@ -169,7 +169,7 @@ values."
    ;; If non nil then `ido' replaces `helm' for some commands. For now only
    ;; `find-files' (SPC f f), `find-spacemacs-file' (SPC f e s), and
    ;; `find-contrib-file' (SPC f e c) are replaced. (default nil)
-   dotspacemacs-use-ido nil 
+   dotspacemacs-use-ido t
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
@@ -180,7 +180,7 @@ values."
    dotspacemacs-helm-position 'bottom
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state nil
+   dotspacemacs-enable-paste-micro-state t
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -269,6 +269,43 @@ you should place you code here."
                   (haskell :variables haskell-stylish-on-save t)))
   (add-hook 'haskell-mode-hook 'subword-mode)
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+  (setq org-agenda-files (list "~/Dropbox/org/personal/academic.org"
+                               "~/Dropbox/org/personal/books.org"
+                               "~/Dropbox/org/personal/career.org"
+                               "~/Dropbox/org/personal/dtd.org"
+                               "~/Dropbox/org/personal/music.org"
+                               "~/Dropbox/org/personal/projects.org"
+                               "~/Dropbox/org/personal/study.org"))
+
+  (setq org-priority-faces
+        '((?A . "#00ff00")
+          (?B . "#00f500")
+          (?C . "#00eB00")
+          (?D . "#00e100")
+          (?E . "#00d700")
+          (?F . "#00cd00")
+          (?G . "#00c300")
+          (?H . "#00b900")
+          (?I . "#00af00")
+          (?J . "#00a500")
+          (?K . "#009b00")
+          (?L . "#009100")
+          (?M . "#008700")
+          (?N . "#007d00")
+          (?O . "#007300")
+          (?P . "#006900")
+          (?Q . "#005f00")
+          (?R . "#005500")
+          (?S . "#004b00")
+          (?T . "#004100")
+          (?U . "#003700")
+          (?V . "#002d00")
+          (?W . "#002300")
+          (?X . "#001900")
+          (?Y . "#000f00")
+          (?Z . "#000500")))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
