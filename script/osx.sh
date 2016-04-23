@@ -329,7 +329,6 @@ typescript() {
     fi
 }
 
-
 utils() {
     if [[ "$install_utils" -eq 1 ]];
     then

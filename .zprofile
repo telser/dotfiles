@@ -49,6 +49,20 @@ if [[ "$HOST" == 'zero' ]]; then
     # *sigh* this should be a part of golang_settings, need to check host there too though then :/
     export PATH=$PATH:/usr/local/opt/go/libexec/bin
     local_path;
+    # GPG Section FIXME: move to fn
+    gpg_agent_running=$(pgrep gpg-agent)
+    if [[ -z ${gpg_agent_running} ]]; then
+        gpg-agent --daemon --enable-ssh-support -s --write-env-file "${HOME}/.gpg-agent-info"
+    fi
+
+    if [[ -f "${HOME}/.gpg-agent-info" ]]; then
+        . "${HOME}/.gpg-agent-info"
+        export GPG_AGENT_INFO
+        export SSH_AUTH_SOCK
+    fi
+    GPG_TTY=$(tty)
+    export GPG_TTY
+
 else
     if [[ "$HOST" == 'telser-mbp' ]]; then
         os_x;
