@@ -97,22 +97,18 @@ os_pkg_install() {
     if [[ "$OS" == "FreeBSD" ]]; then
         case "$1" in
             "emacs" )
-                os_install_switch "emacs24"
-                break;;
+                os_install_switch "emacs24";;
             "gem" )
-                os_install_switch "ruby21-gems"
-                break;;
+                os_install_switch "ruby21-gems";;
             "stack" )
                 # As of 2016/4 there is no stack package for freebsd, so this is a workaround
                 os_install_switch "hs-cabal-install"
                 cabal update
                 cabal install stack
-                stack setup
-                break;;
+                stack setup;;
             * )
                 echo "No mapping found for pkg, trying just name"
-                os_install_switch "$1"
-                break;;
+                os_install_switch "$1";;
         esac
     else
         if [[ "$OS" == "Darwin" ]]; then
@@ -120,20 +116,17 @@ os_pkg_install() {
                 "emacs" )
                     brew tap railwaycat/homebrew-emacsmacport
                     os_install_switch "emacs-mac --with-spacemacs-icon"
-                    brew linkapps
-                    break;;
+                    brew linkapps;;
                 "gem" ) ## rubygems is already installed on Darwin, no-op here
-                    break;;
+                    ;;
                 "ruby" ) ## ruby is already installed on Darwin, no-op here
-                    break;;
+                    ;;
                 "stack" )
                     brew install haskell-stack
-                    stack setup
-                    break;;
+                    stack setup;;
                 * )
                     echo "No mapping found for $1 trying just name"
-                    os_install_switch "$1"
-                    break;;
+                    os_install_switch "$1";;
             esac
         fi
     fi
@@ -143,25 +136,19 @@ pkg_install() {
     case "$1" in
         "gem" )
             echo "Warning, installing gem pkg $2. Needs sudo!"
-            sudo gem install "$2"
-            break;;
+            sudo gem install "$2";;
         "go" )
-            go get "$2"
-            break;;
+            go get "$2";;
         "npm" )
             echo "Warning installing $2 as global npm pkg. Needs sudo!"
-            sudo npm -g install "$2"
-            break;;
+            sudo npm -g install "$2";;
         "stack" )
             cd ~;
-            stack install "$2"
-            break;;
+            stack install "$2";;
         "os")
-            os_pkg_install "$2"
-            break;;
+            os_pkg_install "$2";;
         * )
-            echo "Warning!!! Attempt to use unknown package source, $1"
-            break;;
+            echo "Warning!!! Attempt to use unknown package source, $1";;
     esac
 }
 
@@ -181,22 +168,18 @@ find_or_install_pkg_mgr() {
         #     echo "dnf"
         #     break;;
         "go" )
-            find_or_install_pkg 1 "/usr/local/bin/go" go os
-            break;;
+            find_or_install_pkg 1 "/usr/local/bin/go" go os;;
         # "lein" )
         #     echo "dnf"
         #     break;;
         "npm" )
-            find_or_install_pkg 1 "/usr/local/bin/npm" npm os
-            break;;
+            find_or_install_pkg 1 "/usr/local/bin/npm" npm os;;
         "stack" )
-            find_or_install_pkg 1 "$HOME:/.local/bin/stack" stack os
-            break;;
+            find_or_install_pkg 1 "$HOME:/.local/bin/stack" stack os;;
         "os" ) # no-op use system pkgs
-            break;;
+            ;;
         * )
-            echo "Warning!! Attempt to use unknown pkg source $1"
-            break;;
+            echo "Warning!! Attempt to use unknown pkg source $1";;
     esac
 }
 
@@ -204,11 +187,9 @@ install_with_version_mgr() {
     case "$1" in
         "rbenv" )
             find_or_install_pkg 1 "/usr/local/bin/rbenv" rbenv os
-            rbenv install "$2"
-            break;;
+            rbenv install "$2";;
         * )
-            echo "Warning!! Attempt to use unknown version mgr $1"
-            break;;
+            echo "Warning!! Attempt to use unknown version mgr $1";;
     esac
 }
 
