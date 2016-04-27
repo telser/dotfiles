@@ -73,7 +73,7 @@ retry_brew() {
 }
 
 brew_check_or_install() {
-    if [[ "$brew_installed"=true ]]; then
+    if [[ "$brew_installed" = true ]]; then
         echo "installing $1"
         brew install "$1"
     else
@@ -87,7 +87,7 @@ os_install_switch() {
         echo "installing $1"
         sudo pkg install "$1"
     else
-        if [[ "$OS"=="Darwin" ]]; then
+        if [[ "$OS" == "Darwin" ]]; then
             brew_check_or_install "$1"
         fi
     fi
@@ -225,14 +225,14 @@ find_or_install_pkg() {
 
 c_tools() {
     if [[ "$install_c_tools" -eq 1 ]]; then
-        if [[ "$OS"=="FreeBSD" ]]; then
+        if [[ "$OS" == "FreeBSD" ]]; then
             if [[ -e "/usr/local/bin/gcc" ]]; then
                 gcc_installed=1
             else
                 gcc_installed=0
             fi
         else
-            if [[ "$OS"=="Darwin" ]]; then
+            if [[ "$OS" == "Darwin" ]]; then
                if [[ -e "/usr/bin/gcc" ]]; then
                    gcc_installed=1
                else
@@ -255,7 +255,6 @@ c_tools() {
     else
         echo "Chose not to install c tools"
     fi
-
 }
 
 clojure() {
@@ -324,7 +323,7 @@ xcode() {
 # Run questionnaire for tools to install
 install_questionnaire;
 
-if [[ "$OS"=="Darwin" ]]; then
+if [[ "$OS" == "Darwin" ]]; then
     echo "Running Darwin, need xcode before we can do anything"
     xcode;
 fi
