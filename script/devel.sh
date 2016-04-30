@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 OS=$(uname)
 brew_installed=0;
 brew_retry=0;
@@ -10,6 +11,7 @@ install_golang=0
 install_haskell=0
 install_purescript=0
 install_ruby=0
+install_spacemacs=0
 install_tex=0
 install_typescript=0
 install_utils=0
@@ -43,7 +45,9 @@ install_questionnaire() {
     ask_install "install_ruby"
     echo "Install MacTex?\n"
     ask_install "install_tex"
-    echo "Install typescript?\n"
+    eecho "Install spacemacs?\n"
+    ask_install "install_spacemacs"
+cho "Install typescript?\n"
     ask_install "install_typescript"
     echo "Install utilities? This includes mosh, sloccount, and the_silver_searcher\n"
     ask_install "install_utils"
@@ -102,6 +106,7 @@ os_pkg_install() {
                 os_install_switch "ruby21-gems";;
             "stack" )
                 # As of 2016/4 there is no stack package for freebsd, so this is a workaround
+                sudo ln -s /lib/libutil.so.9 /lib/libutil.so.8
                 os_install_switch "hs-cabal-install"
                 cabal update
                 cabal install stack
@@ -270,6 +275,14 @@ ruby() {
     find_or_install_pkg "$install_ruby" "/usr/local/bin/bundler" bundler "gem"
 }
 
+spacemacs() {
+    #FIXME: create git pkg management fn?
+    if [[ "$install_spacemacs" -eq 1 ]]; then
+        echo "Spacemacs is being placed in ~/.emacs.d Starting emacs will install it's own pkgs"
+        git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    fi
+}
+
 tex() {
     #FIXME: Implement this
 }
@@ -314,8 +327,9 @@ clojure;
 emacs;
 golang;
 haskell;
-purescript
+purescript;
 ruby;
+spacemacs;
 tex;
 typescript;
 utils;

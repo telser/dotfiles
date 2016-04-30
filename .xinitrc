@@ -34,6 +34,14 @@ then
   conky -c .conkyRightrc &
 fi
 
+## Devel fbsd box
+if [ "$NAME" == "double" ]; then
+    conky -c .conkyLeftrc &
+    conky -c .conkyRightrc &
+    clipit &
+    nitrogen --restore &
+fi
+
 # Set the locale before launching urxvt and xmonad to prevent character funkiness
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
