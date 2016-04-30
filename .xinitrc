@@ -40,6 +40,8 @@ if [ "$NAME" == "double" ]; then
     conky -c .conkyRightrc &
     clipit &
     nitrogen --restore &
+    xset fp+ /usr/local/share/fonts/urwfonts
+    xset fp rehash
 fi
 
 # Set the locale before launching urxvt and xmonad to prevent character funkiness
