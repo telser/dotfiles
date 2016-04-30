@@ -67,7 +67,7 @@ main = do
 -- Setup workspaces using short names to save display room
 myWorkSpaces=["code","web","c2","ppl","t1","t2","vm","media","s1","s2"]
 
-myTerm="urxvtcd -e /usr/local/bin/zsh"
+myTerm="konsole"
 
 altMask = mod1Mask
 

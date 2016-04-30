@@ -70,4 +70,7 @@ else
         nvm_settings;
         local_path;
     fi
+  local_path;
 fi
+
+local_path;

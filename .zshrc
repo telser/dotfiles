@@ -3,7 +3,7 @@ autoload -Uz compinit
 compinit
 # Antigen loading:
 
-    source $HOME/antigen/antigen.zsh
+    source $HOME/dotfiles/antigen/antigen.zsh
     # Use oh-my-zsh plugins
     antigen use oh-my-zsh
 
