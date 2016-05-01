@@ -1,36 +1,36 @@
 ! urxvt settings
-URxvt.termName:          xterm
-URxvt.background:        #303030
-URxvt.foreground:        #CCCCCC
-URxvt.transparent:       false
-URxvt.cursorBlink:       false
-URxvt.scrollBar_right:   true
-URxvt.font: xft:DejaVu Sans Mono:size=11:antialias=true
-URxvt*skipBuiltinGlyphs: true
+! URxvt.termName:          xterm
+! URxvt.background:        #303030
+! URxvt.foreground:        #CCCCCC
+! URxvt.transparent:       false
+! URxvt.cursorBlink:       false
+! URxvt.scrollBar_right:   true
+! URxvt.font: xft:DejaVu Sans Mono:size=11:antialias=true
+! URxvt*skipBuiltinGlyphs: true
 
-*cursorColor:   #1F66FF
+! *cursorColor:   #1F66FF
 
-!blue
-URxvt.color4:  #1F66FF
-URxvt.color12: #1F66FF
-!black
-!URxvt.color0:  #000000
-!URxvt.color8:  #2B2B2B
-!red
-!URxvt.color1:  #A5372E
-!URxvt.color9:  #E06C5C
-!green
-!URxvt.color2:  #4A663C
-!URxvt.color10: #7B996C
-!yellow
-!URxvt.color3:  #7C5618
-!URxvt.color11: #B38849
-!magenta
-!URxvt.color5:  #8E4948
-!URxvt.color13: #C67C78
-!cyan
-!URxvt.color6:  #6D5B42
-!URxvt.color14: #A28D73
-!white
-!URxvt.color7:  #8D8D8D
-!URxvt.color15: #C6C6C6
+! !blue
+! URxvt.color4:  #1F66FF
+! URxvt.color12: #1F66FF
+! !black
+! !URxvt.color0:  #000000
+! !URxvt.color8:  #2B2B2B
+! !red
+! !URxvt.color1:  #A5372E
+! !URxvt.color9:  #E06C5C
+! !green
+! !URxvt.color2:  #4A663C
+! !URxvt.color10: #7B996C
+! !yellow
+! !URxvt.color3:  #7C5618
+! !URxvt.color11: #B38849
+! !magenta
+! !URxvt.color5:  #8E4948
+! !URxvt.color13: #C67C78
+! !cyan
+! !URxvt.color6:  #6D5B42
+! !URxvt.color14: #A28D73
+! !white
+! !URxvt.color7:  #8D8D8D
+! !URxvt.color15: #C6C6C6
