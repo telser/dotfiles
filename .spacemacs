@@ -32,9 +32,12 @@ values."
      emacs-lisp
      git
      go
-     haskell
+     (haskell :variables
+              haskell-enable-hindent-style "chris-done"
+              haskell-stylish-on-save t)
      html
      javascript
+     latex
      markdown
      org
      osx
@@ -265,9 +268,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
   (global-linum-mode)
-  (setq-default dotspacemacs-configuration-layers
-                '((haskell :variables haskell-enable-hindent-style "chris-done")
-                  (haskell :variables haskell-stylish-on-save t)))
   (add-hook 'haskell-mode-hook 'subword-mode)
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
