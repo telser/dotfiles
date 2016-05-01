@@ -42,6 +42,7 @@ if [ "$NAME" == "double" ]; then
     nitrogen --restore &
     tint2 -c tint2.conf &                   # Topbar and systray
     xset fp+ /usr/local/share/fonts/urwfonts
+    xset fp+ /usr/local/share/fonts/Hack
     xset fp rehash
 fi
 
@@ -57,7 +58,7 @@ xrdb -merge ~/.Xresources                # Set term font/color
 
 xmodmap ~/.Xmodmap                       # Rebind keys
 
-urxvtcd -q -o -f &                        # Start terminal daemon
+#urxvtcd -q -o -f &                        # Start terminal daemon
 
 xsetroot -cursor_name left_ptr
 xmonad
