@@ -16,6 +16,15 @@ install_tex=0
 install_typescript=0
 install_utils=0
 
+## FIXME: process packages into these lists then install all at the end
+# pkgs to install by pkg manager
+gem_pkgs=()
+go_pkgs=()
+npm_pkgs=()
+os_pkgs=()
+stack_pkgs=()
+
+
 ask_install () {
     select yn in "Yes" "No"; do
         case $yn in
@@ -45,9 +54,9 @@ install_questionnaire() {
     ask_install "install_ruby"
     echo "Install MacTex?\n"
     ask_install "install_tex"
-    eecho "Install spacemacs?\n"
+    echo "Install spacemacs?\n"
     ask_install "install_spacemacs"
-cho "Install typescript?\n"
+    echo "Install typescript?\n"
     ask_install "install_typescript"
     echo "Install utilities? This includes mosh, sloccount, and the_silver_searcher\n"
     ask_install "install_utils"
