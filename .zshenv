@@ -70,7 +70,10 @@ else
         nvm_settings;
         local_path;
     fi
-  local_path;
 fi
 
-local_path;
+if [[ "$HOST" == 'double' ]]; then
+  local_path;
+  PATH=$PATH:$HOME/.cabal/bin
+  export PATH
+fi
