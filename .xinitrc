@@ -40,6 +40,7 @@ if [ "$NAME" == "double" ]; then
     conky -c .conkyRightrc &
     clipit &
     nitrogen --restore &
+    tint2 -c tint2.conf &                   # Topbar and systray
     xset fp+ /usr/local/share/fonts/urwfonts
     xset fp rehash
 fi
