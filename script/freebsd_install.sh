@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 packages() {
     pkgs='zsh git xorg slim hs-xmonad hs-xmonad-contrib tint2 conky dmenu tmux
-chromium firefox konsole nitrogen lxrandr clipit en-hunspell nathive
+chromium firefox konsole nitrogen lxrandr clipit en-hunspell nathive pidgin
 password-store htop curl mumble weechat urwfonts virtualbox-ose-additions'
     sudo pkg install $packages
 }
