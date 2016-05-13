@@ -1,0 +1,28 @@
+---
+
+description: Install xorg, xmonad and related
+- pkgng: name=xorg,slim,hs-xmonad,hs-xmonad-contrib,tint2,conky,dmenu,clipit state=present
+
+description: Install other desktop utils
+- pkgng: name=konsole,nitrogen,lxrandr,en-hunspell,nathive,password-store,htop state=present
+
+description: Install rhythmbox
+- pkgng: name=rhythmbox state=present
+
+description: Install chat/web progs
+- pkgng: name=chromium,firefox,pidgin,weechat,mumble state=present
+
+description: Install fonts
+- pkgng: name=urwfonts
+
+description: enable hald
+- lineinfile: dest=/etc/rc.conf line="hald_enable=\"YES\"" state=present
+
+description: enable dbus
+- lineinfile: dest=/etc/rc.conf line="dbus_enable=\"YES\"" state=present
+
+description: enable slim
+- lineinfile: dest=/etc/rc.conf line="slim_enable=\"YES\"" state=present
+
+description: enable fdesc in fstab
+- lineinfile: dest=/etc/fstab line="fdesc /dev/fd fdescfs rw 0 0" state=present

@@ -1,0 +1,13 @@
+---
+
+description: Install cabal
+- pkgng: name=hs-cabal-install state=present
+
+description: Install stack
+- command: cabal install stack
+
+description: Run stack setup
+- command: stack setup
+
+description: Install haskell progs with stack
+- command: stack install alex happy stylish-haskell hindent dash-haskell hackage hasktags
