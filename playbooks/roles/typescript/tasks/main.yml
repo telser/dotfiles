@@ -1,0 +1,10 @@
+---
+
+description: Install typescript from npm
+- npm: name=typescript global=yes state=present
+
+description: Install tslint from npm
+- npm: name=tslint global=yes state=present
+
+description: Install typings from npm
+- npm: name=typings global=yes state=present

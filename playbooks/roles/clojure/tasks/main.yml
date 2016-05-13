@@ -1,0 +1,10 @@
+---
+
+- name: install leiningen
+  pkgng: name=leiningen state=true
+
+description: enable fdesc in fstab
+- lineinfile: dest=/etc/fstab line="fdesc /dev/fd fdescfs rw 0 0" state=present
+
+description: enable proc in fstab
+- lineinfile: dest=/etc/fstab line="proc /proc procfs rw 0 0" state=present

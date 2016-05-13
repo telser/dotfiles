@@ -1,0 +1,19 @@
+---
+
+- name: update pkg database
+  command: pkg update
+  sudo: true
+
+- name: update pkg
+  command: pkg upgrade -y pkg
+  sudo: true
+
+- name: install rkhunter,zsh,mosh
+  pkgng: name=rkhunter,zsh,mosh state=present
+
+- name: ensure sudo group exists
+  group: name=sudo state=present
+
+- name: ensure correct sudoers
+  lineinfile: "dest=/usr/local/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL' validate='visudo -cf %s'"
+  sudo: yes

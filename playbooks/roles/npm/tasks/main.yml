@@ -1,0 +1,4 @@
+---
+
+- name: install npm from pkg
+  pkgng: name=npm state=present
