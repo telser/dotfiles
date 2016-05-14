@@ -35,7 +35,7 @@ then
 fi
 
 ## Devel fbsd box
-if [ "$NAME" == "double" ]; then
+if [ "$NAME" == "double" || "$NAME" == "sigma" ]; then
     conky -c .conkyLeftrc &
     conky -c .conkyRightrc &
     clipit &

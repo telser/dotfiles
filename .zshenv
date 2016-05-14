@@ -73,7 +73,7 @@ else
     fi
 fi
 
-if [[ "$HOST" == 'double' ]]; then
+if [[ "$HOST" == 'double' || "$HOST" == 'sigma' ]]; then
   local_path;
   PATH=$PATH:$HOME/.cabal/bin
   export PATH
