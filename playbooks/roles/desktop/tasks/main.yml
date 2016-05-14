@@ -1,28 +1,37 @@
 ---
 
-description: Install xorg, xmonad and related
-- pkgng: name=xorg,slim,hs-xmonad,hs-xmonad-contrib,tint2,conky,dmenu,clipit state=present
+- name: Install xorg, xmonad and related
+  pkgng: name=xorg,slim,hs-xmonad,hs-xmonad-contrib,tint2,conky,dmenu,clipit state=present
+  become: yes
 
-description: Install other desktop utils
-- pkgng: name=konsole,nitrogen,lxrandr,en-hunspell,nathive,password-store,htop state=present
+- name: Install other desktop utils
+  pkgng: name=konsole,nitrogen,lxrandr,en-hunspell,nathive,password-store,htop state=present
+  become: yes
 
-description: Install rhythmbox
-- pkgng: name=rhythmbox state=present
+- name: Install rhythmbox
+  pkgng: name=rhythmbox state=present
+  become: yes
 
-description: Install chat/web progs
-- pkgng: name=chromium,firefox,pidgin,weechat,mumble state=present
+- name: Install chat/web progs
+  pkgng: name=chromium,firefox,pidgin,weechat,mumble state=present
+  become: yes
 
-description: Install fonts
-- pkgng: name=urwfonts
+- name: Install fonts
+  pkgng: name=urwfonts
+  become: yes
 
-description: enable hald
-- lineinfile: dest=/etc/rc.conf line="hald_enable=\"YES\"" state=present
+- name: enable hald
+  lineinfile: dest=/etc/rc.conf line="hald_enable=\"YES\"" state=present
+  become: yes
 
-description: enable dbus
-- lineinfile: dest=/etc/rc.conf line="dbus_enable=\"YES\"" state=present
+- name: enable dbus
+  lineinfile: dest=/etc/rc.conf line="dbus_enable=\"YES\"" state=present
+  become: yes
 
-description: enable slim
-- lineinfile: dest=/etc/rc.conf line="slim_enable=\"YES\"" state=present
+- name: enable slim
+  lineinfile: dest=/etc/rc.conf line="slim_enable=\"YES\"" state=present
+  become: yes
 
-description: enable fdesc in fstab
-- lineinfile: dest=/etc/fstab line="fdesc /dev/fd fdescfs rw 0 0" state=present
+- name: enable fdesc in fstab
+  lineinfile: dest=/etc/fstab line="fdesc /dev/fd fdescfs rw 0 0" state=present
+  become: yes

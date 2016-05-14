@@ -1,4 +1,5 @@
 ---
 
-description: Install texlive-full
-- pkgng: name=texlive-full state=present
+- name: Install texlive-full
+  pkgng: name=texlive-full state=present
+  become: yes
