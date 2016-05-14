@@ -1,4 +1,5 @@
 ---
 
-description: Install valgrind
-- pkgng: name=valgrind state=present
+- name: Install valgrind
+  pkgng: name=valgrind state=present
+  become: yes

@@ -1,4 +1,5 @@
 ---
 
-description: Install rbenv and ruby-build
-- pkgng: name=rbenv,ruby-build state=present
+- name: Install rbenv and ruby-build
+  pkgng: name=rbenv,ruby-build state=present
+  become: yes

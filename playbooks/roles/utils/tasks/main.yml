@@ -1,4 +1,5 @@
 ---
 
-description: Install utils
-- pkgng: name=mosh,sloccount,the_silver_searcher state=present
+- name: Install utils
+  pkgng: name=mosh,sloccount,the_silver_searcher state=present
+  become: yes
