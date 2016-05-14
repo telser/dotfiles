@@ -16,10 +16,11 @@ os_x () {
 
 # Set vars for golang
 golang_settings () {
-    GOPATH=$HOME/go
-    export GOPATH
-    PATH=$PATH:$HOME/go/bin
-    export PATH
+    export GO_ENV=~/.goenvs
+    # GOPATH=$HOME/go
+    # export GOPATH
+    # PATH=$PATH:$HOME/go/bin
+    # export PATH
 }
 
 # Set vars for nvm
