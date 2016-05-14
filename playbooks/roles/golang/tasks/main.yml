@@ -1,0 +1,4 @@
+---
+
+description: Install golang
+- pkgng: name=go,go-dep state=present
