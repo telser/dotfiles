@@ -35,12 +35,23 @@ then
 fi
 
 ## Devel fbsd box
-if [ "$NAME" == "double" || "$NAME" == "sigma" ]; then
+if [ "$NAME" == "double" ]; then
+    conky -c ~/.conkyLeftrc &
+    conky -c ~/.conkyRightrc &
+    clipit &
+    nitrogen --restore &
+    tint2 -c ~/tint2.conf &                   # Topbar and systray
+    xset fp+ /usr/local/share/fonts/urwfonts
+    xset fp+ /usr/local/share/fonts/Hack
+    xset fp rehash
+fi
+
+if [ "$NAME" == "sigma" ]; then
     conky -c .conkyLeftrc &
     conky -c .conkyRightrc &
     clipit &
     nitrogen --restore &
-    tint2 -c tint2.conf &                   # Topbar and systray
+    tint2 -c tint2.conf &
     xset fp+ /usr/local/share/fonts/urwfonts
     xset fp+ /usr/local/share/fonts/Hack
     xset fp rehash
