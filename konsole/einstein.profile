@@ -4,6 +4,7 @@ Font=Hack,9,-1,5,75,0,0,0,0,0
 
 [General]
 Command=/usr/local/bin/zsh -c "/usr/local/bin/mosh tworker@einstein"
+LocalTabTitleFormat=%w
 Name=einstein
 Parent=FALLBACK/
 
