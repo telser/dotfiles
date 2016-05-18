@@ -65,7 +65,7 @@ main = do
         , keys=myKeys myHost                                                --Keybindings
         }
 -- Setup workspaces using short names to save display room
-myWorkSpaces=["code","web","c2","ppl","t1","t2","vm","media","s1","s2"]
+myWorkSpaces=["term","web","code","ppl","t2","t3","vm","media","read","ex"]
 
 myTerm="konsole"
 
@@ -84,14 +84,13 @@ xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
 usrName :: UserEntry -> String
 usrName (UserEntry x _ _ _ _ _ _) = x
 
-
 -- Layout
 myLayoutHook = avoidStruts
           $ onWorkspace "term" (myGrid ||| simpleTabbed ||| tall)
           $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full)
           $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))
           $ onWorkspace "web" (simpleTabbed ||| tall)
-          $ (myGrid ||| simpleTabbed )
+          $ (myGrid ||| simpleTabbed  ||| tall ||| Full)
           where
             tall   = Tall nmaster delta ratio
             nmaster = 1
@@ -107,6 +106,7 @@ myManageHook = (composeAll . concat $
      , [className =? x --> doF (W.shift "ppl") | x <- myImShift]
      , [className =? x --> doF (W.shift "media") | x <- myMediaShift]
      , [className =? x --> doF (W.shift "doc") | x <- myDocShift]
+     , [className =? x --> doF (W.shift "read") | x <- myReadShift]
      , [className =? "VirtualBox"      --> doF (W.shift "vm")]
      , [className =? "Thunar"         --> doF (W.shift "fm")]
      , [className =? x --> doFloat | x <- myFloats]
@@ -117,7 +117,8 @@ myManageHook = (composeAll . concat $
    myImShift = ["Pidgin","Skype"]
    myDocShift = ["libreoffice-impress","libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage","LibreOffice Calc"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
-   myFloats =["Gimp","Inkscape","Skype"]
+   myReadShift = ["Calibre","calibre"]
+   myFloats = ["Gimp","Inkscape","Skype"]
 
 {- Keybinding section
  - Union defaults
@@ -127,7 +128,6 @@ myManageHook = (composeAll . concat $
 
 -- Union default and new key bindings
 myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys defaultConfig x)
-
 
 -- Add new and/or redefine key bindings
 newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
@@ -141,16 +141,17 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Right), shiftNextScreen)                     --Move things around screens
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
                                                                             -- Add shortcuts for programs
- , ((modMask .|. shiftMask, xK_c), spawn "conkeror")
+ , ((modMask .|. shiftMask, xK_b), spawn "calibre")
+ , ((modMask .|. shiftMask, xK_c), spawn "chrome")
  , ((modMask .|. shiftMask, xK_e), spawn "emacs")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
- , ((modMask .|. shiftMask, xK_g), spawn "chrome")
- , ((modMask .|. shiftMask, xK_k), spawn "texmaker")
  , ((modMask .|. shiftMask, xK_m), spawn "steam")
+ , ((modMask .|. shiftMask, xK_n), spawn "nautilus")
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
- , ((modMask .|. shiftMask, xK_t), spawn "thunar")
+ , ((modMask .|. shiftMask, xK_t), spawn "terminology")
+ , ((modMask .|. shiftMask, xK_u), spawn "thunar")
  , ((modMask .|. shiftMask, xK_v), spawn "VirtualBox")
 -- , ((modMask .|. shiftMask, xK_z), spawn "zsnes")
  -- , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")

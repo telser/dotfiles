@@ -1,4 +1,5 @@
 ---
 
-description: Install golang
-- pkgng: name=go,go-dep state=present
+- name: Install golang
+  pkgng: name=go,go-dep state=present
+  become: yes
