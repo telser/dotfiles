@@ -77,4 +77,20 @@ if [[ "$HOST" == 'double' || "$HOST" == 'sigma' ]]; then
   local_path;
   PATH=$PATH:$HOME/.cabal/bin
   export PATH
+
+  # GPG Section FIXME: move to fn
+  gpg_agent_running=$(pgrep gpg-agent)
+  if [[ -z ${gpg_agent_running} ]]; then
+      gpg-agent --daemon --enable-ssh-support -s #--write-env-file "${HOME}/.gpg-agent-info"
+  fi
+
+  GPG_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
+  SSH_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
+  export GPG_AGENT_INFO
+  export SSH_AUTH_SOCK
+
+  GPG_TTY=$(tty)
+  export GPG_TTY
+
+
 fi

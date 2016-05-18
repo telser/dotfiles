@@ -16,6 +16,10 @@
   pkgng: name=chromium,firefox,pidgin,weechat,mumble state=present
   become: yes
 
+- name: Install calibre
+  pkgng: name=calibre state=present
+  become: yes
+
 - name: Install fonts
   pkgng: name=urwfonts
   become: yes
