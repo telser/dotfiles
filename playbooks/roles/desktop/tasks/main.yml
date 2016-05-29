@@ -1,15 +1,15 @@
 ---
 
 - name: Install xorg, xmonad and related
-  pkgng: name=xorg,slim,hs-xmonad,hs-xmonad-contrib,tint2,conky,dmenu,clipit state=present
+  pkgng: name=xorg,slim,hs-xmonad,hs-xmonad-contrib,tint2,conky,dmenu,clipit,xclip state=present
   become: yes
 
 - name: Install other desktop utils
   pkgng: name=konsole,nitrogen,lxrandr,en-hunspell,nathive,password-store,htop state=present
   become: yes
 
-- name: Install rhythmbox
-  pkgng: name=rhythmbox state=present
+- name: Install clementine
+  pkgng: name=clementine state=present
   become: yes
 
 - name: Install chat/web progs
