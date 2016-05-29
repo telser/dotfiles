@@ -18,7 +18,7 @@ xftfont DejaVu Sans Mono:size=10
 xftalpha 0.8
 
 # Update interval in seconds
-update_interval 1.0
+update_interval 3600.0
 
 # This is the number of times Conky will update before quitting.
 # Set to zero to run forever.
@@ -78,6 +78,7 @@ color3 777777
 
 
 TEXT
+${exec pkg audit -qr}
 ${exec cal -3}
 
 ${if_up eth0}${voffset 3}${color1}Network ${color}($nodename) ${color2}${hr}
