@@ -1,4 +1,3 @@
-
 os_x () {
     # Use bsd-style ls to get colors
     alias ls='ls -hG'
@@ -75,7 +74,7 @@ fi
 
 if [[ "$HOST" == 'double' || "$HOST" == 'sigma' ]]; then
   local_path;
-  PATH=$PATH:$HOME/.cabal/bin
+  PATH=$PATH:$HOME/.cabal/bin:$HOME/.conscript/bin
   export PATH
 
   # GPG Section FIXME: move to fn
