@@ -61,12 +61,19 @@ values."
      typescript
      version-control
      vim-powerline
+     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      auto-package-update
+                                      json-reformat
+                                      tern-auto-complete
+                                      tide
+                                      tj-mode
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -256,7 +263,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup all
+   dotspacemacs-whitespace-cleanup 'all
    ))
 
 (defun dotspacemacs/user-init ()
@@ -276,6 +283,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
+  (auto-package-update-maybe)
   (global-linum-mode)
   (add-hook 'haskell-mode-hook 'subword-mode)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
