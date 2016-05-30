@@ -54,6 +54,7 @@ values."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      rust
+     scala
      shell
      shell-scripts
      spell-checking
