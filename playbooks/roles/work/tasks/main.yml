@@ -1,0 +1,4 @@
+---
+
+- name: Install javascript tooling
+  npm: name:tern,js-beautify,jshint global=yes state=present
