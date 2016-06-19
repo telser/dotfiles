@@ -40,6 +40,7 @@ values."
               haskell-enable-hindent-style "chris-done"
               haskell-stylish-on-save t)
      html
+     java
      javascript
      latex
      markdown
@@ -284,12 +285,25 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
+  (defun save-all ()
+    (interactive)
+    (save-some-buffers t))
+
+  (add-hook 'focus-out-hook 'save-all)
+
   (auto-package-update-maybe)
   (global-linum-mode)
   (add-hook 'haskell-mode-hook 'subword-mode)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+
+  (setq tab-width 2)
+  (setq indent-tabs-mode nil)
+  (setq-default tab-width 2)
+  (setq-default indent-tabs-mode nil)
+  (setq indent-line-function 'insert-tab)
+  (setq typescript-indent-level 2)
   (setq org-agenda-files (list "~/Dropbox/org/personal/academic.org"
                                "~/Dropbox/org/personal/books.org"
                                "~/Dropbox/org/personal/career.org"
