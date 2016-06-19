@@ -91,5 +91,9 @@ if [[ "$HOST" == 'double' || "$HOST" == 'sigma' ]]; then
   GPG_TTY=$(tty)
   export GPG_TTY
 
+  rbenv_settings;
+  alias brake=bundle exec rake
+  PHANTOMJS_BIN=/usr/local/bin/phantomjs
+  export PHANTOMJS_BIN
 
 fi

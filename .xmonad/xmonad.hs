@@ -65,7 +65,7 @@ main = do
         , keys=myKeys myHost                                                --Keybindings
         }
 -- Setup workspaces using short names to save display room
-myWorkSpaces=["term","web","code","ppl","t2","t3","vm","media","read","ex"]
+myWorkSpaces=["web","term","code","ppl","t2","t3","vm","media","read","ex"]
 
 myTerm="konsole"
 
