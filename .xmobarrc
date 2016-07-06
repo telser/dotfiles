@@ -1,7 +1,0 @@
-Config { bgColor = "#303030"
-       , border = NoBorder
-       , borderColor = "black"
-       , fgColor = "grey"
-       , position = TopSize R 90 20           
-       , lowerOnStart = True
-       }
