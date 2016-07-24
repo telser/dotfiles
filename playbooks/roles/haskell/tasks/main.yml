@@ -4,8 +4,8 @@
   pkgng: name=hs-cabal-install state=present
   become: yes
 
-- name: Install stack
-  command: cabal install stack
+#- name: Install stack
+#  command: cabal install stack
 
 - name: Run stack setup
   command: stack setup

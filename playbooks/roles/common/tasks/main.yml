@@ -9,7 +9,7 @@
   become: yes
 
 - name: install rkhunter,zsh,mosh,lynis
-  pkgng: name=rkhunter,zsh,mosh,lynis state=present
+  pkgng: name=rkhunter,zsh,lynis state=present
   become: yes
 
 - name: ensure sudo group exists

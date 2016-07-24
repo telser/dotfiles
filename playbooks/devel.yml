@@ -9,7 +9,7 @@
   - desktop
   - c
   - clojure
-  - haskell
+#  - haskell
   - npm
   - purescript
   - ruby
