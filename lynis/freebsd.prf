@@ -42,7 +42,7 @@ config:test_scan_mode:full:
 # (always ignores scan mode and will make sure the test is skipped)
 #
 # config:test_skip_always:AAAA-1234 BBBB-5678 CCCC-9012:
-config:test_skip_always:BANN-7122 TOOL-5002 LOGG-2154 FILE-6310 HRDN-7222 AUTH-9204:
+config:test_skip_always: AUTH-9262 BANN-7122 TOOL-5002 LOGG-2154 MALW-3278 FILE-6310 HRDN-7222 AUTH-9204 HRDN-7220:
 
 # ** Define machine role **
 #
@@ -106,8 +106,8 @@ plugin=users
 
 [processes]
 #sysctl:kern.randompid:1234:1:Increase the next PID with an amount close to the given value:
-sysctl:security.bsd.see_other_gids:0:1:Disable display of processes of other groups:
-sysctl:security.bsd.see_other_uids:0:1:Disable display of processes of other users:
+sysctl:security.bsd.see_other_gids:1:1:Disable display of processes of other groups:
+sysctl:security.bsd.see_other_uids:1:1:Disable display of processes of other users:
 
 [kernel]
 sysctl:kern.sugid_coredump:0:1:XXX:
@@ -122,14 +122,14 @@ sysctl:kernel.use-nx:0:1:XXX:
 
 [network]
 sysctl:net.inet.icmp.bmcastecho:0:1:Ignore ICMP packets directed to broadcast address:
-sysctl:net.inet.icmp.rediraccept:0:1:Disable incoming ICMP redirect routing redirects:
+sysctl:net.inet.icmp.rediraccept:1:1:Disable incoming ICMP redirect routing redirects:
 sysctl:net.inet.ip.accept_sourceroute:0:1:Disable IP source routing:
-sysctl:net.inet.ip.redirect:0:1:Disable/Ignore ICMP routing redirects:
+sysctl:net.inet.ip.redirect:1:1:Disable/Ignore ICMP routing redirects:
 sysctl:net.inet.ip.sourceroute:0:1:Disable IP source routing:
 sysctl:net.inet.ip6.redirect:0:1:Disable/Ignore ICMP routing redirects:
-sysctl:net.inet.tcp.blackhole:2:1:Do not sent RST but drop traffic:
-sysctl:net.inet.udp.blackhole:1:1:Do not sent RST but drop traffic:
-sysctl:net.inet6.icmp6.rediraccept:0:1:Disable incoming ICMP redirect routing redirects:
+sysctl:net.inet.tcp.blackhole:0:1:Do not sent RST but drop traffic:
+sysctl:net.inet.udp.blackhole:0:1:Do not sent RST but drop traffic:
+sysctl:net.inet6.icmp6.rediraccept:1:1:Disable incoming ICMP redirect routing redirects:
 sysctl:net.inet6.ip6.redirect:0:1:Disable sending ICMP redirect routing redirects:
 sysctl:net.ipv4.conf.all.accept_redirects:0:1:Disable/Ignore ICMP routing redirects:
 sysctl:net.ipv4.conf.all.accept_source_route:0:1:Disable IP source routing:

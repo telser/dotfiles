@@ -9,7 +9,7 @@
   become: yes
 
 - name: Install clementine
-  pkgng: name=clementine state=present
+  pkgng: name=clementine-player state=present
   become: yes
 
 - name: Install chat/web progs
