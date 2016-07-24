@@ -72,7 +72,7 @@ else
     fi
 fi
 
-if [[ "$HOST" == 'double' || "$HOST" == 'sigma' ]]; then
+if [[ "$HOST" == 'signas' || "$HOST" == 'sigma' ]]; then
   local_path;
   PATH=$PATH:$HOME/.cabal/bin:$HOME/.conscript/bin
   export PATH
