@@ -99,7 +99,5 @@ if [[ "$HOST" == 'signas' || "$HOST" == 'sigma' ]]; then
 fi
 
 if [[ "$HOST" == 'chuck' ]]; then
-    TERM=xterm-256color
-    export TERM
-
+    export PATH=/usr/pkg/bin:/usr/pkg/sbin:/usr/bin:/usr/sbin:$PATH
 fi
