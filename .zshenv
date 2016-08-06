@@ -97,3 +97,9 @@ if [[ "$HOST" == 'signas' || "$HOST" == 'sigma' ]]; then
   export PHANTOMJS_BIN
 
 fi
+
+if [[ "$HOST" == 'chuck' ]]; then
+    TERM=xterm-256color
+    export TERM
+
+fi
