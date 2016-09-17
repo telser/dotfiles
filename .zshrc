@@ -12,7 +12,7 @@ compinit
     antigen bundle command-not-found
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle Tarrasch/zsh-autoenv
-    antigen bundle horosgrisa/zsh-gvm
+#    antigen bundle horosgrisa/zsh-gvm
     # Use muse theme
     antigen theme muse
 
