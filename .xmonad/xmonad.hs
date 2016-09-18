@@ -52,6 +52,7 @@ main = do
 --    xmproc <- spawnPipe $ ("/usr/bin/xmobar " ++ (xmobarPick myHost) ++ " /home/trevis/.xmobarrc") -- Not using xmobar currently
 --    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
     replace
+    panel <- spawnPipe $ ("sh /home/trevis/.xsession")
     uid <- getRealUserID
     name <- getUserEntryForID uid
     return $  usrName name
@@ -67,7 +68,7 @@ main = do
 -- Setup workspaces using short names to save display room
 myWorkSpaces=["web","term","code","ppl","t2","t3","vm","media","read","ex"]
 
-myTerm="lxterminal"
+myTerm="qterminal"
 
 altMask = mod1Mask
 
@@ -89,13 +90,13 @@ myLayoutHook = avoidStruts
           $ onWorkspace "term" (myGrid ||| simpleTabbed ||| tall)
           $ onWorkspace "code" (myGrid ||| simpleTabbed ||| Full)
           $ onWorkspace "ppl" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ myGrid ||| tall)))
-          $ onWorkspace "web" (simpleTabbed ||| tall)
+          $ onWorkspace "web" (simpleTabbed ||| Full)
           $ (myGrid ||| simpleTabbed  ||| tall ||| Full)
           where
             tall   = Tall nmaster delta ratio
             nmaster = 1
             ratio   = 1/2
-            delta   = 2/100
+            delta   = 5/100
             defaultRatio = 1/2
             myGrid = named "g" (TallGrid 2 2 (1/2)  (1/2) (2/100))
 
@@ -132,6 +133,7 @@ myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys defaultConf
 -- Add new and/or redefine key bindings
 newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
   (( modMask .|. controlMask, xK_e), spawn "eject")                      --Keyboard shortcut for ejecting cd
+ , ((modMask .|. controlMask, xK_s), spawn "xrandr --output VGA-0 --auto")  -- Resize vbox screen
  , ((modMask .|. controlMask, xK_Down), shiftToNext)                        --Move around screens
  , ((modMask .|. controlMask, xK_Up), shiftToPrev)                          --Move around screens
  , ((modMask .|. controlMask, xK_Right), nextScreen)                        --Move around screens
