@@ -14,7 +14,7 @@ no_buffers yes
 
 # Use Xft (anti-aliased font and stuff) 
 use_xft yes
-xftfont DejaVu Sans Mono:size=10
+xftfont Hack:size=10
 xftalpha 0.8
 
 # Update interval in seconds
@@ -83,12 +83,9 @@ ${color}os   :${color white} ${sysname} ${kernel}
 ${color}uptime:${color white} $uptime 
 ${stippled_hr}
 ${color1}CPU:${color}${hr}
-${color}overall: $cpu%  Freq: ${freq}Mhz Temp:${acpitemp}C
+${color}overall: $cpu% 
 ${color 888888}${cpugraph 30,200 0000ff ff0000}
-${color}core1: ${cpu cpu1}%  ${execi 60 sensors | grep 'Core 0' | cut -c 15-23} ${offset 125}${color}core2: ${cpu cpu2}%  ${execi 60 sensors | grep 'Core 1' | cut -c 15-23}
 ${color 888888}${cpugraph cpu1 20,200 0000ff ff0000} ${color 888888}${cpugraph cpu2 20,200 0000ff ff0000}
-${color}core3: ${cpu cpu3}%  ${execi 60 sensors | grep 'Core 2' | cut -c 15-23} ${offset 125}${color}core4: ${cpu cpu4}%  ${execi 60 sensors | grep 'Core 3' | cut -c 15-23}
-${color 888888}${cpugraph cpu3 20,200 0000ff ff0000} ${color 888888}${cpugraph cpu4 20,200 0000ff ff0000}
 
 ${voffset 3}${color1}Processes:${color} ${processes}  ${color1}Running:${color red1} ${running_processes} ${color2}${hr 1}
 ${alignc}${color0}(top 5 sorted by CPU usage)
