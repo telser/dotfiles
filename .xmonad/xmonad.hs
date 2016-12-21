@@ -52,7 +52,6 @@ main = do
 --    xmproc <- spawnPipe $ ("/usr/bin/xmobar " ++ (xmobarPick myHost) ++ " /home/trevis/.xmobarrc") -- Not using xmobar currently
 --    workspaceBar <- spawnPipe myWorkspaceBar                                --Spawn dzen
     replace
-    panel <- spawnPipe $ ("sh /home/trevis/.xsession")
     uid <- getRealUserID
     name <- getUserEntryForID uid
     return $  usrName name
@@ -66,10 +65,13 @@ main = do
         , keys=myKeys myHost                                                --Keybindings
         }
 -- Setup workspaces using short names to save display room
+myWorkSpaces :: [String]
 myWorkSpaces=["web","term","code","ppl","t2","t3","vm","media","read","ex"]
 
-myTerm="qterminal"
+myTerm :: String
+myTerm="urxvtc"
 
+altMask :: KeyMask
 altMask = mod1Mask
 
 {- xmobar pretty printing log
@@ -132,8 +134,8 @@ myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys defaultConf
 
 -- Add new and/or redefine key bindings
 newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
-  (( modMask .|. controlMask, xK_e), spawn "eject")                      --Keyboard shortcut for ejecting cd
- , ((modMask .|. controlMask, xK_s), spawn "xrandr --output VGA-0 --auto")  -- Resize vbox screen
+   ((modMask .|. controlMask, xK_r), spawn "xrandr --output VGA-0 --auto")  -- Resize vbox screen
+ , ((modMask .|. controlMask, xK_s), spawn "scrot -s")
  , ((modMask .|. controlMask, xK_Down), shiftToNext)                        --Move around screens
  , ((modMask .|. controlMask, xK_Up), shiftToPrev)                          --Move around screens
  , ((modMask .|. controlMask, xK_Right), nextScreen)                        --Move around screens

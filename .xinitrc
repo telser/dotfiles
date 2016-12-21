@@ -18,24 +18,9 @@ then
   nitrogen --restore &                    # Set wallpaper
   gtmixer &
 fi
-if [ "$NAME" == "tails" ];
-then
-  tint2 -c tint2.conf &                   # Topbar and systray
-  conky -c .conkyLeftrc &                 # Status
-  conky -c .conkyRightrc &
-  clipit &                                # Clipboard manager
-  nitrogen --restore &                    # Set wallpaper
-  gtmixer &
-fi
-if ["$NAME" == "shadow"];
-then
-  wicd-gtk &                              # Wireless
-  conky -c .conkyLeftrc &
-  conky -c .conkyRightrc &
-fi
 
 ## Devel fbsd box
-if [ "$NAME" == "signas" ]; then
+if [ "$NAME" == "double2" ]; then
     conky -c ~/.conkyLeftrc &
     conky -c ~/.conkyRightrc &
     clipit &
@@ -69,7 +54,7 @@ xrdb -merge ~/.Xresources                # Set term font/color
 
 xmodmap ~/.Xmodmap                       # Rebind keys
 
-#urxvtcd -q -o -f &                        # Start terminal daemon
+urxvtcd -q -o -f &                        # Start terminal daemon
 
 xsetroot -cursor_name left_ptr
 xmonad
