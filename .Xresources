@@ -1,7 +1,7 @@
 ! urxvt settings
 URxvt.termName:          xterm-256color
-URxvt.background:        #303030
-URxvt.foreground:        #CCCCCC
+URxvt.background:        #1D1F21
+URxvt.foreground:        #C5C8C6
 URxvt.transparent:       false
 URxvt.cursorBlink:       false
 URxvt.scrollBar_right:   true
@@ -10,27 +10,27 @@ URxvt*skipBuiltinGlyphs: true
 
 ! *cursorColor:   #1F66FF
 
-!blue
-URxvt.color4:  #1F66FF
-URxvt.color12: #1F66FF
 !black
-!URxvt.color0:  #000000
-!URxvt.color8:  #2B2B2B
+URxvt.color0:  #282A2E
+URxvt.color8:  #373B41
 !red
-!URxvt.color1:  #A5372E
-!URxvt.color9:  #E06C5C
+URxvt.color1:  #A54242
+URxvt.color9:  #cc6666
 !green
-!URxvt.color2:  #4A663C
-!URxvt.color10: #7B996C
+URxvt.color2:  #8C9440
+URxvt.color10: #B5BD68
 !yellow
-!URxvt.color3:  #7C5618
-!URxvt.color11: #B38849
+URxvt.color3:  #DE935F
+URxvt.color11: #F0C674
+!blue
+URxvt.color4:  #5F819D
+URxvt.color12: #81A2BE
 !magenta
-!URxvt.color5:  #8E4948
-!URxvt.color13: #C67C78
+URxvt.color5:  #85678F
+URxvt.color13: #B294BB
 !cyan
-!URxvt.color6:  #6D5B42
-!URxvt.color14: #A28D73
+URxvt.color6:  #5E8D87
+URxvt.color14: #8ABEB7
 !white
-!URxvt.color7:  #8D8D8D
-!URxvt.color15: #C6C6C6
+URxvt.color7:  #707880
+URxvt.color15: #C5C8C6
