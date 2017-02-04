@@ -1,3 +1,4 @@
+#!/bin/sh
 NAME=$( uname "-n")
 
 #. /etc/X11/xinit/xinitrc.d/*
@@ -31,15 +32,18 @@ if [ "$NAME" == "double2" ]; then
     xset fp rehash
 fi
 
-if [ "$NAME" == "sigma" ]; then
+if [ "$NAME" == "zero-ubuntu" ]; then
     conky -c .conkyLeftrc &
     conky -c .conkyRightrc &
     clipit &
     nitrogen --restore &
-    tint2 -c tint2.conf &
-    xset fp+ /usr/local/share/fonts/urwfonts
-    xset fp+ /usr/local/share/fonts/Hack
-    xset fp rehash
+   # tint2 -c tint2.conf &
+    lxpanel &
+   # xset fp+ /usr/local/share/fonts/urwfonts
+    #xset fp+ /usr/local/share/fonts/Hack
+    #xset fp rehash
+    pactl set-default-sink "alsa_output.usb-GFEC_ASSP_DigiHug_USB_Audio-01.analog-stereo"
+    sh display.sh
 fi
 
 # Set the locale before launching urxvt and xmonad to prevent character funkiness
@@ -57,4 +61,3 @@ xmodmap ~/.Xmodmap                       # Rebind keys
 urxvtcd -q -o -f &                        # Start terminal daemon
 
 xsetroot -cursor_name left_ptr
-xmonad
