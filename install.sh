@@ -4,7 +4,10 @@ ln -s ~/dotfiles/.xinitrc ~/.xinitrc
 ln -s ~/dotfiles/.spacemacs ~/.spacemacs
 ln -s ~/dotfiles/.zshenv ~/.zshenv
 ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.vimrc ~/.vimrc
+ln -s ~/dotfiles/display.sh ~/display.sh
 ln -s ~/dotfiles/.Xmodmap ~/.Xmodmap
+ln -s ~/dotfiles/.Xresources ~/.Xresources
 ln -s ~/dotfiles/.xmonad ~/.xmonad
 ln -s ~/dotfiles/tint2.conf ~/tint2.conf
 ln -s ~/dotfiles/.conkyLeftrc ~/.conkyLeftrc
