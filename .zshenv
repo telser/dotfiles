@@ -102,9 +102,10 @@ if [[ "$HOST" == 'signas' || "$HOST" == 'sigma' ]]; then
 
 fi
 
-if [[ "$HOST" == 'double2' ]]; then
+if [[ "$HOST" == 'zero-ubuntu' ]]; then
   local_path;
   gpg_agent;
+  alias spotify='spotify --force-device-scale-factor=2'
 fi
 
 if [[ "$HOST" == 'chuck' ]]; then
