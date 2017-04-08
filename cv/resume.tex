@@ -87,11 +87,20 @@ finishing to take a break from academia.
 \employer{\llap{Manheim}}
 \dates{March 2016 -- Present}
 \begin{position}
+  Developer on a team of around a dozen people. Joined preexisting team with a
+  system architechure including applications using Ruby on Rails, Sinatra, and
+  MySQL. The team mission is to provide self-service facilities to car
+  dealerships who sell vehicles at Manheim auctions. I was given a leadership
+  role in creating a component using Elasticsearch and in the decision to use
+  Scala for the new work. I have also had a lead in championing
+  continuous learning by pushing for further engagement with the open source
+  community and a team book/'Papers We Love' club.
+
   Programming Languages used:
   Ruby, Scala, Typescript
 
   Technology highlights include:
-  Akka, Amazon Linux, Angular2, AWS, Elasticsearch, MySQL, Rails, RDS, Sinatra
+  Akka, Amazon Linux, Angular2, AWS, Elasticsearch, Git, MySQL, Ruby on Rails, SBT, Sinatra
 \end{position}
 
 \title{Senior Software Engineer}
@@ -106,7 +115,7 @@ finishing to take a break from academia.
   the Haskell system meant to replace it with compliance ensured from the outset.
 
   % other tech highlights
-  Technology highlights include: AWS, Amazon Linux, Git, Haskell, PostgreSQL,
+  Technology highlights include: Amazon Linux, AWS, Git, Haskell, PostgreSQL,
   Purescript, RDS, Servant
 \end{position}
 
@@ -122,14 +131,15 @@ finishing to take a break from academia.
   for greenfield development, new features, maintenance, testing, and deployment.
 
   % Primary dev
-  Primary development was of three systems that interacted with each other.
-  A public facing website  written in Erlang with traffic on the order of 50k
-  unique visitors per month. A visitor tracking system, for internal use written
-  in Clojure. As well as a listing management tool with an invitation only
-  interface, semi-public, written in Haskell. A variety of technologies were
-  chosen for what best fit the requirements of the component, but much of the
-  Clojure codebase was deprecated with gradual feature replacement by the other
-  systems. The small development team meant that I worked on all three systems.
+  Primary development was of a system with three main subsystems.
+  A public facing website written in Erlang with traffic on the order of 50k
+  unique visitors per month. A visitor preference and recommendation system,
+  for internal use, written in Clojure. As well as a listing management tool with
+  an invitation only interface, semi-public, written in Haskell. A variety of
+  technologies were chosen for what best fit the requirements of the component,
+  but much of the Clojure codebase was deprecated with gradual feature
+  replacement by the other systems. The small development team meant that I
+  worked on all three subsystems.
 
   %% Overall three
   %% main components of a distributed system were developed with the entire
@@ -229,23 +239,23 @@ finishing to take a break from academia.
 
 %% Don't delete old jobs, just hide them from output :)
 
-%% \title{Teaching Assistant}
-%% \employer{\llap{Southern Polytechnic State University}}
-%% \dates{May 2012 -- August 2012}
-%% \begin{position}
-%%  As the assistant for a course on data structures, I was responsible
-%%  for helping students, grading labs, creation of test code for labs,
-%%  and improvements to the structure and content of labs.
-%% \end{position}
+\title{Teaching Assistant}
+\employer{\llap{Southern Polytechnic State University}}
+\dates{May 2012 -- August 2012}
+\begin{position}
+ As the assistant for a course on data structures, I was responsible
+ for helping students, grading labs, creation of test code for labs,
+ and improvements to the structure and content of labs.
+\end{position}
 
-%% \title{Tutor}
-%% \employer{\llap{Southern Polytechnic State University}}
-%% \dates{August 2011 -- August 2012}
-%% \begin{position}
-%% I was a tutor for the School of Computing and Software Engineering
-%% covering introductory programming courses in Java, C++ and C\#, data
-%% structures, and algorithms.
-%% \end{position}
+\title{Tutor}
+\employer{\llap{Southern Polytechnic State University}}
+\dates{August 2011 -- August 2012}
+\begin{position}
+I was a tutor for the School of Computing and Software Engineering
+covering introductory programming courses in Java, C++ and C\#, data
+structures, and algorithms.
+\end{position}
 
 %
 \subsection{Voluntary}
@@ -256,8 +266,16 @@ finishing to take a break from academia.
 \begin{position}
 Open source work is a passion for me. Thus far I have contributed to a variety
 of projects, nearly all of which can be found on my
-\href{http://github.com/telser}{github}. Some highlights of this work include:
+\href{http://github.com/telser}{github}. Some highlights of this work
+include(sorted by most recent):
 \begin{description}
+\item[Elastic4s] \hfill \\
+  Elastic4s is a Scala DSL for using Elasticsearch in a typesafe way in Scala
+  programs. My contributions have mostly been bug fixes and community support.
+\item[Scapegoat] \hfill \\
+  Scapegoat is a static analysis tool for Scala. My accepted code contributions
+  have been to fix an inversion error where ``bad'' code passed and ``good''
+  code failed.
 \item[Purescript Libraries] \hfill \\
   \href{http://www.purescript.org/}{Purescript} is an
   open source pure functional compile to Javascript language. I have contributed
@@ -268,7 +286,7 @@ of projects, nearly all of which can be found on my
 \item[Clojure Libraries and Leiningen Plugins] \hfill \\
   During my time at Clickscape I wrote and released a few Clojure projects
   including a library for the \href{https://www.twilio.com/}{Twilio} api and
-  reporting plugins for the \href{http://leiningen.org/}{Leiningen} build tool.
+  a pair of reporting plugins for the \href{http://leiningen.org/}{Leiningen} build tool.
 \end{description}
 \end{position}
 %% \title{Maintainer}
@@ -307,7 +325,7 @@ of projects, nearly all of which can be found on my
 \subsection{Professional}
 
 I have strong interests in data science, functional programming,
-software engineering, programming languages, and BSD/Linux software development.
+software engineering, programming languages, and BSD software development.
 
 Programming Languages (most comfortable): Clojure, Haskell, Purescript, Scala
 
@@ -320,8 +338,10 @@ OCaml, OpenCL, Prolog, Rust
 
 Markup Languages: LaTeX, Markdown, Org-mode
 
-Operating systems: FreeBSD, Linux (various distributions), Mac OS X, OpenBSD and
-Solaris, with a personal preference for FreeBSD.
+Operating systems(Preferred): DragonFlyBSD, FreeBSD
+
+Operating sytems(comfortable using): illumos (various distributions),
+Linux (various distributions), Mac OS X, OpenBSD and Solaris
 
 Other technology tools I use and/or prefer include: Emacs, Git, Mosh, ZSH
 \subsection{Hobby}
@@ -330,8 +350,7 @@ Outside of work, I spend time with music in various
 capacities. My personal music usually can be categorized as electronic
 and experimental. Niche and hobby operating systems also have a certain appeal
 to me and I've used several such as AmigaOS, BeOS, Haiku, Plan 9, and QNX.
-Mathematics, specifically network theory and more generally applied graph
-theory, is another personal interest.
+Mathematics, specifically graph theory and data analytics, is another personal interest.
 
 \section{References}
 
