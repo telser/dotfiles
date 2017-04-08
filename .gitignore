@@ -4,7 +4,10 @@
 *.o
 *.errors
 *.retry
+*xmonad-x86_64-linux
 *xmonad-x86_64-freebsd
 .xmonad/TAGS
+.xmonad/.xmonad
+.xmonad/.xmonad-session-rc
 *#*
 cv/auto*

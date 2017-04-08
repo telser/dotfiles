@@ -106,6 +106,12 @@ if [[ "$HOST" == 'zero-ubuntu' ]]; then
   local_path;
   gpg_agent;
   alias spotify='spotify --force-device-scale-factor=2'
+  alias antoine='mosh antoine'
+  alias chuck='ssh chuck'
+  alias dev='mosh dev'
+  alias nack='mosh nack'
+  alias rabot='mosh rabot'
+  alias sally='mosh sally'
 fi
 
 if [[ "$HOST" == 'chuck' ]]; then
