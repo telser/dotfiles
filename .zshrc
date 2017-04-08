@@ -23,6 +23,8 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt autocd extendedglob
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Get rid of bell
 set bell-style none

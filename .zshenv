@@ -111,3 +111,7 @@ fi
 if [[ "$HOST" == 'chuck' ]]; then
     export PATH=/usr/pkg/bin:/usr/pkg/sbin:/usr/bin:/usr/sbin:$PATH
 fi
+
+if [[ "$HOST" == 'dev_jail' ]]; then
+    local_path;
+fi
