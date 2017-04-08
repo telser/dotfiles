@@ -43,7 +43,7 @@ if [ "$NAME" == "zero-ubuntu" ]; then
     #xset fp+ /usr/local/share/fonts/Hack
     #xset fp rehash
     pactl set-default-sink "alsa_output.usb-GFEC_ASSP_DigiHug_USB_Audio-01.analog-stereo"
-    sh display.sh
+#    sh display.sh
 fi
 
 # Set the locale before launching urxvt and xmonad to prevent character funkiness

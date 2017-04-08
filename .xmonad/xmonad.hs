@@ -67,7 +67,7 @@ myWorkSpaces :: [String]
 myWorkSpaces=["web","term","editor","im","t2","t3","mail","media","read", "vm", "ex"]
 
 myTerm :: String
-myTerm="urxvtc"
+myTerm="gnome-terminal"
 
 altMask :: KeyMask
 altMask = mod1Mask
