@@ -11,3 +11,4 @@
 .xmonad/.xmonad-session-rc
 *#*
 cv/auto*
+cv/*.log
