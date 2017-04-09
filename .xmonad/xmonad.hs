@@ -52,10 +52,12 @@ main = do
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
+    xmproc <- spawnPipe $ ("`which xmobar`" ++ (xmobarPick) ++ "~/.xmobarrc")
     return $  usrName name
-    xmonad $ ewmh defaultConfig
+    xmonad $ ewmh def
         { manageHook = myManageHook <+> manageDocks
         , layoutHook = myLayoutHook
+        , logHook = xmobarLog xmproc
         , modMask = mod4Mask                                                --Rebind Mod to the Super key
         , terminal = myTerm                                          --Use urxvt clients
         , workspaces =  myWorkSpaces                                        --Custom workspaces
@@ -120,7 +122,7 @@ myManageHook = (composeAll . concat $
 -}
 
 -- Union default and new key bindings
-myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys defaultConfig x)
+myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys def x)
 
 -- Add new and/or redefine key bindings
 newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
@@ -155,3 +157,26 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((0,0x1008ff11), spawn "amixer set Master 2dB-")
  ]
    else [ ]                                                                 --Otherwise nothing
+
+
+xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
+                       { ppOutput = hPutStrLn xmproc
+                       , ppTitle = xmobarColor "#1F66FF" "" . shorten 50
+                       }
+
+xmobarSt = xmbrWeath ++ xmbrNet ++ xmbrCpu ++ xmbrMem ++ xmbrSwp ++ xmbrDte ++ xmbrStdin
+
+xmobarPick =colorPosition ++ " -t \" %multicpu% | %memory% | %dynnetwork% | %battery% | %StdinReader%}{ %date%| %KPDK%\" " ++ xmobarSt ++ xmbrBat
+
+
+colorPosition = " -f xft:Hack:size=12:antialias=true -F gray"
+
+xmbrWeath = " -C '[ Run Weather \"KPDK\" [\"-template\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\",\"--normal\",\"green\",\"--high\",\"red\",\"--low\",\"lightblue\"] 18000 ]' "
+
+xmbrNet = "-C '[Run DynNetwork [\"-L\",\"0\",\"-H\",\"32\",\"--normal\" ,\"lightblue\",\"--high\",\"red\"] 10]' "
+xmbrCpu = "-C '[Run MultiCpu [\"-L\",\"3\",\"-H\",\"50\",\"--normal\",\"lightblue\" ,\"--high\",\"red\"] 10]' "
+xmbrMem = "-C '[Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10]' "
+xmbrSwp = "-C '[Run Swap [] 10]' "
+xmbrDte = "-C '[Run Date \"%a %b %_d %Y %H:%M:%S\" \"date\" 10]' "
+xmbrStdin = "-C '[Run StdinReader]' "
+xmbrBat = "-C '[Run BatteryP[\"BAT0\"][ \"energy_full\"] 10 ]' "
