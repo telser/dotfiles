@@ -107,7 +107,7 @@ if [[ "$HOST" == 'zero-ubuntu' ]]; then
   gpg_agent;
   alias spotify='spotify --force-device-scale-factor=2'
   alias antoine='mosh antoine'
-  alias chuck='ssh chuck'
+  alias chuck='mosh nack ssh chuck'
   alias dev='mosh dev'
   alias nack='mosh nack'
   alias rabot='mosh rabot'
