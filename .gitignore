@@ -10,5 +10,6 @@
 .xmonad/.xmonad
 .xmonad/.xmonad-session-rc
 *#*
+*.swp
 cv/auto*
 cv/*.log
