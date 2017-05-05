@@ -38,10 +38,11 @@ if [ "$NAME" == "zero-ubuntu" ]; then
     clipit &
     stalonetray &
     nitrogen --restore &
+    eval $(ssh-agent)
    # xset fp+ /usr/local/share/fonts/urwfonts
     #xset fp+ /usr/local/share/fonts/Hack
     #xset fp rehash
-    sh use_headphone_amp.sh
+#    sh use_headphone_amp.sh
 #    sh display.sh
 fi
 
