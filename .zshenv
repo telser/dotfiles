@@ -2,7 +2,7 @@ os_x () {
     # Use bsd-style ls to get colors
     alias ls='ls -hG'
 
-    # Prefer local bins -- homebrew makes use of this
+    # Prefer /usr/local bins -- homebrew makes use of this
     PATH=/usr/local/sbin:/usr/local/bin:$PATH
     export PATH
 
@@ -34,7 +34,7 @@ rbenv_settings() {
 }
 
 local_path() {
-    # Always prefer local installed bins
+    # Always prefer ~/.local installed bins
     PATH=$HOME/.local/bin:$PATH
     export PATH
 }
@@ -55,6 +55,10 @@ gpg_agent() {
   GPG_TTY=$(tty)
   export GPG_TTY
 }
+
+# Defaults..
+ZBG=124
+
 # Machine specific configurations...
 
 if [[ "$HOST" == 'zero' ]]; then
@@ -79,7 +83,7 @@ if [[ "$HOST" == 'zero' ]]; then
     fi
     GPG_TTY=$(tty)
     export GPG_TTY
-
+    ZBG=142
 else
     if [[ "$HOST" == 'telser-mbp' ]]; then
         os_x;
@@ -103,6 +107,7 @@ if [[ "$HOST" == 'signas' || "$HOST" == 'sigma' ]]; then
 fi
 
 if [[ "$HOST" == 'zero-ubuntu' ]]; then
+  ZBG=143
   local_path;
   gpg_agent;
   alias spotify='spotify --force-device-scale-factor=2'
@@ -114,10 +119,31 @@ if [[ "$HOST" == 'zero-ubuntu' ]]; then
   alias sally='mosh sally'
 fi
 
+if [[ "$HOST" == 'antione' ]]; then
+    ZBG=094
+fi
+
 if [[ "$HOST" == 'chuck' ]]; then
+    ZBG=020
     export PATH=/usr/pkg/bin:/usr/pkg/sbin:/usr/bin:/usr/sbin:$PATH
 fi
 
+if [[ "$HOST" == 'nack' ]]; then
+    ZBG=172
+fi
+
+if [[ "$HOST" == 'sally' ]]; then
+    ZBG=039
+fi
+
+if [[ "$HOST" == 'rabot' ]]; then
+    ZBG=206
+fi
+
 if [[ "$HOST" == 'dev_jail' ]]; then
+    ZBG=128
     local_path;
 fi
+
+# On all machines export the zsh theme color code..
+export ZBG
