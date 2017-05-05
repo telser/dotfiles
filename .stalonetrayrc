@@ -1,7 +1,8 @@
 decorations none
 transparent false
 dockapp_mode none
-geometry 5x1+4080
+#geometry 5x1+4080
+geometry 5x1
 max_geometry 5x1
 icon_size 76
 background "#000000"

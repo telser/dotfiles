@@ -57,6 +57,6 @@ xrdb -merge ~/.Xresources                # Set term font/color
 
 xmodmap ~/.Xmodmap                       # Rebind keys
 
-urxvtcd -q -o -f &                        # Start terminal daemon
+urxvtd -q -o -f &                        # Start terminal daemon
 
 xsetroot -cursor_name left_ptr

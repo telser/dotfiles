@@ -69,7 +69,7 @@ myWorkSpaces :: [String]
 myWorkSpaces=["web","term","editor","im","t2","t3","mail","media","read", "vm", "ex"]
 
 myTerm :: String
-myTerm="gnome-terminal"
+myTerm="urxvtc"
 
 altMask :: KeyMask
 altMask = mod1Mask
@@ -80,8 +80,8 @@ usrName (UserEntry x _ _ _ _ _ _) = x
 
 -- Layout
 myLayoutHook = avoidStruts
-          $ onWorkspace "web" (Mirror myGrid ||| Full)
-          $ onWorkspace "term" (Mirror myGrid ||| myGrid ||| Full)
+          $ onWorkspace "web" (Full ||| Mirror myGrid)
+          $ onWorkspace "term" (myGrid ||| Mirror myGrid ||| Full)
           $ onWorkspace "editor" (Mirror myGrid ||| myGrid ||| Full)
           $ onWorkspace "im" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ Mirror myGrid ||| tall)))
           $ (myGrid ||| Mirror myGrid ||| Full)
@@ -99,7 +99,6 @@ myManageHook = (composeAll . concat $
        [className =? x --> doF (W.shift "web") | x <- myWebShift]
      , [className =? x --> doF (W.shift "im") | x <- myImShift]
      , [className =? x --> doF (W.shift "media") | x <- myMediaShift]
-     , [className =? x --> doF (W.shift "doc") | x <- myDocShift]
      , [className =? x --> doF (W.shift "read") | x <- myReadShift]
      , [className =? x --> doF (W.shift "mail") | x <- myMailShift]
      , [className =? "VirtualBox"      --> doF (W.shift "vm")]
@@ -109,9 +108,8 @@ myManageHook = (composeAll . concat $
    where
    myWebShift = ["Firefox","Chromium","Iceweasel","luakit", "Conkeror"]
    myImShift = ["Pidgin","Skype"]
-   myDocShift = ["libreoffice-impress","libreoffice-writer","libreoffice-startcenter","Libreoffice","xpdf","Evince","Texmaker","Mirage","LibreOffice Calc"]
+   myReadShift = ["xpdf","Evince","Texmaker","Mirage","Calibre","calibre","evince","Evince"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
-   myReadShift = ["Calibre","calibre"]
    myMailShift = ["Thunderbird"]
    myFloats = ["Gimp","Inkscape","Skype"]
 
@@ -164,19 +162,12 @@ xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
                        , ppTitle = xmobarColor "#1F66FF" "" . shorten 50
                        }
 
-xmobarSt = xmbrWeath ++ xmbrNet ++ xmbrCpu ++ xmbrMem ++ xmbrSwp ++ xmbrDte ++ xmbrStdin
-
-xmobarPick =colorPosition ++ " -t \" %multicpu% | %memory% | %dynnetwork% | %battery% | %StdinReader%}{ %date%| %KPDK%\" " ++ xmobarSt ++ xmbrBat
-
+xmobarPick = colorPosition ++ " -t \" %cpu% | %memory% | %dynnetwork% | %battery% | %StdinReader%}{ %date% \" "  ++ xmbrStdin ++ xmbrCpu ++ xmbrMem ++ xmbrNet ++ xmbrBat
 
 colorPosition = " -f xft:Hack:size=12:antialias=true -F gray"
 
-xmbrWeath = " -C '[ Run Weather \"KPDK\" [\"-template\",\"<station>:<tempF>F\",\"-L\",\"35\",\"-H\",\"85\",\"--normal\",\"green\",\"--high\",\"red\",\"--low\",\"lightblue\"] 18000 ]' "
-
 xmbrNet = "-C '[Run DynNetwork [\"-L\",\"0\",\"-H\",\"32\",\"--normal\" ,\"lightblue\",\"--high\",\"red\"] 10]' "
-xmbrCpu = "-C '[Run MultiCpu [\"-L\",\"3\",\"-H\",\"50\",\"--normal\",\"lightblue\" ,\"--high\",\"red\"] 10]' "
+xmbrCpu = "-C '[Run Cpu [\"-L\",\"5\",\"-H\",\"50\",\"--normal\",\"lightblue\" ,\"--high\",\"red\"] 10]' "
 xmbrMem = "-C '[Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10]' "
-xmbrSwp = "-C '[Run Swap [] 10]' "
-xmbrDte = "-C '[Run Date \"%a %b %_d %Y %H:%M:%S\" \"date\" 10]' "
 xmbrStdin = "-C '[Run StdinReader]' "
 xmbrBat = "-C '[Run BatteryP[\"BAT0\"][ \"energy_full\"] 10 ]' "
