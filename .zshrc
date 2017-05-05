@@ -14,7 +14,7 @@ compinit
     antigen bundle Tarrasch/zsh-autoenv
 #    antigen bundle horosgrisa/zsh-gvm
     # Use muse theme
-    antigen theme muse
+    antigen theme $HOME/dotfiles/custom.zsh-theme
 
     # Finish up with antigen
     antigen apply
