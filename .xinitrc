@@ -39,6 +39,7 @@ if [ "$NAME" == "zero-ubuntu" ]; then
     stalonetray &
     nitrogen --restore &
     eval $(ssh-agent)
+    nm-applet &
    # xset fp+ /usr/local/share/fonts/urwfonts
     #xset fp+ /usr/local/share/fonts/Hack
     #xset fp rehash
