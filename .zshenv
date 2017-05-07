@@ -123,20 +123,20 @@ if [[ "$HOST" == 'antione' ]]; then
     ZBG=094
 fi
 
-if [[ "$HOST" == 'chuck' ]]; then
+if [[ "$HOST" == 'chuck.silencedpoet.com' ]]; then
     ZBG=020
     export PATH=/usr/pkg/bin:/usr/pkg/sbin:/usr/bin:/usr/sbin:$PATH
 fi
 
-if [[ "$HOST" == 'nack' ]]; then
+if [[ "$HOST" == 'nack.silencedpoet.com' ]]; then
     ZBG=172
 fi
 
-if [[ "$HOST" == 'sally' ]]; then
+if [[ "$HOST" == 'sally.silencedpoet.com' ]]; then
     ZBG=039
 fi
 
-if [[ "$HOST" == 'rabot' ]]; then
+if [[ "$HOST" == 'rabot.silencedpoet.com' ]]; then
     ZBG=206
 fi
 
