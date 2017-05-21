@@ -1,51 +1,31 @@
-import XMonad
-import XMonad.Core
+import Data.List
+import qualified Data.Map as M
+import Data.Ratio ((%))
 
-import qualified XMonad.StackSet as W
-
-import XMonad.Actions.CycleWS
-import XMonad.Actions.CycleRecentWS
-
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.DynamicHooks
-import XMonad.Hooks.ManageDocks
-
-import XMonad.Layout
-import XMonad.Layout.IM
-import XMonad.Layout.Reflect
-import XMonad.Layout.Tabbed       -- for simpleTabbed
-import XMonad.Layout.GridVariants         --for Grids
-import XMonad.Layout.PerWorkspace
-import XMonad.Layout.Named
-
-import XMonad.Util.Run
-import XMonad.Util.Replace
 import System.Posix.Unistd
 import System.Posix.User
 
-import Data.Ratio ((%))
-import Data.List
-
-import qualified Data.Map as M
--- ******* Old Imports line by line. Remove or add back in as necessary. *****
-
-import XMonad.ManageHook
-
---import XMonad.Actions.Promote
-
---import XMonad.Prompt
---import XMonad.Prompt.Man
---import XMonad.Prompt.Shell
---import XMonad.Hooks.UrgencyHook
-import XMonad.Layout.NoBorders
-import XMonad.Layout.ResizableTile
---import XMonad.Util.EZConfig
---import System.IO
---import Network.BSD
---import Graphics.X11.Xlib
-
-
+import XMonad
+import XMonad.Actions.CycleRecentWS
+import XMonad.Actions.CycleWS
+import XMonad.Core
+import XMonad.Hooks.DynamicHooks
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageDocks
+import XMonad.Layout
+import XMonad.Layout.GridVariants         --for Grids
+import XMonad.Layout.IM
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Named
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Reflect
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.Tabbed       -- for simpleTabbed
+import XMonad.ManageHook
+import qualified XMonad.StackSet as W
+import XMonad.Util.Run
+import XMonad.Util.Replace
 
 main = do
     myHost <- fmap nodeName getSystemID                                     --Get the hostname of the machine
@@ -66,7 +46,7 @@ main = do
 
 -- Setup workspaces using short names to save display room
 myWorkSpaces :: [String]
-myWorkSpaces=["web","term","editor","im","t2","t3","mail","media","read", "vm", "ex"]
+myWorkSpaces=["web","term","editor","t2","t3","mail","media","read","im","vm","ex"]
 
 myTerm :: String
 myTerm="urxvtc"
@@ -136,7 +116,7 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen)
                                                                             -- Add shortcuts for programs
  , ((modMask .|. shiftMask, xK_b), spawn "calibre")
- , ((modMask .|. shiftMask, xK_c), spawn "chrome")
+ , ((modMask .|. shiftMask, xK_c), spawn "chromium-browser")
  , ((modMask .|. shiftMask, xK_e), spawn "emacs")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
@@ -156,7 +136,6 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  ]
    else [ ]                                                                 --Otherwise nothing
 
-
 xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
                        { ppOutput = hPutStrLn xmproc
                        , ppTitle = xmobarColor "#1F66FF" "" . shorten 50
@@ -164,10 +143,20 @@ xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
 
 xmobarPick = colorPosition ++ " -t \" %cpu% | %memory% | %dynnetwork% | %battery% | %StdinReader%}{ %date% \" "  ++ xmbrStdin ++ xmbrCpu ++ xmbrMem ++ xmbrNet ++ xmbrBat
 
+colorPosition :: String
 colorPosition = " -f xft:Hack:size=12:antialias=true -F gray"
 
+xmbrNet :: String
 xmbrNet = "-C '[Run DynNetwork [\"-L\",\"0\",\"-H\",\"32\",\"--normal\" ,\"lightblue\",\"--high\",\"red\"] 10]' "
+
+xmbrCpu :: String
 xmbrCpu = "-C '[Run Cpu [\"-L\",\"5\",\"-H\",\"50\",\"--normal\",\"lightblue\" ,\"--high\",\"red\"] 10]' "
+
+xmbrMem :: String
 xmbrMem = "-C '[Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10]' "
+
+xmbrStdin :: String
 xmbrStdin = "-C '[Run StdinReader]' "
+
+xmbrBat :: String
 xmbrBat = "-C '[Run BatteryP[\"BAT0\"][ \"energy_full\"] 10 ]' "
