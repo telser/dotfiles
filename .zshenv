@@ -48,9 +48,9 @@ gpg_agent() {
   fi
 
   GPG_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
-  SSH_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
+#  SSH_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
   export GPG_AGENT_INFO
-  export SSH_AUTH_SOCK
+#  export SSH_AUTH_SOCK
 
   GPG_TTY=$(tty)
   export GPG_TTY
