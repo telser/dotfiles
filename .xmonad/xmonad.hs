@@ -26,6 +26,7 @@ import XMonad.ManageHook
 import qualified XMonad.StackSet as W
 import XMonad.Util.Run
 import XMonad.Util.Replace
+import XMonad.Actions.SwapWorkspaces
 
 main = do
     myHost <- fmap nodeName getSystemID                                     --Get the hostname of the machine
@@ -33,7 +34,7 @@ main = do
     uid <- getRealUserID
     name <- getUserEntryForID uid
     xmproc <- spawnPipe $ ("`which xmobar`" ++ (xmobarPick) ++ "~/.xmobarrc")
-    return $  usrName name
+    _ <- return $ usrName name
     xmonad $ ewmh def
         { manageHook = myManageHook <+> manageDocks
         , layoutHook = myLayoutHook
@@ -46,10 +47,10 @@ main = do
 
 -- Setup workspaces using short names to save display room
 myWorkSpaces :: [String]
-myWorkSpaces=["web","term","editor","t2","t3","mail","media","read","im","vm","ex"]
+myWorkSpaces = ["web","term","editor","work1","work2","mail","media","read","im","vm","ex"]
 
 myTerm :: String
-myTerm="urxvtc"
+myTerm = "xterm"
 
 altMask :: KeyMask
 altMask = mod1Mask
@@ -60,11 +61,11 @@ usrName (UserEntry x _ _ _ _ _ _) = x
 
 -- Layout
 myLayoutHook = avoidStruts
-          $ onWorkspace "web" (Full ||| Mirror myGrid)
+          $ onWorkspace "web" (Full ||| Mirror myGrid ||| tall)
           $ onWorkspace "term" (myGrid ||| Mirror myGrid ||| Full)
           $ onWorkspace "editor" (Mirror myGrid ||| myGrid ||| Full)
           $ onWorkspace "im" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ Mirror myGrid ||| tall)))
-          $ (myGrid ||| Mirror myGrid ||| Full)
+          $ (myGrid ||| Mirror myGrid ||| Full ||| tall)
           where
             tall   = Tall nmaster delta ratio
             nmaster = 1
@@ -86,11 +87,11 @@ myManageHook = (composeAll . concat $
      , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]     --Float Firefox Dialogs
    ])
    where
-   myWebShift = ["Firefox","Chromium","Iceweasel","luakit", "Conkeror"]
-   myImShift = ["Pidgin","Skype"]
+   myWebShift = ["Firefox","Chromium-browser","Iceweasel","luakit", "Conkeror"]
+   myImShift = ["Pidgin","Skype","Slack"]
    myReadShift = ["xpdf","Evince","Texmaker","Mirage","Calibre","calibre","evince","Evince"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
-   myMailShift = ["Thunderbird"]
+   myMailShift = ["Thunderbird","Evolution"]
    myFloats = ["Gimp","Inkscape","Skype"]
 
 {- Keybinding section
@@ -119,17 +120,19 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
  , ((modMask .|. shiftMask, xK_c), spawn "chromium-browser")
  , ((modMask .|. shiftMask, xK_e), spawn "emacs")
  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
+ , ((modMask .|. shiftMask, xK_l), spawn "slack")
+ , ((modMask .|. shiftMask, xK_m), spawn "evolution")
  , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
  , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
  , ((modMask .|. shiftMask, xK_s), spawn "spotify")
- , ((modMask .|. shiftMask, xK_t), spawn "thunderbird")
  , ((modMask .|. shiftMask, xK_v), spawn "VirtualBox")
+ , ((modMask, xK_0), windows $ W.greedyView $ myWorkSpaces!!9)
 -- , ((modMask .|. shiftMask, xK_z), spawn "zsnes")
  -- , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")
  ]
 
  ++
- if( hostname =="charmy")                                                   --if laptop hostname set specific keybindings
+ if( hostname == "charmy")                                                   --if laptop hostname set specific keybindings
    then [
    ((0, 0x1008ff13), spawn "amixer set Master 2dB+")
  , ((0,0x1008ff11), spawn "amixer set Master 2dB-")
@@ -141,13 +144,14 @@ xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
                        , ppTitle = xmobarColor "#1F66FF" "" . shorten 50
                        }
 
+xmobarPick :: String
 xmobarPick = colorPosition ++ " -t \" %cpu% | %memory% | %dynnetwork% | %battery% | %StdinReader%}{ %date% \" "  ++ xmbrStdin ++ xmbrCpu ++ xmbrMem ++ xmbrNet ++ xmbrBat
 
 colorPosition :: String
 colorPosition = " -f xft:Hack:size=12:antialias=true -F gray"
 
 xmbrNet :: String
-xmbrNet = "-C '[Run DynNetwork [\"-L\",\"0\",\"-H\",\"32\",\"--normal\" ,\"lightblue\",\"--high\",\"red\"] 10]' "
+xmbrNet = "-C '[Run DynNetwork [\"-L\",\"50\",\"-H\",\"20000\",\"-l\",\"lightblue\",\"-n\",\"green\",\"-h\",\"red\"] 10]' "
 
 xmbrCpu :: String
 xmbrCpu = "-C '[Run Cpu [\"-L\",\"5\",\"-H\",\"50\",\"--normal\",\"lightblue\" ,\"--high\",\"red\"] 10]' "
@@ -159,4 +163,4 @@ xmbrStdin :: String
 xmbrStdin = "-C '[Run StdinReader]' "
 
 xmbrBat :: String
-xmbrBat = "-C '[Run BatteryP[\"BAT0\"][ \"energy_full\"] 10 ]' "
+xmbrBat = "-C '[Run BatteryP[\"BAT0\"][\"-t\",\"<acstatus>\",\"-L\",\"10\",\"-H\",\"80\",\"-l\",\"red\",\"-h\",\"green\",\"--\",\"-L\",\"-15\",\"-H\",\"-5\",\"-l\",\"red\",\"-m\",\"blue\",\"-h\",\"green\",\"-O\",\"Charging <timeleft>\",\"-i\",\"Charged\",\"-o\",\"Batt: <left>% / <timeleft>\"] 10 ]' "
