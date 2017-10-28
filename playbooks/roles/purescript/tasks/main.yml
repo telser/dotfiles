@@ -1,7 +1,0 @@
----
-
-#- name: Install purescript from source using stack
-#  command: stack install purescript --resolver=nightly
-
-#- name: Install pulp from npm
-#  npm: name:pulp global=yes state=present

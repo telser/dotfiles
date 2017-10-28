@@ -1,5 +1,0 @@
----
-
-- name: Install utils
-  pkgng: name=sloccount,the_silver_searcher state=present
-  become: yes

@@ -1,3 +1,0 @@
-- name: Install cargo build tool
-  pkgng: name=cargo,rust state=present
-  become: yes
