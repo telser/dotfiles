@@ -1,5 +1,0 @@
----
-
-- name: Install golang
-  pkgng: name=go,go-dep state=present
-  become: yes

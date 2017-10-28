@@ -1,8 +1,0 @@
----
-
-- name: Install emacs os pkg
-  pkgng: name=emacs24 state=present
-  become: yes
-
-- name: Get spacemacs
-  git: repo=https://github.com/syl20bnr/spacemacs.git dest=/home/trevis/.emacs.d clone=yes
