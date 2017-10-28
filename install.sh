@@ -1,7 +1,8 @@
 #!/bin/sh
 
 ln -s ~/dotfiles/.xinitrc ~/.xinitrc
-ln -s ~/dotfiles/.spacemacs ~/.spacemacs
+ln -s ~/dotfiles/.emacs ~/.emacs
+ln -s ~/dotfiles/emacs ~/emacs
 ln -s ~/dotfiles/.zshenv ~/.zshenv
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
