@@ -90,7 +90,7 @@ myManageHook = (composeAll . concat $
    myWebShift = ["Firefox","Chromium-browser","Iceweasel","luakit", "Conkeror"]
    myImShift = ["Pidgin","Skype","Slack"]
    myReadShift = ["xpdf","Evince","Texmaker","Mirage","Calibre","calibre","evince","Evince"]
-   myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam"]
+   myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam","spotify"]
    myMailShift = ["Thunderbird","Evolution"]
    myFloats = ["Gimp","Inkscape","Skype"]
 
