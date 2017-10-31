@@ -64,7 +64,7 @@ myLayoutHook = avoidStruts
           $ onWorkspace "web" (Full ||| Mirror myGrid ||| tall)
           $ onWorkspace "term" (myGrid ||| Mirror myGrid ||| Full)
           $ onWorkspace "editor" (Mirror myGrid ||| myGrid ||| Full)
-          $ onWorkspace "im" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ Mirror myGrid ||| tall)))
+          $ onWorkspace "im" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ Mirror myGrid ||| tall ||| Full)))
           $ (myGrid ||| Mirror myGrid ||| Full ||| tall)
           where
             tall   = Tall nmaster delta ratio
