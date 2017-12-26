@@ -34,6 +34,7 @@
                     diminish ;; diminished modes do not show up on the modeline, SO USEFUL
                     darkokai-theme ;; my current favorite theme, like monokai but darker
                     dash
+                    fic-mode ;; show fixme, etc in special faces
                     flycheck ;; who doesn't want on the fly checking?
                     lusty-explorer yasnippet persp-mode
                                sr-speedbar
@@ -103,6 +104,7 @@
 (defun rainbow-hook ()
   "All the RAINBOWS."
   (rainbow-mode 1)
+  (fic-mode 1)
   (rainbow-delimiters-mode 1)
   (rainbow-identifiers-mode 1)
   (diminish 'rainbow-mode))
@@ -211,7 +213,7 @@
 (global-font-lock-mode 1)
 (setq font-lock-maximum-decoration 1)
 
-;; Add TODO, etc to recognized keywords for font lock
+;; Add TODO:  etc to recognized keywords for font lock
 (font-lock-add-keywords
    nil '(("\\<\\(\\(FIX\\(ME\\)?\\|TODO\\|OPTIMIZE\\|HACK\\|REFACTOR\\):\\)"
           1 font-lock-warning-face t)))
