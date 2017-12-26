@@ -62,3 +62,4 @@ xmodmap ~/.Xmodmap                       # Rebind keys
 #urxvtd -q -o -f &                        # Start terminal daemon
 
 xsetroot -cursor_name left_ptr
+xmonad

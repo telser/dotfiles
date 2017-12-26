@@ -43,6 +43,7 @@ main = do
         , terminal = myTerm                                          --Use urxvt clients
         , workspaces =  myWorkSpaces                                        --Custom workspaces
         , keys=myKeys myHost                                                --Keybindings
+        , startupHook = docksStartupHook
         }
 
 -- Setup workspaces using short names to save display room
@@ -92,7 +93,7 @@ myManageHook = (composeAll . concat $
    myReadShift = ["xpdf","Evince","Texmaker","Mirage","Calibre","calibre","evince","Evince"]
    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam","spotify"]
    myMailShift = ["Thunderbird","Evolution"]
-   myFloats = ["Gimp","Inkscape","Skype"]
+   myFloats = ["Gimp","Inkscape","Remmina","Skype","Slack"]
 
 {- Keybinding section
  - Union defaults

@@ -21,7 +21,8 @@
 *.color5:  #CD00CD
 *.color13: #FF00FF
 !cyan
-*.color6:  #00CDCD
+*.color6:
+#00CDCD
 *.color14: #00FFFF
 !white
 *.color7:  #FAEBD7
