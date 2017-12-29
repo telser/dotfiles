@@ -61,7 +61,7 @@ ZBG=124
 
 # Machine specific configurations...
 
-if [[ "$HOST" == 'zero' ]]; then
+if [[ "$HOST" == 'llzero' ]]; then
     # OS X machine
     os_x;
     rbenv_settings;
@@ -106,10 +106,12 @@ if [[ "$HOST" == 'signas' || "$HOST" == 'sigma' ]]; then
 
 fi
 
-if [[ "$HOST" == 'zero-ubuntu' ]]; then
+if [[ "$HOST" == 'zero-ubuntu' || "$HOST" == 'zero' ]]; then
   ZBG=143
   local_path;
   gpg_agent;
+  export GDK_SCALE=2;
+  export GDK_DPI_SCALE=0.5
   alias spotify='spotify --force-device-scale-factor=2'
   alias antoine='mosh antoine'
   alias chuck='mosh nack ssh chuck'

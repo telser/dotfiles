@@ -32,6 +32,21 @@ if [ "$NAME" == "double2" ]; then
     xset fp rehash
 fi
 
+if [ "$NAME" == "zero" ]; then
+    conky -c .conkyLeftrc &
+    conky -c .conkyRightrc &
+    clipit &
+    stalonetray &
+    eval $(ssh-agent)
+    xrandr --dpi 192
+    gtmixer &
+    xset fp+ /usr/local/share/fonts/urwfonts
+    xset fp+ /usr/local/share/fonts/Hack
+    xset fp rehash
+    xset m 11/4 0
+fi  
+
+
 if [ "$NAME" == "zero-ubuntu" ]; then
     conky -c .conkyLeftrc &
     conky -c .conkyRightrc &

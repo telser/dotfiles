@@ -1,4 +1,12 @@
 ! General settings
+Xft.dpi: 192
+Xft.autohint: false
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: true
+Xft.antialias: true
+Xft.rgba: rgb
+
 *.background:        #000000
 *.foreground:        #FFFFFF
 
@@ -21,8 +29,7 @@
 *.color5:  #CD00CD
 *.color13: #FF00FF
 !cyan
-*.color6:
-#00CDCD
+*.color6: #00CDCD
 *.color14: #00FFFF
 !white
 *.color7:  #FAEBD7

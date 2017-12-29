@@ -149,19 +149,19 @@ xmobarPick :: String
 xmobarPick = colorPosition ++ " -t \" %cpu% | %memory% | %dynnetwork% | %battery% | %StdinReader%}{ %date% \" "  ++ xmbrStdin ++ xmbrCpu ++ xmbrMem ++ xmbrNet ++ xmbrBat
 
 colorPosition :: String
-colorPosition = " -f xft:Hack:size=12:antialias=true -F gray"
+colorPosition = " -F gray"
 
 xmbrNet :: String
-xmbrNet = "-C '[Run DynNetwork [\"-L\",\"50\",\"-H\",\"20000\",\"-l\",\"lightblue\",\"-n\",\"green\",\"-h\",\"red\"] 10]' "
+xmbrNet = "-C '[Run DynNetwork [\"-L\",\"50\",\"-H\",\"20000\",\"-l\",\"lightblue\",\"-n\",\"green\",\"-h\",\"red\"] 20]' "
 
 xmbrCpu :: String
-xmbrCpu = "-C '[Run Cpu [\"-L\",\"5\",\"-H\",\"50\",\"--normal\",\"lightblue\" ,\"--high\",\"red\"] 10]' "
+xmbrCpu = "-C '[Run Cpu [\"-L\",\"5\",\"-H\",\"50\",\"--normal\",\"lightblue\" ,\"--high\",\"red\"] 20]' "
 
 xmbrMem :: String
-xmbrMem = "-C '[Run Memory [\"-t\",\"Mem: <usedratio>%\"] 10]' "
+xmbrMem = "-C '[Run Memory [\"-t\",\"Mem: <usedratio>%\"] 20]' "
 
 xmbrStdin :: String
 xmbrStdin = "-C '[Run StdinReader]' "
 
 xmbrBat :: String
-xmbrBat = "-C '[Run BatteryP[\"BAT0\"][\"-t\",\"<acstatus>\",\"-L\",\"10\",\"-H\",\"80\",\"-l\",\"red\",\"-h\",\"green\",\"--\",\"-L\",\"-15\",\"-H\",\"-5\",\"-l\",\"red\",\"-m\",\"blue\",\"-h\",\"green\",\"-O\",\"Charging <timeleft>\",\"-i\",\"Charged\",\"-o\",\"Batt: <left>% / <timeleft>\"] 10 ]' "
+xmbrBat = "-C '[Run BatteryP[\"BAT0\"][\"-t\",\"<acstatus>\",\"-L\",\"10\",\"-H\",\"80\",\"-l\",\"red\",\"-h\",\"green\",\"--\",\"-L\",\"-15\",\"-H\",\"-5\",\"-l\",\"red\",\"-m\",\"blue\",\"-h\",\"green\",\"-O\",\"Charging <timeleft>\",\"-i\",\"Charged\",\"-o\",\"Batt: <left>% / <timeleft>\"] 20 ]' "
