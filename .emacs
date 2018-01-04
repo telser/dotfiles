@@ -14,9 +14,7 @@
 
 (add-to-list 'load-path "~/emacs")
 (add-to-list 'load-path "~/emacs/proglang")
-;; (add-to-list 'load-path "~/.emacs.d/lisp")
 (load-library "base")
-(load-library "clojure-custom")
 (load-library "elisp-custom")
 (load-library "elm-custom")
 (load-library "erlang-custom")
@@ -27,7 +25,6 @@
 (load-library "purescript-custom")
 (load-library "python-custom")
 (load-library "ruby-custom")
-(load-library "rust-custom")
 (load-library "web-custom")
 
 (server-start)
