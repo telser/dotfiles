@@ -1,25 +1,6 @@
 #!/bin/sh
 NAME=$( uname "-n")
 
-#. /etc/X11/xinit/xinitrc.d/*
-
-#if [ -d /etc/X11/xinit/xinitrc.d ]; then
-#  for f in /etc/X11/xinit/xinitrc.d/*; do
-#    [ -x "$f" ] && . "$f"
-#  done
-#  unset f
-#fi
-
-if [ "$NAME" == "charmy" ];
-then
-  tint2 -c tint2.conf &                   # Topbar and systray
-  conky -c .conkyLeftrc &                 # Status
-  conky -c .conkyRightrc &
-  clipit &                                # Clipboard manager
-  nitrogen --restore &                    # Set wallpaper
-  gtmixer &
-fi
-
 ## Devel fbsd box
 if [ "$NAME" == "double2" ]; then
     conky -c ~/.conkyLeftrc &
@@ -40,14 +21,14 @@ if [ "$NAME" == "zero-ubuntu" ]; then
     nitrogen --restore &
     eval $(ssh-agent)
     nm-applet &
-   # xset fp+ /usr/local/share/fonts/urwfonts
-    #xset fp+ /usr/local/share/fonts/Hack
-    #xset fp rehash
+    blueman-applet &
+    pasystray &
+    rfkill block bluetooth
 #    sh use_headphone_amp.sh
 #    sh display.sh
 fi
 
-# Set the locale before launching urxvt and xmonad to prevent character funkiness
+# Set the locale before launching xmonad to prevent character funkiness
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -58,8 +39,6 @@ xset b off &                             # Turn off term bell
 xrdb -merge ~/.Xresources                # Set term font/color
 
 xmodmap ~/.Xmodmap                       # Rebind keys
-
-#urxvtd -q -o -f &                        # Start terminal daemon
 
 xsetroot -cursor_name left_ptr
 xmonad
