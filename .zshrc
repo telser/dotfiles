@@ -28,7 +28,6 @@ export LC_ALL=en_US.UTF-8
 
 # Get rid of bell
 set bell-style none
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 # # The following lines were added by compinstall
 
 # zstyle ':completion:*' completer _complete _ignored _approximate
