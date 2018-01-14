@@ -31,6 +31,11 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export MM_CHARSET=UTF-8
+    
+conky -c .conkyLeftrc &
+conky -c .conkyRightrc &
+clipit &
+stalonetray &
 
 xset b off &                             # Turn off term bell
 
@@ -39,4 +44,4 @@ xrdb -merge ~/.Xresources                # Set term font/color
 xmodmap ~/.Xmodmap                       # Rebind keys
 
 xsetroot -cursor_name left_ptr
-xmonad
+exec xmonad
