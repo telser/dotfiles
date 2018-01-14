@@ -21,6 +21,7 @@
 (load-library "go-custom")
 (load-library "haskell-custom")
 (load-library "js-custom")
+(load-library "lua-custom")
 (load-library "org-custom")
 (load-library "purescript-custom")
 (load-library "python-custom")
