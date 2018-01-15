@@ -5,11 +5,19 @@ conky.config = {
   update_interval = 1
 }
 
+cpuIcon='/home/trevis/dzen/icons/cpu.xpm'
+cpuDisplay='^i(' .. cpuIcon ..')${cpu cpu0}% '
+
+memIcon='/home/trevis/dzen/icons/mem.xbm'
+memDisplay='^i(' .. memIcon .. ')${memperc}%'
+
+updatesIcon='/home/trevis/dzen/icons/debian.xpm'
+updatesDisplay='^i(' .. updatesIcon .. ')${exec ~/dzen/scripts/apt_updates_num.sh}'
+updatesClick='  ^ca(1,~/dzen/scripts/apt_updates_popup.sh)' .. updatesDisplay .. '^ca() '
+
 conky.text = [[\
-^i(~/dzen/icons/cpu.xpm)${cpu cpu0}% ^i(~/dzen/icons/mem.xbm)${memperc}%\
-^ca(1,~/dzen/scripts/batt_popup.sh) ^fg(\#556c85)^i(~/dzen/icons/mem.xbm) ^fg(\#828a8c)${battery_percent}%   ^ca()\
-up:${upspeed}\
-down:${downspeed}\
-${exec ~/dzen/scripts/show_current_desktop.sh} \
-^ca(1,~/dzen/scripts/cal_popup.sh) ${time %T} ^ca()\
+]] .. cpuDisplay .. memDisplay .. updatesClick .. [[\
+^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh) ^fg(\#556c85)^i(/home/trevis/dzen/icons/batt.xbm) ^fg()${battery_percent}%   ^ca()\
+${exec ~/dotfiles/dzen/scripts/show_current_desktop.sh} \
+^ca(1,~/dotfiles/dzen/scripts/cal_popup.sh) ${time %T} ^ca()\
 ]]                                                                                    
