@@ -1,86 +1,83 @@
-conky.config = {
--- ~/.conkyrc
+# ~/.conkyrc
+ #
+ #
+ #
+
+ # # Use double buffering (eliminates flickering)
+double_buffer yes
+
+# Boolean value, if true, Conky will be forked to background when started. 
+background yes
+
+# Subtract (file system) buffers from used memory
+no_buffers yes
+
+# Use Xft (anti-aliased font and stuff) 
+use_xft yes
+xftfont Hack:size=10
+xftalpha 0.8
+
+# Update interval in seconds
+update_interval 1.0
+ 
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+ total_run_times 0
+
+# Should Conky use it's own window?
+own_window yes
+
+# Needed for transparency
+own_window_argb_visual no
+
+# Makes conky's window transparent
+own_window_transparent yes
+
+# If own window set type
+own_window_type dock
+
+# If own window set hints
+own_window_hints below,skip_taskbar,skip_pager
+
+# If own window set classname
+own_window_class conky
+
+# Minimum size of the window
+minimum_size 200 5
+
+# Maximum width of the window
+maximum_width 600
+
+#text_buffer_size 2000
+
+# Where to place the conky "window"
+alignment bottom_left
+
+# On dual screen setup conky draws the window on the second screen when using align right
+# the following values adjust the conky window to be drawn on first screen (depending on 
+# resolution of the 2nd screen ofcourse)
+gap_x 20
+gap_y 60
+
+draw_shades no
+draw_outline no
+draw_borders no
+
+# Case for all the characters in conky
+uppercase no
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+# While using a mono font prevents text from moving around
+use_spacer left
+
+color1 73FF00
+color2 cccccc
+color3 777777
 
 
-
-
--- # Use double buffering (eliminates flickering)
-	double_buffer = true,
-
--- Boolean value, if true, Conky will be forked to background when started. 
-	background = true,
-
--- Subtract (file system) buffers from used memory
-	no_buffers = true,
-
--- Use Xft (anti-aliased font and stuff) 
-	use_xft = true,
-	font = 'Hack:size=10',
-	xftalpha = 0.8,
-
--- Update interval in seconds
-	update_interval = 1.0,
-
--- This is the number of times Conky will update before quitting.
--- Set to zero to run forever.
-	total_run_times = 0,
-
--- Should Conky use it's own window?
-	own_window = true,
-
--- Needed for transparency
-	own_window_argb_visual = false,
-
--- Makes conky's window transparent
-	own_window_transparent = true,
-
--- If own window set type
-	own_window_type = 'dock',
-
--- If own window set hints
-	own_window_hints = 'below,skip_taskbar,skip_pager',
-
--- If own window set classname
-	own_window_class = 'conky',
-
--- Minimum size of the window
-	minimum_width = 200, minimum_height = 5,
-
--- Maximum width of the window
-	maximum_width = 600,
-
---text_buffer_size 2000
-
--- Where to place the conky "window"
-	alignment = 'bottom_left',
-
--- On dual screen setup conky draws the window on the second screen when using align right
--- the following values adjust the conky window to be drawn on first screen (depending on 
--- resolution of the 2nd screen ofcourse)
-	gap_x = 20,
-	gap_y = 60,
-
-	draw_shades = false,
-	draw_outline = false,
-	draw_borders = false,
-
--- Case for all the characters in conky
-	uppercase = false,
-
-	cpu_avg_samples = 2,
-	net_avg_samples = 2,
-
--- While using a mono font prevents text from moving around
-	use_spacer = 'left',
-
-	color1 = '#73FF00',
-	color2 = '#cccccc',
-	color3 = '#777777',
-
-
-};
-
-conky.text = [[
+TEXT
 ${color}host :${color white} ${nodename} 
 ${color}os   :${color white} ${sysname} ${kernel}
 ${color}uptime:${color white} $uptime 
@@ -131,4 +128,3 @@ ${color}tmp: ${color white}${fs_free /tmp} ${fs_bar /tmp}
 #$endif
 
 
-]];
