@@ -22,8 +22,8 @@ if [ "$NAME" == "zero-ubuntu" ]; then
     eval $(ssh-agent)
     nm-applet &
     blueman-applet &
-    pasystray &
-    rfkill block bluetooth
+    rfkill block bluetooth &
+    sh ~/dzen/scripts/start_dzen.sh &
 #    sh use_headphone_amp.sh
 #    sh display.sh
 fi

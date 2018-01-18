@@ -21,8 +21,7 @@
 *.color5:  #CD00CD
 *.color13: #FF00FF
 !cyan
-*.color6:
-#00CDCD
+*.color6:  #00CDCD
 *.color14: #00FFFF
 !white
 *.color7:  #FAEBD7
@@ -38,9 +37,9 @@ XTerm.*.saveLines: 10000
 XTerm.*.scrollBar: true
 XTerm.*.scrollbar.width: 8
 
-XTerm.vt100translations: #override \n\
-   Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-   Ctrl Meta <Key>V: insert-selection(CLIPBOARD)
+!XTerm.vt100translations: #override \n\
+!   Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+!   Ctrl Meta <Key>V: insert-selection(CLIPBOARD)
 
 ! urxvt settings
 URxvt.termName:          xterm-256color

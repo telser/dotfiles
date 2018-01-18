@@ -17,7 +17,6 @@ updatesClick='  ^ca(1,~/dzen/scripts/apt_updates_popup.sh)' .. updatesDisplay ..
 
 conky.text = [[\
 ]] .. cpuDisplay .. memDisplay .. updatesClick .. [[\
-^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh) ^fg(\#556c85)^i(/home/trevis/dzen/icons/batt.xbm) ^fg()${battery_percent}%   ^ca()\
-${exec ~/dotfiles/dzen/scripts/show_current_desktop.sh} \
-^ca(1,~/dotfiles/dzen/scripts/cal_popup.sh) ${time %T} ^ca()\
-]]                                                                                    
+^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh) ^fg(\#556c85)^i(/home/trevis/dzen/icons/batt.xbm) ^fg()${battery_percent}%  ^ca()\
+^ca(1,~/dotfiles/dzen/scripts/cal_popup.sh) ${time %a %d %b %T} ^ca()\
+]]
