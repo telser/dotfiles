@@ -5,6 +5,7 @@ import Data.Ratio ((%))
 import System.Posix.Unistd
 import System.Posix.User
 
+import Graphics.X11.ExtraTypes.XF86
 import XMonad
 import XMonad.Actions.CycleRecentWS
 import XMonad.Actions.CycleWS
@@ -24,6 +25,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed       -- for simpleTabbed
 import XMonad.ManageHook
 import qualified XMonad.StackSet as W
+import XMonad.Util.EZConfig
 import XMonad.Util.Run
 import XMonad.Util.Replace
 import XMonad.Actions.SwapWorkspaces
@@ -33,12 +35,14 @@ main = do
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
-    xmproc <- spawnPipe $ ("`which xmobar`" ++ (xmobarPick) ++ "~/.xmobarrc")
+    leftBar <- spawnPipe "dzen2 -x '380' -h '77' -w '1030' -ta 'l' "
+    --xmproc <- spawnPipe $ ("`which xmobar`" ++ (xmobarPick) ++ "~/.xmobarrc")
     _ <- return $ usrName name
     xmonad $ ewmh def
         { manageHook = myManageHook <+> manageDocks
         , layoutHook = myLayoutHook
-        , logHook = xmobarLog xmproc
+        , logHook = dzenLog leftBar
+--        , logHook = xmobarLog xmproc
         , modMask = mod4Mask                                                --Rebind Mod to the Super key
         , terminal = myTerm                                          --Use urxvt clients
         , workspaces =  myWorkSpaces                                        --Custom workspaces
@@ -138,7 +142,19 @@ newKeys hostname conf@(XConfig {XMonad.modMask = modMask}) = [
    ((0, 0x1008ff13), spawn "amixer set Master 2dB+")
  , ((0,0x1008ff11), spawn "amixer set Master 2dB-")
  ]
-   else [ ]                                                                 --Otherwise nothing
+   else [((0,xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
+        ,((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
+        ]                                                                 --Otherwise nothing
+
+dzenLog out = dynamicLogWithPP (defaultPP
+  { ppCurrent   = dzenColor "#FF8800" "#000000"
+  , ppVisible   = dzenColor "#BABABA" "#000000" . pad
+  , ppHidden    = dzenColor "#777777" "#000000"
+  , ppHiddenNoWindows = dzenColor "#333333" "#000000"
+  , ppWsSep   = " "
+  , ppOrder =  \(ws:_:_:_) -> [ws]
+  , ppOutput  =   hPutStrLn out
+  } )
 
 xmobarLog xmproc = dynamicLogWithPP $ xmobarPP
                        { ppOutput = hPutStrLn xmproc
