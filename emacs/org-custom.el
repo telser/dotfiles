@@ -1,9 +1,8 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require-packages '(calfw calfw-ical calfw-org ivy-todo org org-ac org-cliplink
-                          org-caldav org-ref org-review
-                          org-vcard org-wc toc-org))
+(require-packages '(calfw calfw-ical calfw-org ivy-todo org org-ac
+                    org-cliplink  org-ref org-review  org-vcard org-wc toc-org))
 (require 'org)
 (define-key global-map "\C-H-a l" 'org-store-link)
 (define-key global-map "\C-H-a a" 'org-agenda)
