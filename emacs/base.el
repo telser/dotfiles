@@ -83,9 +83,8 @@
 ;; show line numbers on the left but not in the modeline(hide columns from there too)
 (global-hl-line-mode 1)
 (global-linum-mode 1)
-(column-number-mode -1)
+(column-number-mode 1)
 (line-number-mode -1)
-(cua-selection-mode nil)
 (save-place-mode 1)
 (persp-mode 1)
 ;; C-c left, C-c right to undo/redo window changes
