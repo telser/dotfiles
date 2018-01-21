@@ -4,7 +4,6 @@ NAME=$( uname "-n")
 ## Devel fbsd box
 if [ "$NAME" == "double2" ]; then
     conky -c ~/.conkyLeftrc &
-    conky -c ~/.conkyRightrc &
     clipit &
     nitrogen --restore &
     tint2 -c ~/tint2.conf &                   # Topbar and systray
@@ -15,7 +14,6 @@ fi
 
 if [ "$NAME" == "zero-ubuntu" ]; then
     conky -c .conkyLeftrc &
-    conky -c .conkyRightrc &
     clipit &
     stalonetray &
     nitrogen --restore &
