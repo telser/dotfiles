@@ -1,6 +1,4 @@
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
-autoload -Uz compinit
-compinit
 # Antigen loading:
 
     source $HOME/dotfiles/antigen/antigen.zsh
@@ -12,7 +10,6 @@ compinit
     antigen bundle command-not-found
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle Tarrasch/zsh-autoenv
-#    antigen bundle horosgrisa/zsh-gvm
     # Use muse theme
     antigen theme $HOME/dotfiles custom.zsh-theme
 
@@ -28,8 +25,13 @@ export LC_ALL=en_US.UTF-8
 
 # Get rid of bell
 set bell-style none
-# # The following lines were added by compinstall
 
-# zstyle ':completion:*' completer _complete _ignored _approximate
-# zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
-# zstyle :compinstall filename '/home/telser/.zsh_compinit'
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' max-errors 4 numeric
+zstyle :compinstall filename '/home/trevis/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
