@@ -1,11 +1,14 @@
 #!/bin/sh
-XPOS=3540
-WIDTH="350"
-YPOS="16"
+
+HOST=`hostname`
+if [ "$HOST" = 'zero-void' ] ; then
+  . $(dirname $0)/../host-settings/zero.sh
+fi
+XPOS=3340
 LINES="2"
 
 battime=$(acpi -b | sed -n "1p" | awk -F " " '{print $5}')
-batperc=$(acpi -b | sed -n "1p" | awk -F " " '{print $4}' | head -c3)
 batstatus=$(acpi -b | cut -d',' -f1 | awk -F " " '{print $3}')
 
-(echo " Battery"; echo " ^fg()$batstatus"; echo " $battime ^fg()left"; sleep 5) | dzen2 -w $WIDTH -x $XPOS -y $YPOS -l $LINES -e 'onstart=uncollapse,hide;button1=exit;button3=exit'
+POPUP_DZEN="dzen2 -w $BATT_W -x $XPOS -y $POPUP_Y -l $LINES -e $POPUP_EVENT -fn $FONT"
+(echo " "; echo " ^fg()$batstatus"; echo " $battime ^fg()left"; sleep 5) | $POPUP_DZEN
