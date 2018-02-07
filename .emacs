@@ -9,12 +9,17 @@
 ;;                (shell-command-to-string "source $HOME/.zshrc && printf $PATH")))
 
 ;;; Code:
-
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives
+             '("emacs-pe" . "https://emacs-pe.github.io/packages/"))
 (package-initialize)
+(package-refresh-contents)
 
 (add-to-list 'load-path "~/emacs")
-(add-to-list 'load-path "~/emacs/proglang")
 (load-library "base")
+(add-to-list 'load-path "~/emacs/proglang")
 (load-library "elisp-custom")
 (load-library "elm-custom")
 (load-library "erlang-custom")
@@ -28,7 +33,8 @@
 (load-library "ruby-custom")
 (load-library "web-custom")
 
-(server-start)
+(package-initialize)
+;(server-start)
 (provide '.emacs)
 ;;; .emacs ends here
 (custom-set-variables
