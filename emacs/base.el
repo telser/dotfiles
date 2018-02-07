@@ -8,11 +8,6 @@
 ;;; Code:
 
 ;;;; ELPA Config
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives
-             '("emacs-pe" . "https://emacs-pe.github.io/packages/"))
 (package-initialize)
 
 (defun require-package (package)
@@ -41,7 +36,7 @@
                                ))
 
 ;; TODO: investigate using these packages more
-(require-packages '(helpful icicles))
+(require-packages '(helpful))
 
 ;; Use emacs for everything.. TODO: try these out:
 (require-packages '(slack znc))
