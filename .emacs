@@ -20,6 +20,7 @@
 (add-to-list 'load-path "~/emacs")
 (load-library "base")
 (add-to-list 'load-path "~/emacs/proglang")
+(load-library "c-custom")
 (load-library "elisp-custom")
 (load-library "elm-custom")
 (load-library "erlang-custom")
