@@ -7,6 +7,9 @@
 
 ;;; Code:
 
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
+
 ;;;; ELPA Config
 (package-initialize)
 
@@ -32,8 +35,8 @@
                     fic-mode ;; show fixme, etc in special faces
                     flycheck ;; who doesn't want on the fly checking?
                     lusty-explorer yasnippet persp-mode
-                               sr-speedbar
-                               ))
+                    sr-speedbar
+                    ))
 
 ;; TODO: investigate using these packages more
 (require-packages '(helpful))
@@ -73,7 +76,7 @@
 (menu-bar-mode -1)
 ;; no need for toolbar, give back that vertical space
 (tool-bar-mode -1)
-(desktop-save-mode 1)
+(desktop-save-mode -1)
 (global-flycheck-mode 1)
 ;; show line numbers on the left but not in the modeline(hide columns from there too)
 (global-hl-line-mode 1)
