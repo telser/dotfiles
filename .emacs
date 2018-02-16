@@ -33,6 +33,7 @@
 (load-library "python-custom")
 (load-library "ruby-custom")
 (load-library "web-custom")
+(load-library "dockerfile-custom")
 
 (package-initialize)
 ;(server-start)
@@ -56,3 +57,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'upcase-region 'disabled nil)
