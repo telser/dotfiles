@@ -65,5 +65,12 @@ if [[ "$HOST" == 'dev_jail' ]]; then
     local_path;
 fi
 
+if [[ "$HOST" == 'work' ]]; then
+    ZBG=120
+    local_path;
+fi
+
 # On all machines export the zsh theme color code..
 export ZBG
+
+export PATH=/home/trevis/node_modules/.bin:$PATH
