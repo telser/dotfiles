@@ -108,7 +108,7 @@ myLayoutHook =
     ratio = 1/2
     delta = 5/100
     defaultRatio = 1/2
-    myGrid = named "g" (TallGrid 2 2 (1/2)  (1/2) (2/100))
+    myGrid = named "g" (TallGrid 2 2 (1/2) (1/2) (2/100))
 
 -- Move some programs to certain workspaces and float some too
 myManageHook :: Query (Endo (W.StackSet String (Layout Window) Window ScreenId ScreenDetail))

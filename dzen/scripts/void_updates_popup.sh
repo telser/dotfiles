@@ -4,7 +4,6 @@ HOST=`hostname`
 if [ "$HOST" = 'zero-void' ] ; then
   . $(dirname $0)/../host-settings/zero.sh
 fi
-
 XPOS="3240"
 LINES=`expr 1 + ${VOID_NUM}`
 
