@@ -1,20 +1,18 @@
 #!/bin/sh
 
+HOST=`hostname`
+if [ "$HOST" = 'zero-void' ] ; then
+  . $(dirname $0)/../host-settings/zero.sh
+fi
 XPOS="3240"
-WIDTH="600"
-YPOS="19"
 
-DZEN_EVENT='onstart=uncollapse,hide;button1=exit;button3=exit'
-FONT='xft:Hack:size=12:antialias=true'
-
-PKG=$(cat /tmp/pkgsrc_updates.txt)
-NUM=$(cat /tmp/pkgsrc_updates.txt | wc -l)
-LINES=`expr 1 + $NUM`
+LINES=`expr 1 + ${PKGSRC_NUM}`
 
 if [ $LINES -gt 1 ] ; then
-  TXT="^fg()Updates available:\n $PKG"
+  TXT="^fg()Updates available:\n$($PKGSRC_PKG)"
 else
   TXT="Nothing to update right now"
 fi
 
-(echo "??"; echo $TXT; sleep 15) | dzen2 -w $WIDTH -x $XPOS -y $YPOS -l $LINES -e $DZEN_EVENT -fn $FONT
+POPUP_DZEN="dzen2 -w $POPUP_W -x $XPOS -y $POPUP_Y -l $LINES -e $POPUP_EVENT -fn $FONT"
+(echo "??"; echo "$TXT"; sleep 15) | $POPUP_DZEN

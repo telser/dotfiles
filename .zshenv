@@ -21,14 +21,23 @@ gpg_agent() {
   export GPG_TTY
 }
 
+pkgsrc_path() {
+  # make sure that pkgsrc dirs /usr/pkg/{bin,sbin} are on PATH
+  PATH=$PATH:/usr/pkg/sbin:/usr/pkg/bin
+  export PATH
+}
+
 # Defaults..
 ZBG=124
 
 # Machine specific configurations...
 
-if [[ "$HOST" == 'zero-ubuntu' ]]; then
-  ZBG=143
+if [[ "$HOST" == 'zero-void' ]]; then
+  ZBG=034
   local_path;
+  # cabal path, prefer it over even .local from stack..
+  PATH=$HOME/.cabal/bin:$PATH
+  pkgsrc_path;
   gpg_agent;
   alias spotify='spotify --force-device-scale-factor=2'
   alias antoine='mosh antoine'
@@ -37,6 +46,10 @@ if [[ "$HOST" == 'zero-ubuntu' ]]; then
   alias nack='mosh nack'
   alias rabot='mosh rabot'
   alias sally='mosh sally'
+  export GDK_SCALE=2
+  alias vboxmanage=VBoxManage
+  alias slack='~/progs/slack/usr/bin/slack'
+  alias robo3t='~/progs/robo3t-1.1.1-linux-x86_64-c93c6b0/bin/robo3t'
 fi
 
 if [[ "$HOST" == 'antione' ]]; then
@@ -74,3 +87,20 @@ fi
 export ZBG
 
 export PATH=/home/trevis/node_modules/.bin:$PATH
+alias work-vm-up='vboxmanage startvm debian --type headless'
+SCHMODS_DIR='cd ~/work/schmods;'
+COMP_UP='docker-compose up -d;'
+ZSHI='/usr/bin/zsh -i'
+API='./tasks/attach api;'
+APP='./tasks/attach app;'
+API_SESS="$SCHMODS_DIR $COMP_UP $API $ZSHI"
+APP_SESS="$SCHMODS_DIR sleep 20; $APP $ZSHI"
+SCHMODS_CMD="tmux new-session -d \"$API_SESS\" \; split-window \"$APP_SESS\" \; attach"
+TMUX_CMD="tmux new-session -d \"$ZSHI\" \; split-window \"$ZSHI\" \; attach"
+
+alias work="ssh -t -p 2222 trevis@localhost"
+alias work-tmux="ssh -t -p 2222 trevis@localhost '$TMUX_CMD'"
+alias work-emacs="ssh -t -p 2222 trevis@localhost '$SCHMODS_DIR emacs; $ZSHI'"
+alias work-emacs-term="nohup xterm -e zsh -i -c 'work-emacs; zsh'"
+alias work-up='work-vm-up; sleep 120; work-tmux'
+alias apu2-screen="sudo screen /dev/ttyUSB0 115200"

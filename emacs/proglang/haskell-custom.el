@@ -3,7 +3,7 @@
 ;;; Code:
 
 (require-packages '(ac-haskell-process flycheck-haskell flycheck-stack company-ghci hasky-stack hindent
-                                       hamlet-mode intero stack-mode))
+                                     hlint-refactor intero stack-mode))
 
 (add-to-list 'auto-mode-alist (cons "\\.hs\\'" 'haskell-mode))
 (add-to-list 'auto-mode-alist (cons "\\.cabal\\'" 'haskell-cabal-mode))
@@ -71,6 +71,8 @@
 ;; ;(add-hook 'haskell-interactive-mode-hook 'structured-haskell-repl-mode)
 ;; (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
 ;; (add-hook 'w3m-display-hook 'w3m-haddock-display)
+(add-hook 'haskell-mode-hook 'hlint-refactor-mode)
+
 
 ;;;; Keybindings
 

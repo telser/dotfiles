@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 NAME=$( uname "-n")
 
 ## Devel fbsd box
@@ -12,18 +12,19 @@ if [ "$NAME" == "double2" ]; then
     xset fp rehash
 fi
 
-if [ "$NAME" == "zero-ubuntu" ]; then
+if [ "$NAME" == "zero-void" ]; then
+    xrandr --dpi 192
     conky -c .conkyLeftrc &
-    clipit &
     stalonetray &
+    clipit &
     nitrogen --restore &
     eval $(ssh-agent)
-    nm-applet &
-    blueman-applet &
-    rfkill block bluetooth &
+#    nm-applet &
+    rfkill block bluetooth
     sh ~/dzen/scripts/start_dzen.sh &
 #    sh use_headphone_amp.sh
 #    sh display.sh
+    export $(dbus-launch)
 fi
 
 # Set the locale before launching xmonad to prevent character funkiness
@@ -39,4 +40,4 @@ xrdb -merge ~/.Xresources                # Set term font/color
 xmodmap ~/.Xmodmap                       # Rebind keys
 
 xsetroot -cursor_name left_ptr
-xmonad
+exec ~/.cabal/bin/xmonad
