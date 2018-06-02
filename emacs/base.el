@@ -59,6 +59,9 @@
 
 (setq save-interprogram-paste-before-kill t)
 
+;; org-mode stuffu
+(define-key global-map (kbd "H-RET")  'org-meta-return)
+
 ;;; aliases
 
 ;; stop making me type
