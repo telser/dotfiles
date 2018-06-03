@@ -4,8 +4,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-packages '(ruby-mode company-inf-ruby robe rspec-mode rubocop ruby-tools yari))
-
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))

@@ -4,9 +4,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-packages '(go-mode go-autocomplete go-errcheck go-gopath go-guru
-                            go-projectile golint gotest))
-
 (require 'go-mode)
 
 (defun go-mode-seutp ()

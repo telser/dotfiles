@@ -7,9 +7,6 @@
 
 ;;; Code:
 
-(require-packages '(python-mode anaconda-mode company-jedi elpy jedi pylint
-                                pytest pycoverage))
-
 ;; Python main editing mode key bindings.
 (defun python-hook ()
   "Custom python-mode hook."
