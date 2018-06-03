@@ -1,14 +1,14 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require-packages '(calfw calfw-ical calfw-org ivy-todo org org-ac
-                    org-cliplink  org-ref org-review  org-vcard org-wc toc-org))
+
 (require 'org)
+(define-key global-map (kbd "H-RET")  'org-meta-return)
 (define-key global-map "\C-H-a l" 'org-store-link)
 (define-key global-map "\C-H-a a" 'org-agenda)
-(setq org-log-done t)
+;(setq org-log-done t)
 
-(setq org-completion-use-ido 1)
+;(setq org-completion-use-ido 1)
 
 ;; (setq org-highest-priority ?A)
 ;; (setq org-lowest-priority ?Z)
@@ -66,5 +66,5 @@
 ;;         ("sh" . ?s)
 ;;         (:endgrouptag)
 
-(org-agenda-list)
+;(org-agenda-list)
 ;;; org-custom ends here
