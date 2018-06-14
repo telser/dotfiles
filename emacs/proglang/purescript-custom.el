@@ -6,8 +6,6 @@
 
 ;;; Code:
 
-(require-packages '(purescript-mode psc-ide psci flycheck-purescript))
-
 (require 'purescript-mode)
 (require 'psc-ide)
 

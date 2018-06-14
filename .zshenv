@@ -80,7 +80,7 @@ if [[ "$HOST" == 'rabot.silencedpoet.com' ]]; then
     ZBG=206
 fi
 
-if [[ "$HOST" == 'dev_jail' ]]; then
+if [[ "$HOST" == 'dev.silencedpoet.com' ]]; then
     ZBG=128
     local_path;
 fi

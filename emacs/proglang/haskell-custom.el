@@ -2,15 +2,11 @@
 
 ;;; Code:
 
-(require-packages '(ac-haskell-process flycheck-haskell flycheck-stack company-ghci hasky-stack hindent
-                                     hlint-refactor intero stack-mode))
-
 (add-to-list 'auto-mode-alist (cons "\\.hs\\'" 'haskell-mode))
 (add-to-list 'auto-mode-alist (cons "\\.cabal\\'" 'haskell-cabal-mode))
 
 ;;;; General Requires
 
-(require 'hindent)
 (require 'haskell-mode)
 (require 'haskell-process)
 ;(require 'haskell-simple-indent)
@@ -18,16 +14,11 @@
 (require 'haskell)
 (require 'haskell-font-lock)
 (require 'haskell-debug)
-(require 'sgml-mode)
-(require 'css-mode)
 (require 'ghci-script-mode)
 (require 'company-ghci)
 
-(require 'intero)
 (require 'flycheck)
-(flycheck-add-next-checker 'intero '(warning . haskell-hlint))
-
-(intero-global-mode 1)
+;(flycheck-add-next-checker '(warning . haskell-hlint))
 
 ;; Functions
 
@@ -37,7 +28,6 @@
 
 (setq-default
  company-ghc-show-info t
- haskell-stylish-on-save t
  haskell-notify-p t
  haskell-process-use-presentation-mode t
  )
@@ -45,7 +35,6 @@
 ;; (custom-set-variables
 ;;  '(company-ghc-show-info t)
 ;;  '(haskell-process-args-ghci '())
-;;  '(haskell-stylish-on-save t)
 ;;  '(haskell-tags-on-save nil)
 ;;  '(haskell-process-suggest-remove-import-lines t)
 ;;  '(haskell-process-auto-import-loaded-modules t)
@@ -71,7 +60,6 @@
 ;; (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
 ;; (add-hook 'w3m-display-hook 'w3m-haddock-display)
 (add-hook 'haskell-mode-hook 'hlint-refactor-mode)
-
 
 ;;;; Keybindings
 

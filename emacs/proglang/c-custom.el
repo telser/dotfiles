@@ -6,11 +6,6 @@
 
 ;;; Code:
 
-(require-packages '(ac-clang clang-format cmake-font-lock cmake-mode cmake-project cmake-ide
-                    company-c-headers company-irony-c-headers
-                    company-irony cpputils-cmake flycheck-clang-analyzer
-                    flycheck-clang-tidy flycheck-irony irony modern-cpp-font-lock))
-
 (defun clang-and-irony-flycheck ()
   "Turn on clang analyzer and irony in flycheck."
   (with-eval-after-load 'flycheck
