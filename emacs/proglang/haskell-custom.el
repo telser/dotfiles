@@ -21,7 +21,6 @@
 (require 'sgml-mode)
 (require 'css-mode)
 (require 'ghci-script-mode)
-(require 'hamlet-mode)
 (require 'company-ghci)
 
 (require 'intero)

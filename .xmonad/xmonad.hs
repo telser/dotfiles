@@ -30,7 +30,7 @@ import           XMonad.Hooks.DynamicLog      (def, dynamicLogWithPP, dzenColor,
                                                ppHiddenNoWindows, ppOrder,
                                                ppOutput, ppVisible, ppWsSep)
 import           XMonad.Hooks.EwmhDesktops    (ewmh)
-import           XMonad.Hooks.ManageDocks     (AvoidStruts, avoidStruts,
+import           XMonad.Hooks.ManageDocks     (AvoidStruts, avoidStruts, docks,
                                                docksStartupHook, manageDocks)
 import           XMonad.Layout                (Choose)
 import           XMonad.Layout.GridVariants   (TallGrid (..))
@@ -54,14 +54,12 @@ main = do
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
-    leftBar <- spawnPipe "dzen2 -x '380' -h '77' -w '1030' -ta 'l' -fn xft:Hack:size=12:antialias=true"
-    --xmproc <- spawnPipe $ ("`which xmobar`" ++ (xmobarPick) ++ "~/.xmobarrc")
+    leftBar <- spawnPipe "dzen2 -x '380' -h '67' -w '1030' -ta 'l' -fn xft:Hack:size=12:antialias=true"
     _ <- return $ usrName name
     xmonad $ ewmh def
         { manageHook = myManageHook <+> manageDocks
         , layoutHook = myLayoutHook
         , logHook = dzenLog leftBar
---        , logHook = xmobarLog xmproc
         , modMask = mod4Mask --Rebind Mod to the Super key
         , terminal = myTerm --Use urxvt clients
         , workspaces =  myWorkSpaces --Custom workspaces
@@ -83,18 +81,18 @@ altMask = mod1Mask
 usrName :: UserEntry -> String
 usrName (UserEntry x _ _ _ _ _ _) = x
 
-type ML = ModifiedLayout
-type MLRenameTG = ML Rename TallGrid
-type MMLRTG = Mirror MLRenameTG
-type CMLRTG = Choose MLRenameTG
-type CMMLRTG = Choose MMLRTG
-type ChTF = Choose Tall Full
-type ChFT = Choose Full Tall
-type PW = PerWorkspace
+--type ML = ModifiedLayout
+--type MLRenameTG = ML Rename TallGrid
+--type MMLRTG = Mirror MLRenameTG
+--type CMLRTG = Choose MLRenameTG
+--type CMMLRTG = Choose MMLRTG
+--type ChTF = Choose Tall Full
+--type ChFT = Choose Full Tall
+--type PW = PerWorkspace
 
 -- Layout
 -- The type signature is quite a bit to ingest but looking at the code it should make sense..
-myLayoutHook :: ML AvoidStruts (PW (Choose Full (CMMLRTG Tall)) (PW (CMLRTG (CMMLRTG Full)) (PW (CMMLRTG (CMLRTG Full)) (PW (ML Rename (ML Reflect (ML AddRoster (ML Reflect (CMMLRTG ChTF))))) (CMLRTG (CMMLRTG ChFT)))))) Window
+--myLayoutHook :: ML AvoidStruts (PW (Choose Full (CMMLRTG Tall)) (PW (CMLRTG (CMMLRTG Full)) (PW (CMMLRTG (CMLRTG Full)) (PW (ML Rename (ML Reflect (ML AddRoster (ML Reflect (CMMLRTG ChTF))))) (CMLRTG (CMMLRTG ChFT)))))) Window
 myLayoutHook =
   avoidStruts
   $ onWorkspace "web" (Full ||| Mirror myGrid ||| tall)
@@ -106,7 +104,7 @@ myLayoutHook =
     tall = Tall nmaster delta ratio
     nmaster = 1
     ratio = 1/2
-    delta = 5/100
+    delta = 4/100
     defaultRatio = 1/2
     myGrid = named "g" (TallGrid 2 2 (1/2) (1/2) (2/100))
 
