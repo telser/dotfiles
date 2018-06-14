@@ -38,7 +38,7 @@
 ! XTerm specific settings...
 XTerm*renderFont: true
 XTerm.termName: xterm-256color
-XTerm.*.faceName: xft:Hack Bold:size=12:antialias=true
+XTerm.*.faceName: xft:Hack:size=11:antialias=true
 XTerm.*.metaSendsEscape: true
 XTerm.*.selectToClipboard: true
 XTerm.*.saveLines: 90000
@@ -58,3 +58,8 @@ URxvt.font: xft:Hack:size=12:antialias=true
 URxvt*skipBuiltinGlyphs: true
 URxvt*iso14755: False
 URxvt*iso14755_52: False
+
+Xft.lcdfiler: lcddefault
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintfull
