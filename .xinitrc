@@ -12,8 +12,9 @@ if [ "$NAME" == "double2" ]; then
     xset fp rehash
 fi
 
-if [ "$NAME" == "zero-void" ]; then
+if [ "$NAME" == "zero" ]; then
     xrandr --dpi 192
+    export GDK_SCALE=2
     conky -c .conkyLeftrc &
     stalonetray &
     clipit &
@@ -22,6 +23,7 @@ if [ "$NAME" == "zero-void" ]; then
 #    nm-applet &
     rfkill block bluetooth
     sh ~/dzen/scripts/start_dzen.sh &
+    wicd-gtk &
 #    sh use_headphone_amp.sh
 #    sh display.sh
     export $(dbus-launch)
@@ -40,4 +42,4 @@ xrdb -merge ~/.Xresources                # Set term font/color
 xmodmap ~/.Xmodmap                       # Rebind keys
 
 xsetroot -cursor_name left_ptr
-exec ~/.cabal/bin/xmonad
+exec `which xmonad`

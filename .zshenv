@@ -21,6 +21,12 @@ gpg_agent() {
   export GPG_TTY
 }
 
+local_pkgsrc_path() {
+  # make sure that pkgsrc dirs /usr/pkg/{bin,sbin} are on PATH
+  PATH=$PATH:~/pkg/sbin:~/pkg/bin
+  export PATH
+}
+
 pkgsrc_path() {
   # make sure that pkgsrc dirs /usr/pkg/{bin,sbin} are on PATH
   PATH=$PATH:/usr/pkg/sbin:/usr/pkg/bin
@@ -32,12 +38,13 @@ ZBG=124
 
 # Machine specific configurations...
 
-if [[ "$HOST" == 'zero-void' ]]; then
+if [[ "$HOST" == 'zero' ]]; then
   ZBG=034
   local_path;
   # cabal path, prefer it over even .local from stack..
-  PATH=$HOME/.cabal/bin:$PATH
+  PATH=/sbin:$PATH
   pkgsrc_path;
+  local_pkgsrc_path;
   gpg_agent;
   alias spotify='spotify --force-device-scale-factor=2'
   alias antoine='mosh antoine'
@@ -48,8 +55,8 @@ if [[ "$HOST" == 'zero-void' ]]; then
   alias sally='mosh sally'
   export GDK_SCALE=2
   alias vboxmanage=VBoxManage
-  alias slack='~/progs/slack/usr/bin/slack'
-  alias robo3t='~/progs/robo3t-1.1.1-linux-x86_64-c93c6b0/bin/robo3t'
+#  alias slack='~/progs/slack/usr/bin/slack'
+#  alias robo3t='~/progs/robo3t-1.1.1-linux-x86_64-c93c6b0/bin/robo3t'
 fi
 
 if [[ "$HOST" == 'antione' ]]; then
@@ -87,7 +94,7 @@ fi
 export ZBG
 
 export PATH=/home/trevis/node_modules/.bin:$PATH
-alias work-vm-up='vboxmanage startvm debian --type headless'
+alias work-vm-up='vboxmanage startvm work --type headless'
 SCHMODS_DIR='cd ~/work/schmods;'
 COMP_UP='docker-compose up -d;'
 ZSHI='/usr/bin/zsh -i'
