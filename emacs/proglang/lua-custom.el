@@ -4,8 +4,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-packages '(company-lua lua-mode flymake-lua luarocks))
-
 (defun lua-mode-seutp ()
   "Configuration for lua-mode."
   (electric-indent-mode +1))

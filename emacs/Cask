@@ -1,0 +1,193 @@
+(source org)
+(source melpa)
+(source gnu)
+
+(depends-on "bind-key")
+(depends-on "cask")
+(depends-on "exec-path-from-shell")
+(depends-on "flycheck-cask")
+(depends-on "magit")
+(depends-on "use-package")
+
+;; be more helpful
+(depends-on "helpful")
+
+;; theming and display stuff
+(depends-on "color-theme-modern")
+(depends-on "darkokai-theme")
+(depends-on "diminish") ;; hide modes from modeline
+(depends-on "fic-mode")  ;; show fixme/todo with special faces
+
+(depends-on "persp-mode")
+
+(depends-on "sr-speedbar")
+(depends-on "flycheck") ;; on the fly checking
+
+;; rainbow modes
+(depends-on "rainbow-delimiters")
+(depends-on "rainbow-identifiers")
+(depends-on "rainbow-mode")
+
+;; ido mode
+(depends-on "ido-vertical-mode")
+(depends-on "ido-completing-read+")
+
+;; company mode
+(depends-on "company") ;; autocompletion support
+(depends-on "company-dict")
+(depends-on "company-quickhelp")
+(depends-on "company-shell")
+(depends-on "company-statistics")
+
+;; file movement (undo, expand, jump words, etc)
+(depends-on "expand-region")
+(depends-on "paredit") ;; make sure paredit gets installed
+(depends-on "paredit-menu")
+(depends-on "smartparens") ;; smart parens are better than not smart parens
+(depends-on "syntax-subword") ;; make movement more fine-grained
+(depends-on "undo-tree") ;; traverse a try for undo/redo
+
+;; buffer/window movement
+(depends-on "buffer-move")
+(depends-on "window-jump")
+
+;; keybindings
+(depends-on "which-key")
+
+;; helm and smex
+(depends-on "helm")
+(depends-on "smex")
+
+;; searching stuff
+(depends-on "ag") ;; ag support
+(depends-on "projectile") ;; per project support
+
+;; terminal/shells
+(depends-on "tramp")
+(depends-on "multi-term")
+(depends-on "multishell")
+
+;; C/C++ and related
+(depends-on "ac-clang") ;; autocomplete via clang
+(depends-on "clang-format") ;; support the clang-format tool
+(depends-on "cmake-font-lock")
+(depends-on "cmake-mode")
+(depends-on "cmake-project")
+(depends-on "cmake-ide")
+(depends-on "company-c-headers")
+(depends-on "company-irony-c-headers")
+(depends-on "company-irony") ;; autocomplete via libclang
+(depends-on "cpputils-cmake")
+(depends-on "flycheck-clang-analyzer") ;; enable clang static-analysis
+(depends-on "flycheck-clang-tidy")
+(depends-on "flycheck-irony")
+(depends-on "irony") ;; c/c++ minor mode via libclang
+(depends-on "modern-cpp-font-lock")
+
+;; Elmlang
+(depends-on "elm-mode")
+(depends-on "flycheck-elm")
+
+;; Erlang/LFE/Elixir
+(depends-on "edts") ;; erlang development tool suite
+(depends-on "alchemist") ;; elixir tooling
+(depends-on "company-distel")
+(depends-on "company-erlang") ;; autocomplete erlang
+(depends-on "elixir-mode") ;; support elixir
+(depends-on "flycheck-dialyxir") ;; flycheck support for dialyzer in elixir
+(depends-on "flycheck-dialyzer") ;; flycheck support for dialyzer
+(depends-on "flycheck-elixir") ;; flycheck elixir
+(depends-on "flycheck-rebar3") ;; flycheck rebar buildtool
+(depends-on "flymake-elixir")
+(depends-on "lfe-mode") ;; support for lisp-flavored-erlang
+
+;; Golang
+(depends-on "go-mode") ;; support golang
+(depends-on "go-autocomplete")
+(depends-on "go-errcheck")
+(depends-on "go-gopath") ;; support gopath settings
+(depends-on "go-guru")
+(depends-on "go-projectile") ;; support golang in projectile
+(depends-on "golint") ;; lint golang files
+(depends-on "gotest") ;; test integration
+
+;; Haskell
+(depends-on "ac-haskell-process") ;; autocomplete via a haskell process
+(depends-on "company-ghci")
+(depends-on "flycheck-haskell") ;; flycheck support
+(depends-on "flycheck-stack") ;; flycheck support for stack
+(depends-on "hasky-stack")
+(depends-on "hlint-refactor") ;; refactoring via hlint
+(depends-on "stack-mode") ;; stack integration
+
+;; Javascript... because the world is sad...
+(depends-on "ac-js2")
+(depends-on "flymake-jshint")
+(depends-on "flymake-jslint")
+(depends-on "flymake-json")
+(depends-on "js2-highlight-vars")
+(depends-on "js2-mode")
+(depends-on "js2-refactor")
+(depends-on "js-format")
+(depends-on "npm-mode")
+(depends-on "prettier-js")
+
+;; Lua
+(depends-on "company-lua") ;; autocomplete lua
+(depends-on "flymake-lua") ;; autobuild lua
+(depends-on "lua-mode") ;; lua
+(depends-on "luarocks")
+
+;; Purescript
+(depends-on "flycheck-purescript") ;; on the flycheck
+(depends-on "psc-ide") ;; ide type tooling for purescript
+(depends-on "psci") ;; purescript interpreter
+(depends-on "purescript-mode") ;; purescript
+
+;; Python
+(depends-on "anaconda-mode")
+(depends-on "company-jedi")
+(depends-on "elpy")
+(depends-on "jedi")
+(depends-on "pycoverage") ;; test coverage
+(depends-on "pylint") ;; linting tools
+(depends-on "pytest") ;; test runner
+(depends-on "python-mode")
+
+;; Ruby
+(depends-on "company-inf-ruby") ;; company ruby
+(depends-on "robe")
+(depends-on "rspec-mode") ;; support rspecs
+(depends-on "rubocop") ;; run rubocop in editior
+(depends-on "ruby-mode")
+(depends-on "ruby-tools") ;; extra ruby tooling
+(depends-on "yari")
+
+;; Web/html/stuff
+(depends-on "company-web")
+(depends-on "web-beautify")
+(depends-on "web-mode")
+
+;;; Other kinds of files that aren't exactly programming languages
+
+;; Dockerfile, docker-compose
+(depends-on "docker-compose-mode")
+(depends-on "dockerfile-mode")
+
+;; Orgmode
+(depends-on "calfw")
+(depends-on "calfw-ical")
+(depends-on "calfw-org")
+(depends-on "ivy-todo")
+(depends-on "org")
+(depends-on "org-ac") ;; autocomplete
+(depends-on "org-cliplink")
+(depends-on "org-ref")
+(depends-on "org-review")
+(depends-on "org-vcard") ;; vcard support
+(depends-on "org-wc")
+(depends-on "toc-org") ;; table of contents
+
+;; chat stuff
+(depends-on "slack")
+(depends-on "znc")

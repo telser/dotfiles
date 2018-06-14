@@ -4,7 +4,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-packages '(elm-mode flycheck-elm))
 (setq elm-format-on-save t)
 (require 'elm-mode)
 
