@@ -67,7 +67,7 @@ fi
 if [[ "$HOST" == 'axl' ]]; then
     ZBG=198
     local_path;
-    export PATH=/bin:/sbin:$PATH:/usr/X11R7/bin:/usr/pkg/bin:/usr/pkg/sbin:$HOME/.xmonad
+    export PATH=/bin:/sbin:/usr/sbin:$PATH:/usr/X11R7/bin:/usr/pkg/bin:/usr/pkg/sbin:$HOME/.xmonad
 fi
 
 # On all machines export the zsh theme color code..

@@ -33,7 +33,6 @@ export LC_CTYPE=en_US.UTF-8
 export MM_CHARSET=UTF-8
     
 conky -c .conkyLeftrc &
-conky -c .conkyRightrc &
 clipit &
 stalonetray &
 

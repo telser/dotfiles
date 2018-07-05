@@ -54,7 +54,8 @@ main = do
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
-    leftBar <- spawnPipe "dzen2 -x '380' -h '77' -w '1030' -ta 'l' -fn xft:Hack:size=12:antialias=true"
+--    leftBar <- spawnPipe "dzen2 -x '380' -h '77' -w '1030' -ta 'l' -fn xft:Hack:size=12:antialias=true"
+    leftBar <- spawnPipe "dzen2 -x '380' -h '47' -w '1030' -ta 'l' "
     --xmproc <- spawnPipe $ ("`which xmobar`" ++ (xmobarPick) ++ "~/.xmobarrc")
     _ <- return $ usrName name
     xmonad $ ewmh def
@@ -66,7 +67,7 @@ main = do
         , terminal = myTerm --Use urxvt clients
         , workspaces =  myWorkSpaces --Custom workspaces
         , keys=myKeys myHost --Keybindings
-        , startupHook = docksStartupHook
+--        , startupHook = docksStartupHook
         }
 
 -- Setup workspaces using short names to save display room
@@ -189,3 +190,4 @@ dzenLog out =
    , ppOrder = \(ws:_:_:_) -> [ws]
    , ppOutput = hPutStrLn out
    })
+

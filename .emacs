@@ -32,6 +32,7 @@
 (load-library "purescript-custom")
 (load-library "python-custom")
 (load-library "ruby-custom")
+(load-library "rust-custom")
 (load-library "web-custom")
 (load-library "dockerfile-custom")
 

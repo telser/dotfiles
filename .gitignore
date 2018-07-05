@@ -6,7 +6,9 @@
 *.retry
 *xmonad-x86_64-linux
 *xmonad-x86_64-freebsd
+*xmonad-x86_64-netbsd
 .xmonad/TAGS
+.xmonad/xmonad
 .xmonad/.xmonad
 .xmonad/.xmonad-session-rc
 *#*
