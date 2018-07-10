@@ -63,7 +63,7 @@
 (depends-on "projectile") ;; per project support
 
 ;; terminal/shells
-(depends-on "tramp")
+(depends-on "tramp") ;; edit remote files
 (depends-on "multi-term")
 (depends-on "multishell")
 
@@ -118,7 +118,11 @@
 (depends-on "flycheck-stack") ;; flycheck support for stack
 (depends-on "hasky-stack")
 (depends-on "hlint-refactor") ;; refactoring via hlint
+(depends-on "intero") ;; woo intero
 (depends-on "stack-mode") ;; stack integration
+(depends-on "lsp-mode") ;; language server protocol
+(depends-on "lsp-ui")
+(depends-on "lsp-haskell")
 
 ;; Javascript... because the world is sad...
 (depends-on "ac-js2")
@@ -153,6 +157,7 @@
 (depends-on "pylint") ;; linting tools
 (depends-on "pytest") ;; test runner
 (depends-on "python-mode")
+(depends-on "virtualenv") ;; python virtualenv support
 
 ;; Ruby
 (depends-on "company-inf-ruby") ;; company ruby
@@ -181,13 +186,24 @@
 (depends-on "ivy-todo")
 (depends-on "org")
 (depends-on "org-ac") ;; autocomplete
+(depends-on "org-caldav")
 (depends-on "org-cliplink")
 (depends-on "org-ref")
+(depends-on "org-projectile")
 (depends-on "org-review")
 (depends-on "org-vcard") ;; vcard support
 (depends-on "org-wc")
 (depends-on "toc-org") ;; table of contents
 
+;; perspectives
+(depends-on "perspective")
+
+(depends-on "phabricator")
+
 ;; chat stuff
 (depends-on "slack")
 (depends-on "znc")
+
+;; terraform
+(depends-on "terraform-mode")
+(depends-on "company-terraform")
