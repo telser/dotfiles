@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/sh
 NAME=$( uname "-n")
 
 ## Devel fbsd box
-if [ "$NAME" == "double2" ]; then
+if [ "$NAME" = "double2" ]; then
     conky -c ~/.conkyLeftrc &
     clipit &
     nitrogen --restore &
@@ -12,21 +12,19 @@ if [ "$NAME" == "double2" ]; then
     xset fp rehash
 fi
 
-if [ "$NAME" == "zero" ]; then
+if [ "$NAME" = "zero" ]; then
     xrandr --dpi 192
     export GDK_SCALE=2
     conky -c .conkyLeftrc &
     stalonetray &
     clipit &
     nitrogen --restore &
-    eval $(ssh-agent)
-#    nm-applet &
-    rfkill block bluetooth
+    eval "$(ssh-agent)"
+    /usr/sbin/rfkill block bluetooth
     sh ~/dzen/scripts/start_dzen.sh &
     wicd-gtk &
 #    sh use_headphone_amp.sh
-#    sh display.sh
-    export $(dbus-launch)
+    export "$(dbus-launch)"
 fi
 
 # Set the locale before launching xmonad to prevent character funkiness
@@ -42,4 +40,4 @@ xrdb -merge ~/.Xresources                # Set term font/color
 xmodmap ~/.Xmodmap                       # Rebind keys
 
 xsetroot -cursor_name left_ptr
-exec `which xmonad`
+exec "$(command -v xmonad)"

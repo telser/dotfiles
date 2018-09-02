@@ -27,14 +27,6 @@
 *.color7:  #FAEBD7
 *.color15: #FFFFFF
 
-! backarrowKey causes ^H to be sent on pressing backspace instead of ^?
-!!.*backarrowKey: true
-
-!!XTerm*ttyModes:         erase ^?
-!!XTerm*VT100.Translations: \
-!!        #override <Key>BackSpace: string(0x7f) \n\
-!!		  <Key>Delete:    string(0x1b) string("[3~")
-
 ! XTerm specific settings...
 XTerm*renderFont: true
 XTerm.termName: xterm-256color
@@ -45,13 +37,9 @@ XTerm.*.saveLines: 90000
 XTerm.*.scrollBar: true
 XTerm.*.scrollbar.width: 12
 
-!XTerm.vt100translations: #override \n\
-!   Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-!   Ctrl Meta <Key>V: insert-selection(CLIPBOARD)
-
 ! urxvt settings
 URxvt.termName:          xterm-256color
-URxvt.transparent:       true
+URxvt.transparent:       false
 URxvt.cursorBlink:       false
 URxvt.scrollBar_right:   true
 URxvt.font: xft:Hack:size=12:antialias=true

@@ -19,7 +19,7 @@ import           XMonad                       (Full (..), KeyMask, KeySym,
                                                xK_0, xK_Down, xK_Left, xK_Right,
                                                xK_Up, xK_b, xK_c, xK_e,
                                                xK_equal, xK_f, xK_l, xK_minus,
-                                               xK_p, xK_r, xK_s, xK_t, xK_v,
+                                               xK_p, xK_r, xK_s, xK_t, xK_v, xK_x,
                                                xmonad, (.|.), (|||))
 import           XMonad.Actions.CycleWS       (nextScreen, nextWS, prevScreen,
                                                prevWS, shiftNextScreen,
@@ -33,7 +33,7 @@ import           XMonad.Hooks.EwmhDesktops    (ewmh)
 import           XMonad.Hooks.ManageDocks     (AvoidStruts, avoidStruts, docks,
                                                docksStartupHook, manageDocks)
 import           XMonad.Layout                (Choose)
-import           XMonad.Layout.GridVariants   (TallGrid (..))
+import           XMonad.Layout.GridVariants   (TallGrid (..), Grid(..))
 import           XMonad.Layout.IM             (AddRoster, Property (Title),
                                                withIM)
 import           XMonad.Layout.LayoutModifier (ModifiedLayout)
@@ -44,6 +44,8 @@ import           XMonad.Layout.Renamed        (Rename)
 import           XMonad.ManageHook            (className, composeAll, doF,
                                                doFloat, resource, (-->), (<&&>),
                                                (<+>), (=?))
+import XMonad.Prompt (greenXPConfig)
+import XMonad.Prompt.Shell (shellPrompt, prompt)
 import qualified XMonad.StackSet              as W
 import           XMonad.Util.Replace          (replace)
 import           XMonad.Util.Run              (hPutStrLn, spawnPipe)
@@ -54,14 +56,14 @@ main = do
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
-    leftBar <- spawnPipe "dzen2 -x '380' -h '67' -w '1030' -ta 'l' -fn xft:Hack:size=12:antialias=true"
+    leftBar <- spawnPipe "dzen2 -x '380' -h '67' -w '1030' -ta 'l' -fn xft:Hack:size=12:antialias=true -dock"
     _ <- return $ usrName name
     xmonad $ ewmh def
         { manageHook = myManageHook <+> manageDocks
         , layoutHook = myLayoutHook
         , logHook = dzenLog leftBar
         , modMask = mod4Mask --Rebind Mod to the Super key
-        , terminal = myTerm --Use urxvt clients
+        , terminal = myTerm --Use defined terminal instead of default
         , workspaces =  myWorkSpaces --Custom workspaces
         , keys=myKeys myHost --Keybindings
         , startupHook = docksStartupHook
@@ -72,7 +74,7 @@ myWorkSpaces :: [String]
 myWorkSpaces = ["web","term","editor","work1","work2","mail","media","read","im","vm","ex"]
 
 myTerm :: String
-myTerm = "xterm"
+myTerm = "alacritty"
 
 altMask :: KeyMask
 altMask = mod1Mask
@@ -81,18 +83,8 @@ altMask = mod1Mask
 usrName :: UserEntry -> String
 usrName (UserEntry x _ _ _ _ _ _) = x
 
---type ML = ModifiedLayout
---type MLRenameTG = ML Rename TallGrid
---type MMLRTG = Mirror MLRenameTG
---type CMLRTG = Choose MLRenameTG
---type CMMLRTG = Choose MMLRTG
---type ChTF = Choose Tall Full
---type ChFT = Choose Full Tall
---type PW = PerWorkspace
-
 -- Layout
--- The type signature is quite a bit to ingest but looking at the code it should make sense..
---myLayoutHook :: ML AvoidStruts (PW (Choose Full (CMMLRTG Tall)) (PW (CMLRTG (CMMLRTG Full)) (PW (CMMLRTG (CMLRTG Full)) (PW (ML Rename (ML Reflect (ML AddRoster (ML Reflect (CMMLRTG ChTF))))) (CMLRTG (CMMLRTG ChFT)))))) Window
+-- The type signature is quite a bit to ingest, thus omitted, but looking at the code it should make sense..
 myLayoutHook =
   avoidStruts
   $ onWorkspace "web" (Full ||| Mirror myGrid ||| tall)
@@ -106,7 +98,7 @@ myLayoutHook =
     ratio = 1/2
     delta = 4/100
     defaultRatio = 1/2
-    myGrid = named "g" (TallGrid 2 2 (1/2) (1/2) (2/100))
+    myGrid = Grid (16/9) -- might as well match most screen ratios here... *sigh*
 
 -- Move some programs to certain workspaces and float some too
 myManageHook :: Query (Endo (W.StackSet String (Layout Window) Window ScreenId ScreenDetail))
@@ -121,11 +113,11 @@ myManageHook = composeAll . concat $
     , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat] --Float Firefox Dialogs
     ]
   where
-    myWebShift = ["Firefox","Chromium-browser","chromium","luakit", "Conkeror"]
+    myWebShift = ["chromium","Chromium","Chromium-browser", "Conkeror","Firefox", "Firefox-esr", "luakit"]
     myImShift = ["Pidgin","Skype","Slack"]
-    myReadShift = ["xpdf","Evince","Texmaker","Mirage","Calibre","calibre","evince","Evince"]
-    myMediaShift = ["Banshee","Vlc","Rhythmbox","xine","Spotify","Steam","spotify"]
-    myMailShift = ["Thunderbird","Evolution"]
+    myReadShift = ["calibre","Calibre","evince","Evince","Mirage","Texmaker","xpdf"]
+    myMediaShift = ["Banshee","Rhythmbox","spotify","Spotify","Steam","Vlc","xine"]
+    myMailShift = ["Evolution","Thunderbird"]
     myFloats = ["Gimp","Inkscape","Remmina","Skype","Slack"]
 
 {- Keybinding section
@@ -142,7 +134,8 @@ myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys def x)
 newKeys :: String -> XConfig l -> [((KeyMask, KeySym), X ())]
 newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   [ ((modMask .|. controlMask, xK_r), spawn "xrandr --output VGA-0 --auto") -- Resize vbox screen
-  , ((modMask .|. controlMask, xK_s), spawn "scrot -s")
+  , ((modMask .|. controlMask, xK_s), prompt ("scrot -s") greenXPConfig)
+  , ((modMask .|. controlMask, xK_x), shellPrompt greenXPConfig)
   , ((modMask .|. controlMask, xK_Down), shiftToNext) --Move around screens
   , ((modMask .|. controlMask, xK_Up), shiftToPrev) --Move around screens
   , ((modMask .|. controlMask, xK_Right), nextScreen) --Move around screens
@@ -162,18 +155,15 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   , ((modMask .|. shiftMask, xK_t), spawn "thunderbird")
   , ((modMask .|. shiftMask, xK_v), spawn "VirtualBox")
   , ((modMask, xK_0), windows $ W.greedyView $ myWorkSpaces!!9)
--- , ((modMask .|. shiftMask, xK_z), spawn "zsnes")
  -- , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")
   ]
 
-  ++
-  if hostname == "charmy" --if laptop hostname set specific keybindings
-  then [ ((0, 0x1008ff13), spawn "amixer set Master 2dB+")
-       , ((0,0x1008ff11), spawn "amixer set Master 2dB-")
-       ]
-  else [ ((0,xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
-       , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
-       ] --Otherwise nothing
+-- host specific stuff, saved here to remember how to do it later :P
+  -- ++
+  -- if hostname == "charmy" --if laptop hostname set specific keybindings
+  -- then [ ((0, 0x1008ff13), spawn "amixer set Master 2dB+")
+  --      , ((0,0x1008ff11), spawn "amixer set Master 2dB-")
+  --      ]
 
 dzenLog :: Handle -> X ()
 dzenLog out =

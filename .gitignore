@@ -4,9 +4,12 @@
 *.o
 *.errors
 *.retry
+emacs/.cask
 *xmonad-x86_64-linux
 *xmonad-x86_64-freebsd
 .xmonad/TAGS
+.xmonad/prompt-history
+.xmonad/xmonad.state
 .xmonad/.xmonad
 .xmonad/.xmonad-session-rc
 *#*

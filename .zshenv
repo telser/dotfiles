@@ -95,6 +95,7 @@ export ZBG
 
 export PATH=/home/trevis/node_modules/.bin:$PATH
 alias work-vm-up='vboxmanage startvm work --type headless'
+alias work-alpine-vm-up='vboxmanage startvm alpine_work --type headless'
 SCHMODS_DIR='cd ~/work/schmods;'
 COMP_UP='docker-compose up -d;'
 ZSHI='/usr/bin/zsh -i'
@@ -105,6 +106,7 @@ APP_SESS="$SCHMODS_DIR sleep 20; $APP $ZSHI"
 SCHMODS_CMD="tmux new-session -d \"$API_SESS\" \; split-window \"$APP_SESS\" \; attach"
 TMUX_CMD="tmux new-session -d \"$ZSHI\" \; split-window \"$ZSHI\" \; attach"
 
+alias work="ssh -t -p 2222 trevis@localhost"
 alias work="ssh -t -p 2222 trevis@localhost"
 alias work-tmux="ssh -t -p 2222 trevis@localhost '$TMUX_CMD'"
 alias work-emacs="ssh -t -p 2222 trevis@localhost '$SCHMODS_DIR emacs; $ZSHI'"
