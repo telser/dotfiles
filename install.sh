@@ -10,7 +10,7 @@ ln -s ~/dotfiles/display.sh ~/display.sh
 ln -s ~/dotfiles/.Xmodmap ~/.Xmodmap
 ln -s ~/dotfiles/.Xresources ~/.Xresources
 ln -s ~/dotfiles/.xmonad ~/.xmonad
-ln -s ~/dotfiles/.stalonetrayrc ~/stalonetrayrc
+ln -s ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
 ln -s ~/dotfiles/.conkyLeftrc ~/.conkyLeftrc
 ln -s ~/dotfiles/.alacritty.yml ~/.alacritty.yml
 ln -s ~/dotfiles/dzen ~/dzen
