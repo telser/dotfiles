@@ -93,6 +93,7 @@ fi
 # On all machines export the zsh theme color code..
 export ZBG
 
+PATH=$PATH:~/progs/cask/bin:~/.cabal/bin/
 export PATH=/home/trevis/node_modules/.bin:$PATH
 alias work-vm-up='vboxmanage startvm work --type headless'
 alias work-alpine-vm-up='vboxmanage startvm alpine_work --type headless'

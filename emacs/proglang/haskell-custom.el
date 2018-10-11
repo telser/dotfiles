@@ -8,13 +8,13 @@
 ;;;; General Requires
 
 (require 'haskell-mode)
-(require 'haskell-process)
+;(require 'haskell-process)
 ;(require 'haskell-simple-indent)
 (require 'haskell-interactive-mode)
 (require 'haskell)
 (require 'haskell-font-lock)
 (require 'haskell-debug)
-(require 'ghci-script-mode)
+;(require 'ghci-script-mode)
 (require 'company-ghci)
 
 ;; (require 'lsp-ui)
