@@ -34,7 +34,7 @@
 
 ;;; Misc. mode on/off switches
 (desktop-save-mode -1)
-(global-flycheck-mode 1)
+(global-flycheck-mode -1)
 (save-place-mode 1)
 (persp-mode 1)
 
@@ -46,7 +46,7 @@
 ;;;; use ido vertically, and everywhere, replace find-files with ido-find-file
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
-(ido-everywhere 1)
+;; (ido-everywhere 1)
 (ido-vertical-mode +1)
 (setq ido-vertical-show-count t)
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
@@ -92,7 +92,7 @@
 ; keep helm-M-x around
 (global-set-key (kbd "H-x") 'helm-M-x)
 
-(projectile-global-mode)
+(projectile-mode)
 (diminish 'projectile-mode)
 
 ;;; paredit
@@ -111,6 +111,7 @@
 (define-key key-translation-map (kbd "<next>") 'event-apply-hyper-modifier)
 (define-key key-translation-map (kbd "<end>") 'event-apply-hyper-modifier)
 (define-key key-translation-map (kbd "C-;") 'event-apply-hyper-modifier)
+(define-key key-translation-map (kbd "M-n") 'event-apply-hyper-modifier)
 (define-key key-translation-map (kbd "<f6>") 'event-apply-hyper-modifier)
 
 ;; use hippie expansion by default

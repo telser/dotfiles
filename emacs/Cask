@@ -2,6 +2,8 @@
 (source melpa)
 (source gnu)
 
+(files :defaults "*.el" "proglang/*.el")
+
 (depends-on "bind-key")
 (depends-on "cask")
 (depends-on "exec-path-from-shell")
@@ -11,6 +13,7 @@
 
 ;; be more helpful
 (depends-on "helpful")
+(depends-on "command-log-mode")
 
 ;; theming and display stuff
 (depends-on "color-theme-modern")
@@ -114,15 +117,19 @@
 ;; Haskell
 (depends-on "ac-haskell-process") ;; autocomplete via a haskell process
 (depends-on "company-ghci")
+(depends-on "company-ghc")
 (depends-on "flycheck-haskell") ;; flycheck support
 (depends-on "flycheck-stack") ;; flycheck support for stack
 (depends-on "hasky-stack")
+(depends-on "ghc")
 (depends-on "hlint-refactor") ;; refactoring via hlint
 (depends-on "intero") ;; woo intero
 (depends-on "stack-mode") ;; stack integration
 (depends-on "lsp-mode") ;; language server protocol
 (depends-on "lsp-ui")
 (depends-on "lsp-haskell")
+(depends-on "lsp-flycheck")
+(depends-on "company-lsp")
 
 ;; Javascript... because the world is sad...
 (depends-on "ac-js2")
@@ -178,6 +185,7 @@
 ;; Dockerfile, docker-compose
 (depends-on "docker-compose-mode")
 (depends-on "dockerfile-mode")
+(depends-on "docker-tramp")
 
 ;; Orgmode
 (depends-on "calfw")
@@ -201,8 +209,8 @@
 (depends-on "phabricator")
 
 ;; chat stuff
-(depends-on "slack")
-(depends-on "znc")
+; (depends-on "slack")
+; (depends-on "znc")
 
 ;; terraform
 (depends-on "terraform-mode")

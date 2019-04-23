@@ -4,6 +4,7 @@
 *.o
 *.errors
 *.retry
+*.elc
 emacs/.cask
 *xmonad-x86_64-linux
 *xmonad-x86_64-freebsd
