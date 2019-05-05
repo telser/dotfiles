@@ -70,6 +70,9 @@
 (depends-on "multi-term")
 (depends-on "multishell")
 
+;; csv
+(depends-on "csv-mode")
+
 ;; C/C++ and related
 (depends-on "ac-clang") ;; autocomplete via clang
 (depends-on "clang-format") ;; support the clang-format tool

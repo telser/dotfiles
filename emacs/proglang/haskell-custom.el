@@ -17,10 +17,10 @@
 ;(require 'ghci-script-mode)
 (require 'company-ghci)
 
-;; (require 'lsp-ui)
-;; (require 'lsp-haskell)
-;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-;; (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+;(require 'lsp-ui)
+;(require 'lsp-haskell)
+;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
 
 (require 'flycheck)
 ;(flycheck-add-next-checker '(warning . haskell-hlint))
@@ -31,9 +31,13 @@
 
 (add-to-list 'company-backends 'company-ghci)
 
+(setq lsp-haskell-process-path-hie "hie-wrapper")
+
 (setq-default
  company-ghc-show-info t
  haskell-notify-p t
+ haskell-stylish-on-save t
+ haskell-mode-stylish-haskell-path "/home/trevis/.local/bin/stylish-haskell"
  haskell-process-use-presentation-mode t
  )
 

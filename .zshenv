@@ -55,6 +55,7 @@ if [[ "$HOST" == 'zero' ]]; then
   alias sally='mosh sally'
   export GDK_SCALE=2
   alias vboxmanage=VBoxManage
+  alias thc-caltest='rm -r ~/.thc obj  && make clean && make && make libs && ./thc examples/Calendar.hs -o cal && ./cal 2019'
 #  alias slack='~/progs/slack/usr/bin/slack'
 #  alias robo3t='~/progs/robo3t-1.1.1-linux-x86_64-c93c6b0/bin/robo3t'
 fi
@@ -97,6 +98,7 @@ PATH=$PATH:~/progs/cask/bin:~/.cabal/bin/
 export PATH=/home/trevis/node_modules/.bin:$PATH
 alias work-vm-up='vboxmanage startvm work --type headless'
 alias work-alpine-vm-up='vboxmanage startvm alpine_work --type headless'
+alias work-devuan-vm-up='vboxmanage startvm work-devuan --type headless'
 SCHMODS_DIR='cd ~/work/schmods;'
 COMP_UP='docker-compose up -d;'
 ZSHI='/usr/bin/zsh -i'
@@ -108,7 +110,8 @@ SCHMODS_CMD="tmux new-session -d \"$API_SESS\" \; split-window \"$APP_SESS\" \; 
 TMUX_CMD="tmux new-session -d \"$ZSHI\" \; split-window \"$ZSHI\" \; attach"
 
 alias work="ssh -t -p 2222 trevis@localhost"
-alias work="ssh -t -p 2222 trevis@localhost"
+alias work-alpine="ssh -t -p 2223 trevis@localhost"
+alias work-devuan="ssh -t -p 2224 trevis@localhost"
 alias work-tmux="ssh -t -p 2222 trevis@localhost '$TMUX_CMD'"
 alias work-emacs="ssh -t -p 2222 trevis@localhost '$SCHMODS_DIR emacs; $ZSHI'"
 alias work-emacs-term="nohup xterm -e zsh -i -c 'work-emacs; zsh'"

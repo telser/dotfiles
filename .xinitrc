@@ -13,7 +13,8 @@ if [ "$NAME" = "double2" ]; then
 fi
 
 if [ "$NAME" = "zero" ]; then
-    xrandr --dpi 192
+    xrandr --dpi 144
+    xrandr --output eDP-1 --mode 2880x1620
     export GDK_SCALE=2
     conky -c .conkyLeftrc &
     stalonetray &

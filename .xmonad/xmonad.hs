@@ -74,7 +74,7 @@ myWorkSpaces :: [String]
 myWorkSpaces = ["web","term","editor","work1","work2","mail","media","read","im","vm","ex"]
 
 myTerm :: String
-myTerm = "alacritty"
+myTerm = "urxvtcd"
 
 altMask :: KeyMask
 altMask = mod1Mask
@@ -118,7 +118,7 @@ myManageHook = composeAll . concat $
     myReadShift = ["calibre","Calibre","evince","Evince","Mirage","Texmaker","xpdf"]
     myMediaShift = ["Banshee","Rhythmbox","spotify","Spotify","Steam","Vlc","xine"]
     myMailShift = ["Evolution","Thunderbird"]
-    myFloats = ["Gimp","Inkscape","Remmina","Skype","Slack"]
+    myFloats = ["Gimp","Inkscape","Remmina","Skype", "Zoom"]
 
 {- Keybinding section
  - Union defaults

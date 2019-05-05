@@ -98,6 +98,11 @@ ${top name 2}${alignr 80}${top pid 2}${alignr 45}${top cpu 2}${alignr 20}${top m
 ${top name 3}${alignr 80}${top pid 3}${alignr 45}${top cpu 3}${alignr 20}${top mem 3}
 ${top name 4}${alignr 80}${top pid 4}${alignr 45}${top cpu 4}${alignr 20}${top mem 4}
 ${top name 5}${alignr 80}${top pid 5}${alignr 45}${top cpu 5}${alignr 20}${top mem 5}
+${top name 6}${alignr 80}${top pid 6}${alignr 45}${top cpu 6}${alignr 20}${top mem 6}
+${top name 7}${alignr 80}${top pid 7}${alignr 45}${top cpu 7}${alignr 20}${top mem 7}
+${top name 8}${alignr 80}${top pid 8}${alignr 45}${top cpu 8}${alignr 20}${top mem 8}
+${top name 9}${alignr 80}${top pid 9}${alignr 45}${top cpu 9}${alignr 20}${top mem 9}
+${top name 10}${alignr 80}${top pid 10}${alignr 45}${top cpu 10}${alignr 20}${top mem 10}
 
 ${color1}Memory${color}${hr}
 ${color}Ram:${memmax} free:${memfree} used:${mem}
@@ -110,17 +115,17 @@ ${top_mem name 2}${alignr 80}${top_mem pid 2}${alignr 45}${top_mem cpu 2}${align
 ${top_mem name 3}${alignr 80}${top_mem pid 3}${alignr 45}${top_mem cpu 3}${alignr 20}${top_mem mem 3}
 ${top_mem name 4}${alignr 80}${top_mem pid 4}${alignr 45}${top_mem cpu 4}${alignr 20}${top_mem mem 4}
 ${top_mem name 5}${alignr 80}${top_mem pid 5}${alignr 45}${top_mem cpu 5}${alignr 20}${top_mem mem 5}
+${top_mem name 6}${alignr 80}${top_mem pid 6}${alignr 45}${top_mem cpu 6}${alignr 20}${top_mem mem 6}
+${top_mem name 7}${alignr 80}${top_mem pid 7}${alignr 45}${top_mem cpu 7}${alignr 20}${top_mem mem 7}
+${top_mem name 8}${alignr 80}${top_mem pid 8}${alignr 45}${top_mem cpu 8}${alignr 20}${top_mem mem 8}
+${top_mem name 9}${alignr 80}${top_mem pid 9}${alignr 45}${top_mem cpu 9}${alignr 20}${top_mem mem 9}
+${top_mem name 10}${alignr 80}${top_mem pid 10}${alignr 45}${top_mem cpu 10}${alignr 20}${top_mem mem 10}
 
 #${color1}Disk${color}${hr}
 #/ Read: ${diskio_read /dev/sda3}
 #${diskiograph_read /dev/sda3 20,200,0000ff ff0000 }
 #/ Write: ${diskio_write /dev/sda3}
 #${diskiograph_write /dev/sda3 20,200,0000ff ff0000 }
-
-${color}home: ${color white}${fs_type}${fs_free /home}/${fs_size /home} ${fs_bar /home}
-${color}boot: ${color white}${fs_type}${fs_free /boot}/${fs_size /boot} ${fs_bar /boot} 
-${color}swap: ${color white}${swapperc}% ${swapbar} 
-${color}tmp: ${color white}${fs_free /tmp} ${fs_bar /tmp}
 
 #${if_smapi_bat_installed 0}
 #${color1}Battery${color}${hr}                             
