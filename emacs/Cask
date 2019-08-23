@@ -129,7 +129,8 @@
 (depends-on "hasky-stack")
 (depends-on "ghc")
 (depends-on "hlint-refactor") ;; refactoring via hlint
-(depends-on "intero") ;; woo intero
+;(depends-on "intero") ;; woo intero
+
 ;(depends-on "stack-mode") ;; stack integration
 ;(depends-on "lsp-mode") ;; language server protocol
 ;(depends-on "lsp-ui")
@@ -137,7 +138,7 @@
 ;(depends-on "lsp-flycheck")
 ;(depends-on "company-lsp")
 
-; ;; Javascript... because the world is sad...
+;; Javascript... because the world is sad...
 (depends-on "ac-js2")
 (depends-on "flymake-jshint")
 (depends-on "flymake-jslint")
@@ -161,7 +162,7 @@
 (depends-on "psci") ;; purescript interpreter
 (depends-on "purescript-mode") ;; purescript
 
-; ;; Python
+;; Python
 (depends-on "anaconda-mode")
 (depends-on "company-jedi")
 (depends-on "elpy")
@@ -172,7 +173,7 @@
 (depends-on "python-mode")
 (depends-on "virtualenv") ;; python virtualenv support
 
-; ;; Ruby
+;; Ruby
 (depends-on "company-inf-ruby") ;; company ruby
 (depends-on "robe")
 (depends-on "rspec-mode") ;; support rspecs
@@ -211,8 +212,6 @@
 
 ;; perspectives
 (depends-on "perspective")
-
-; (depends-on "phabricator")
 
 ;; chat stuff
 ; (depends-on "slack")

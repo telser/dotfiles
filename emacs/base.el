@@ -38,6 +38,9 @@
 (save-place-mode 1)
 (persp-mode 1)
 
+;;; auto-reload changed files
+(global-auto-revert-mode t)
+
 ;; enable periodic cleanup
 (require 'midnight)
 
@@ -47,17 +50,17 @@
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 ;; (ido-everywhere 1)
-(ido-vertical-mode +1)
+;;(ido-vertical-mode +1)
 (setq ido-vertical-show-count t)
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
-(require 'ido-completing-read+)
-(ido-ubiquitous-mode 1)
+;;(require 'ido-completing-read+)
+;;(ido-ubiquitous-mode 1)
 (global-set-key (kbd "C-x C-f") 'ido-find-file)
 
 ;;;; company mode
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
-(company-quickhelp-mode 1)
+;(company-quickhelp-mode 1)
 (diminish 'company-mode)
 
 ;;;; which-key mode aka show me the keybindings!
