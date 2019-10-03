@@ -139,16 +139,16 @@
 ;(depends-on "company-lsp")
 
 ;; Javascript... because the world is sad...
-(depends-on "ac-js2")
-(depends-on "flymake-jshint")
-(depends-on "flymake-jslint")
-(depends-on "flymake-json")
-(depends-on "js2-highlight-vars")
+; (depends-on "ac-js2")
+; (depends-on "flymake-jshint")
+; (depends-on "flymake-jslint")
+; (depends-on "flymake-json")
+; (depends-on "js2-highlight-vars")
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
-(depends-on "js-format")
-(depends-on "npm-mode")
-(depends-on "prettier-js")
+; (depends-on "js-format")
+; (depends-on "npm-mode")
+; (depends-on "prettier-js")
 
 ;; Lua
 (depends-on "company-lua") ;; autocomplete lua
@@ -163,15 +163,15 @@
 (depends-on "purescript-mode") ;; purescript
 
 ;; Python
-(depends-on "anaconda-mode")
-(depends-on "company-jedi")
-(depends-on "elpy")
-(depends-on "jedi")
-(depends-on "pycoverage") ;; test coverage
-(depends-on "pylint") ;; linting tools
-(depends-on "pytest") ;; test runner
+;; (depends-on "anaconda-mode")
+;; (depends-on "company-jedi")
+;; (depends-on "elpy")
+;; (depends-on "jedi")
+;; (depends-on "pycoverage") ;; test coverage
+;; (depends-on "pylint") ;; linting tools
+;; (depends-on "pytest") ;; test runner
 (depends-on "python-mode")
-(depends-on "virtualenv") ;; python virtualenv support
+;; (depends-on "virtualenv") ;; python virtualenv support
 
 ;; Ruby
 (depends-on "company-inf-ruby") ;; company ruby
@@ -220,3 +220,10 @@
 ;; terraform
 ; (depends-on "terraform-mode")
 ; (depends-on "company-terraform")
+
+
+;; markdown
+(depends-on "gh-md")
+(depends-on "markdown-mode")
+(depends-on "markdown-mode+")
+(depends-on "markdown-toc")

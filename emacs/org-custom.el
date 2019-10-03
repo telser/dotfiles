@@ -6,9 +6,9 @@
 (define-key global-map (kbd "H-RET")  'org-meta-return)
 (define-key global-map "\C-H-a l" 'org-store-link)
 (define-key global-map "\C-H-a a" 'org-agenda)
-;(setq org-log-done t)
+(setq org-log-done t)
 
-;(setq org-completion-use-ido 1)
+(setq org-completion-use-ido 1)
 
 ;; (setq org-highest-priority ?A)
 ;; (setq org-lowest-priority ?Z)
