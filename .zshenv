@@ -6,23 +6,23 @@ local_path() {
 
 gpg_agent() {
 
-  # GPG Section FIXME: move to fn
+  # GPG Section
   gpg_agent_running=$(pgrep gpg-agent)
   if [[ -z ${gpg_agent_running} ]]; then
-      gpg-agent --daemon --enable-ssh-support -s #--write-env-file "${HOME}/.gpg-agent-info"
+      eval $(gpg-agent --daemon) # --enable-ssh-support -s #--write-env-file "${HOME}/.gpg-agent-info"
+      export SSH_AUTH_SOCK
   fi
 
   GPG_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
 #  SSH_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
   export GPG_AGENT_INFO
-#  export SSH_AUTH_SOCK
 
   GPG_TTY=$(tty)
   export GPG_TTY
 }
 
 local_pkgsrc_path() {
-  # make sure that pkgsrc dirs /usr/pkg/{bin,sbin} are on PATH
+  # make sure that pkgsrc dirs ~/pkg/{bin,sbin} are on PATH
   PATH=$PATH:~/pkg/sbin:~/pkg/bin
   export PATH
 }
@@ -31,6 +31,34 @@ pkgsrc_path() {
   # make sure that pkgsrc dirs /usr/pkg/{bin,sbin} are on PATH
   PATH=$PATH:/usr/pkg/sbin:/usr/pkg/bin
   export PATH
+}
+
+sbin_path() {
+    # make sure that sbin dirs /sbin and /usr/sbin are on PATH because linux is insane
+    PATH=/usr/sbin:/sbin:$PATH
+    export PATH
+}
+
+cask_path() {
+    # for emacs have the cask pkg manager installed in ~/progs/cask
+    PATH=$PATH:~/progs/cask/bin
+    export PATH
+}
+
+cabal_path() {
+    # for cabal installed programs
+    PATH=$PATH:~/.cabal/bin
+    export PATH
+}
+
+server_aliases() {
+    # aliases for mosh into servers
+    alias antoine='mosh antoine'
+    alias chuck='mosh nack ssh chuck'
+    alias dev='mosh dev'
+    alias nack='mosh nack'
+    alias rabot='mosh rabot'
+    alias sally='mosh sally'
 }
 
 # Defaults..
@@ -45,19 +73,25 @@ if [[ "$HOST" == 'zero' ]]; then
   PATH=/sbin:$PATH
   pkgsrc_path;
   local_pkgsrc_path;
+  cask_path;
+  cabal_path;
   gpg_agent;
+  server_aliases;
   alias spotify='spotify --force-device-scale-factor=2'
-  alias antoine='mosh antoine'
-  alias chuck='mosh nack ssh chuck'
-  alias dev='mosh dev'
-  alias nack='mosh nack'
-  alias rabot='mosh rabot'
-  alias sally='mosh sally'
   export GDK_SCALE=2
   alias vboxmanage=VBoxManage
-  alias thc-caltest='rm -r ~/.thc obj  && make clean && make && make libs && ./thc examples/Calendar.hs -o cal && ./cal 2019'
-#  alias slack='~/progs/slack/usr/bin/slack'
-#  alias robo3t='~/progs/robo3t-1.1.1-linux-x86_64-c93c6b0/bin/robo3t'
+  alias thc-caltest='rm -r ~/.thc obj && make clean && make && make libs && ./thc --no-cache examples/Calendar.hs -o cal && ./cal 2019'
+fi
+
+if [[ "$HOST" == 'magmadragoon' ]]; then
+  ZBG=061
+  local_path;
+  sbin_path;
+  cask_path;
+  cabal_path;
+  server_aliases;
+  gpg_agent;
+  alias thc-caltest='rm -r ~/.thc obj && make clean && make && make libs && ./thc --no-cache examples/Calendar.hs -o cal && ./cal 2019'
 fi
 
 if [[ "$HOST" == 'antione' ]]; then
@@ -94,26 +128,11 @@ fi
 # On all machines export the zsh theme color code..
 export ZBG
 
-PATH=$PATH:~/progs/cask/bin:~/.cabal/bin/
-export PATH=/home/trevis/node_modules/.bin:$PATH
-alias work-vm-up='vboxmanage startvm work --type headless'
-alias work-alpine-vm-up='vboxmanage startvm alpine_work --type headless'
-alias work-devuan-vm-up='vboxmanage startvm work-devuan --type headless'
-SCHMODS_DIR='cd ~/work/schmods;'
-COMP_UP='docker-compose up -d;'
-ZSHI='/usr/bin/zsh -i'
-API='./tasks/attach api;'
-APP='./tasks/attach app;'
-API_SESS="$SCHMODS_DIR $COMP_UP $API $ZSHI"
-APP_SESS="$SCHMODS_DIR sleep 20; $APP $ZSHI"
-SCHMODS_CMD="tmux new-session -d \"$API_SESS\" \; split-window \"$APP_SESS\" \; attach"
-TMUX_CMD="tmux new-session -d \"$ZSHI\" \; split-window \"$ZSHI\" \; attach"
-
-alias work="ssh -t -p 2222 trevis@localhost"
-alias work-alpine="ssh -t -p 2223 trevis@localhost"
-alias work-devuan="ssh -t -p 2224 trevis@localhost"
-alias work-tmux="ssh -t -p 2222 trevis@localhost '$TMUX_CMD'"
-alias work-emacs="ssh -t -p 2222 trevis@localhost '$SCHMODS_DIR emacs; $ZSHI'"
-alias work-emacs-term="nohup xterm -e zsh -i -c 'work-emacs; zsh'"
-alias work-up='work-vm-up; sleep 120; work-tmux'
+alias work-old="ssh -t -p 2224 trevis@localhost"
+alias work="ssh -X -t -p 2225 trevis@localhost"
+alias work-chedr="work 'cd work/heb/chedr-core && exec \$SHELL -l'"
 alias apu2-screen="sudo screen /dev/ttyUSB0 115200"
+
+alias vm-start-work='/usr/bin/qemu-system-x86_64 -monitor none -machine accel=kvm -m 32768 -smp cores=5,threads=2 -hda /home/trevis/vms/work.img -boot once=d,menu=off -net nic -net user,hostfwd=tcp::2225-10.0.2.15:22 -rtc base=utc -display none -name "work" &'
+
+alias vm-start-work-old='/usr/bin/qemu-system-x86_64 -monitor none -machine accel=kvm -m 16384 -smp 8 -hda /home/trevis/.aqemu/work_HDA.img -boot once=c,menu=off -net nic -net user,hostfwd=tcp::2224-10.0.2.15:22 -rtc base=localtime -display none -name "work" &'
