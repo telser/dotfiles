@@ -20,7 +20,7 @@ debianupdatesDisplay='^i(' .. debianupdatesIcon .. ') ${exec ~/dzen/scripts/apt_
 debianupdatesClick='  ^ca(1,~/dzen/scripts/apt_updates_popup.sh)' .. debianupdatesDisplay .. '^ca()'
 
 conky.text = [[\
-]] .. cpuDisplay .. memDisplay .. updatesClick .. debianupdatesClick .. [[\
+]] .. cpuDisplay .. memDisplay .. debianupdatesClick .. [[\
 ^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh) ^fg(\#556c85)^i(/home/trevis/dzen/icons/batt.xbm) ^fg()${battery_percent}%  ^ca()\
 ^ca(1,~/dotfiles/dzen/scripts/cal_popup.sh) ${time %a %d %b %T} ^ca()\
 ]];

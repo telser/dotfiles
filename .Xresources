@@ -30,7 +30,7 @@
 ! XTerm specific settings...
 XTerm*renderFont: true
 XTerm.termName: xterm-256color
-!XTerm.*.faceName: xft:Hack:size=11:antialias=true
+XTerm.*.faceName: xft:Hack:size=13:antialias=true
 XTerm.*.metaSendsEscape: true
 XTerm.*.selectToClipboard: true
 !XTerm.*.saveLines: 90000
