@@ -90,6 +90,9 @@
 (depends-on "irony") ;; c/c++ minor mode via libclang
 (depends-on "modern-cpp-font-lock")
 
+;; Dhall configuration language
+(depends-on "dhall-mode")
+
 ;; Elmlang
 (depends-on "elm-mode")
 (depends-on "flycheck-elm")
@@ -127,14 +130,14 @@
 (depends-on "ghc")
 (depends-on "hlint-refactor") ;; refactoring via hlint
 (depends-on "intero") ;; woo intero
-(depends-on "stack-mode") ;; stack integration
-(depends-on "lsp-mode") ;; language server protocol
-(depends-on "lsp-ui")
-(depends-on "lsp-haskell")
-(depends-on "lsp-flycheck")
-(depends-on "company-lsp")
+;(depends-on "stack-mode") ;; stack integration
+;(depends-on "lsp-mode") ;; language server protocol
+;(depends-on "lsp-ui")
+;(depends-on "lsp-haskell")
+;(depends-on "lsp-flycheck")
+;(depends-on "company-lsp")
 
-;; Javascript... because the world is sad...
+; ;; Javascript... because the world is sad...
 (depends-on "ac-js2")
 (depends-on "flymake-jshint")
 (depends-on "flymake-jslint")
@@ -158,7 +161,7 @@
 (depends-on "psci") ;; purescript interpreter
 (depends-on "purescript-mode") ;; purescript
 
-;; Python
+; ;; Python
 (depends-on "anaconda-mode")
 (depends-on "company-jedi")
 (depends-on "elpy")
@@ -169,7 +172,7 @@
 (depends-on "python-mode")
 (depends-on "virtualenv") ;; python virtualenv support
 
-;; Ruby
+; ;; Ruby
 (depends-on "company-inf-ruby") ;; company ruby
 (depends-on "robe")
 (depends-on "rspec-mode") ;; support rspecs
@@ -209,12 +212,12 @@
 ;; perspectives
 (depends-on "perspective")
 
-(depends-on "phabricator")
+; (depends-on "phabricator")
 
 ;; chat stuff
 ; (depends-on "slack")
 ; (depends-on "znc")
 
 ;; terraform
-(depends-on "terraform-mode")
-(depends-on "company-terraform")
+; (depends-on "terraform-mode")
+; (depends-on "company-terraform")
