@@ -18,7 +18,7 @@ import           XMonad                       (Full (..), KeyMask, KeySym,
                                                terminal, windows, workspaces,
                                                xK_0, xK_Down, xK_Left, xK_Right,
                                                xK_Up, xK_b, xK_c, xK_e,
-                                               xK_equal, xK_f, xK_l, xK_minus,
+                                               xK_equal, xK_f, xK_g, xK_l, xK_minus,
                                                xK_p, xK_r, xK_s, xK_t, xK_v, xK_x,
                                                xmonad, (.|.), (|||))
 import           XMonad.Actions.CycleWS       (nextScreen, nextWS, prevScreen,
@@ -56,7 +56,7 @@ main = do
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
-    leftBar <- spawnPipe "dzen2 -x '380' -h '67' -w '1030' -ta 'l' -fn xft:Hack:size=12:antialias=true -dock"
+    leftBar <- spawnPipe "dzen2 -x '380' -h '67' -w '1000' -ta 'l' -fn xft:Hack:size=12:antialias=true -dock"
     _ <- return $ usrName name
     xmonad $ ewmh def
         { manageHook = myManageHook <+> manageDocks
@@ -118,7 +118,7 @@ myManageHook = composeAll . concat $
     myReadShift = ["calibre","Calibre","evince","Evince","Mirage","Texmaker","xpdf"]
     myMediaShift = ["Banshee","Rhythmbox","spotify","Spotify","Steam","Vlc","xine"]
     myMailShift = ["Evolution","Thunderbird"]
-    myFloats = ["Gimp","Inkscape","Remmina","Skype", "Zoom"]
+    myFloats = ["Gimp","Inkscape","Remmina","Skype"]
 
 {- Keybinding section
  - Union defaults
@@ -145,9 +145,9 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   , ((modMask .|. shiftMask, xK_Right), shiftNextScreen) --Move things around screens
   , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen) -- Add shortcuts for programs
   , ((modMask .|. shiftMask, xK_b), spawn "calibre")
-  , ((modMask .|. shiftMask, xK_c), spawn "chromium")
-  , ((modMask .|. shiftMask, xK_e), spawn "emacs")
-  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
+  , ((modMask .|. shiftMask, xK_e), spawn "emacsclient -c")
+  , ((modMask .|. shiftMask, xK_f), spawn "firefox -p default")
+  , ((modMask .|. shiftMask, xK_g), spawn "chromium")
   , ((modMask .|. shiftMask, xK_l), spawn "slack")
   , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
   , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
