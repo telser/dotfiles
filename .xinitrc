@@ -28,6 +28,20 @@ if [ "$NAME" = "zero" ]; then
     export "$(dbus-launch)"
 fi
 
+if [ "$NAME" = "magmadragoon" ]; then
+    /usr/sbin/rfkill block bluetooth # turn off bluetooth, don't need it anyway
+    conky -c .conkyLeftrc & # put basic system info on "desktop" screen
+    stalonetray & # systray
+    clipit & # clipboard manager
+    nitrogen --restore & # set wallpaper
+    wicd-gtk & # wireless management
+    sh ~/dotfiles/cronscripts/apt_upgradable.sh & # populates file with updatable packages, checked in start_dzen
+    sh ~/dzen/scripts/start_dzen.sh & # start top right bar with update info, clock, battery, etc
+    brightnessctl -c backlight set 75% # because having the brightness all the way up is just silly
+    emacs --daemon # go ahead and fire up an editor daemon
+    redshift -c ~/.redshift.conf & # adjust screen temperature at night
+fi
+
 # Set the locale before launching xmonad to prevent character funkiness
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -41,4 +55,4 @@ xrdb -merge ~/.Xresources                # Set term font/color
 xmodmap ~/.Xmodmap                       # Rebind keys
 
 xsetroot -cursor_name left_ptr
-exec "$(command -v xmonad)"
+exec xmonad
