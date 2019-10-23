@@ -14,3 +14,4 @@ ln -s ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
 ln -s ~/dotfiles/.conkyLeftrc ~/.conkyLeftrc
 ln -s ~/dotfiles/.alacritty.yml ~/.alacritty.yml
 ln -s ~/dotfiles/dzen ~/dzen
+ln -s ~/dotfiles/.redshift.conf ~/.redshift.conf
