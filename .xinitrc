@@ -10,9 +10,8 @@ if [ "$NAME" = "double2" ]; then
     xset fp+ /usr/local/share/fonts/urwfonts
     xset fp+ /usr/local/share/fonts/Hack
     xset fp rehash
-fi
 
-if [ "$NAME" = "zero" ]; then
+elif [ "$NAME" = "zero" ]; then
     xrandr --dpi 144
     xrandr --output eDP-1 --mode 2880x1620
     export GDK_SCALE=2
@@ -26,9 +25,8 @@ if [ "$NAME" = "zero" ]; then
     wicd-gtk &
 #    sh use_headphone_amp.sh
     export "$(dbus-launch)"
-fi
 
-if [ "$NAME" = "magmadragoon" ]; then
+elif [ "$NAME" = "magmadragoon" ]; then
     /usr/sbin/rfkill block bluetooth # turn off bluetooth, don't need it anyway
     conky -c .conkyLeftrc & # put basic system info on "desktop" screen
     stalonetray & # systray
@@ -40,6 +38,7 @@ if [ "$NAME" = "magmadragoon" ]; then
     brightnessctl -c backlight set 75% # because having the brightness all the way up is just silly
     emacs --daemon # go ahead and fire up an editor daemon
     redshift -c ~/.redshift.conf & # adjust screen temperature at night
+    dunst -conf ~/.dunstrc &
 fi
 
 # Set the locale before launching xmonad to prevent character funkiness
