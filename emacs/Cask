@@ -227,3 +227,6 @@
 (depends-on "markdown-mode")
 (depends-on "markdown-mode+")
 (depends-on "markdown-toc")
+
+;; Dhall configuration language
+(depends-on "dhall-mode")
