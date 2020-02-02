@@ -120,7 +120,7 @@ if [[ "$HOST" == 'dev.silencedpoet.com' ]]; then
     local_path;
 fi
 
-if [[ "$HOST" == 'work' ]]; then
+if [[ "$HOST" == 'work' || "$HOST" == 'work-devuan' ]]; then
     ZBG=120
     local_path;
 fi
