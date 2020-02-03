@@ -39,6 +39,12 @@ sbin_path() {
     export PATH
 }
 
+cask_submodule_path() {
+    # for emacs have the cask pkg manager installed in ~/dotfiles/cask
+    PATH=$PATH:~/dotfiles/cask/bin
+    export PATH
+}
+
 cask_path() {
     # for emacs have the cask pkg manager installed in ~/progs/cask
     PATH=$PATH:~/progs/cask/bin
@@ -123,6 +129,8 @@ fi
 if [[ "$HOST" == 'work' || "$HOST" == 'work-devuan' ]]; then
     ZBG=120
     local_path;
+    cask_submodule_path;
+    sbin_path;
 fi
 
 # On all machines export the zsh theme color code..

@@ -16,7 +16,7 @@
 (package-initialize)
 
 (setq package-archives '(("gnu" . "[http://mirrors.163.com/elpa/gnu/](http://mirrors.163.com/elpa/gnu/)")))
-(require 'cask "~/progs/cask/cask.el")
+(require 'cask "~/dotfiles/cask/cask.el")
 (cask-initialize "~/emacs")
 
 ;;; Code:
