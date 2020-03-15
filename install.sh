@@ -30,3 +30,4 @@ symlink_if_not_exists ~/dotfiles/.alacritty.yml ~/.alacritty.yml
 symlink_if_not_exists ~/dotfiles/dzen ~/dzen
 symlink_if_not_exists ~/dotfiles/.redshift.conf ~/.redshift.conf
 symlink_if_not_exists ~/dotfiles/.dunstrc ~/.dunstrc
+symlink_if_not_exists ~/dotfiles/.mg ~/.mg
