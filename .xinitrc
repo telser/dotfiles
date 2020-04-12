@@ -27,18 +27,47 @@ elif [ "$NAME" = "zero" ]; then
     export "$(dbus-launch)"
 
 elif [ "$NAME" = "magmadragoon" ]; then
-    /usr/sbin/rfkill block bluetooth # turn off bluetooth, don't need it anyway
-    conky -c .conkyLeftrc & # put basic system info on "desktop" screen
-    stalonetray & # systray
-    clipit & # clipboard manager
-    nitrogen --restore & # set wallpaper
-    wicd-gtk & # wireless management
-    sh ~/dotfiles/cronscripts/apt_upgradable.sh & # populates file with updatable packages, checked in start_dzen
-    sh ~/dzen/scripts/start_dzen.sh & # start top right bar with update info, clock, battery, etc
-    brightnessctl -c backlight set 75% # because having the brightness all the way up is just silly
-    emacs --daemon # go ahead and fire up an editor daemon
-    redshift -c ~/.redshift.conf & # adjust screen temperature at night
+     # turn off bluetooth, don't need it anyway
+    /usr/sbin/rfkill block bluetooth
+
+    # export dbus info because some shit will fall over in unexpected ways
+    # without it (I see you slack)
+    export "$(dbus-launch)"
+
+    # systray
+    stalonetray &
+
+    # clipboard manager
+    clipit &
+
+    # set wallpaper
+    nitrogen --restore &
+
+    # wireless management using wicd, which is the least bad option compared to nm and connman
+    wicd-gtk &
+     # populates file with updatable packages, checked in start_dzen
+    sh ~/dotfiles/cronscripts/apt_upgradable.sh &
+
+    # start top right bar with update info, clock, battery, etc
+    sh ~/dzen/scripts/start_dzen.sh &
+
+    # reduce brightness because having it all the way up is just silly, wastes power, etc etc
+    brightnessctl -c backlight set 50%
+
+    # go ahead and fire up an editor daemon
+    emacs --daemon
+
+    # adjust screen temperature at night
+    redshift -c ~/.redshift.conf &
+
+    # dunst is not the prettiest notification manager thing
+    # But it is available most places and just works
     dunst -conf ~/.dunstrc &
+
+    # pulseaudio because life is a giant pit of despair
+    # This is just the tray, since magmadragoon is devuan installing a demon means starting it at boot
+    # so pulse is already started..
+    pasystray &
 fi
 
 # Set the locale before launching xmonad to prevent character funkiness

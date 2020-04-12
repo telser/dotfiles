@@ -5,22 +5,46 @@ conky.config = {
   update_interval = 1
 };
 
+
+function getShortHostname()
+    local f = io.popen ("/bin/hostname -s")
+    local hostname = f:read("*a") or ""
+    f:close()
+    hostname =string.gsub(hostname, "\n$", "")
+    return hostname
+
+end
+
 cpuIcon='/home/trevis/dzen/icons/cpu.xpm'
 cpuDisplay='^i(' .. cpuIcon ..')${cpu cpu0}% '
 
-memIcon='/home/trevis/dzen/icons/mem.xbm'
+memIcon='/home/trevis/dzen/icons/mem.xpm'
 memDisplay='^i(' .. memIcon .. ')${memperc}%'
 
 updatesIcon='/home/trevis/dzen/icons/pkgsrc50.xpm'
 updatesDisplay='^i(' .. updatesIcon .. ') ${exec ~/dzen/scripts/pkgsrc_updates_num.sh}'
 updatesClick='  ^ca(1,~/dzen/scripts/pkgsrc_updates_popup.sh)' .. updatesDisplay .. '^ca() '
 
-debianupdatesIcon='/home/trevis/dzen/icons/debian.xpm'
-debianupdatesDisplay='^i(' .. debianupdatesIcon .. ') ${exec ~/dzen/scripts/apt_updates_num.sh}'
-debianupdatesClick='  ^ca(1,~/dzen/scripts/apt_updates_popup.sh)' .. debianupdatesDisplay .. '^ca()'
+devuanUpdatesIcon='/home/trevis/dzen/icons/devuan50.xpm'
+devuanUpdatesDisplay='^i(' .. devuanUpdatesIcon .. ') ${exec ~/dzen/scripts/apt_updates_num.sh}'
+devuanUpdatesClick=' ^ca(1,~/dzen/scripts/apt_updates_popup.sh)' .. devuanUpdatesDisplay .. ' ^ca()'
 
-conky.text = [[\
-]] .. cpuDisplay .. memDisplay .. debianupdatesClick .. [[\
-^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh) ^fg(\#556c85)^i(/home/trevis/dzen/icons/batt.xbm) ^fg()${battery_percent}%  ^ca()\
-^ca(1,~/dotfiles/dzen/scripts/cal_popup.sh) ${time %a %d %b %T} ^ca()\
-]];
+cpuAndMem = [[ ]] .. cpuDisplay .. memDisplay
+
+batteryIcon='/home/trevis/dzen/icons/batt.xpm'
+batteryDisplay='^i(' .. batteryIcon .. ') ${battery_percent}%'
+batteryClick='^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh)' .. batteryDisplay .. ' ^ca()'
+
+calendar='^ca(1,~/dotfiles/dzen/scripts/cal_popup.sh) ${time %a %d %b %T} ^ca()'
+
+if getShortHostname() == 'magmadragoon' then
+   middleSection = devuanUpdatesClick
+else
+   middleSection = [[ ]]
+end
+
+if getShortHostname() ~= 'magmadragoon' then
+   conky.text = cpuAndMem;
+else
+   conky.text = cpuAndMem .. middleSection .. batteryClick .. calendar;
+end
