@@ -123,6 +123,8 @@ fi
 if [[ "$HOST" == 'work' ]]; then
     ZBG=120
     local_path;
+    export EDITOR=mg
+    export PROJECT_DIR=~/work/heb/chedr-core
 fi
 
 # On all machines export the zsh theme color code..
