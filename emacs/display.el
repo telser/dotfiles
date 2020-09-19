@@ -20,8 +20,11 @@
 (defun rainbow-hook ()
   "All the RAINBOWS."
   (rainbow-mode 1)
+  ;; fic highlights TODO and FIXME and such, only on in programming modes so org-mode doesn't get janky
   (fic-mode 1)
+  ;; make delimiters rainbow
   (rainbow-delimiters-mode 1)
+  ;; made identifiers rainbow
   (rainbow-identifiers-mode 1)
   (diminish 'rainbow-mode))
 

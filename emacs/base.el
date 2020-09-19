@@ -71,7 +71,6 @@
 
 ;;;; tramp mode
 (setq tramp-default-method "ssh")
-;; (eval-after-load 'tramp '(setenv "SHELL" "/bin/zsh"))
 
 ;; undo tree
 (require 'undo-tree)
@@ -92,7 +91,15 @@
 ; keep helm-M-x around
 (global-set-key (kbd "H-x") 'helm-M-x)
 
+;; projectile mode stuff
 (projectile-mode)
+(progn
+  (define-prefix-command 'ring-map)
+  (define-key ring-map (kbd "a") 'projectile-ag)
+  (define-key ring-map (kbd "f") 'projectile-find-file)
+  (define-key ring-map (kbd "r") 'projectile-replace-regexp)
+  )
+(global-set-key (kbd "H-p") ring-map)
 (diminish 'projectile-mode)
 
 ;;; paredit

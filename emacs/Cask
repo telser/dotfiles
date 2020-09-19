@@ -93,23 +93,6 @@
 ;; Dhall configuration language
 (depends-on "dhall-mode")
 
-;; Elmlang
-(depends-on "elm-mode")
-(depends-on "flycheck-elm")
-
-;; Erlang/LFE/Elixir
-(depends-on "edts") ;; erlang development tool suite
-(depends-on "alchemist") ;; elixir tooling
-(depends-on "company-distel")
-(depends-on "company-erlang") ;; autocomplete erlang
-(depends-on "elixir-mode") ;; support elixir
-(depends-on "flycheck-dialyxir") ;; flycheck support for dialyzer in elixir
-(depends-on "flycheck-dialyzer") ;; flycheck support for dialyzer
-(depends-on "flycheck-elixir") ;; flycheck elixir
-(depends-on "flycheck-rebar3") ;; flycheck rebar buildtool
-(depends-on "flymake-elixir")
-(depends-on "lfe-mode") ;; support for lisp-flavored-erlang
-
 ;; Golang
 (depends-on "go-mode") ;; support golang
 (depends-on "go-autocomplete")
@@ -125,11 +108,9 @@
 (depends-on "company-ghci")
 (depends-on "company-ghc")
 (depends-on "flycheck-haskell") ;; flycheck support
-(depends-on "flycheck-stack") ;; flycheck support for stack
 (depends-on "hasky-stack")
 (depends-on "ghc")
 (depends-on "hlint-refactor") ;; refactoring via hlint
-(depends-on "intero") ;; woo intero
 ;(depends-on "stack-mode") ;; stack integration
 ;(depends-on "lsp-mode") ;; language server protocol
 ;(depends-on "lsp-ui")
@@ -154,12 +135,6 @@
 (depends-on "flymake-lua") ;; autobuild lua
 (depends-on "lua-mode") ;; lua
 (depends-on "luarocks")
-
-;; Purescript
-(depends-on "flycheck-purescript") ;; on the flycheck
-(depends-on "psc-ide") ;; ide type tooling for purescript
-(depends-on "psci") ;; purescript interpreter
-(depends-on "purescript-mode") ;; purescript
 
 ; ;; Python
 (depends-on "anaconda-mode")
@@ -211,8 +186,6 @@
 
 ;; perspectives
 (depends-on "perspective")
-
-; (depends-on "phabricator")
 
 ;; chat stuff
 ; (depends-on "slack")
