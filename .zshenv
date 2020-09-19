@@ -21,6 +21,11 @@ gpg_agent() {
   export GPG_TTY
 }
 
+cargo_path() {
+  PATH=$PATH:~/.cargo/bin
+  export PATH
+}
+
 local_pkgsrc_path() {
   # make sure that pkgsrc dirs ~/pkg/{bin,sbin} are on PATH
   PATH=$PATH:~/pkg/sbin:~/pkg/bin
@@ -81,6 +86,7 @@ if [[ "$HOST" == 'zero' ]]; then
   local_pkgsrc_path;
   cask_path;
   cabal_path;
+  cargo_path;
   gpg_agent;
   server_aliases;
   alias spotify='spotify --force-device-scale-factor=2'
