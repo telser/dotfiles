@@ -25,10 +25,12 @@
 ;; move to another buffer in the current 'pane'
 (eval-after-load 'window-jump
   (progn
-    (global-set-key (kbd "H-p") 'window-jump-up)
-    (global-set-key (kbd "H-n") 'window-jump-down)
-    (global-set-key (kbd "H-l") 'window-jump-left)
-    (global-set-key (kbd "H-r") 'window-jump-right)))
+    (define-prefix-command 'window-keymap)
+    (global-set-key (kbd "H-w") 'window-keymap)
+    (define-key window-keymap (kbd "p") 'window-jump-up)
+    (define-key window-keymap (kbd "n") 'window-jump-down)
+    (define-key window-keymap (kbd "l") 'window-jump-left)
+    (define-key window-keymap (kbd "r") 'window-jump-right)))
 
 ;; deleting and splitting windows
 (global-set-key (kbd "C-H-d") 'delete-window)

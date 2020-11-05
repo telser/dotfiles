@@ -64,6 +64,7 @@
 ;; searching stuff
 (depends-on "ag") ;; ag support
 (depends-on "projectile") ;; per project support
+(depends-on "helm-projectile")
 
 ;; terminal/shells
 (depends-on "tramp") ;; edit remote files

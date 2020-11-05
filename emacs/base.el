@@ -93,13 +93,11 @@
 
 ;; projectile mode stuff
 (projectile-mode)
-(progn
-  (define-prefix-command 'ring-map)
-  (define-key ring-map (kbd "a") 'projectile-ag)
-  (define-key ring-map (kbd "f") 'projectile-find-file)
-  (define-key ring-map (kbd "r") 'projectile-replace-regexp)
-  )
-(global-set-key (kbd "H-p") ring-map)
+(define-prefix-command 'projectile-keymap)
+(global-set-key (kbd "H-p") 'projectile-keymap)
+(define-key projectile-keymap (kbd "a") 'projectile-ag)
+(define-key projectile-keymap (kbd "f") 'helm-projectile-find-file)
+(define-key projectile-keymap (kbd "r") 'projectile-replace-regexp)
 (diminish 'projectile-mode)
 
 ;;; paredit

@@ -15,6 +15,8 @@
 (line-number-mode -1) ;; hide line numbers from the modeline
 (column-number-mode 1) ;; show the column number in the modeline
 
+(size-indication-mode -1)
+
 ;;;; RAINBOWS!
 (diminish 'rainbow-mode)
 (defun rainbow-hook ()
