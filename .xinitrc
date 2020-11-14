@@ -15,16 +15,34 @@ elif [ "$NAME" = "zero" ]; then
     xrandr --dpi 144
     xrandr --output eDP-1 --mode 2880x1620
     export GDK_SCALE=2
+
     conky -c .conkyLeftrc &
     stalonetray &
     clipit &
     nitrogen --restore &
     eval "$(ssh-agent)"
-    /usr/sbin/rfkill block bluetooth
+
     sh ~/dzen/scripts/start_dzen.sh &
-    wicd-gtk &
-#    sh use_headphone_amp.sh
+
+    # dunst is not the prettiest notification manager thing
+    # But it is available most places and just works
+    dunst -conf ~/.dunstrc &
+
+    # go ahead and fire up an editor daemon
+    emacs --daemon &
+
     export "$(dbus-launch)"
+
+    intel_backlight 30
+
+    # populates file with updatable packages, checked in start_dzen
+    sh ~/dotfiles/cronscripts/pkg_upgradable.sh &
+
+    # a lightweight mixer in the tray
+    gtmixer &
+
+    # set pointer speed to be faster
+    xinput --set-prop 11 "libinput Accel Speed" 0.9 &
 
 elif [ "$NAME" = "magmadragoon" ]; then
      # turn off bluetooth, don't need it anyway
@@ -45,6 +63,7 @@ elif [ "$NAME" = "magmadragoon" ]; then
 
     # wireless management using wicd, which is the least bad option compared to nm and connman
     wicd-gtk &
+
      # populates file with updatable packages, checked in start_dzen
     sh ~/dotfiles/cronscripts/apt_upgradable.sh &
 
@@ -76,11 +95,15 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export MM_CHARSET=UTF-8
 
-xset b off &                             # Turn off term bell
+# Turn off term bell
+xset b off
 
-xrdb -merge ~/.Xresources                # Set term font/color
+# Set term font/color
+xrdb -merge ~/.Xresources
 
-xmodmap ~/.Xmodmap                       # Rebind keys
+# Rebind keys
+xmodmap ~/.Xmodmap
 
 xsetroot -cursor_name left_ptr
+
 exec xmonad

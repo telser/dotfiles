@@ -1,5 +1,5 @@
 ! Get rid of Caps Lock and make it the ctr_r key instead
-remove Lock = Caps_Lock
+clear Lock
 keysym Caps_Lock = Control_R
 add Control = Control_R
 keycode 117 = Hyper_R
