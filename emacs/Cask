@@ -48,7 +48,7 @@
 (depends-on "paredit-menu")
 (depends-on "smartparens") ;; smart parens are better than not smart parens
 (depends-on "syntax-subword") ;; make movement more fine-grained
-(depends-on "undo-tree") ;; traverse a try for undo/redo
+(depends-on "undo-tree") ;; traverse a tree for undo/redo
 
 ;; buffer/window movement
 (depends-on "buffer-move")
@@ -64,6 +64,7 @@
 ;; searching stuff
 (depends-on "ag") ;; ag support
 (depends-on "projectile") ;; per project support
+(depends-on "helm-projectile")
 
 ;; terminal/shells
 (depends-on "tramp") ;; edit remote files
@@ -92,16 +93,6 @@
 
 ;; Dhall configuration language
 (depends-on "dhall-mode")
-
-;; Golang
-(depends-on "go-mode") ;; support golang
-(depends-on "go-autocomplete")
-(depends-on "go-errcheck")
-(depends-on "go-gopath") ;; support gopath settings
-(depends-on "go-guru")
-(depends-on "go-projectile") ;; support golang in projectile
-(depends-on "golint") ;; lint golang files
-(depends-on "gotest") ;; test integration
 
 ;; Haskell
 (depends-on "ac-haskell-process") ;; autocomplete via a haskell process
@@ -136,16 +127,6 @@
 (depends-on "lua-mode") ;; lua
 (depends-on "luarocks")
 
-; ;; Python
-(depends-on "anaconda-mode")
-(depends-on "company-jedi")
-(depends-on "elpy")
-(depends-on "jedi")
-(depends-on "pycoverage") ;; test coverage
-(depends-on "pylint") ;; linting tools
-(depends-on "pytest") ;; test runner
-(depends-on "python-mode")
-(depends-on "virtualenv") ;; python virtualenv support
 
 ; ;; Ruby
 (depends-on "company-inf-ruby") ;; company ruby
@@ -188,9 +169,4 @@
 (depends-on "perspective")
 
 ;; chat stuff
-; (depends-on "slack")
 ; (depends-on "znc")
-
-;; terraform
-; (depends-on "terraform-mode")
-; (depends-on "company-terraform")

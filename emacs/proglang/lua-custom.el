@@ -4,7 +4,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun lua-mode-seutp ()
+(defun lua-mode-setup ()
   "Configuration for lua-mode."
   (electric-indent-mode +1))
 

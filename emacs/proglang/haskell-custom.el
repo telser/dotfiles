@@ -36,8 +36,8 @@
 (setq-default
  company-ghc-show-info t
  haskell-notify-p t
- haskell-stylish-on-save t
- haskell-mode-stylish-haskell-path "/home/trevis/.local/bin/stylish-haskell"
+ ;; haskell-stylish-on-save t
+ ;; haskell-mode-stylish-haskell-path "/home/trevis/.local/bin/stylish-haskell"
  haskell-process-use-presentation-mode t
  )
 
