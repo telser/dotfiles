@@ -13,11 +13,20 @@
 
 ;; window jump gives nicer window movement functions
 (use-package window-jump
-  :ensure t)
+  :ensure t
+  :init (define-prefix-command 'window-jump-keymap)
+  :bind
+  (("C-c w" . window-jump-keymap)
+   ("H-w" . window-jump-keymap)
+   :map window-jump-keymap
+   ("d" . window-jump-down)
+   ("l" . window-jump-left)
+   ("r" . window-jump-right)
+   ("u" . window-jump-up)
+   ))
 
 ;; buffer-move gives nice functions for moving which buffer is open in which window
 (use-package buffer-move
   :ensure t)
 
 (provide 'buffer)
-

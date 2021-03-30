@@ -14,10 +14,6 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package all-the-icons-ivy
-  :ensure t
-  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
-
 ; get rid of the menu-bar
 (menu-bar-mode -1)
 
@@ -60,7 +56,13 @@
 ; fic mode will colorize/italic TODO/FIXME and so on
 (use-package fic-mode
   :ensure t
-; note this is only turned on for programming modes so stuff like org does look wonky  
+; note this is only turned on for programming modes so stuff like org does look wonky
   :hook (prog-mode . fic-mode))
+
+(use-package workgroups2
+  :ensure t
+  :diminish
+  :config
+  (workgroups-mode 1))
 
 (provide 'display)
