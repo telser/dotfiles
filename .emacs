@@ -1,14 +1,13 @@
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+;; on recompile refresh the package contents and make sure use-package and diminish are installed
 (eval-when-compile
-  (package-refresh-contents)
   (package-install 'use-package) ; everything else will be installed/configured with use-package
   (package-install 'diminish) ; use-package can take advantage of diminish to remove minor modes fro the modeline
   (require 'use-package)
   (require 'diminish))
-
-; base level stuff, commands/search
 
 ;; compile the child configuration files
 (byte-recompile-directory (expand-file-name "~/emacs") 0)
@@ -36,7 +35,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(buffer-move darkokai-theme all-the-icons helm-ag workgroups2 syntax-subword smartparens command-log-mode smex diminish use-package)))
+   '(buffer-move darkokai-theme helm-ag workgroups2 syntax-subword smartparens command-log-mode smex diminish use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

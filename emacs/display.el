@@ -35,11 +35,15 @@
 ; always show matching parens
 (show-paren-mode 1)
 
-; show filesize in modeline
-(size-indication-mode 1)
+; don't show filesize in modeline
+(size-indication-mode -1)
+
+; show fill-column-indicator globally
+(global-display-fill-column-indicator-mode)
+(setq-default fill-column 100)
 
 ; set the font to Hack
-(set-face-attribute 'default nil :family "Hack")
+(set-face-attribute 'default nil :family "Hack" :height 90)
 
 ; rainbow delimiters/identifiers to make things pretty
 (use-package rainbow-mode
@@ -61,8 +65,13 @@
 
 (use-package workgroups2
   :ensure t
-  :diminish
+  :diminish workgroups-mode
   :config
   (workgroups-mode 1))
+
+(use-package eldoc
+  :ensure t
+  :diminish eldoc-mode
+  )
 
 (provide 'display)
