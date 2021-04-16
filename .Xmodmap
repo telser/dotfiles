@@ -1,11 +1,13 @@
 ! Get rid of Caps Lock and make it the ctr_r key instead
 clear Lock
 keysym Caps_Lock = Control_R
-add Control = Control_R
-keycode 117 = Hyper_R
+clear Lock
+clear control
+keycode 37 = Hyper_R
+add Control = Control_R Control_L
 
 !remove Mod4 = Hyper_L
-keycode 196 = F16 F16 F16
-keycode 197 = Insert
+!keycode 196 = F16 F16 F16
+!keycode 197 = Insert
 !add Mod3 = Hyper_L
 add Mod3 = Hyper_R

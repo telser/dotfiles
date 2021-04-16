@@ -33,9 +33,9 @@ freebsdPkgUpdatesIcon='/home/trevis/dzen/icons/freebsd50.xpm'
 freebsdPkgUpdatesDisplay='^i(' .. freebsdPkgUpdatesIcon .. ') ${exec ~/dzen/scripts/pkg_updates_num.sh}'
 freebsdPkgUpdatesClick=' ^ca(1,~/dzen/scripts/pkg_updates_popup.sh)' .. freebsdPkgUpdatesDisplay .. ' ^ca()'
 
-freebsdBaseUpdatesIcon='/home/trevis/dzen/icons/freebsdWhite50.xpm'
-freebsdBaseUpdatesDisplay='^i(' .. freebsdBaseUpdatesIcon .. ') ${exec ~/dzen/scripts/freebsd_updates_num.sh}'
-freebsdBaseUpdatesClick=' ^ca(1,~/dzen/scripts/freebsd_updates_popup.sh)' .. freebsdBaseUpdatesDisplay .. ' ^ca()'
+-- freebsdBaseUpdatesIcon='/home/trevis/dzen/icons/freebsdWhite50.xpm'
+-- freebsdBaseUpdatesDisplay='^i(' .. freebsdBaseUpdatesIcon .. ') ${exec ~/dzen/scripts/freebsd_updates_num.sh}'
+-- freebsdBaseUpdatesClick=' ^ca(1,~/dzen/scripts/freebsd_updates_popup.sh)' .. freebsdBaseUpdatesDisplay .. ' ^ca()'
 
 cpuAndMem = [[ ]] .. cpuDisplay .. memDisplay
 
@@ -51,7 +51,7 @@ if getShortHostname() == 'magmadragoon' then
    middleSection = devuanUpdatesClick
 else
    if getShortHostname() == 'zero' then
-      middleSection = freebsdPkgUpdatesClick .. freebsdBaseUpdatesClick .. freebsdBatteryDisplay
+      middleSection = freebsdPkgUpdatesClick .. freebsdBatteryDisplay
    else
       middleSection = [[ ]]
    end
