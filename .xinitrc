@@ -62,7 +62,7 @@ elif [ "$NAME" = "magmadragoon" ]; then
     nitrogen --restore &
 
     # wireless management using wicd, which is the least bad option compared to nm and connman
-    wicd-gtk &
+    cmst -m &
 
      # populates file with updatable packages, checked in start_dzen
     sh ~/dotfiles/cronscripts/apt_upgradable.sh &
