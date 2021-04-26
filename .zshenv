@@ -130,6 +130,7 @@ if [[ "$HOST" == 'work' || "$HOST" == 'work-devuan' ]]; then
     ZBG=120
     local_path;
     sbin_path;
+    export EDITOR=mg
 fi
 
 # On all machines export the zsh theme color code..
