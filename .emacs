@@ -4,8 +4,10 @@
 
 ;; on recompile refresh the package contents and make sure use-package and diminish are installed
 (eval-when-compile
-  (package-install 'use-package) ; everything else will be installed/configured with use-package
-  (package-install 'diminish) ; use-package can take advantage of diminish to remove minor modes fro the modeline
+  (package-refresh-contents)
+  (dolist (package '(use-package diminish))
+    (unless (package-installed-p package)
+       (package-install package)))
   (require 'use-package)
   (require 'diminish))
 
