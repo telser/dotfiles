@@ -47,6 +47,10 @@
   (setq helm-split-window-inside-p t) ; always split helm in the current window rather than take over another split
   (helm-mode 1))
 
+(use-package helm-ag
+  :ensure t
+  :diminish)
+
 (use-package helm-projectile
   :ensure t
   :init (define-prefix-command 'helm-projectile-map)
@@ -68,6 +72,7 @@
 (use-package syntax-subword
   :ensure t
   :config (global-syntax-subword-mode 1)
+  :demand
   :bind (("C-S-f" . syntax-subword-forward-syntax)
 	 ("C-S-b" . syntax-subword-backward-syntax)))
 
