@@ -76,6 +76,8 @@ if [[ "$HOST" == 'zero' ]]; then
   local_path;
   # cabal path, prefer it over even .local from stack..
   PATH=/sbin:$PATH
+  EDITOR='emacsclient -t -a mg'
+  export EDITOR
   pkgsrc_path;
   local_pkgsrc_path;
   cask_path;
