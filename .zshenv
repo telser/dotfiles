@@ -137,8 +137,9 @@ fi
 export ZBG
 
 alias work-old="ssh -t -p 2224 trevis@localhost"
-alias work="ssh -X -t -p 2225 trevis@localhost"
+alias work="ssh -X -t -p 2223 trevis@localhost"
 alias work-chedr="work 'cd work/heb/chedr-core && exec \$SHELL -l'"
+alias work-spur="work 'cd work/heb/supplier-core && exec \$SHELL -l'"
 alias apu2-screen="sudo screen /dev/ttyUSB0 115200"
 
 alias vm-start-work='/usr/bin/qemu-system-x86_64 -monitor none -machine accel=kvm -m 32768 -smp cores=5,threads=2 -hda /home/trevis/vms/work.img -boot once=d,menu=off -net nic -net user,hostfwd=tcp::2225-10.0.2.15:22 -rtc base=utc -display none -name "work" &'

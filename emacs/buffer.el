@@ -32,6 +32,7 @@
 (use-package buffer-move
   :ensure t
   :init (define-prefix-command 'buffer-keymap)
+  :demand
   :bind (("C-c b" . buffer-keymap)
 	 ("H-b" . buffer-keymap)
 	 :map buffer-keymap
