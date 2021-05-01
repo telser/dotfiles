@@ -15,6 +15,7 @@
 (use-package window-jump
   :ensure t
   :init (define-prefix-command 'window-keymap)
+  :demand
   :bind
   (("C-c w" . window-keymap)
    ("H-w" . window-keymap)
@@ -31,6 +32,7 @@
 (use-package buffer-move
   :ensure t
   :init (define-prefix-command 'buffer-keymap)
+  :demand
   :bind (("C-c b" . buffer-keymap)
 	 ("H-b" . buffer-keymap)
 	 :map buffer-keymap

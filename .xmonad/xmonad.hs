@@ -148,7 +148,7 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   , ((modMask .|. shiftMask, xK_e), spawn "emacsclient -c")
   , ((modMask .|. shiftMask, xK_f), spawn "firefox -p default")
   , ((modMask .|. shiftMask, xK_g), spawn "chromium")
-  , ((modMask .|. shiftMask, xK_l), spawn "slack")
+--  , ((modMask .|. shiftMask, xK_l), spawn "slack")
   , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
   , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
   , ((modMask .|. shiftMask, xK_s), spawn "spotify")

@@ -63,11 +63,11 @@
 ; note this is only turned on for programming modes so stuff like org does look wonky
   :hook (prog-mode . fic-mode))
 
-(use-package workgroups2
-  :ensure t
-  :diminish workgroups-mode
-  :config
-  (workgroups-mode 1))
+;; (use-package workgroups2
+;;   :ensure t
+;;   :diminish workgroups-mode
+;;   :config
+;;   (workgroups-mode 1))
 
 (use-package eldoc
   :ensure t

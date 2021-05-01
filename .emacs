@@ -25,19 +25,13 @@
 
 (desktop-save-mode 1)
 
-;; Install auto-package-update to make sure everything stays up to date
-(use-package auto-package-update
-  :ensure t
-  :config
-  (setq auto-package-update-prompt-before-update t)
-  (auto-package-update-maybe))
-
 ; smex, allows for enhanced M-x used with in combination of ivy/counsel/swiper
 (use-package smex
   :ensure t)
 
 (use-package helm
   :ensure t
+  :demand
   :bind (("M-x" . helm-M-x)
 	 ("C-x b" . helm-buffers-list)
 	 ("C-x C-f" . helm-find-files)
@@ -82,6 +76,7 @@
 (use-package which-key
   :ensure t
   :diminish
+  :demand
   :config (which-key-mode 1))
 
 ; command-log-mode to show what is being performed, useful for pairing
@@ -121,7 +116,6 @@
 (add-to-list 'load-path "~/emacs")
 (load-library "display")
 (load-library "buffer")
-(desktop-save-mode 1)
 
 ;; language stuff
 (use-package dhall-mode
@@ -135,13 +129,22 @@
 (use-package yaml-mode
   :ensure t)
 
+;; Install auto-package-update to make sure everything stays up to date
+(use-package auto-package-update
+  :ensure t
+  :demand
+  :config
+  (setq auto-package-update-prompt-before-update t)
+  (auto-package-update-maybe))
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(buffer-move darkokai-theme helm-ag workgroups2 syntax-subword smartparens command-log-mode smex diminish use-package)))
+   '(window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
