@@ -100,6 +100,24 @@
   :diminish
   :config (global-company-mode 1))
 
+(use-package flycheck
+  :ensure t
+  :config
+  (define-key flycheck-mode-map flycheck-keymap-prefix nil)
+  (setq flycheck-keymap-prefix (kbd "C-c f"))
+  (define-key flycheck-mode-map flycheck-keymap-prefix flycheck-command-map)
+  (global-flycheck-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :bind-keymap (("C-c l" . lsp-command-map))
+  :config
+  (let ((lsp-keymap-prefix "C-c l")) (lsp-enable-which-key-integration t))
+  )
+
+(use-package lsp-ui
+  :ensure t)
+
 (defun er-remove-elc-on-save ()
   "Remove bytecompiled version of elisp files on save"
   (add-hook 'after-save-hook
@@ -127,6 +145,29 @@
 (use-package lua-mode
   :ensure t)
 (use-package yaml-mode
+  :ensure t)
+
+(use-package yasnippet
+  :ensure t)
+
+(use-package lsp-haskell
+  :ensure t
+  ;; :init
+  ;; (add-hook 'haskell-mode-hook #'lsp)
+  :config
+  (setq lsp-enable-file-watchers nil))
+
+(use-package flycheck-haskell
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook #'flycheck-haskell-setup))
+
+(add-hook 'hack-local-variables-hook (lambda () (when (derived-mode-p 'haskell-mode) (lsp))))
+
+(use-package xml-format
+  :ensure t
+  :config (xml-format-on-save-mode))
+(use-package xml+
   :ensure t)
 
 ;; Install auto-package-update to make sure everything stays up to date
