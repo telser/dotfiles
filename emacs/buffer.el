@@ -15,6 +15,7 @@
 (use-package window-jump
   :ensure t
   :init (define-prefix-command 'window-keymap)
+  :demand
   :bind
   (("C-c w" . window-keymap)
    ("H-w" . window-keymap)
