@@ -139,7 +139,9 @@
 (use-package dhall-mode
   :ensure t)
 (use-package haskell-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq haskell-tags-on-save t))
 (use-package irony
   :ensure t)
 (use-package lua-mode
@@ -185,7 +187,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package)))
+   '(zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
