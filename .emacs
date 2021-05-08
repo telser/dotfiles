@@ -121,11 +121,11 @@
 (defun er-remove-elc-on-save ()
   "Remove bytecompiled version of elisp files on save"
   (add-hook 'after-save-hook
-            (lambda ()
-              (if (file-exists-p (concat buffer-file-name "c"))
-                  (delete-file (concat buffer-file-name "c"))))
-            nil
-            t))
+	    (lambda ()
+	      (if (file-exists-p (concat buffer-file-name "c"))
+		  (delete-file (concat buffer-file-name "c"))))
+	    nil
+	    t))
 
 (add-hook 'emacs-lisp-mode-hook 'er-remove-elc-on-save)
 
@@ -138,8 +138,15 @@
 ;; language stuff
 (use-package dhall-mode
   :ensure t)
+
 (use-package haskell-mode
-  :ensure t)
+  :ensure t
+  :config
+  (defun haskell-sort-imports-on-save-hook ()
+    (when (eq major-mode 'haskell-mode)
+      (haskell-sort-imports)))
+  (add-hook 'before-save-hook #'haskell-sort-imports-on-save-hook))
+
 (use-package irony
   :ensure t)
 (use-package lua-mode
@@ -178,14 +185,18 @@
   (setq auto-package-update-prompt-before-update t)
   (auto-package-update-maybe))
 
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package)))
+   '(window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package))
+ '(safe-local-variable-values
+   '((eval setq lsp-haskell-server-path
+	   (concat
+	    (locate-dominating-file default-directory ".dir-locals.el")
+	    ".vscode/haskell-language-server-wrapper")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
