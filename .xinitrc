@@ -41,7 +41,7 @@ elif [ "$NAME" = "zero" ]; then
     gtmixer &
 
     # set pointer speed to be faster
-    xinput --set-prop 11 "libinput Accel Speed" 0.9 
+    xinput --set-prop 11 "libinput Accel Speed" 0.9
 
 elif [ "$NAME" = "magmadragoon" ]; then
      # turn off bluetooth, don't need it anyway
@@ -108,4 +108,4 @@ setxkbmap
 # use xmodmap to remap caps_lock to control and left control to hyper
 xmodmap ~/.Xmodmap
 
-xmonad
+exec xmonad
