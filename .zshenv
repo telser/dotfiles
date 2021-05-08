@@ -44,12 +44,6 @@ sbin_path() {
     export PATH
 }
 
-cask_path() {
-    # for emacs have the cask pkg manager installed in ~/progs/cask
-    PATH=$PATH:~/progs/cask/bin
-    export PATH
-}
-
 cabal_path() {
     # for cabal installed programs
     PATH=$PATH:~/.cabal/bin
@@ -78,7 +72,6 @@ if [[ "$HOST" == 'zero' ]]; then
   PATH=/sbin:$PATH
   pkgsrc_path;
   local_pkgsrc_path;
-  cask_path;
   cabal_path;
   cargo_path;
   gpg_agent;
@@ -93,7 +86,6 @@ if [[ "$HOST" == 'magmadragoon' ]]; then
   ZBG=061
   local_path;
   sbin_path;
-  cask_path;
   cabal_path;
   server_aliases;
   gpg_agent;

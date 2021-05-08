@@ -16,7 +16,6 @@ elif [ "$NAME" = "zero" ]; then
     xrandr --output eDP-1 --mode 2880x1620
     export GDK_SCALE=2
 
-    conky -c .conkyLeftrc &
     stalonetray &
     clipit &
     nitrogen --restore &
@@ -42,7 +41,7 @@ elif [ "$NAME" = "zero" ]; then
     gtmixer &
 
     # set pointer speed to be faster
-    xinput --set-prop 11 "libinput Accel Speed" 0.9 &
+    xinput --set-prop 11 "libinput Accel Speed" 0.9
 
 elif [ "$NAME" = "magmadragoon" ]; then
      # turn off bluetooth, don't need it anyway
@@ -101,9 +100,12 @@ xset b off
 # Set term font/color
 xrdb -merge ~/.Xresources
 
-# Rebind keys
-xmodmap ~/.Xmodmap
-
 xsetroot -cursor_name left_ptr
+
+# Rebind keys
+# make sure keybindings are at the defaults before applying xmodmap changes
+setxkbmap
+# use xmodmap to remap caps_lock to control and left control to hyper
+xmodmap ~/.Xmodmap
 
 exec xmonad

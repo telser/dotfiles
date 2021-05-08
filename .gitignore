@@ -17,6 +17,7 @@ emacs/.cask
 *.swp
 cv/auto*
 cv/*.log
+*~
 
 ## xmonad build stuff
 .xmonad/dist-newstyle
