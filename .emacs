@@ -153,6 +153,15 @@
       (haskell-sort-imports)))
   (add-hook 'before-save-hook #'haskell-sort-imports-on-save-hook))
 
+(use-package docker-compose-mode
+  :ensure t)
+
+(use-package dockerfile-mode
+  :ensure t)
+
+(use-package gitlab-ci-mode
+  :ensure t)
+
 (use-package irony
   :ensure t)
 (use-package lua-mode
@@ -161,7 +170,9 @@
   :ensure t)
 
 (use-package yasnippet
-  :ensure t)
+  :ensure t
+  :config
+  (yas-global-mode 1))
 
 (use-package lsp-haskell
   :ensure t
@@ -197,7 +208,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package))
+   '(gitlab-ci-mode dockerfile-mode docker-compose-mode zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword command-log-mode smex diminish use-package))
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
 	   (concat
