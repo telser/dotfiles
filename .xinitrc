@@ -87,6 +87,9 @@ elif [ "$NAME" = "magmadragoon" ]; then
     # This is just the tray, since magmadragoon is devuan installing a demon means starting it at boot
     # so pulse is already started..
     pasystray &
+
+    # start syncthing minimized to tray
+    syncthing-gtk -m &
 fi
 
 # Set the locale before launching xmonad to prevent character funkiness
