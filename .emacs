@@ -111,6 +111,7 @@
   (define-key flycheck-mode-map flycheck-keymap-prefix nil)
   (setq flycheck-keymap-prefix (kbd "C-c f"))
   (define-key flycheck-mode-map flycheck-keymap-prefix flycheck-command-map)
+  (setq flycheck-clang-include-path '("/usr/local/include" "/usr/local/include/freetype2"))
   (global-flycheck-mode))
 
 (use-package lsp-mode
@@ -118,6 +119,7 @@
   :bind-keymap (("C-c l" . lsp-command-map))
   :config
   (let ((lsp-keymap-prefix "C-c l")) (lsp-enable-which-key-integration t))
+  (setq lsp-clients-clangd-executable "clangd10")
   )
 
 (use-package lsp-ui
@@ -188,6 +190,12 @@
 
 (add-hook 'hack-local-variables-hook (lambda () (when (derived-mode-p 'haskell-mode) (lsp))))
 
+(use-package flycheck-irony
+  :ensure t
+  :config
+  (eval-after-load 'flycheck
+      '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+
 (use-package xml-format
   :ensure t
   :config (xml-format-on-save-mode))
@@ -197,6 +205,32 @@
 (use-package jq-format
   :ensure t
   :config (jq-format-json-on-save-mode))
+
+(use-package org
+  :ensure t
+  :config (setq org-agenda-files '("~/org/TODO.org"
+				   "~/org/projects.org"
+				   "~/org/timed.org"))
+  (setq org-capture-templates '(("t" "TODO" entry
+                               (file "~/org/TODO.org")
+                               "* TODO %i%? [/]")))
+  (setq org-refile-targets '(("~/org/someday.org" :level . 1)
+			     ("~/org/projects.org" :maxlevel . 3)
+			     ("~/org/timed.org" :maxlevel . 2)))
+  (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!/!)" "|" "DONE(d!/!)" "CANCELLED(c!/!)")))
+  (setq org-refile-allow-creating-parent-nodes 'confirm) ;; on refile, let selected be a top level
+  (setq org-refile-use-outline-path 'file) ; when refiling start with filename instead of just a header
+  (setq org-outline-path-complete-in-steps nil) ; complete the outline path in one-shot so this works with helm
+  )
+
+(use-package org-ac
+  :ensure t)
+
+(define-prefix-command 'org-global-keymap)
+(global-set-key (kbd "C-c o" ) 'org-global-keymap)
+(define-key org-global-keymap (kbd "a") 'org-agenda)
+(define-key org-global-keymap (kbd "l") 'org-store-link)
+(define-key org-global-keymap (kbd "c") 'org-capture)
 
 ;; Install auto-package-update to make sure everything stays up to date
 (use-package auto-package-update

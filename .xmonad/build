@@ -15,6 +15,6 @@ cabal new-build
 
 if [ "$output_file" != "" ]; then
 # move resulting binary where it was requested to reside
-find $CFG_DIR/dist-newstyle -type f -perm +111 -name $EXE_NAME \
+find $CFG_DIR/dist-newstyle -type f -perm -111 -name $EXE_NAME \
      -exec mv '{}' $output_file ';'
 fi

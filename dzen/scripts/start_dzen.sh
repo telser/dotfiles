@@ -1,3 +1,3 @@
 #!/bin/sh
 
-conky -c ~/dzen/dzen_conky.lua | dzen2 -x 880 -w 700 -h 70 -ta r -fn "xft:Hack:size=14:antialias=true" -title-name dzenstatus -bg "#000000" -dock
+conky -c ~/dzen/dzen_conky.lua | nezd -x 55% -w 45% -h 70 -ta r -fn "xft:Hack:size=12:antialias=true" -title-name nezdstatus -bg "#000000" -dock

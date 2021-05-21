@@ -13,6 +13,7 @@ emacs/.cask
 .xmonad/xmonad.state
 .xmonad/.xmonad
 .xmonad/.xmonad-session-rc
+.xmonad/cabal.project.local~*
 *#*
 *.swp
 cv/auto*

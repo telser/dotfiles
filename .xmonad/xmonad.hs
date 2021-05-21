@@ -1,10 +1,10 @@
-import qualified Data.Map                     as M
-import           Data.Monoid                  (Endo)
-import           Data.Ratio                   ((%))
-import           GHC.IO.Handle.Types          (Handle)
+import qualified Data.Map as M
+import           Data.Monoid (Endo)
+import           Data.Ratio ((%))
+import           GHC.IO.Handle.Types (Handle)
 import           Graphics.X11.ExtraTypes.XF86 (xF86XK_MonBrightnessDown,
                                                xF86XK_MonBrightnessUp)
-import           System.Posix.Unistd          (getSystemID, nodeName)
+import           System.Posix.Unistd (getSystemID, nodeName)
 import           System.Posix.User            (UserEntry (..), getRealUserID,
                                                getUserEntryForID)
 import           XMonad                       (Full (..), KeyMask, KeySym,
@@ -29,26 +29,26 @@ import           XMonad.Hooks.DynamicLog      (def, dynamicLogWithPP, dzenColor,
                                                pad, ppCurrent, ppHidden,
                                                ppHiddenNoWindows, ppOrder,
                                                ppOutput, ppVisible, ppWsSep)
-import           XMonad.Hooks.EwmhDesktops    (ewmh)
+import           XMonad.Hooks.EwmhDesktops (ewmh)
 import           XMonad.Hooks.ManageDocks     (AvoidStruts, avoidStruts, docks,
                                                docksStartupHook, manageDocks)
-import           XMonad.Layout                (Choose)
-import           XMonad.Layout.GridVariants   (TallGrid (..), Grid(..))
+import           XMonad.Layout (Choose)
+import           XMonad.Layout.GridVariants (TallGrid (..), Grid(..))
 import           XMonad.Layout.IM             (AddRoster, Property (Title),
                                                withIM)
 import           XMonad.Layout.LayoutModifier (ModifiedLayout)
-import           XMonad.Layout.Named          (named)
-import           XMonad.Layout.PerWorkspace   (PerWorkspace, onWorkspace)
-import           XMonad.Layout.Reflect        (Reflect, reflectHoriz)
-import           XMonad.Layout.Renamed        (Rename)
+import           XMonad.Layout.Named (named)
+import           XMonad.Layout.PerWorkspace (PerWorkspace, onWorkspace)
+import           XMonad.Layout.Reflect (Reflect, reflectHoriz)
+import           XMonad.Layout.Renamed (Rename)
 import           XMonad.ManageHook            (className, composeAll, doF,
                                                doFloat, resource, (-->), (<&&>),
                                                (<+>), (=?))
-import XMonad.Prompt (greenXPConfig)
-import XMonad.Prompt.Shell (shellPrompt, prompt)
-import qualified XMonad.StackSet              as W
-import           XMonad.Util.Replace          (replace)
-import           XMonad.Util.Run              (hPutStrLn, spawnPipe)
+import           XMonad.Prompt (greenXPConfig)
+import           XMonad.Prompt.Shell (shellPrompt, prompt)
+import qualified XMonad.StackSet as W
+import           XMonad.Util.Replace (replace)
+import           XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 main :: IO ()
 main = do
@@ -134,7 +134,7 @@ myKeys hostname x  = M.union (M.fromList (newKeys hostname x)) (keys def x)
 newKeys :: String -> XConfig l -> [((KeyMask, KeySym), X ())]
 newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   [ ((modMask .|. controlMask, xK_r), spawn "xrandr --output VGA-0 --auto") -- Resize vbox screen
-  , ((modMask .|. controlMask, xK_s), prompt ("scrot -s") greenXPConfig)
+  , ((modMask .|. controlMask, xK_s), prompt "scrot -s" greenXPConfig)
   , ((modMask .|. controlMask, xK_x), shellPrompt greenXPConfig)
   , ((modMask .|. controlMask, xK_Down), shiftToNext) --Move around screens
   , ((modMask .|. controlMask, xK_Up), shiftToPrev) --Move around screens
@@ -146,7 +146,7 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen) -- Add shortcuts for programs
   , ((modMask .|. shiftMask, xK_b), spawn "calibre")
   , ((modMask .|. shiftMask, xK_e), spawn "emacsclient -c")
-  , ((modMask .|. shiftMask, xK_f), spawn "firefox -p default")
+  , ((modMask .|. shiftMask, xK_f), spawn "firefox")
   , ((modMask .|. shiftMask, xK_g), spawn "chromium")
 --  , ((modMask .|. shiftMask, xK_l), spawn "slack")
   , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
