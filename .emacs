@@ -194,6 +194,10 @@
 (use-package xml+
   :ensure t)
 
+(use-package jq-format
+  :ensure t
+  :config (jq-format-json-on-save-mode))
+
 ;; Install auto-package-update to make sure everything stays up to date
 (use-package auto-package-update
   :ensure t
@@ -208,7 +212,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(gitlab-ci-mode dockerfile-mode docker-compose-mode zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword command-log-mode smex diminish use-package))
+   '(jq-format gitlab-ci-mode dockerfile-mode docker-compose-mode zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword command-log-mode smex diminish use-package))
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
 	   (concat
