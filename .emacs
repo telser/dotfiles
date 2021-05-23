@@ -111,7 +111,6 @@
   (define-key flycheck-mode-map flycheck-keymap-prefix nil)
   (setq flycheck-keymap-prefix (kbd "C-c f"))
   (define-key flycheck-mode-map flycheck-keymap-prefix flycheck-command-map)
-  (setq flycheck-clang-include-path '("/usr/local/include" "/usr/local/include/freetype2"))
   (global-flycheck-mode))
 
 (use-package lsp-mode
@@ -119,11 +118,21 @@
   :bind-keymap (("C-c l" . lsp-command-map))
   :config
   (let ((lsp-keymap-prefix "C-c l")) (lsp-enable-which-key-integration t))
-  (setq lsp-clients-clangd-executable "clangd10")
+  (setq lsp-enable-snippet nil)
   )
 
 (use-package lsp-ui
   :ensure t)
+
+;; alignment keybindings
+(define-prefix-command 'align-global-keymap 'align-stuff)
+(global-set-key (kbd "C-c a") 'align-global-keymap)
+(define-key 'align-global-keymap (kbd "a") 'align)
+(define-key 'align-global-keymap (kbd "c") 'align-current)
+(define-key 'align-global-keymap (kbd "e") 'align-entire)
+(define-key 'align-global-keymap (kbd "r") 'align-regexp)
+
+;; regex for aligning by comma inside of a delimiter \(\s-+\)\(,\|\s(\|\s)\)
 
 (defun er-remove-elc-on-save ()
   "Remove bytecompiled version of elisp files on save."
@@ -141,19 +150,13 @@
 (add-to-list 'load-path "~/emacs")
 (load-library "display")
 (load-library "buffer")
+(load-library "json-yaml-xml")
+(load-library "org-custom")
+(load-library "haskell-custom")
 
 ;; language stuff
 (use-package dhall-mode
   :ensure t)
-
-(use-package haskell-mode
-  :ensure t
-  :config
-  (setq haskell-tags-on-save t)
-  (defun haskell-sort-imports-on-save-hook ()
-    (when (eq major-mode 'haskell-mode)
-      (haskell-sort-imports)))
-  (add-hook 'before-save-hook #'haskell-sort-imports-on-save-hook))
 
 (use-package docker-compose-mode
   :ensure t)
@@ -166,71 +169,14 @@
 
 (use-package irony
   :ensure t)
+
 (use-package lua-mode
-  :ensure t)
-(use-package yaml-mode
   :ensure t)
 
 (use-package yasnippet
   :ensure t
   :config
   (yas-global-mode 1))
-
-(use-package lsp-haskell
-  :ensure t
-  ;; :init
-  ;; (add-hook 'haskell-mode-hook #'lsp)
-  :config
-  (setq lsp-enable-file-watchers nil))
-
-(use-package flycheck-haskell
-  :ensure t
-  :config
-  (add-hook 'haskell-mode-hook #'flycheck-haskell-setup))
-
-(add-hook 'hack-local-variables-hook (lambda () (when (derived-mode-p 'haskell-mode) (lsp))))
-
-(use-package flycheck-irony
-  :ensure t
-  :config
-  (eval-after-load 'flycheck
-      '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
-
-(use-package xml-format
-  :ensure t
-  :config (xml-format-on-save-mode))
-(use-package xml+
-  :ensure t)
-
-(use-package jq-format
-  :ensure t
-  :config (jq-format-json-on-save-mode))
-
-(use-package org
-  :ensure t
-  :config (setq org-agenda-files '("~/org/TODO.org"
-				   "~/org/projects.org"
-				   "~/org/timed.org"))
-  (setq org-capture-templates '(("t" "TODO" entry
-                               (file "~/org/TODO.org")
-                               "* TODO %i%? [/]")))
-  (setq org-refile-targets '(("~/org/someday.org" :level . 1)
-			     ("~/org/projects.org" :maxlevel . 3)
-			     ("~/org/timed.org" :maxlevel . 2)))
-  (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!/!)" "|" "DONE(d!/!)" "CANCELLED(c!/!)")))
-  (setq org-refile-allow-creating-parent-nodes 'confirm) ;; on refile, let selected be a top level
-  (setq org-refile-use-outline-path 'file) ; when refiling start with filename instead of just a header
-  (setq org-outline-path-complete-in-steps nil) ; complete the outline path in one-shot so this works with helm
-  )
-
-(use-package org-ac
-  :ensure t)
-
-(define-prefix-command 'org-global-keymap)
-(global-set-key (kbd "C-c o" ) 'org-global-keymap)
-(define-key org-global-keymap (kbd "a") 'org-agenda)
-(define-key org-global-keymap (kbd "l") 'org-store-link)
-(define-key org-global-keymap (kbd "c") 'org-capture)
 
 ;; Install auto-package-update to make sure everything stays up to date
 (use-package auto-package-update
@@ -246,7 +192,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(jq-format gitlab-ci-mode dockerfile-mode docker-compose-mode zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword command-log-mode smex diminish use-package))
+   '(ialign jump-char jq-format toc-org org-ac flycheck-irony zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package))
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
 	   (concat
