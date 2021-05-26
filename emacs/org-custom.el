@@ -3,8 +3,12 @@
 ;;; org-mode customizations
 
 ;;; Code:
+
+(require 'use-package)
+
 (use-package org
   :ensure t
+  :bind (("C-M-<return>" . org-insert-todo-subheading))
   :config (setq org-agenda-files '("~/org/TODO.org"
 				   "~/org/tasks.org"
 				   "~/org/timed.org"))

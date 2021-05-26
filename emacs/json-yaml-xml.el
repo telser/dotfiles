@@ -1,5 +1,7 @@
 ;;; configurations for json, xml, and yaml modes
 
+(require 'use-package)
+
 (use-package jq-format
   :ensure t
   :config (jq-format-json-on-save-mode))

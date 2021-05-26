@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(require 'use-package)
+
 (use-package darkokai-theme
   :ensure t
   :config

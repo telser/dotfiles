@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(require 'use-package)
+
 (use-package haskell-mode
   :ensure t
   :config
@@ -46,7 +48,8 @@
   ;; :init
   ;; (add-hook 'haskell-mode-hook #'lsp)
   :config
-  (setq lsp-enable-file-watchers nil))
+  (setq lsp-enable-file-watchers nil)
+  )
 
 (use-package flycheck-haskell
   :ensure t
