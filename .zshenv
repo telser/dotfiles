@@ -10,8 +10,10 @@ gpg_agent() {
   gpg_agent_running=$(pgrep gpg-agent)
   if [[ -z ${gpg_agent_running} ]]; then
       eval $(gpg-agent --daemon) # --enable-ssh-support -s #--write-env-file "${HOME}/.gpg-agent-info"
-      export SSH_AUTH_SOCK
+
   fi
+
+  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
   GPG_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
 #  SSH_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
@@ -68,10 +70,9 @@ ZBG=124
 if [[ "$HOST" == 'zero' ]]; then
   ZBG=034
   local_path;
-  # cabal path, prefer it over even .local from stack..
-  PATH=/sbin:$PATH
-  pkgsrc_path;
+  PATH=/usr/local/bin:/usr/local/sbin:/sbin:$PATH
   local_pkgsrc_path;
+  # cabal path, prefer it over even .local from stack..
   cabal_path;
   cargo_path;
   gpg_agent;
