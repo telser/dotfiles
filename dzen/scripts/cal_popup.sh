@@ -1,11 +1,9 @@
 #!/bin/sh
-XPOS=3440
-WIDTH="400"
-YPOS="16"
-LINES="7"
 
-DZEN_EVENT='onstart=uncollapse,hide;button1=exit;button3=exit'
+LINES="8"
 
-cal=$(cal)
+DZEN_EVENT='onstart=uncollapse,hide;button1=collapse;button3=collapse'
 
-(echo " ^fg()$cal"; sleep 5) | dzen2 -w $WIDTH -x $XPOS -y $YPOS -l $LINES -e $DZEN_EVENT -fn xft:Hack:size=12:antialias=true
+cal=$(cal -h)
+
+(echo "??"; echo " ^fg()$cal"; sleep 5) | nezd -w 25% -x 75% -y 18 -ta l -l 9% -e $DZEN_EVENT -fn xft:Hack:size=10:antialias=true

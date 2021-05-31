@@ -19,16 +19,14 @@ elif [ "$NAME" = "zero" ]; then
     stalonetray &
     clipit &
     nitrogen --restore &
-    eval "$(ssh-agent)"
+#    eval "$(ssh-agent)"
+    urxvtd -q -o -f
 
     sh ~/dzen/scripts/start_dzen.sh &
 
     # dunst is not the prettiest notification manager thing
     # But it is available most places and just works
     dunst -conf ~/.dunstrc &
-
-    # go ahead and fire up an editor daemon
-    emacs --daemon &
 
     export "$(dbus-launch)"
 
@@ -42,6 +40,8 @@ elif [ "$NAME" = "zero" ]; then
 
     # set pointer speed to be faster
     xinput --set-prop 11 "libinput Accel Speed" 0.9
+
+    syncthingtray &
 
 elif [ "$NAME" = "magmadragoon" ]; then
 

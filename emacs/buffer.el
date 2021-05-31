@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(require 'use-package)
+
 ;; winner allows for undo/redo of window operations with C-c <left> and C-c <right>
 (winner-mode 1)
 

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cat /tmp/updates.txt | wc -l | cut -wf2
+wc -l /tmp/updates.txt | cut -wf2
