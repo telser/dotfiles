@@ -4,6 +4,7 @@ import           Data.Ratio ((%))
 import           GHC.IO.Handle.Types (Handle)
 import           Graphics.X11.ExtraTypes.XF86 (xF86XK_MonBrightnessDown,
                                                xF86XK_MonBrightnessUp)
+import Network.BSD (getHostName)
 import           System.Posix.Unistd (getSystemID, nodeName)
 import           System.Posix.User            (UserEntry (..), getRealUserID,
                                                getUserEntryForID)
@@ -33,6 +34,7 @@ import           XMonad.Hooks.EwmhDesktops (ewmh)
 import           XMonad.Hooks.ManageDocks     (AvoidStruts, avoidStruts, docks,
                                                docksStartupHook, manageDocks)
 import           XMonad.Layout (Choose)
+import           XMonad.Layout.Dishes (Dishes(Dishes))
 import           XMonad.Layout.GridVariants (TallGrid (..), Grid(..))
 import           XMonad.Layout.IM             (AddRoster, Property (Title),
                                                withIM)
@@ -52,20 +54,20 @@ import           XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 main :: IO ()
 main = do
-    myHost <- fmap nodeName getSystemID --Get the hostname of the machine
+    myHost <- getHostName
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
     leftBar <- spawnPipe "dzen2 -x '380' -h '67' -w '1000' -ta 'l' -fn xft:Hack:size=12:antialias=true -dock"
     _ <- return $ usrName name
     xmonad $ ewmh def
-        { manageHook = myManageHook <+> manageDocks
-        , layoutHook = myLayoutHook
-        , logHook = dzenLog leftBar
-        , modMask = mod4Mask --Rebind Mod to the Super key
-        , terminal = myTerm --Use defined terminal instead of default
-        , workspaces =  myWorkSpaces --Custom workspaces
-        , keys=myKeys myHost --Keybindings
+        { manageHook  = myManageHook <+> manageDocks
+        , layoutHook  = myLayoutHook
+        , logHook     = dzenLog leftBar
+        , modMask     = mod4Mask --Rebind Mod to the Super key
+        , terminal    = myTerm myHost
+        , workspaces  = myWorkSpaces --Custom workspaces
+        , keys        = myKeys myHost --Keybindings
         , startupHook = docksStartupHook
         }
 
@@ -73,8 +75,10 @@ main = do
 myWorkSpaces :: [String]
 myWorkSpaces = ["web","term","editor","work1","work2","mail","media","read","im","vm","ex"]
 
-myTerm :: String
-myTerm = "alacritty"
+-- On hosts where resources are more constrained use urxvt in daemon mode instead of alarcitty
+myTerm :: String -> String
+myTerm "zero" = "urxvtcd"
+myTerm _ = "alacritty"
 
 altMask :: KeyMask
 altMask = mod1Mask
@@ -87,17 +91,18 @@ usrName (UserEntry x _ _ _ _ _ _) = x
 -- The type signature is quite a bit to ingest, thus omitted, but looking at the code it should make sense..
 myLayoutHook =
   avoidStruts
-  $ onWorkspace "web" (Full ||| Mirror myGrid ||| tall)
-  $ onWorkspace "term" (myGrid ||| Mirror myGrid ||| Full)
-  $ onWorkspace "editor" (Mirror myGrid ||| myGrid ||| Full)
+  $ onWorkspace "web" (Full ||| Mirror myGrid ||| tall ||| myGrid ||| myDishes)
+  $ onWorkspace "term" (myGrid ||| Mirror myGrid ||| Full ||| tall ||| myDishes)
+  $ onWorkspace "editor" (Mirror myGrid ||| myGrid ||| Full ||| tall ||| myDishes)
   $ onWorkspace "im" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ Mirror myGrid ||| tall ||| Full)))
-  (myGrid ||| Mirror myGrid ||| Full ||| tall)
+  (myGrid ||| Mirror myGrid ||| Full ||| tall ||| myDishes)
   where
     tall = Tall nmaster delta ratio
     nmaster = 1
     ratio = 1/2
     delta = 4/100
     defaultRatio = 1/2
+    myDishes = Dishes 2 (1/8)
     myGrid = Grid (16/9) -- might as well match most screen ratios here... *sigh*
 
 -- Move some programs to certain workspaces and float some too
@@ -145,7 +150,7 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   , ((modMask .|. shiftMask, xK_Right), shiftNextScreen) --Move things around screens
   , ((modMask .|. shiftMask, xK_Left), shiftPrevScreen) -- Add shortcuts for programs
   , ((modMask .|. shiftMask, xK_b), spawn "calibre")
-  , ((modMask .|. shiftMask, xK_e), spawn "emacsclient -c")
+  , ((modMask .|. shiftMask, xK_e), spawn "emacs")
   , ((modMask .|. shiftMask, xK_f), spawn "firefox")
   , ((modMask .|. shiftMask, xK_g), spawn "chromium")
 --  , ((modMask .|. shiftMask, xK_l), spawn "slack")
@@ -168,12 +173,12 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
 dzenLog :: Handle -> X ()
 dzenLog out =
   dynamicLogWithPP
-  (def
-   { ppCurrent = dzenColor "#FF8800" "#000000"
-   , ppVisible = dzenColor "#EAEAEA" "#000000" . pad
-   , ppHidden = dzenColor "#777777" "#000000"
-   , ppHiddenNoWindows = dzenColor "#333333" "#000000"
-   , ppWsSep = " "
-   , ppOrder = \(ws:_:_:_) -> [ws]
-   , ppOutput = hPutStrLn out
-   })
+   (def
+    { ppCurrent         = dzenColor "#FF8800" "#000000"
+    , ppVisible         = dzenColor "#EAEAEA" "#000000" . pad
+    , ppHidden          = dzenColor "#777777" "#000000"
+    , ppHiddenNoWindows = dzenColor "#333333" "#000000"
+    , ppWsSep           = " "
+    , ppOrder           = \(ws:l:_:_) -> [ws, l]
+    , ppOutput          = hPutStrLn out
+    })
