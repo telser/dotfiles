@@ -43,7 +43,7 @@
 (setq-default fill-column 100)
 
 ; set the font to Hack
-(set-face-attribute 'default nil :family "Hack" :height 90)
+(set-face-attribute 'default nil :family "Hack")
 
 ; rainbow delimiters/identifiers to make things pretty
 (use-package rainbow-mode

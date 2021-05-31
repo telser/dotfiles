@@ -2,9 +2,9 @@ decorations none
 transparent false
 dockapp_mode simple
 #geometry 5x1+4080
-geometry 6x1
+geometry 6x2
 #max_geometry 5x1
-icon_size 48
+icon_size 36
 background "#000000"
 kludges force_icons_size
 window_type dock

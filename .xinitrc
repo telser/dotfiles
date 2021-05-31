@@ -44,6 +44,9 @@ elif [ "$NAME" = "zero" ]; then
     xinput --set-prop 11 "libinput Accel Speed" 0.9
 
 elif [ "$NAME" = "magmadragoon" ]; then
+
+    xrandr --dpi 144
+    export GDK_SCALE=2
      # turn off bluetooth, don't need it anyway
     /usr/sbin/rfkill block bluetooth
 
