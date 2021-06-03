@@ -72,6 +72,7 @@
    ("<left>" . winner-undo)
    ("<right>" . winner-redo)
    ("z" . zoom-window-zoom) ;; note this comes from the zoom-window package above
+   ("C-l" . clm/toggle-command-log-buffer) ;; note this comes from the command-log package
    ;; note the following actually comes from windresize package above
    ("C-r" . windresize)
    ;;
