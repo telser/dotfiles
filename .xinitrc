@@ -58,7 +58,7 @@ elif [ "$NAME" = "magmadragoon" ]; then
     stalonetray &
 
     # clipboard manager
-    clipit &
+    diodon &
 
     # set wallpaper
     nitrogen --restore &
@@ -74,9 +74,6 @@ elif [ "$NAME" = "magmadragoon" ]; then
 
     # reduce brightness because having it all the way up is just silly, wastes power, etc etc
     brightnessctl -c backlight set 50%
-
-    # go ahead and fire up an editor daemon
-    emacs --daemon
 
     # adjust screen temperature at night
     redshift -c ~/.redshift.conf &
