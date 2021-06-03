@@ -8,7 +8,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 ;; compile the child configuration files
-(byte-recompile-directory (expand-file-name "~/emacs") 0)
+;(byte-recompile-directory (expand-file-name "~/emacs") 0)
 (add-to-list 'load-path "~/emacs")
 (load-library "base")
 (load-library "display")
@@ -34,7 +34,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ialign jump-char jq-format toc-org org-ac flycheck-irony zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package))
+   '(beacon ialign jump-char jq-format toc-org org-ac flycheck-irony zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package))
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
 	   (concat

@@ -6,14 +6,12 @@
 
 
 ;; on recompile refresh the package contents and make sure use-package and diminish are installed
-(eval-when-compile
-  (package-refresh-contents)
-  (dolist (package '(use-package diminish))
+(package-refresh-contents)
+(dolist (package '(use-package diminish))
     (unless (package-installed-p package)
        (package-install package)))
-  (require 'use-package)
-  (require 'diminish))
-
+(require 'use-package)
+(require 'diminish)
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; answer with y/n instead of yes/no
 (setq make-backup-files nil) ; stop creating backup~ files
@@ -62,6 +60,18 @@
    ("f" . helm-projectile-find-file)
    ("k" . projectile-kill-buffers)
    ("r" . projectile-replace-regexp)))
+
+(use-package projectile
+  :ensure t
+  :diminish
+  :config (projectile-mode +1)
+  :bind
+  (("C-c C-p" . projectile-command-map)))
+
+(use-package beacon
+  :ensure t
+  :diminish
+  :config (beacon-mode +1))
 
 ; undo tree allows for a nice undo/redo tree view
 (use-package undo-tree
