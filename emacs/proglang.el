@@ -1,7 +1,9 @@
 (require 'use-package)
 
 (use-package dhall-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq dhall-format-arguments '("--ascii")))
 
 (use-package docker-compose-mode
   :ensure t)
