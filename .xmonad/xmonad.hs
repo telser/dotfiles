@@ -58,7 +58,7 @@ main = do
     replace
     uid <- getRealUserID
     name <- getUserEntryForID uid
-    leftBar <- spawnPipe "nezd -x '3%' -h '2%' -w '11%' -ta 'l' -fn xft:Hack:size=12:antialias=true -dock"
+    leftBar <- spawnPipe "nezd -x '12%' -h '4%' -w '50%' -ta 'l' -fn xft:Hack:size=12:antialias=true -dock"
     _ <- return $ usrName name
     xmonad $ ewmh def
         { manageHook  = myManageHook <+> manageDocks
