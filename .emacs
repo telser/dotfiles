@@ -25,8 +25,7 @@
   :ensure t
   :demand
   :config
-  (setq auto-package-update-prompt-before-update t)
-  (auto-package-update-maybe))
+  (auto-package-update-at-time "03:00"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
