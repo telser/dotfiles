@@ -28,7 +28,11 @@ elif [ "$NAME" = "zero" ]; then
     # But it is available most places and just works
     dunst -conf ~/.dunstrc &
 
-    export "$(dbus-launch)"
+    export $(dbus-launch)
+
+    # kdeconnect daemon and tray
+    /usr/local/lib/libexec/kdeconnectd &
+    kdeconnect-indicator &
 
     intel_backlight 30
 
