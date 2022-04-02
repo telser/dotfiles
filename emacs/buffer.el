@@ -100,5 +100,14 @@
 	 ("<right>" . buf-move-right)
 	 ("<up>" . buf-move-up)))
 
+; perspectives are nice for workload management
+(use-package perspective
+  :ensure t
+;  :bind-keymap (("C-c C-w" . persp-mode-map))
+  :init
+  (setq persp-mode-prefix-key (kbd "C-c C-w"))
+  :config
+  (persp-mode 1))
+
 (provide 'buffer)
 ;;; buffer.el ends here

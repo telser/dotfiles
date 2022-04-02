@@ -36,6 +36,12 @@
 (use-package org-ac
   :ensure t)
 
+(use-package ox-reveal
+  :ensure t)
+
+(use-package htmlize
+  :ensure t)
+
 (define-prefix-command 'org-global-keymap)
 (global-set-key (kbd "C-c o" ) 'org-global-keymap)
 (define-key 'org-global-keymap (kbd "a") 'org-agenda)

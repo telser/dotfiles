@@ -9,7 +9,6 @@
 (use-package haskell-mode
   :ensure t
   :config
-  (setq haskell-tags-on-save t)
   (defun haskell-sort-imports-on-save-hook ()
     (when (eq major-mode 'haskell-mode)
       (haskell-sort-imports)))
@@ -49,6 +48,8 @@
   ;; (add-hook 'haskell-mode-hook #'lsp)
   :config
   (setq lsp-enable-file-watchers nil)
+  (setq lsp-haskell-refineimports-on nil)
+  (setq lsp-haskell-importlens-on nil)
   )
 
 (use-package flycheck-haskell

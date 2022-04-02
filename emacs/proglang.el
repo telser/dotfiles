@@ -19,3 +19,10 @@
 
 (use-package lua-mode
   :ensure t)
+
+(use-package sqlformat
+  :ensure t
+  :hook (sql-mode . sqlformat-on-save-mode)
+  :init
+  (setq sqlformat-command 'pgformatter
+        sqlformat-args '("-s2" "-g")))

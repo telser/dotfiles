@@ -24,7 +24,7 @@
 ;; reload files when changed on disk
 (global-auto-revert-mode +1)
 
-(desktop-save-mode 1)
+;(desktop-save-mode 1)
 
 ; smex, allows for enhanced M-x used with in combination of ivy/counsel/swiper
 (use-package smex
@@ -77,7 +77,8 @@
 (use-package undo-tree
   :ensure t
   :diminish
-  :config (global-undo-tree-mode 1))
+  :config (global-undo-tree-mode 1)
+          (setq undo-tree-auto-save-history 'nil))
 
 (use-package syntax-subword
   :ensure t
@@ -134,10 +135,13 @@
 (use-package lsp-ui
   :ensure t)
 
+(use-package vterm
+  :ensure t)
+
 (use-package yasnippet
   :ensure t
   :config
-  (yas-global-mode 1))
+  (yas-global-mode nil))
 
 ;; alignment keybindings
 (define-prefix-command 'align-global-keymap 'align-stuff)
@@ -159,3 +163,6 @@
 	    t))
 
 (add-hook 'emacs-lisp-mode-hook 'er-remove-elc-on-save)
+
+(provide 'base)
+;;; base.el ends here
