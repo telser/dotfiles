@@ -3,7 +3,8 @@ clear Lock
 keysym Caps_Lock = Control_R
 clear Lock
 clear control
-keycode 37 = Hyper_R
+keycode 37 = Control_L
+keycode 115 = Hyper_R
 add Control = Control_R Control_L
 
 !remove Mod4 = Hyper_L

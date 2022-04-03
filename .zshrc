@@ -21,6 +21,7 @@ antigen apply
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
+
 setopt autocd extendedglob
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8

@@ -130,7 +130,7 @@ fi
 export ZBG
 
 alias work-old="ssh -t -p 2224 trevis@localhost"
-alias work="ssh -X -t -p 2223 trevis@localhost"
+alias work="ssh -i ~/.ssh/work_rsa  -X -t -p 2226 trevis@localhost"
 alias work-chedr="work 'cd work/heb/chedr-core && exec \$SHELL -l'"
 alias work-spur="work 'cd work/heb/supplier-core && exec \$SHELL -l'"
 alias apu2-screen="sudo screen /dev/ttyUSB0 115200"

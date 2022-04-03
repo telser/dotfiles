@@ -44,7 +44,7 @@ URxvt.cursorBlink:       false
 URxvt.scrollBar_right:   true
 URxvt.thickness:         14
 URxvt.scrollstyle:       next
-URxvt.font: xft:Hack:size=13:antialias=true
+URxvt.font: xft:Hack:size=11:antialias=true
 URxvt*skipBuiltinGlyphs: true
 URxvt*iso14755: False
 URxvt*iso14755_52: False
@@ -53,3 +53,4 @@ Xft.lcdfiler: lcddefault
 Xft.antialias: true
 Xft.hinting: true
 Xft.hintstyle: hintfull
+Xft.dpi: 144

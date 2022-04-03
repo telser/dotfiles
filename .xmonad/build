@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if [ "$(uname -n)" = 'magmadragoon' ]; then
+    FIND_PERM="-perm /111"
+else
+    FIND_PERM="-perm +111"
+fi
+
 # must match "executable" line from xmonad-config.cabal
 EXE_NAME=xmonad-config
 
@@ -9,12 +15,12 @@ output_file=$1; shift
 CFG_DIR=$HOME/.xmonad
 
 # build the config
-cd $CFG_DIR
+cd "$CFG_DIR"
 cabal new-configure -O2 --enable-executable-stripping
 cabal new-build
 
 if [ "$output_file" != "" ]; then
 # move resulting binary where it was requested to reside
-find $CFG_DIR/dist-newstyle -type f -perm +111 -name $EXE_NAME \
+find $CFG_DIR/dist-newstyle -type f $FIND_PERM -name $EXE_NAME \
      -exec mv '{}' $output_file ';'
 fi

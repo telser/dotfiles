@@ -20,12 +20,13 @@ import           XMonad                       (Full (..), KeyMask, KeySym,
                                                xK_0, xK_Down, xK_Left, xK_Right,
                                                xK_Up, xK_b, xK_c, xK_e,
                                                xK_equal, xK_f, xK_g, xK_l, xK_minus,
-                                               xK_p, xK_r, xK_s, xK_t, xK_v, xK_x,
+                                               xK_p, xK_r, xK_h,xK_n, xK_s, xK_t, xK_v, xK_x,
                                                xmonad, (.|.), (|||))
 import           XMonad.Actions.CycleWS       (nextScreen, nextWS, prevScreen,
                                                prevWS, shiftNextScreen,
                                                shiftPrevScreen, shiftToNext,
                                                shiftToPrev)
+import XMonad.Actions.GridSelect
 import           XMonad.Hooks.DynamicLog      (def, dynamicLogWithPP, dzenColor,
                                                pad, ppCurrent, ppHidden,
                                                ppHiddenNoWindows, ppOrder,
@@ -49,8 +50,10 @@ import           XMonad.ManageHook            (className, composeAll, doF,
 import           XMonad.Prompt (greenXPConfig)
 import           XMonad.Prompt.Shell (shellPrompt, prompt)
 import qualified XMonad.StackSet as W
+--import           XMonad.Util.Hacks
 import           XMonad.Util.Replace (replace)
 import           XMonad.Util.Run (hPutStrLn, spawnPipe)
+import XMonad.Util.Scratchpad
 
 main :: IO ()
 main = do
@@ -73,11 +76,13 @@ main = do
 
 -- Setup workspaces using short names to save display room
 myWorkSpaces :: [String]
-myWorkSpaces = ["web","term","editor","work1","work2","mail","media","read","im","vm","ex"]
+myWorkSpaces =
+  ["web","term","editor","work1","work2","mail","media","read","im","vm","ex"]
 
 -- On hosts where resources are more constrained use urxvt in daemon mode instead of alarcitty
 myTerm :: String -> String
 myTerm "zero" = "urxvtcd"
+myTerm "magmadragoon" = "urxvtcd"
 myTerm _ = "alacritty"
 
 altMask :: KeyMask
@@ -94,7 +99,6 @@ myLayoutHook =
   $ onWorkspace "web" (Full ||| Mirror myGrid ||| tall ||| myGrid ||| myDishes)
   $ onWorkspace "term" (myGrid ||| Mirror myGrid ||| Full ||| tall ||| myDishes)
   $ onWorkspace "editor" (Mirror myGrid ||| myGrid ||| Full ||| tall ||| myDishes)
-  $ onWorkspace "im" (named "IM" (reflectHoriz $ withIM (1%5) (Title "Buddy List") (reflectHoriz $ Mirror myGrid ||| tall ||| Full)))
   (myGrid ||| Mirror myGrid ||| Full ||| tall ||| myDishes)
   where
     tall = Tall nmaster delta ratio
@@ -113,16 +117,17 @@ myManageHook = composeAll . concat $
     , [className =? x --> doF (W.shift "media") | x <- myMediaShift]
     , [className =? x --> doF (W.shift "read") | x <- myReadShift]
     , [className =? x --> doF (W.shift "mail") | x <- myMailShift]
-    , [className =? "VirtualBox"      --> doF (W.shift "vm")]
+    , [className =? x --> doF (W.shift "vm") | x <- vmShift ]
     , [className =? x --> doFloat | x <- myFloats]
     , [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat] --Float Firefox Dialogs
     ]
   where
     myWebShift = ["chromium","Chromium","Chromium-browser", "Conkeror","Firefox", "Firefox-esr", "luakit"]
-    myImShift = ["Pidgin","Skype","Slack"]
+    myImShift = ["Pidgin","Skype","Slack", "Signal"]
     myReadShift = ["calibre","Calibre","evince","Evince","Mirage","Texmaker","xpdf"]
     myMediaShift = ["Banshee","Rhythmbox","spotify","Spotify","Steam","Vlc","xine"]
     myMailShift = ["Evolution","Thunderbird"]
+    vmShift = ["virt-manager", "Virt-manager", "VirtualBox"]
     myFloats = ["Gimp","Inkscape","Remmina","Skype"]
 
 {- Keybinding section
@@ -141,6 +146,9 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   [ ((modMask .|. controlMask, xK_r), spawn "xrandr --output VGA-0 --auto") -- Resize vbox screen
   , ((modMask .|. controlMask, xK_s), prompt "scrot -s" greenXPConfig)
   , ((modMask .|. controlMask, xK_x), shellPrompt greenXPConfig)
+  , ((modMask .|. controlMask, xK_g), goToSelected def)
+  , ((modMask .|. controlMask, xK_h), gridselectWorkspace def W.greedyView)
+  , ((modMask .|. controlMask, xK_n), scratchpadSpawnAction conf)
   , ((modMask .|. controlMask, xK_Down), shiftToNext) --Move around screens
   , ((modMask .|. controlMask, xK_Up), shiftToPrev) --Move around screens
   , ((modMask .|. controlMask, xK_Right), nextScreen) --Move around screens
@@ -153,7 +161,7 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   , ((modMask .|. shiftMask, xK_e), spawn "emacs")
   , ((modMask .|. shiftMask, xK_f), spawn "firefox")
   , ((modMask .|. shiftMask, xK_g), spawn "chromium")
---  , ((modMask .|. shiftMask, xK_l), spawn "slack")
+  , ((modMask .|. shiftMask, xK_l), spawn "slack")
   , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
   , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
   , ((modMask .|. shiftMask, xK_s), spawn "spotify")
@@ -179,6 +187,6 @@ dzenLog out =
     , ppHidden          = dzenColor "#777777" "#000000"
     , ppHiddenNoWindows = dzenColor "#333333" "#000000"
     , ppWsSep           = " "
-    , ppOrder           = \(ws:l:_:_) -> [ws, l]
+    , ppOrder           = \(workspace:currentLayout:focusedWindow:_) -> [workspace, currentLayout, focusedWindow]
     , ppOutput          = hPutStrLn out
     })
