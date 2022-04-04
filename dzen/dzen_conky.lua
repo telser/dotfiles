@@ -28,6 +28,7 @@ local batteryDisplay='^i(' .. batteryIcon .. ') ${battery_percent}%'
 local batteryClick='^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh)' .. batteryDisplay .. ' ^ca()'
 
 local freebsdBatteryDisplay='^i(' .. batteryIcon .. ') ${exec ~/dzen/scripts/freebsd_batt.sh}'
+local freebsdBatteryClick='^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh)' .. freebsdBatteryDisplay .. ' ^ca()'
 
 local calendar='^ca(1,~/dzen/scripts/cal_popup.sh) ${time %a %d %b %T} ^ca()'
 
@@ -47,7 +48,7 @@ else
       local freebsdPkgUpdatesDisplay='^i(' .. freebsdPkgUpdatesIcon .. ') ${exec ~/dzen/scripts/pkg_updates_num.sh}'
       local freebsdPkgUpdatesClick=' ^ca(1,~/dzen/scripts/pkg_updates_popup.sh)' .. freebsdPkgUpdatesDisplay .. ' ^ca()'
 
-      middleSection = freebsdPkgUpdatesClick .. freebsdBatteryDisplay
+      middleSection = freebsdPkgUpdatesClick .. freebsdBatteryClick
    else
       middleSection = [[ ]]
    end

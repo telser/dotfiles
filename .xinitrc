@@ -1,5 +1,5 @@
 #!/bin/sh
-NAME=$( uname "-n")
+NAME=$(uname "-n")
 
 # Set the locale before launching xmonad to prevent character funkiness
 export LANG=en_US.UTF-8
@@ -33,7 +33,7 @@ if [ "$NAME" = "double2" ]; then
 
 elif [ "$NAME" = "zero" ]; then
     xrandr --dpi 144
-    xrandr --output eDP-1 --mode 2880x1620
+#    xrandr --output eDP-1 --mode 2880x1620
     export GDK_SCALE=2
 
     stalonetray &
@@ -48,22 +48,38 @@ elif [ "$NAME" = "zero" ]; then
     # But it is available most places and just works
     dunst -conf ~/.dunstrc &
 
-    export $(dbus-launch)
+    # adjust screen temperature at night
+    redshift -c ~/.redshift.conf &
 
-    # kdeconnect daemon and tray
-    /usr/local/lib/libexec/kdeconnectd &
-    kdeconnect-indicator &
+    export $(dbus-launch)
 
     intel_backlight 30
 
     # populates file with updatable packages, checked in start_dzen
     sh ~/dotfiles/cronscripts/pkg_upgradable.sh &
 
-    # a lightweight mixer in the tray
-    gtmixer &
+    # a mixer in the tray
+    dsbmixer -i &
+
+    # set some xinput properties here rather than needing a whole config file for this stuff
 
     # set pointer speed to be faster
-    xinput --set-prop 11 "libinput Accel Speed" 0.9
+    xinput set-prop "DLL06E5:00 06CB:7A13 Mouse" "libinput Accel Speed" 0.9
+
+    # set palm detection on
+    xinput set-prop "DLL06E5:00 06CB:7A13 TouchPad" "Synaptics Palm Detection" 1
+
+    # Set tapping actions:
+    ## Corners:
+    ### Right Top: 0 - Disable
+    ### Right Bottom: 0 - Disable
+    ### Left Top: 0 - Disable
+    ### Left Bottom: 0 - Disable
+    ## Tap
+    ### One Finger: 1 - Left Click (Mouse button 1)
+    ### Two Finger: 3 - Right Click (Mouse button 3)
+    ### Three Finger: 2 - Middle Click (Mouse button 2)
+    xinput set-prop "DLL06E5:00 06CB:7A13 TouchPad" "Synaptics Tap Action" 0 0 0 0 1 3 2
 
     syncthingtray &
 
