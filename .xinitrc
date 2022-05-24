@@ -94,8 +94,17 @@ elif [ "$NAME" = "magmadragoon" ]; then
     # without it (I see you slack)
     export $(dbus-launch)
 
+    # using pipewire for audio
+    pipewire &
+
+    # replace pulseaudio with pipewire
+    pipewire-pulse &
+
+    # this flips on the audio hardware detection and stuff for pipewire
+    wireplumber &
+
     # systray
-    stalonetray &
+    trayer --edge top --align left --SetDockType true --SetPartialStrut true --expand true --widthtype percent --width 12 --tint "0x000000" --transparent true --alpha 127 --height 42 &
 
     # clipboard manager
     diodon &
@@ -103,8 +112,8 @@ elif [ "$NAME" = "magmadragoon" ]; then
     # set wallpaper
     nitrogen --restore &
 
-    # wireless management using wicd, which is the least bad option compared to nm and connman
-    cmst -m &
+    # wireless management using nm again because ugh
+    nm-applet &
 
      # populates file with updatable packages, checked in start_dzen
     sh ~/dotfiles/cronscripts/apt_upgradable.sh &
@@ -122,15 +131,17 @@ elif [ "$NAME" = "magmadragoon" ]; then
     # But it is available most places and just works
     dunst -conf ~/.dunstrc &
 
-    # pulseaudio because life is a giant pit of despair
-    # This is just the tray, since magmadragoon is devuan installing a demon means starting it at boot
-    # so pulse is already started..
+    # pasystray works via the pulseaudio compat with pipewire (started above)
     pasystray &
 
     # start syncthing minimized to tray
     syncthing-gtk -m &
+
+    # chat applications to start at login
     # signal
     signal-desktop &
+    # irc client
+    quasselclient &
 fi
 
 exec xmonad
