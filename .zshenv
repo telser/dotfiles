@@ -62,6 +62,12 @@ server_aliases() {
     alias sally='mosh sally'
 }
 
+ghcup_path() {
+    # prefer ghcup installed stuff
+    PATH=~/.ghcup/bin:$PATH
+    export PATH
+}
+
 # Defaults..
 ZBG=124
 
@@ -123,6 +129,7 @@ if [[ "$HOST" == 'work' || "$HOST" == 'work-devuan' ]]; then
     ZBG=120
     local_path;
     sbin_path;
+    ghcup_path;
     export EDITOR=mg
 fi
 
