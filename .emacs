@@ -32,11 +32,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(lsp-haskell-formatting-provider "fourmolu")
  '(lsp-haskell-plugin-import-lens-code-lens-on nil)
  '(lsp-haskell-plugin-refine-imports-global-on nil)
- '(lsp-headerline-breadcrumb-enable nil)
+ '(lsp-headerline-breadcrumb-enable t)
  '(package-selected-packages
-   '(htmlize ox-reveal vterm sqlformat magit git beacon ialign jump-char jq-format toc-org org-ac flycheck-irony zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package))
+   '(helm-rg lsp-treemacs yafolding yafold json-mode htmlize ox-reveal vterm sqlformat magit git beacon ialign jump-char jq-format toc-org org-ac flycheck-irony zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package))
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
 	   (concat

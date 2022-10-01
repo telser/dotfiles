@@ -8,6 +8,7 @@
 
 (use-package haskell-mode
   :ensure t
+  :init (define-prefix-command 'haskell-keymap)
   :config
   (defun haskell-sort-imports-on-save-hook ()
     (when (eq major-mode 'haskell-mode)
@@ -40,6 +41,10 @@
 		       ('(haskell-mode)))))
     ))
   (add-hook 'haskell-mode-hook 'add-haskell-align-rules-hook)
+  :bind
+  (("C-c h" . haskell-keymap)
+   :map haskell-keymap
+   ("p" . haskell-command-insert-language-pragma))
   )
 
 (use-package lsp-haskell
@@ -49,7 +54,7 @@
   :config
   (setq lsp-enable-file-watchers nil)
   (setq lsp-haskell-refineimports-on nil)
-  (setq lsp-haskell-importlens-on nil)
+;  (setq lsp-haskell-importlens-on nil)
   )
 
 (use-package flycheck-haskell

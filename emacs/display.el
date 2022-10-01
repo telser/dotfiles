@@ -14,7 +14,8 @@
   (load-theme 'darkokai t))
 
 (use-package all-the-icons
-  :ensure t)
+  :ensure t
+  :if (display-graphic-p))
 
 ; get rid of the menu-bar
 (menu-bar-mode -1)

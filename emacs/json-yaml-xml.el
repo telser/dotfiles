@@ -6,6 +6,10 @@
   :ensure t
   :config (jq-format-json-on-save-mode))
 
+(use-package json-mode
+  :ensure t
+  )
+
 (use-package yaml-mode
   :ensure t)
 

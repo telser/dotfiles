@@ -68,6 +68,16 @@
   :bind
   (("C-c C-p" . projectile-command-map)))
 
+; Make sure we have ag and ripgrep for searching (why both? habit, that is all)
+(use-package ag
+  :ensure t
+  :diminish)
+
+(use-package rg
+  :ensure t
+  :diminish)
+
+
 (use-package beacon
   :ensure t
   :diminish
@@ -135,6 +145,9 @@
 (use-package lsp-ui
   :ensure t)
 
+(use-package lsp-treemacs
+  :ensure t)
+
 (use-package vterm
   :ensure t)
 
@@ -142,6 +155,10 @@
   :ensure t
   :config
   (yas-global-mode nil))
+
+
+(use-package s
+  :ensure t)
 
 ;; alignment keybindings
 (define-prefix-command 'align-global-keymap 'align-stuff)
@@ -163,6 +180,46 @@
 	    t))
 
 (add-hook 'emacs-lisp-mode-hook 'er-remove-elc-on-save)
+
+(defun toggle-camelcase-underscores (first-lower-p)
+  "Toggle between camelcase and underscore notation for the
+symbol at point. If prefix arg, C-u, is supplied, then make first
+letter of camelcase lowercase."
+  (interactive "P")
+  (save-excursion
+    (let* ((bounds (bounds-of-thing-at-point 'symbol))
+           (start (car bounds))
+           (end (cdr bounds))
+           (currently-using-underscores-p (progn (goto-char start)
+                                                 (re-search-forward "_" end t))))
+      (if currently-using-underscores-p
+          (progn
+            (replace-string "_" " " nil start end)
+            (upcase-initials-region start end)
+            (replace-string " " "" nil start end)
+            (when first-lower-p
+              (downcase-region start (1+ start))))
+        (replace-regexp "\\([A-Z]\\)" "_\\1" nil (1+ start) end)
+        (downcase-region start (cdr (bounds-of-thing-at-point 'symbol)))))))
+
+
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match
+that used by the user's shell.
+
+This is particularly useful under Mac OS X and macOS, where GUI
+apps are not started from a shell."
+  (interactive)
+  (let ((path-from-shell (replace-regexp-in-string
+			  "[ \t\n]*$" "" (shell-command-to-string
+					  "$SHELL --login -c 'echo $PATH'"
+						    ))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(set-exec-path-from-shell-PATH)
+
+;;; undo-tree-history-directory-alist
 
 (provide 'base)
 ;;; base.el ends here
