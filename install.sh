@@ -28,7 +28,7 @@ symlink_if_not_exists ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
 symlink_if_not_exists ~/dotfiles/.conkyLeftrc ~/.conkyLeftrc
 symlink_if_not_exists ~/dotfiles/.alacritty.yml ~/.alacritty.yml
 symlink_if_not_exists ~/dotfiles/dzen ~/dzen
-symlink_if_not_exists ~/dotfiles/.redshift.conf ~/.redshift.conf
+symlink_if_not_exists ~/dotfiles/.redshift.conf ~/.config/redshift.conf
 symlink_if_not_exists ~/dotfiles/.dunstrc ~/.dunstrc
 symlink_if_not_exists ~/dotfiles/.mg ~/.mg
 symlink_if_not_exists ~/dotfiles/.tmux.conf ~/.tmux.conf
