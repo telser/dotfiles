@@ -85,7 +85,7 @@ elif [ "$NAME" = "zero" ]; then
 
 elif [ "$NAME" = "magmadragoon" ]; then
 
-    xrandr --dpi 144
+#    xrandr --dpi 144
 #    export GDK_SCALE=2
      # turn off bluetooth, don't need it anyway
     /usr/sbin/rfkill block bluetooth
@@ -94,17 +94,23 @@ elif [ "$NAME" = "magmadragoon" ]; then
     # without it (I see you slack)
     export $(dbus-launch)
 
+    # kdeconnect
+    /usr/local/lib/libexec/kdeconnectd &
+    kdeconnect-indicator &
+
     # using pipewire for audio
-    pipewire &
+#    pipewire &
 
     # replace pulseaudio with pipewire
-    pipewire-pulse &
+#    pipewire-pulse &
 
     # this flips on the audio hardware detection and stuff for pipewire
-    wireplumber &
+#    wireplumber &
 
     # systray
-    trayer --edge top --align left --SetDockType true --SetPartialStrut true --expand true --widthtype percent --width 12 --tint "0x000000" --transparent true --alpha 127 --height 42 &
+    stalonetray &
+    # previous trayer setup
+    # trayer --edge top --align left --SetDockType true --SetPartialStrut true --expand true --widthtype percent --width 12 --tint "0x000000" --transparent true --alpha 127 --height 42 &
 
     # clipboard manager
     diodon &
@@ -125,7 +131,7 @@ elif [ "$NAME" = "magmadragoon" ]; then
     brightnessctl -c backlight set 50%
 
     # adjust screen temperature at night
-    redshift -c ~/.redshift.conf &
+    redshift -c ~/.config/redshift.conf &
 
     # dunst is not the prettiest notification manager thing
     # But it is available most places and just works
@@ -138,8 +144,6 @@ elif [ "$NAME" = "magmadragoon" ]; then
     syncthing-gtk -m &
 
     # chat applications to start at login
-    # signal
-    signal-desktop &
     # irc client
     quasselclient &
 fi
