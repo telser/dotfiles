@@ -7,6 +7,7 @@ keycode 37 = Control_L
 keycode 115 = Hyper_R
 add Control = Control_R Control_L
 
+keycode 202 = Hyper_R
 !remove Mod4 = Hyper_L
 !keycode 196 = F16 F16 F16
 !keycode 197 = Insert

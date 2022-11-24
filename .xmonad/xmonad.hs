@@ -27,6 +27,7 @@ import           XMonad.Actions.CycleWS       (nextScreen, nextWS, prevScreen,
                                                shiftPrevScreen, shiftToNext,
                                                shiftToPrev)
 import XMonad.Actions.GridSelect
+import XMonad.Actions.Volume
 import           XMonad.Hooks.DynamicLog      (def, dynamicLogWithPP, dzenColor,
                                                pad, ppCurrent, ppHidden,
                                                ppHiddenNoWindows, ppOrder,
@@ -62,7 +63,7 @@ main = do
     uid <- getRealUserID
     name <- getUserEntryForID uid
     leftBar <- spawnPipe "nezd -x '12%' -h '4%' -w '50%' -ta 'l' -fn xft:Hack:size=12:antialias=true -dock"
-    _ <- return $ usrName name
+    _ <- pure $ usrName name
     xmonad $ ewmh def
         { manageHook  = myManageHook <+> manageDocks
         , layoutHook  = myLayoutHook
@@ -148,6 +149,7 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   , ((modMask .|. controlMask, xK_x), shellPrompt greenXPConfig)
   , ((modMask .|. controlMask, xK_g), goToSelected def)
   , ((modMask .|. controlMask, xK_h), gridselectWorkspace def W.greedyView)
+  , ((modMask .|. controlMask, xK_z), toggleMute >> pure ())
   , ((modMask .|. controlMask, xK_n), scratchpadSpawnAction conf)
   , ((modMask .|. controlMask, xK_Down), shiftToNext) --Move around screens
   , ((modMask .|. controlMask, xK_Up), shiftToPrev) --Move around screens
@@ -162,12 +164,14 @@ newKeys hostname conf@XConfig {XMonad.modMask = modMask} =
   , ((modMask .|. shiftMask, xK_f), spawn "firefox")
   , ((modMask .|. shiftMask, xK_g), spawn "chromium")
   , ((modMask .|. shiftMask, xK_l), spawn "slack")
+  , ((modMask .|. shiftMask, xK_m), spawn "toggle-mute-master")
   , ((modMask .|. shiftMask, xK_p), spawn "pidgin")
   , ((modMask .|. shiftMask, xK_r), spawn "rhythmbox")
   , ((modMask .|. shiftMask, xK_s), spawn "spotify")
   , ((modMask .|. shiftMask, xK_t), spawn "thunderbird")
-  , ((modMask .|. shiftMask, xK_v), spawn "VirtualBox")
+  , ((modMask .|. shiftMask, xK_v), spawn "calibre")
   , ((modMask, xK_0), windows $ W.greedyView $ myWorkSpaces!!9)
+  , ((0,0x1008ff12), toggleMute >> return ())
  -- , ((modMask .|. shiftMask .|. controlMask, xK_End), spawn "sudo pm-suspend")
   ]
 
