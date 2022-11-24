@@ -37,7 +37,7 @@
  '(lsp-haskell-plugin-refine-imports-global-on nil)
  '(lsp-headerline-breadcrumb-enable nil)
  '(package-selected-packages
-   '(ein htmlize sqlformat magit git ialign jump-char jq-format org-ac flycheck-irony zoom-window window-number windresize window-jump darkokai-theme syntax-subword smartparens command-log-mode smex))
+   '(graphql-mode graphql-doc graphql ein htmlize sqlformat magit git ialign jump-char jq-format org-ac flycheck-irony zoom-window window-number windresize window-jump darkokai-theme syntax-subword smartparens command-log-mode smex))
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
 	   (concat

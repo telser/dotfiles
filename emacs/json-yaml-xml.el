@@ -18,3 +18,12 @@
   :config (xml-format-on-save-mode))
 (use-package xml+
   :ensure t)
+
+(use-package graphql
+  :ensure t)
+
+(use-package graphql-doc
+  :ensure t)
+
+(use-package graphql-mode
+  :ensure t)
