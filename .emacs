@@ -6,7 +6,8 @@
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(setq interprogram-cut-function nil)
+;; (setq interprogram-cut-function nil)
+
 ;; compile the child configuration files
 ;(byte-recompile-directory (expand-file-name "~/emacs") 0)
 (add-to-list 'load-path "~/emacs")
@@ -32,12 +33,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(lsp-haskell-formatting-provider "fourmolu")
  '(lsp-haskell-plugin-import-lens-code-lens-on nil)
  '(lsp-haskell-plugin-refine-imports-global-on nil)
- '(lsp-headerline-breadcrumb-enable t)
+ '(lsp-headerline-breadcrumb-enable nil)
  '(package-selected-packages
-   '(helm-rg lsp-treemacs yafolding yafold json-mode htmlize ox-reveal vterm sqlformat magit git beacon ialign jump-char jq-format toc-org org-ac flycheck-irony zoom-window window-number windresize window-jump buffer-move darkokai-theme helm-ag syntax-subword smartparens command-log-mode smex diminish use-package))
+   '(ein htmlize sqlformat magit git ialign jump-char jq-format org-ac flycheck-irony zoom-window window-number windresize window-jump darkokai-theme syntax-subword smartparens command-log-mode smex))
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
 	   (concat

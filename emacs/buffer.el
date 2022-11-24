@@ -106,8 +106,10 @@
 ;  :bind-keymap (("C-c C-w" . persp-mode-map))
   :init
   (setq persp-mode-prefix-key (kbd "C-c C-w"))
+  (setq persp-state-default-file "~/.emacs.d/persp-save")
   :config
-  (persp-mode 1))
+  (persp-mode 1)
+  (add-hook 'kill-emacs-hook #'persp-state-save))
 
 (provide 'buffer)
 ;;; buffer.el ends here

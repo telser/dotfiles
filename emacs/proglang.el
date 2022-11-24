@@ -26,3 +26,7 @@
   :init
   (setq sqlformat-command 'pgformatter
         sqlformat-args '("-s2" "-g")))
+
+(use-package ein
+  :ensure t
+  )

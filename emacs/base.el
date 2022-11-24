@@ -77,7 +77,6 @@
   :ensure t
   :diminish)
 
-
 (use-package beacon
   :ensure t
   :diminish
@@ -156,9 +155,15 @@
   :config
   (yas-global-mode nil))
 
-
 (use-package s
   :ensure t)
+
+(use-package markdown-mode
+  :ensure t
+  :bind
+  (:map markdown-mode-map
+	("M-<up>" . markdown-move-up)
+	("M-<down>" . markdown-move-down)))
 
 ;; alignment keybindings
 (define-prefix-command 'align-global-keymap 'align-stuff)

@@ -42,11 +42,22 @@
 (use-package htmlize
   :ensure t)
 
+(defun add-notes ()
+  "Insert a #+BEGIN_NOTES #+END_NOTES around a region."
+  (interactive)
+  (let ((p1 (region-beginning))
+        (p2 (region-end)))
+    (goto-char p2)
+    (insert "\n#+END_NOTES\n")
+    (goto-char p1)
+    (insert "#+BEGIN_NOTES\n")))
+
 (define-prefix-command 'org-global-keymap)
 (global-set-key (kbd "C-c o" ) 'org-global-keymap)
 (define-key 'org-global-keymap (kbd "a") 'org-agenda)
 (define-key 'org-global-keymap (kbd "l") 'org-store-link)
 (define-key 'org-global-keymap (kbd "c") 'org-capture)
+(define-key 'org-global-keymap (kbd "n") 'add-notes)
 
 (use-package toc-org
   :ensure t
