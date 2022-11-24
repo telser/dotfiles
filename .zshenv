@@ -96,6 +96,7 @@ if [[ "$HOST" == 'magmadragoon' ]]; then
   cabal_path;
   server_aliases;
   gpg_agent;
+  ghcup_path;
   alias thc-caltest='rm -r ~/.thc obj && make clean && make && make libs && ./thc --no-cache examples/Calendar.hs -o cal && ./cal 2019'
 fi
 

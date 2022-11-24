@@ -1,5 +1,9 @@
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
+# Force the locale so zsh theme stuff will work later
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Antigen loading:
 
 source $HOME/dotfiles/antigen/antigen.zsh
@@ -22,9 +26,8 @@ HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
 
+# Autocd allows for an implicit cd when given just a path
 setopt autocd extendedglob
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
 
 # Get rid of bell
 set bell-style none

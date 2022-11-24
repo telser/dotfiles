@@ -38,19 +38,20 @@ XTerm.*.scrollBar: true
 XTerm.*.scrollbar.width: 12
 
 ! urxvt settings
-URxvt.termName:          xterm-256color
+! URxvt.termName:          xterm-256color
 URxvt.transparent:       false
 URxvt.cursorBlink:       false
 URxvt.scrollBar_right:   true
 URxvt.thickness:         14
 URxvt.scrollstyle:       next
-URxvt.font: xft:Hack:size=11:antialias=true
-URxvt*skipBuiltinGlyphs: true
-URxvt*iso14755: False
-URxvt*iso14755_52: False
+URxvt.font: xft:Hack:style=Regular:size=11:antialias=true
+! URxvt*skipBuiltinGlyphs: false
+URxvt*iso14755: true
+URxvt*iso14755_52: true
+! URxvt.letterSpace:-2
 
 Xft.lcdfiler: lcddefault
 Xft.antialias: true
 Xft.hinting: true
-Xft.hintstyle: hintfull
+Xft.hintstyle: hintslight
 Xft.dpi: 144
