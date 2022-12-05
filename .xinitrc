@@ -95,7 +95,6 @@ elif [ "$NAME" = "magmadragoon" ]; then
     export $(dbus-launch)
 
     # kdeconnect
-    /usr/local/lib/libexec/kdeconnectd &
     kdeconnect-indicator &
 
     # using pipewire for audio
