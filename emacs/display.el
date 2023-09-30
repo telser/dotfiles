@@ -24,7 +24,7 @@
 (tool-bar-mode -1)
 
 ; line numbers on the left
-(global-linum-mode 1)
+(global-display-line-numbers-mode 1)
 
 ; hide line numbers from the modeline since it is on the left
 (line-number-mode -1)

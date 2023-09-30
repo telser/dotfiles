@@ -9,7 +9,7 @@
 ;; (setq interprogram-cut-function nil)
 
 ;; compile the child configuration files
-;(byte-recompile-directory (expand-file-name "~/emacs") 0)
+(byte-recompile-directory (expand-file-name "~/emacs") 0)
 (add-to-list 'load-path "~/emacs")
 (load-library "base")
 (load-library "display")
@@ -37,7 +37,7 @@
  '(lsp-haskell-plugin-refine-imports-global-on nil)
  '(lsp-headerline-breadcrumb-enable nil)
  '(package-selected-packages
-   '(graphql-mode graphql-doc graphql ein htmlize sqlformat magit git ialign jump-char jq-format org-ac flycheck-irony zoom-window window-number windresize window-jump darkokai-theme syntax-subword smartparens command-log-mode smex))
+   '(graphql-doc htmlize magit git ialign jump-char jq-format org-ac flycheck-irony window-number windresize window-jump darkokai-theme syntax-subword smartparens command-log-mode smex))
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
 	   (concat

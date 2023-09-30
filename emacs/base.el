@@ -152,6 +152,7 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish
   :config
   (yas-global-mode nil))
 
@@ -206,7 +207,6 @@ letter of camelcase lowercase."
               (downcase-region start (1+ start))))
         (replace-regexp "\\([A-Z]\\)" "_\\1" nil (1+ start) end)
         (downcase-region start (cdr (bounds-of-thing-at-point 'symbol)))))))
-
 
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match
