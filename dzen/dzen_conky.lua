@@ -30,6 +30,8 @@ local batteryClick='^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh)' .. batteryDisp
 local freebsdBatteryDisplay='^i(' .. batteryIcon .. ') ${exec ~/dzen/scripts/freebsd_batt.sh}'
 local freebsdBatteryClick='^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh)' .. freebsdBatteryDisplay .. ' ^ca()'
 
+local dunstDisplay='^i(' .. '${exec ~/dzen/scripts/dunst_paused_icon.sh}' .. ') '
+
 local calendar='^ca(1,~/dzen/scripts/cal_popup.sh) ${time %a %d %b %T} ^ca()'
 
 local middleSection
@@ -57,5 +59,5 @@ end
 if getShortHostname() ~= 'magmadragoon' then
    conky.text = cpuAndMem .. middleSection .. calendar;
 else
-   conky.text = cpuAndMem .. middleSection .. batteryClick .. calendar;
+   conky.text = cpuAndMem .. middleSection .. batteryClick .. dunstDisplay .. calendar;
 end
