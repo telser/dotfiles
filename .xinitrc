@@ -83,12 +83,10 @@ elif [ "$NAME" = "zero" ]; then
 
     syncthingtray &
 
-elif [ "$NAME" = "magmadragoon" ]; then
+elif [ "$NAME" = "double" ]; then
 
-#    xrandr --dpi 144
-#    export GDK_SCALE=2
      # turn off bluetooth, don't need it anyway
-    /usr/sbin/rfkill block bluetooth
+    rfkill block bluetooth
 
     # export dbus info because some shit will fall over in unexpected ways
     # without it (I see you slack)
@@ -97,14 +95,17 @@ elif [ "$NAME" = "magmadragoon" ]; then
     # kdeconnect
     kdeconnect-indicator &
 
+    export PULSE_RUNTIME_PATH=/run/user/1000 
+    export PIPEWIRE_RUNTIME_DIR=/run/user/1000 
+    export PIPEWIRE_LOG_SYSTEMD=false
     # using pipewire for audio
-#    pipewire &
+    pipewire &
 
     # replace pulseaudio with pipewire
-#    pipewire-pulse &
+    pipewire-pulse &
 
     # this flips on the audio hardware detection and stuff for pipewire
-#    wireplumber &
+    wireplumber &
 
     # systray
     stalonetray &
@@ -112,7 +113,7 @@ elif [ "$NAME" = "magmadragoon" ]; then
     # trayer --edge top --align left --SetDockType true --SetPartialStrut true --expand true --widthtype percent --width 12 --tint "0x000000" --transparent true --alpha 127 --height 42 &
 
     # clipboard manager
-    diodon &
+    clipit &
 
     # set wallpaper
     nitrogen --restore &
@@ -121,13 +122,13 @@ elif [ "$NAME" = "magmadragoon" ]; then
     nm-applet &
 
      # populates file with updatable packages, checked in start_dzen
-    sh ~/dotfiles/cronscripts/apt_upgradable.sh &
+#    sh ~/dotfiles/cronscripts/apt_upgradable.sh &
 
     # start top right bar with update info, clock, battery, etc
     sh ~/dzen/scripts/start_dzen.sh &
 
     # reduce brightness because having it all the way up is just silly, wastes power, etc etc
-    brightnessctl -c backlight set 50%
+    brightnessctl -c backlight set 40%
 
     # adjust screen temperature at night
     redshift -c ~/.config/redshift.conf &
@@ -142,9 +143,6 @@ elif [ "$NAME" = "magmadragoon" ]; then
     # start syncthing minimized to tray
     syncthing-gtk -m &
 
-    # chat applications to start at login
-    # irc client
-    quasselclient &
 fi
 
 exec xmonad
