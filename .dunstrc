@@ -15,7 +15,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = mouse
+    follow = none
 
     # The geometry of the window:
     #   [{width}]x{height}[+/-{x}+/-{y}]
@@ -200,24 +200,24 @@
     # layout changes.
     force_xinerama = false
 
-frame_color = "#ffeeff"
-separator_color = "#ffeeff"
+[global]
+frame_color = "#ddd0dd"
+separator_color = "#ddd0dd"
 
 [base16_low]
     msg_urgency = low
-    background = "#1A092D"
-    foreground = "#320f55"
+    background = "#302030"
+    foreground = "#605060"
 
 [base16_normal]
     msg_urgency = normal
-    background = "#331354"
-    foreground = "#ffeeff"
+    background = "#403040"
+    foreground = "#ddd0dd"
 
 [base16_critical]
     msg_urgency = critical
-    background = "#00d9e9"
-    foreground = "#ffeeff"
-
+    background = "#ff1d0d"
+    foreground = "#eee0ee"
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
