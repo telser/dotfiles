@@ -100,6 +100,18 @@ if [[ "$HOST" == 'magmadragoon' ]]; then
   alias thc-caltest='rm -r ~/.thc obj && make clean && make && make libs && ./thc --no-cache examples/Calendar.hs -o cal && ./cal 2019'
 fi
 
+if [[ "$HOST" == 'double' ]]; then
+    ZBG=214
+    sbin_path;
+    local_path;
+    cabal_path;
+    server_aliases;
+    gpg_agent;
+    ghcup_path;
+    alias learn-yubikey='gpg-connect-agent "scd serialno" "learn --force" /bye'
+    export EDITOR=mg
+fi
+
 if [[ "$HOST" == 'antione' ]]; then
     ZBG=094
 fi
@@ -139,8 +151,6 @@ export ZBG
 
 alias work-old="ssh -t -p 2224 trevis@localhost"
 alias work="ssh -i ~/.ssh/work_rsa  -X -t -p 2226 trevis@localhost"
-alias work-chedr="work 'cd work/heb/chedr-core && exec \$SHELL -l'"
-alias work-spur="work 'cd work/heb/supplier-core && exec \$SHELL -l'"
 alias apu2-screen="sudo screen /dev/ttyUSB0 115200"
 
 alias vm-start-work='/usr/bin/qemu-system-x86_64 -monitor none -machine accel=kvm -m 32768 -smp cores=5,threads=2 -hda /home/trevis/vms/work.img -boot once=d,menu=off -net nic -net user,hostfwd=tcp::2225-10.0.2.15:22 -rtc base=utc -display none -name "work" &'

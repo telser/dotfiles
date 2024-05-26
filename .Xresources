@@ -44,7 +44,7 @@ URxvt.cursorBlink:       false
 URxvt.scrollBar_right:   true
 URxvt.thickness:         14
 URxvt.scrollstyle:       next
-URxvt.font: xft:Hack:style=Regular:size=11:antialias=true
+URxvt.font: xft:Hack:style=Regular:size=10:antialias=true
 ! URxvt*skipBuiltinGlyphs: false
 URxvt*iso14755: true
 URxvt*iso14755_52: true

@@ -7,7 +7,7 @@ conky.config = {
 
 
 local function getShortHostname()
-    local f = io.popen ("/bin/hostname -s")
+    local f = io.popen ("/bin/hostname")
     local hostname = f:read("*a") or ""
     f:close()
     hostname =string.gsub(hostname, "\n$", "")
@@ -24,7 +24,7 @@ local memDisplay='^i(' .. memIcon .. ')${memperc}%'
 local cpuAndMem = [[ ]] .. cpuDisplay .. memDisplay
 
 local batteryIcon='/home/trevis/dzen/icons/batt.xpm'
-local batteryDisplay='^i(' .. batteryIcon .. ') ${battery_percent}%'
+local batteryDisplay='^i(' .. batteryIcon .. ') ${exec ~/dzen/scripts/acpi_batt.sh}'
 local batteryClick='^ca(1,~/dotfiles/dzen/scripts/batt_popup.sh)' .. batteryDisplay .. ' ^ca()'
 
 local freebsdBatteryDisplay='^i(' .. batteryIcon .. ') ${exec ~/dzen/scripts/freebsd_batt.sh}'
@@ -52,11 +52,19 @@ else
 
       middleSection = freebsdPkgUpdatesClick .. freebsdBatteryClick
    else
-      middleSection = [[ ]]
+      if getShortHostname() == 'double' then
+	 local voidUpdatesIcon='/home/trevis/dzen/icons/void50.xpm'
+	 local voidUpdatesDisplay='^i(' .. voidUpdatesIcon .. ') ${exec ~/dzen/scripts/void_updates_num.sh}'
+	 local voidUpdatesClick=' ^ca(1,~/dzen/scripts/void_updates_popup.sh)' .. voidUpdatesDisplay .. ' ^ca()'
+
+	 middleSection = voidUpdatesClick
+      else
+	 middleSection = [[ ]]
+      end
    end
 end
 
-if getShortHostname() ~= 'magmadragoon' then
+if getShortHostname() == 'zero' then
    conky.text = cpuAndMem .. middleSection .. calendar;
 else
    conky.text = cpuAndMem .. middleSection .. batteryClick .. dunstDisplay .. calendar;
