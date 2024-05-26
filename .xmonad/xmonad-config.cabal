@@ -12,4 +12,4 @@ cabal-version: >=1.8
 executable xmonad-config
   main-is: xmonad.hs
   build-depends: base, containers, network-bsd, xmonad, xmonad-contrib, unix, X11
-  ghc-options: -j -O2
+  ghc-options: -j -O2 -threaded -funbox-strict-fields -msse4.2 -mbmi2

@@ -1,23 +1,25 @@
 #!/bin/sh
 
+set -o xtrace
+
 if [ "$(uname -n)" = 'magmadragoon' ]; then
     FIND_PERM="-perm /111"
 else
-    FIND_PERM="-perm +111"
+    FIND_PERM="-perm /111"
 fi
 
 # must match "executable" line from xmonad-config.cabal
 EXE_NAME=xmonad-config
 
 # xmonad tells us how it want resulting executable to be named
-output_file=$1; shift
+output_file=xmonad
 
 CFG_DIR=$HOME/.xmonad
 
 # build the config
 cd "$CFG_DIR"
-cabal new-configure -O2 --enable-executable-stripping
-cabal new-build
+cabal new-configure -w ghc-9.8.2 -O2 --enable-executable-stripping
+cabal new-build -w ghc-9.8.2
 
 if [ "$output_file" != "" ]; then
 # move resulting binary where it was requested to reside
