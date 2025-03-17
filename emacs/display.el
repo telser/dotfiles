@@ -8,10 +8,10 @@
 
 (require 'use-package)
 
-(use-package darkokai-theme
+(use-package dracula-theme
   :ensure t
   :config
-  (load-theme 'darkokai t))
+  (load-theme 'dracula t))
 
 (use-package all-the-icons
   :ensure t
