@@ -5,11 +5,11 @@
 ;;; Code:
 (require 'package)
 
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; (setq interprogram-cut-function nil)
 
 ;; compile the child configuration files
-(byte-recompile-directory (expand-file-name "~/emacs") 0)
+(async-byte-recompile-directory (expand-file-name "~/emacs") 0)
 (add-to-list 'load-path "~/emacs")
 (load-library "base")
 (load-library "display")
@@ -33,16 +33,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(haskell-mode-hook
+   '(flycheck-haskell-setup add-haskell-align-rules-hook haskell-indentation-mode) t)
  '(lsp-haskell-plugin-import-lens-code-lens-on nil)
  '(lsp-haskell-plugin-refine-imports-global-on nil)
  '(lsp-headerline-breadcrumb-enable nil)
- '(package-selected-packages
-   '(graphql-doc htmlize magit git ialign jump-char jq-format org-ac flycheck-irony window-number windresize window-jump darkokai-theme syntax-subword smartparens command-log-mode smex))
+ '(package-selected-packages nil)
  '(safe-local-variable-values
    '((eval setq lsp-haskell-server-path
-	   (concat
-	    (locate-dominating-file default-directory ".dir-locals.el")
-	    ".vscode/haskell-language-server-wrapper")))))
+	   (concat (locate-dominating-file default-directory ".dir-locals.el")
+		   ".vscode/haskell-language-server-wrapper")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

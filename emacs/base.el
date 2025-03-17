@@ -6,7 +6,7 @@
 
 
 ;; on recompile refresh the package contents and make sure use-package and diminish are installed
-(package-refresh-contents)
+(package-refresh-contents t)
 (dolist (package '(use-package diminish))
     (unless (package-installed-p package)
        (package-install package)))
