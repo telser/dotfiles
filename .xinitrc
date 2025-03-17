@@ -85,8 +85,8 @@ elif [ "$NAME" = "zero" ]; then
 
 elif [ "$NAME" = "double" ]; then
 
-     # turn off bluetooth, don't need it anyway
-    rfkill block bluetooth
+     # turn off bluetooth, if it is needed can always turn it on manually
+    bluetoothctl power off
 
     # export dbus info because some shit will fall over in unexpected ways
     # without it (I see you slack)
