@@ -93,6 +93,7 @@ elif [ "$NAME" = "double" ]; then
     export $(dbus-launch)
 
     # kdeconnect
+    kdeconnectd &
     kdeconnect-indicator &
 
     export PULSE_RUNTIME_PATH=/run/user/1000 
