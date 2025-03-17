@@ -18,8 +18,8 @@ CFG_DIR=$HOME/.xmonad
 
 # build the config
 cd "$CFG_DIR"
-cabal new-configure -w ghc-9.8.2 -O2 --enable-executable-stripping
-cabal new-build -w ghc-9.8.2
+cabal new-configure -w ghc-9.10.1 -O2 --enable-executable-stripping
+cabal new-build -w ghc-9.10.1
 
 if [ "$output_file" != "" ]; then
 # move resulting binary where it was requested to reside
