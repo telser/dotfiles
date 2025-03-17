@@ -1,4 +1,8 @@
 #!/bin/sh
 
-doas xbps-install -S > /dev/null
-xbps-install -Sun > /tmp/void_updates.txt
+set -o xtrace
+
+cd /home/trevis/void-packages
+git pull
+doas xi -S > /dev/null
+doas xi -un > /tmp/void_updates.txt
