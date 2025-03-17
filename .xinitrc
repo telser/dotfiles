@@ -96,17 +96,8 @@ elif [ "$NAME" = "double" ]; then
     kdeconnectd &
     kdeconnect-indicator &
 
-    export PULSE_RUNTIME_PATH=/run/user/1000 
-    export PIPEWIRE_RUNTIME_DIR=/run/user/1000 
-    export PIPEWIRE_LOG_SYSTEMD=false
     # using pipewire for audio
     pipewire &
-
-    # replace pulseaudio with pipewire
-    pipewire-pulse &
-
-    # this flips on the audio hardware detection and stuff for pipewire
-    wireplumber &
 
     # systray
     stalonetray &
