@@ -103,13 +103,18 @@
 ; perspectives are nice for workload management
 (use-package perspective
   :ensure t
-;  :bind-keymap (("C-c C-w" . persp-mode-map))
+  :bind (
+        :map perspective-map
+             ("l" . persp-switch-last))
+  :custom
+  (persp-mode-prefix-key (kbd "C-c C-w"))
   :init
-  (setq persp-mode-prefix-key (kbd "C-c C-w"))
-  (setq persp-state-default-file "~/.emacs.d/persp-save")
-  :config
-  (persp-mode 1)
-  (add-hook 'kill-emacs-hook #'persp-state-save))
+  (persp-mode 1))
+
+(use-package persp-projectile
+  :ensure t
+  :bind ( :map perspective-map
+	 ("S" . 'projectile-persp-switch-project)))
 
 (provide 'buffer)
 ;;; buffer.el ends here
