@@ -4,6 +4,12 @@ local_path() {
     export PATH
 }
 
+home_path() {
+    # include home directory bins, but not as a preference
+    PATH=$PATH:$HOME/bin
+    export PATH
+}
+
 gpg_agent() {
 
   # GPG Section
@@ -104,12 +110,14 @@ if [[ "$HOST" == 'double' ]]; then
     ZBG=214
     sbin_path;
     local_path;
+    home_path;
     cabal_path;
     server_aliases;
     gpg_agent;
     ghcup_path;
     alias learn-yubikey='gpg-connect-agent "scd serialno" "learn --force" /bye'
     export EDITOR=mg
+    # export DOCKER_HOST=unix:///run/user/1000/docker.sock
 fi
 
 if [[ "$HOST" == 'antione' ]]; then
@@ -156,3 +164,6 @@ alias apu2-screen="sudo screen /dev/ttyUSB0 115200"
 alias vm-start-work='/usr/bin/qemu-system-x86_64 -monitor none -machine accel=kvm -m 32768 -smp cores=5,threads=2 -hda /home/trevis/vms/work.img -boot once=d,menu=off -net nic -net user,hostfwd=tcp::2225-10.0.2.15:22 -rtc base=utc -display none -name "work" &'
 
 alias vm-start-work-old='/usr/bin/qemu-system-x86_64 -monitor none -machine accel=kvm -m 16384 -smp 8 -hda /home/trevis/.aqemu/work_HDA.img -boot once=c,menu=off -net nic -net user,hostfwd=tcp::2224-10.0.2.15:22 -rtc base=localtime -display none -name "work" &'
+
+XDG_CONFIG_HOME=/home/trevis/.config
+export XDG_CONFIG_HOME
