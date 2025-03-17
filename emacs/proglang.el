@@ -30,3 +30,6 @@
 (use-package ein
   :ensure t
   )
+
+(use-package purescript-mode
+  :ensure t)

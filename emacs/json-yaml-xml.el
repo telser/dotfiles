@@ -2,6 +2,13 @@
 
 (require 'use-package)
 
+(use-package nginx-mode
+  :ensure t
+  :commands nginx-mode)
+
+(use-package xkb-mode
+  :ensure t)
+
 (use-package jq-format
   :ensure t
   :config (jq-format-json-on-save-mode))
