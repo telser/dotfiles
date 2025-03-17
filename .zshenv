@@ -15,14 +15,14 @@ gpg_agent() {
   # GPG Section
   gpg_agent_running=$(pgrep gpg-agent)
   if [[ -z ${gpg_agent_running} ]]; then
-      eval $(gpg-agent --daemon) # --enable-ssh-support -s #--write-env-file "${HOME}/.gpg-agent-info"
+      eval $(gpg-agent --daemon) --enable-ssh-support -s #--write-env-file "${HOME}/.gpg-agent-info"
 
   fi
 
   export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
   GPG_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
-#  SSH_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
+  SSH_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
   export GPG_AGENT_INFO
 
   GPG_TTY=$(tty)
