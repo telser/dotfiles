@@ -33,7 +33,6 @@ if [ "$NAME" = "double2" ]; then
 
 elif [ "$NAME" = "zero" ]; then
     xrandr --dpi 144
-#    xrandr --output eDP-1 --mode 2880x1620
     export GDK_SCALE=2
 
     stalonetray &
@@ -82,6 +81,62 @@ elif [ "$NAME" = "zero" ]; then
     xinput set-prop "DLL06E5:00 06CB:7A13 TouchPad" "Synaptics Tap Action" 0 0 0 0 1 3 2
 
     syncthingtray &
+
+elif [ "$NAME" = "magmadragoon" ]; then
+
+     # turn off bluetooth, if it is needed can always turn it on manually
+    bluetoothctl power off
+
+    # export dbus info because some shit will fall over in unexpected ways
+    # without it (I see you slack)
+    export $(dbus-launch)
+
+    # kdeconnect
+    kdeconnectd &
+    kdeconnect-indicator &
+
+    # using pipewire for audio
+    pipewire &
+
+    # replace pulseaudio with pipewire
+    pipewire-pulse &
+
+    # this flips on the audio hardware detection and stuff for pipewire
+    wireplumber &
+
+    # systray
+    stalonetray &
+
+    # clipboard manager
+    diodon &
+
+    # set wallpaper
+    nitrogen --restore &
+
+    # wireless management using nm again because ugh
+    nm-applet &
+
+     # populates file with updatable packages, checked in start_dzen
+    sh ~/dotfiles/cronscripts/apt_upgradable.sh &
+
+    # start top right bar with update info, clock, battery, etc
+    sh ~/dzen/scripts/start_dzen.sh &
+
+    # reduce brightness because having it all the way up is just silly, wastes power, etc etc
+    brightnessctl -c backlight set 50%
+
+    # adjust screen temperature at night
+    redshift -c ~/.config/redshift.conf &
+
+    # dunst is not the prettiest notification manager thing
+    # But it is available most places and just works
+    dunst -conf ~/.dunstrc &
+
+    # pasystray works via the pulseaudio compat with pipewire (started above)
+    pasystray &
+
+    # start syncthing minimized to tray
+    syncthing-gtk -m &
 
 elif [ "$NAME" = "double" ]; then
 
